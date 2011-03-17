@@ -55,15 +55,28 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 	}
 });
 
-
 app.set('view engine', 'jade');
 
 // Temporary data
-var posts = {
-	first: {
+var posts = [
+	{
+		slug: 'first',
+		title: 'This is the post title',
 		timestamp: new Date(),
 		tags: ['foo', 'bar', 'test'],
-		title: 'This is the post title',
+		comments: [
+			{
+				author: 'Comment Author',
+				comment: 'Lorem ipsum dolor sit amet.',
+				timestamp: new Date()
+			}
+		]
+	},
+	{
+		slug: 'second',
+		title: 'Numba 2!',
+		timestamp: new Date(),
+		tags: ['baz', 'bip'],
 		comments: [
 			{
 				author: 'Comment Author',
@@ -72,13 +85,13 @@ var posts = {
 			}
 		]
 	}
-};
+];
 
 var site = {
 	title: 'craveytrain',
 	bodyId: '',
 	bodyClass: ''
-}
+};
 
 app.get('/', function(req, res) {
 	res.render('index');
@@ -95,11 +108,11 @@ app.get('/posts', function(req, res) {
 });
 
 app.get('/posts/:slug', function(req, res) {
-	// Add if for both slug in posts and md file exists
+	// TODO: Add if for both slug in posts and md file exists
 	var slug = req.params.slug,
-			post = posts[slug],
+			post = posts.filter(function(post) { return (post.slug === slug); })[0],
 			page = { title: post.title, bodyId: slug, bodyClass: 'single' }.import(site);
-	fs.readFile(__dirname + '/posts/' + req.params.slug + '.md', 'UTF-8', function(e, d) {
+	fs.readFile(__dirname + '/posts/' + slug + '.md', 'UTF-8', function(e, d) {
 		if (e) console.log(e);
 		post.content = md.toHTML(d);
 		res.render('posts/post', { post: post, page: page });

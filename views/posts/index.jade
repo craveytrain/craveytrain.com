@@ -1,2 +1,5 @@
 h1= page.title
-!= partial('list', posts)
+- if (posts.length)
+	!=partial('list')
+- else
+	p Nothing to see here...
