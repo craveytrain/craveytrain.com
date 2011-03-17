@@ -1,5 +1,11 @@
 article.post!= post.content
-	ul.tags
-		- each tag in post.tags
-			li
-				a(href: '/tags/' + tag)= tag
+	footer
+		time(datetime: post.timestamp, pubdate)= post.timestamp.toDateString()
+		ul.tags
+			- each tag, i in post.tags
+				li
+					a(href: '/tags/' + tag)= "#" + tag
+					- if (i < post.tags.length - 1)
+						:text
+							,&nbsp;
+					
