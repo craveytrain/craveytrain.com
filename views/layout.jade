@@ -11,14 +11,13 @@ html(lang="en").no-js
 		meta(charset: 'utf-8')
 		//- Fix this with headers
 		meta(http-equiv: 'X-UA-Compatible', content: 'IE=edge,chrome=1')
-		//- get the right title in here
 		title= page.title
 		meta(name: 'description', content: '')
 		meta(name: 'author', content: 'Mike Cravey')
 		meta(name: 'viewport', content: 'width=device-width, initial-scale=1.0')
 		link(rel: 'stylesheet', href: '/css/style.css')
 		script(src: '/js/libs/modernizr.js')
-	body
+	body(id: page.bodyId, class: page.bodyClass)
 		section.main!= body
 		section.rail
 			p#logo craveytrain
@@ -31,5 +30,6 @@ html(lang="en").no-js
 					li
 						a(href: '/contact') Contact
 
-		script
-			var _gaq=[['_setAccount','UA-3516156-4'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'));
+//- TODO: put this back in when going to prod
+//-		script
+//-			var _gaq=[['_setAccount','UA-3516156-4'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'));

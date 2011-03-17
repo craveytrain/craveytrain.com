@@ -19,13 +19,14 @@ app.register('.md', {
 	}
 });
 
-Object.defineProperty(Object.prototype, "extend", {
+Object.defineProperty(Object.prototype, "import", {
 	enumerable: false,
 	value: function(from) {
-		var props = Object.getOwnPropertyNames(from);
-		var dest = this;
+		var props = Object.getOwnPropertyNames(from),
+				dest = this;
+
 		props.forEach(function(name) {
-			if (name in dest) {
+			if (dest[name] === undefined) {
 				var destination = Object.getOwnPropertyDescriptor(from, name);
 				Object.defineProperty(dest, name, destination);
 			}
@@ -53,27 +54,34 @@ var posts = {
 	}
 };
 
+var site = {
+	title: 'craveytrain',
+	bodyId: '',
+	bodyClass: ''
+}
+
 app.get('/', function(req, res) {
 	res.render('index');
 });
 
 app.get('/about', function(req, res) {
-	var page = { title: 'About' };
+	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' }.import(site);
 	res.render('about.md', { layout: 'layout.jade', page: page });
 });
 
 app.get('/posts', function(req, res) {
-	var page = { title: 'Posts' };
+	var page = { title: 'Posts', bodyId: 'posts' }.import(site);
 	res.render('posts', {posts: posts, page: page});
 });
 
 app.get('/posts/:slug', function(req, res) {
 	// Add if for both slug in posts and md file exists
-	var post = posts[req.params.slug];
+	var slug = req.params.slug,
+			post = posts[slug],
+			page = { title: post.title, bodyId: slug, bodyClass: 'single' }.import(site);
 	fs.readFile(__dirname + '/posts/' + req.params.slug + '.md', 'UTF-8', function(e, d) {
 		if (e) console.log(e);
 		post.content = md.toHTML(d);
-		var page = {};
 		res.render('posts/post', { post: post, page: page });
 	});
 });
