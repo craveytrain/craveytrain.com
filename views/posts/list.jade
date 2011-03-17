@@ -1,0 +1,6 @@
+ul.posts
+	- each post, slug in posts
+		li
+			h2
+				a(href: '/posts/' + slug) #{post.title}
+			

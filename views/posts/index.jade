@@ -1,5 +1,2 @@
 h1= page.title
-ul#users
-	- each post, slug in posts
-		li
-			a(href: '/posts/' + slug) #{post.title}
+!= partial('list', posts)
