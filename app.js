@@ -1,16 +1,28 @@
 var express = require('express'),
 		fs = require('fs'),
+		http = require('http'),
 		md = require('markdown').markdown;
+
+
+var db = {
+	opts: {
+		host: '127.0.0.1',
+		port: 5984
+	},
+	queries: {
+		posts: '/craveytrain/_design/posts/_view/posts'
+	}
+};		
 		
 var app = express.createServer(express.static(__dirname + '/public'));
 
 app.register('.md', {
 	compile: function(str, options){
 		var html = md.toHTML(str);
-		return function(locals){
-			return html.replace(/\{([^}]+)\}/g, function(_, name){
+		return function (locals){
+			return html.replace(/\{([^}]+)\}/g, function (_, name){
 				var cur = locals;
-				name.split('.').forEach(function(prop) {
+				name.split('.').forEach(function (prop) {
 					cur = cur[prop]
 				})
 				return cur;
@@ -25,7 +37,7 @@ Object.defineProperty(Object.prototype, 'import', {
 		var props = Object.getOwnPropertyNames(from),
 				dest = this;
 
-		props.forEach(function(name) {
+		props.forEach(function (name) {
 			if (dest[name] === undefined) {
 				var destination = Object.getOwnPropertyDescriptor(from, name);
 				Object.defineProperty(dest, name, destination);
@@ -57,35 +69,7 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 
 app.set('view engine', 'jade');
 
-// Temporary data
-var posts = [
-	{
-		slug: 'first',
-		title: 'This is the post title',
-		timestamp: new Date(),
-		tags: ['foo', 'bar', 'test'],
-		comments: [
-			{
-				author: 'Comment Author',
-				comment: 'Lorem ipsum dolor sit amet.',
-				timestamp: new Date()
-			}
-		]
-	},
-	{
-		slug: 'second',
-		title: 'Numba 2!',
-		timestamp: new Date(),
-		tags: ['baz', 'bip'],
-		comments: [
-			{
-				author: 'Comment Author',
-				comment: 'Lorem ipsum dolor sit amet.',
-				timestamp: new Date()
-			}
-		]
-	}
-];
+
 
 var site = {
 	title: 'craveytrain',
@@ -93,26 +77,41 @@ var site = {
 	bodyClass: ''
 };
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	res.render('index');
 });
 
-app.get('/about', function(req, res) {
+app.get('/about', function (req, res) {
 	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' }.import(site);
 	res.render('about.md', { layout: 'layout.jade', page: page });
 });
 
-app.get('/posts', function(req, res) {
-	var page = { title: 'Posts', bodyId: 'posts' }.import(site);
-	res.render('posts', {posts: posts, page: page});
+app.get('/posts', function (req, res) {
+	var page = { title: 'Posts', bodyId: 'posts' }.import(site),
+			query = '';
+	db.opts.path = db.queries.posts;
+	http.get(db.opts, function(get){
+		get.setEncoding('utf8');
+
+		get.on('data', function (chunk) {
+			query += chunk;
+		});
+		
+		get.on('end', function () {
+			query = JSON.parse(query);
+			var posts = query.rows;
+			console.log(posts);
+			res.render('posts', {posts: posts, page: page});
+		});
+	});
 });
 
-app.get('/posts/:slug', function(req, res) {
+app.get('/posts/:slug', function (req, res) {
 	// TODO: Add if for both slug in posts and md file exists
 	var slug = req.params.slug,
-			post = posts.filter(function(post) { return (post.slug === slug); })[0],
+			post = posts.filter(function (post) { return (post.slug === slug); })[0],
 			page = { title: post.title, bodyId: slug, bodyClass: 'single' }.import(site);
-	fs.readFile(__dirname + '/posts/' + slug + '.md', 'UTF-8', function(e, d) {
+	fs.readFile(__dirname + '/posts/' + slug + '.md', 'UTF-8', function (e, d) {
 		if (e) console.log(e);
 		post.content = md.toHTML(d);
 		res.render('posts/post', { post: post, page: page });
