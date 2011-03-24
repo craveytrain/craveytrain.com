@@ -3,25 +3,27 @@ var express = require('express'),
 		md = require('markdown').markdown;
 
 
-function fetch (url, callback) {
-	var opts = {
-		host: 'localhost',
-		port: 5984,
-		path: url
-	};	
+var db = {
+	fetch: function (url, callback) {
+		var opts = {
+			host: 'localhost',
+			port: 5984,
+			path: url
+		};	
 
-	var db = http.get(opts, function (res) {
-		var results = '';
-		res.setEncoding('utf8');
-		res.on('data', function (chunk) {
-			results += chunk;
+		http.get(opts, function (res) {
+			var results = '';
+			res.setEncoding('utf8');
+			res.on('data', function (chunk) {
+				results += chunk;
+			});
+			res.on('end', function () {
+				callback(JSON.parse(results));
+			});
 		});
-		res.on('end', function () {
-			callback(JSON.parse(results));
-		});
-	});
-}	
-		
+	}
+}
+	
 var app = express.createServer(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 
@@ -94,20 +96,19 @@ app.get('/about', function (req, res) {
 
 app.get('/posts', function (req, res) {
 	var page = { title: 'Posts', bodyId: 'posts' }.backfill(site);
-	fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
+	db.fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
 		posts = posts.rows;
 		res.render('posts', {posts: posts, page: page});
 	});
 });
 
 app.get('/posts/:slug', function (req, res) {
-	// TODO: Add if for both slug in posts and md file exists
 	var slug = req.params.slug,
-			post = posts.filter(function (post) { return (post.slug === slug); })[0],
-			page = { title: post.title, bodyId: slug, bodyClass: 'single' }.import(site);
-	fs.readFile(__dirname + '/posts/' + slug + '.md', 'UTF-8', function (e, d) {
-		if (e) console.log(e);
-		post.content = md.toHTML(d);
+			page = {bodyId: slug, bodyClass: 'single' }.backfill(site);
+			
+	db.fetch('/craveytrain/' + slug, function (post) {
+		console.log(post);
+		page.title = post.title;
 		res.render('posts/post', { post: post, page: page });
 	});
 });
