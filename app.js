@@ -1,20 +1,29 @@
 var express = require('express'),
-		fs = require('fs'),
 		http = require('http'),
 		md = require('markdown').markdown;
 
 
-var db = {
-	opts: {
-		host: '127.0.0.1',
-		port: 5984
-	},
-	queries: {
-		posts: '/craveytrain/_design/posts/_view/posts'
-	}
-};		
+function fetch (url, callback) {
+	var opts = {
+		host: 'localhost',
+		port: 5984,
+		path: url
+	};	
+
+	var db = http.get(opts, function (res) {
+		var results = '';
+		res.setEncoding('utf8');
+		res.on('data', function (chunk) {
+			results += chunk;
+		});
+		res.on('end', function () {
+			callback(JSON.parse(results));
+		});
+	});
+}	
 		
 var app = express.createServer(express.static(__dirname + '/public'));
+app.set('view engine', 'jade');
 
 app.register('.md', {
 	compile: function(str, options){
@@ -31,7 +40,7 @@ app.register('.md', {
 	}
 });
 
-Object.defineProperty(Object.prototype, 'import', {
+Object.defineProperty(Object.prototype, 'backfill', {
 	enumerable: false,
 	value: function(from) {
 		var props = Object.getOwnPropertyNames(from),
@@ -67,9 +76,6 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 	}
 });
 
-app.set('view engine', 'jade');
-
-
 
 var site = {
 	title: 'craveytrain',
@@ -82,26 +88,15 @@ app.get('/', function (req, res) {
 });
 
 app.get('/about', function (req, res) {
-	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' }.import(site);
+	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' }.backfill(site);
 	res.render('about.md', { layout: 'layout.jade', page: page });
 });
 
 app.get('/posts', function (req, res) {
-	var page = { title: 'Posts', bodyId: 'posts' }.import(site),
-			query = '';
-	db.opts.path = db.queries.posts;
-	http.get(db.opts, function(get){
-		get.setEncoding('utf8');
-
-		get.on('data', function (chunk) {
-			query += chunk;
-		});
-		
-		get.on('end', function () {
-			query = JSON.parse(query);
-			var posts = query.rows;
-			res.render('posts', {posts: posts, page: page});
-		});
+	var page = { title: 'Posts', bodyId: 'posts' }.backfill(site);
+	fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
+		posts = posts.rows;
+		res.render('posts', {posts: posts, page: page});
 	});
 });
 
