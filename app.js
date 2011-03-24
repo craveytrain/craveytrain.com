@@ -18,7 +18,9 @@ var db = {
 				results += chunk;
 			});
 			res.on('end', function () {
-				callback(JSON.parse(results));
+				var tmp = JSON.parse(results);
+				results = (tmp.rows) ? tmp.rows : tmp;
+				callback(results);
 			});
 		});
 	}
@@ -97,7 +99,6 @@ app.get('/about', function (req, res) {
 app.get('/posts', function (req, res) {
 	var page = { title: 'Posts', bodyId: 'posts' }.backfill(site);
 	db.fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
-		posts = posts.rows;
 		res.render('posts', {posts: posts, page: page});
 	});
 });
@@ -107,7 +108,6 @@ app.get('/posts/:slug', function (req, res) {
 			page = {bodyId: slug, bodyClass: 'single' }.backfill(site);
 			
 	db.fetch('/craveytrain/' + slug, function (post) {
-		console.log(post);
 		page.title = post.title;
 		res.render('posts/post', { post: post, page: page });
 	});
