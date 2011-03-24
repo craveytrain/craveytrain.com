@@ -100,7 +100,6 @@ app.get('/posts', function (req, res) {
 		get.on('end', function () {
 			query = JSON.parse(query);
 			var posts = query.rows;
-			console.log(posts);
 			res.render('posts', {posts: posts, page: page});
 		});
 	});
