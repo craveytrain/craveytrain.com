@@ -80,7 +80,6 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 	}
 });
 
-
 var site = {
 	title: 'craveytrain',
 	bodyId: '',
