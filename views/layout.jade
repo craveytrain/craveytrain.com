@@ -23,11 +23,14 @@ html(lang="en").no-js
 			p#logo craveytrain
 			nav.siteNav
 				ul
-					li
+					- var home = (page.bodyId === 'home') ? 'selected' : '';
+					li(class: home)
 						a(href: '/') Home
-					li
+					- var about = (page.bodyId === 'about') ? 'selected' : '';
+					li(class: about)
 						a(href: '/about') About
-					li
+					- var contact = (page.bodyId === 'contact') ? 'selected' : '';
+					li(class: contact)
 						a(href: '/contact') Contact
 
 //- TODO: put this back in when going to prod
