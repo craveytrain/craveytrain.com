@@ -26,6 +26,9 @@ html(lang="en").no-js
 					- var home = (page.bodyId === 'home') ? 'selected' : '';
 					li(class: home)
 						a(href: '/') Home
+					- var posts = (page.bodyId === 'posts') ? 'selected' : '';
+					li(class: posts)
+						a(href: '/posts') Posts
 					- var about = (page.bodyId === 'about') ? 'selected' : '';
 					li(class: about)
 						a(href: '/about') About
