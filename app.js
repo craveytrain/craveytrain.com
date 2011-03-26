@@ -74,6 +74,11 @@ app.get('/about', function (req, res) {
 	res.render('about.md', { layout: 'layout.jade', page: page });
 });
 
+app.get('/contact', function (req, res) {
+	var page = { title: 'Contact', bodyId: 'contact', bodyClass: 'static' };
+	res.render('contact.md', { layout: 'layout.jade', page: page });
+});
+
 app.get('/posts', function (req, res) {
 	var page = { title: 'Posts', bodyId: 'posts' };
 	db.fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
