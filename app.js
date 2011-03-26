@@ -44,22 +44,6 @@ app.register('.md', {
 	}
 });
 
-Object.defineProperty(Object.prototype, 'backfill', {
-	enumerable: false,
-	value: function(from) {
-		var props = Object.getOwnPropertyNames(from),
-				dest = this;
-
-		props.forEach(function (name) {
-			if (dest[name] === undefined) {
-				var destination = Object.getOwnPropertyDescriptor(from, name);
-				Object.defineProperty(dest, name, destination);
-			}
-		});
-		return this;
-	}
-});
-
 Object.defineProperty(Date.prototype, 'toRelative', {
 	enumerable: false,
 	value: function() {
@@ -80,23 +64,18 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 	}
 });
 
-var site = {
-	title: 'craveytrain',
-	bodyId: '',
-	bodyClass: ''
-};
-
 app.get('/', function (req, res) {
-	res.render('index');
+	var page = { title: 'craveytrain', bodyId: "home" };
+	res.render('index', { page: page });
 });
 
 app.get('/about', function (req, res) {
-	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' }.backfill(site);
+	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' };
 	res.render('about.md', { layout: 'layout.jade', page: page });
 });
 
 app.get('/posts', function (req, res) {
-	var page = { title: 'Posts', bodyId: 'posts' }.backfill(site);
+	var page = { title: 'Posts', bodyId: 'posts' };
 	db.fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
 		res.render('posts', {posts: posts, page: page});
 	});
@@ -104,7 +83,7 @@ app.get('/posts', function (req, res) {
 
 app.get('/posts/:slug', function (req, res) {
 	var slug = req.params.slug,
-			page = {bodyId: slug, bodyClass: 'single' }.backfill(site);
+			page = {bodyId: slug, bodyClass: 'single' };
 			
 	db.fetch('/craveytrain/' + slug, function (post) {
 		page.title = post.title;
