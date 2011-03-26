@@ -1,0 +1,43 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Mike Cravey
+  Site: craveytrain
+  Twitter: @craveytrain
+  Location: http://craveytrain.com
+
+/* THANKS */
+  Names (& URL): Everyone, seriously, everybody whom I've read, studied, given code back to the community, all y'all are rock stars.
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery
+  Software:
+  
+
+                                    
+                               -o/-                       
+                               +oo//-                     
+                              :ooo+//:                    
+                             -ooooo///-                   
+                             /oooooo//:                   
+                            :ooooooo+//-                  
+                           -+oooooooo///-                 
+           -://////////////+oooooooooo++////////////::    
+            :+ooooooooooooooooooooooooooooooooooooo+:::-  
+              -/+ooooooooooooooooooooooooooooooo+/::////:-
+                -:+oooooooooooooooooooooooooooo/::///////:-
+                  --/+ooooooooooooooooooooo+::://////:-   
+                     -:+ooooooooooooooooo+:://////:--     
+                       /ooooooooooooooooo+//////:-        
+                      -ooooooooooooooooooo////-           
+                      /ooooooooo+oooooooooo//:            
+                     :ooooooo+/::/+oooooooo+//-           
+                    -oooooo/::///////+oooooo///-          
+                    /ooo+::://////:---:/+oooo//:          
+                   -o+/::///////:-      -:/+o+//-         
+                   :-:///////:-            -:/://         
+                     -////:-                 --//:        
+                       --                       -:        

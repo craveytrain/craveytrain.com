@@ -18,7 +18,7 @@ html(lang="en").no-js
 		link(rel: 'stylesheet', href: '/css/style.css')
 		script(src: '/js/libs/modernizr.js')
 	body(id: page.bodyId, class: page.bodyClass)
-		section.main!= body
+		section.main(role: 'main')!= body
 		section.rail
 			p#logo craveytrain
 			nav.siteNav
@@ -32,4 +32,4 @@ html(lang="en").no-js
 
 //- TODO: put this back in when going to prod
 //-		script
-//-			var _gaq=[['_setAccount','UA-3516156-4'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'));
+//-			var _gaq=[["_setAccount","UA-3516156-4"],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));
