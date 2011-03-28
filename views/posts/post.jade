@@ -2,10 +2,10 @@ article.post!= post.content
 	footer
 		time(datetime: post.timestamp, pubdate)= new Date(post.timestamp).toRelative()
 		ul.tags
+			- var iLastTag = post.tags.length - 1
 			- each tag, i in post.tags
 				li
 					a(href: '/tags/' + tag)= "#" + tag
-					- if (i < post.tags.length - 1)
-						:text
-							,&nbsp;
+					- if (i < iLastTag)
+						|	,&nbsp;
 					
