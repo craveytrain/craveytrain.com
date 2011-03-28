@@ -5,6 +5,8 @@ var express = require('express'),
 
 var db = {
 	fetch: function (url, callback) {
+		// TODO: What is the default sorting order? If not date desc, make it so.
+		// TODO: What is the default max result count?
 		var opts = {
 			host: 'localhost',
 			port: 5984,
@@ -66,7 +68,10 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 
 app.get('/', function (req, res) {
 	var page = { title: 'craveytrain', bodyId: "home" };
-	res.render('index', { page: page });
+	// TODO: Need to grab latest 10 or so
+	db.fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
+		res.render('index', {posts: posts, page: page});
+	});
 });
 
 app.get('/about', function (req, res) {
