@@ -4,7 +4,7 @@ var express = require('express'),
 
 
 var db = {
-	fetch: function (url, callback) {
+	fetch: function(url, callback) {
 		// TODO: What is the default sorting order? If not date desc, make it so.
 		// TODO: What is the default max result count?
 		var opts = {
@@ -13,13 +13,13 @@ var db = {
 			path: url
 		};	
 
-		http.get(opts, function (res) {
+		http.get(opts, function(res) {
 			var results = '';
 			res.setEncoding('utf8');
-			res.on('data', function (chunk) {
+			res.on('data', function(chunk) {
 				results += chunk;
 			});
-			res.on('end', function () {
+			res.on('end', function() {
 				var tmp = JSON.parse(results);
 				results = (tmp.rows) ? tmp.rows : tmp;
 				callback(results);
@@ -34,10 +34,10 @@ app.set('view engine', 'jade');
 app.register('.md', {
 	compile: function(str, options){
 		var html = md.toHTML(str);
-		return function (locals){
-			return html.replace(/\{([^}]+)\}/g, function (_, name){
+		return function(locals){
+			return html.replace(/\{([^}]+)\}/g, function(_, name){
 				var cur = locals;
-				name.split('.').forEach(function (prop) {
+				name.split('.').forEach(function(prop) {
 					cur = cur[prop]
 				})
 				return cur;
@@ -66,39 +66,58 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 	}
 });
 
-app.get('/', function (req, res) {
+function NotFound(msg) {
+	this.name = 'NotFound';
+	Error.call(this, msg);
+	Error.captureStackTrace(this, arguments.callee);
+}
+
+app.get('/', function(req, res) {
 	var page = { title: 'craveytrain', bodyId: "home" };
 	// TODO: Need to grab latest 10 or so
-	db.fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
+	db.fetch('/craveytrain/_design/posts/_view/posts', function(posts) {
 		res.render('index', {posts: posts, page: page});
 	});
 });
 
-app.get('/about', function (req, res) {
+app.get('/about', function(req, res) {
 	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' };
 	res.render('about.md', { layout: 'layout.jade', page: page });
 });
 
-app.get('/contact', function (req, res) {
+app.get('/contact', function(req, res) {
 	var page = { title: 'Contact', bodyId: 'contact', bodyClass: 'static' };
 	res.render('contact.md', { layout: 'layout.jade', page: page });
 });
 
-app.get('/posts', function (req, res) {
+app.get('/posts', function(req, res) {
 	var page = { title: 'Posts', bodyId: 'posts' };
-	db.fetch('/craveytrain/_design/posts/_view/posts', function (posts) {
+	db.fetch('/craveytrain/_design/posts/_view/posts', function(posts) {
 		res.render('posts', {posts: posts, page: page});
 	});
 });
 
-app.get('/posts/:slug', function (req, res) {
+app.get('/posts/:slug', function(req, res) {
 	var slug = req.params.slug,
 			page = {bodyId: slug, bodyClass: 'single' };
 			
-	db.fetch('/craveytrain/' + slug, function (post) {
+	db.fetch('/craveytrain/' + slug, function(post) {
 		page.title = post.title;
 		res.render('posts/post', { post: post, page: page });
 	});
+});
+
+app.get('/404', function(req, res) {
+	throw new NotFound;
+});
+
+app.error(function(err, req, res, next) {
+	if (err instanceof NotFound) {
+		var page = { title: 'Not Found', bodyClass: 'error' };
+		res.render('404.md', { layout: 'layout.jade', page: page });
+	} else {
+		next(err);
+	}
 });
 
 app.listen(3000);
