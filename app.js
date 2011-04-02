@@ -1,33 +1,8 @@
 var express = require('express'),
 		http = require('http'),
-		md = require('markdown').markdown;
+		md = require('markdown').markdown,
+		request = require('request');
 
-
-var db = {
-	fetch: function(url, callback) {
-		// TODO: What is the default sorting order? If not date desc, make it so.
-		// TODO: What is the default max result count?
-		var opts = {
-			host: 'localhost',
-			port: 5984,
-			path: url
-		};	
-
-		http.get(opts, function(res) {
-			var results = '';
-			res.setEncoding('utf8');
-			res.on('data', function(chunk) {
-				results += chunk;
-			});
-			res.on('end', function() {
-				var tmp = JSON.parse(results);
-				results = (tmp.rows) ? tmp.rows : tmp;
-				callback(results);
-			});
-		});
-	}
-}
-	
 var app = express.createServer(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 
@@ -72,12 +47,42 @@ function NotFound(msg) {
 	Error.captureStackTrace(this, arguments.callee);
 }
 
-app.get('/', function(req, res) {
+var get = {
+	db: 'http://localhost:5984/craveytrain/',
+	post: function(req, res, next) {
+		request({ uri: get.db + req.params.slug }, function(error, response, body) {
+			var post;
+			if (!error && response.statusCode === 200) {
+				post = JSON.parse(body);
+				post.timestamp = new Date(post.timestamp);
+				req.post = post;
+				next();
+			} else {
+				next(new NotFound);
+			}
+		});
+	},
+	posts: function(req, res, next) {
+		request({ uri: get.db + '_design/posts/_view/posts' }, function(error, response, body) {
+			var results, posts;
+			if (!error && response.statusCode === 200) {
+				results = JSON.parse(body).rows;
+				posts = results.map(function(post) {
+					post.value.timestamp = new Date(post.value.timestamp);
+					return post.value;
+				});
+				req.posts = posts;
+				next();
+			} else {
+				next(new NotFound);
+			}
+		});
+	}
+};
+
+app.get('/', get.posts,  function(req, res) {
 	var page = { title: 'craveytrain', bodyId: "home" };
-	// TODO: Need to grab latest 10 or so
-	db.fetch('/craveytrain/_design/posts/_view/posts', function(posts) {
-		res.render('index', {posts: posts, page: page});
-	});
+	res.render('index', { posts: req.posts, page: page });
 });
 
 app.get('/about', function(req, res) {
@@ -90,21 +95,15 @@ app.get('/contact', function(req, res) {
 	res.render('contact.md', { layout: 'layout.jade', page: page });
 });
 
-app.get('/posts', function(req, res) {
+app.get('/posts', get.posts,  function(req, res) {
 	var page = { title: 'Posts', bodyId: 'posts' };
-	db.fetch('/craveytrain/_design/posts/_view/posts', function(posts) {
-		res.render('posts', {posts: posts, page: page});
-	});
+	res.render('posts', { posts: req.posts, page: page });
 });
 
-app.get('/posts/:slug', function(req, res) {
-	var slug = req.params.slug,
-			page = {bodyId: slug, bodyClass: 'single' };
+app.get('/posts/:slug', get.post, function(req, res, next) {
+	var page = {bodyId: req.params.slug, bodyClass: 'single' };
+	res.render('posts/post', { post: req.post, page: page });
 			
-	db.fetch('/craveytrain/' + slug, function(post) {
-		page.title = post.title;
-		res.render('posts/post', { post: post, page: page });
-	});
 });
 
 app.get('/404', function(req, res) {
@@ -114,7 +113,7 @@ app.get('/404', function(req, res) {
 app.error(function(err, req, res, next) {
 	if (err instanceof NotFound) {
 		var page = { title: 'Not Found', bodyClass: 'error' };
-		res.render('404.md', { layout: 'layout.jade', page: page });
+		res.render('404.md', { status: 404, layout: 'layout.jade', page: page });
 	} else {
 		next(err);
 	}

@@ -2,13 +2,13 @@ ul.posts
 - each post in posts
 	li
 		h2
-			a(href: '/posts/' + post.value._id) #{post.value.title}
-		p!= post.value.excerpt
+			a(href: '/posts/' + post._id) #{post.title}
+		p!= post.excerpt
 		p.metadata
-			span.timestamp= new Date(post.value.timestamp).toRelative()
+			span.timestamp= post.timestamp.toRelative()
 			ul.tags
-				- var iLastTag = post.value.tags.length - 1
-				- each tag, i in post.value.tags
+				- var iLastTag = post.tags.length - 1
+				- each tag, i in post.tags
 					li
 						a(href: '/tags/' + tag)= "#" + tag
 						- if (i < iLastTag)
