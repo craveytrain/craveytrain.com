@@ -16,25 +16,29 @@ html(lang="en").no-js
 		meta(name: 'author', content: 'Mike Cravey')
 		meta(name: 'viewport', content: 'width=device-width, initial-scale=1.0')
 		link(rel: 'stylesheet', href: '/css/style.css')
-		script(src: '/js/libs/modernizr.js')
+		//script(src: '/js/libs/modernizr.js')
 	body(id: page.bodyId, class: page.bodyClass)
-		section.main(role: 'main')!= body
-		section.rail
-			p#logo craveytrain
+		header#siteHead(role: 'nav')
+			div#logo craveytrain
 			nav.siteNav
 				ul
 					- var home = (page.bodyId === 'home') ? 'selected' : '';
 					li(class: home)
 						a(href: '/') Home
+							span.tail
 					- var posts = (page.bodyId === 'posts') ? 'selected' : '';
 					li(class: posts)
 						a(href: '/posts') Posts
+							span.tail
 					- var about = (page.bodyId === 'about') ? 'selected' : '';
 					li(class: about)
 						a(href: '/about') About
+							span.tail
 					- var contact = (page.bodyId === 'contact') ? 'selected' : '';
 					li(class: contact)
 						a(href: '/contact') Contact
+							span.tail
+		section.main(role: 'main')!= body
 
 //- TODO: put this back in when going to prod
 //-		script

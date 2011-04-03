@@ -1,7 +1,6 @@
-ul.posts
 - each post in posts
-	li
-		h2
+	article.post
+		h1
 			a(href: '/posts/' + post._id) #{post.title}
 		p!= post.excerpt
 		p.metadata

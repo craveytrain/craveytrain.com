@@ -183,46 +183,122 @@ a:hover { color: #036; }
 }
 
 body {
-	padding: 0 2%;
-	font-size:16px;
+	margin: 5em auto 0 auto;
+	width: 58%;
 	line-height: 1.5;
 	font-family: Cambria, Georgia, Times, "Times New Roman", serif;
+	font-size: 1em;
 	color: #222;
+	background: #fff;
 }
 
-.main {
+#siteHead {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1.5em;
+	background: #000;
+	color: #fff;
+	text-align: center;
+}
+
+#logo {
+	position: absolute;
+	top: -2em;
+	left: 2em;
+	width: 8em;
+	height: 8em;
+	border-radius: 50%;
+	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+	line-height: 8em;
+	background: #fff;
+	color: #000;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.siteNav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
 	width: 58%;
-	float: left;
-	margin-right: 2%;
+	height: 1em;
+	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
 }
 
-.rail {
-	position: fixed;
-	top: 72px;
-	right: 2%;
-	width: 38%;
+.siteNav li {
 	float: left;
+	margin-right: .5em;
 }
+
+.siteNav a {
+	position: relative;
+	float: left;
+	height: 4em;
+	padding: .5em 1.5em .5em 1.5em;
+	color: #fff;
+	font-size: .75em;
+	text-decoration: none;
+	letter-spacing: .1em;
+	line-height: 1;
+	overflow: hidden;
+}
+
+.siteNav .tail {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -6em;
+}
+
+
+.siteNav a:hover, .siteNav .selected a:hover {
+	color: #fff;
+	background: #666;
+}
+
+.siteNav a:hover .tail {
+	border-top: 0;
+	border-right: 6em solid #666;
+	border-bottom: 2em solid #fff;
+	border-left: 6em solid #666;
+}
+
+.siteNav .selected a {
+	color: #000;
+	background: #ddd;
+}
+
+.siteNav .selected .tail {
+	border-top: 2em solid #ddd;
+	border-right: 6em solid #fff;
+	border-bottom: 0;
+	border-left: 6em solid #fff;
+}
+
 
 article {
 	margin-bottom: 48px;
 }
 
 h1 {
-	margin-top: 20px;
 	margin-bottom: 4px;
 	font-family: Rockwell;
-	font-size: 40px;
+	font-size: 2.5em;
 	line-height: 1.2;
 	font-weight: normal;
 }
 
-.h1 a, .h1 a:visited {
+h1 a, h1 a:visited {
 	text-decoration: none;
 	color: #222;
 }
 
-.h1 a:hover {
+h1 a:hover {
 	text-decoration: underline;
 }
 
@@ -232,14 +308,14 @@ h2,h3,h4,h5,h6 {
 }
 
 h2 {
-	font-size: 24px;
+	font-size: 1.5em;
 	line-height: 1;
 	margin-top: 16px;
 	margin-bottom: 8px;
 }
 
 h3 {
-	font-size: 20px;
+	font-size: 1.25em;
 	line-height: 1.2;
 }
 
@@ -267,7 +343,7 @@ p {
 
 .comments h1 {
 	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 24px;
+	font-size: 1.5em;
 	line-height: 1;
 	margin-top: 16px;
 	margin-bottom: 8px;
@@ -283,43 +359,8 @@ p {
 }
 
 .form-allowed-tags {
-	font-size: 13px;
+	font-size: .816em;
 }
-
-#logo {
-	margin-bottom: 0;
-	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 24px;
-	line-height: 1;
-}
-
-.siteNav {
-	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	text-transform: uppercase;
-	width: 7.8em;
-}
-
-.siteNav a {
-	display: block;
-	margin-left: -24px;
-	padding: 12px 24px 10px 24px;
-	color: #4c4c4c;
-	text-decoration: none;
-	line-height: 1;
-	-webkit-border-radius: .25em;
-	-moz-border-radius: .25em;
-	border-radius: .25em;
-}
-
-.siteNav a:hover {
-	background: rgba(0, 0, 0, .1);
-}
-
-.siteNav .selected a {
-	color: #fff;
-	background: rgba(0, 0, 0, .7);
-}
-
 
 /*
  * Media queries for responsive design
@@ -365,7 +406,7 @@ p {
 	.siteNav li {
 		display: inline-block;
 		margin-left: 10px;
-		font-size: 12px;
+		font-size: .75em;
 		font-weight: normal;
 	}
 	
@@ -382,22 +423,22 @@ p {
 	}
 	
 	h1 {
-		font-size: 32px;
+		font-size: 2em;
 		line-height: 1;
 	}
 	
 	h2 {
-		font-size: 24px;
+		font-size: 2em;
 		line-height: 1;
 	}
 	
 	h3 {
-		font-size: 18px;
+		font-size: 1.125em;
 		line-height: 1.222;
 	}
 	
 	h4 {
-		font-size: 14px;
+		font-size: .872em;
 		line-height: 1.571;
 	}
 	
@@ -407,7 +448,7 @@ p {
 /* Phones / small width */
 @media screen and (max-width: 480px) {
 	body {
-		font-size: 12px;
+		font-size: .75em;
 		line-height: 1.333;
 	}
 	
@@ -429,7 +470,7 @@ p {
 		position: static;
 		display: block;
 		margin-top: 20px;
-		font-size: 16px;
+		font-size: 1em;
 		line-height: 1;
 		text-align: center;
 	}
@@ -439,7 +480,7 @@ p {
 		top: 0;
 		left: 0;
 		text-align: center;
-		font-size: 10px;
+		font-size: .625em;
 	}
 	
 	.siteNav li {
@@ -453,22 +494,22 @@ p {
 	}
 	
 	h1 {
-		font-size: 20px;
+		font-size: 1.25em;
 		line-height: 1.2;
 	}
 	
 	h2 {
-		font-size: 16px;
+		font-size: 1em;
 		line-height: 1;
 	}
 	
 	h3 {
-		font-size: 14px;
+		font-size: .875em;
 		line-height: 1.143;
 	}
 	
 	h4 {
-		font-size: 12px;
+		font-size: .75em;
 		line-height: 1.333;
 	}
 }
