@@ -1,1 +1,3 @@
-!=partial('posts/list')
+- if (posts.length)
+	- each post in posts
+		!=partial('posts/summary', post)

@@ -64,17 +64,32 @@ var get = {
 	},
 	posts: function(req, res, next) {
 		request({ uri: get.db + '_design/posts/_view/posts' }, function(error, response, body) {
-			var results, posts;
+			var results;
 			if (!error && response.statusCode === 200) {
 				results = JSON.parse(body).rows;
-				posts = results.map(function(post) {
+				req.posts = results.map(function(post) {
 					post.value.timestamp = new Date(post.value.timestamp);
 					return post.value;
 				});
-				req.posts = posts;
 				next();
 			} else {
 				next(new NotFound);
+			}
+		});
+	},
+	byTag: function(req, res, next) {
+		request({ uri: get.db + '_design/byTag/_view/byTag?"key"="' + req.params.name + '"' }, function(error, response, body) {
+			var results;
+			if (!error && response.statusCode === 200) {
+				results = JSON.parse(body).rows;
+				req.articles = results.map(function(art) {
+					art.value.timestamp = new Date(art.value.timestamp);
+					return art.value;
+				});
+				next();
+			} else {
+				req.articles = [];
+				next();
 			}
 		});
 	}
@@ -85,6 +100,7 @@ app.get('/', get.posts,  function(req, res) {
 	res.render('index', { posts: req.posts, page: page });
 });
 
+// Static pages
 app.get('/about', function(req, res) {
 	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' };
 	res.render('about.md', { layout: 'layout.jade', page: page });
@@ -95,15 +111,21 @@ app.get('/contact', function(req, res) {
 	res.render('contact.md', { layout: 'layout.jade', page: page });
 });
 
+// Posts
 app.get('/posts', get.posts,  function(req, res) {
-	var page = { title: 'Posts', bodyId: 'posts' };
+	var page = { title: 'Posts on craveytrain', bodyId: 'posts', bodyClass: 'list' };
 	res.render('posts', { posts: req.posts, page: page });
 });
 
 app.get('/posts/:slug', get.post, function(req, res, next) {
-	var page = {bodyId: req.params.slug, bodyClass: 'single' };
+	var page = { bodyId: req.params.slug, bodyClass: 'single' };
 	res.render('posts/post', { post: req.post, page: page });
-			
+});
+
+// Tags
+app.get('/tags/:name', get.byTag, function (req, res) {
+	var page = { title:  'Articles tagged with ' + req.params.name, bodyId: 'tags', bodyClass: 'list' };
+	res.render('tags', { articles: req.articles, page: page });
 });
 
 app.get('/404', function(req, res) {

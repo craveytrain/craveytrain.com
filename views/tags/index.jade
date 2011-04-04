@@ -1,0 +1,6 @@
+- if (articles.length)
+	- each art in articles
+		- if (art.type === 'post')
+			!=partial('posts/summary', art)
+- else
+	p Nothing to see here...
