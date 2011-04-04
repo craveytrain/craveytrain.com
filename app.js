@@ -110,6 +110,10 @@ app.get('/404', function(req, res) {
 	throw new NotFound;
 });
 
+app.use(function(req, res, next){
+  next(new NotFound);
+});
+
 app.error(function(err, req, res, next) {
 	if (err instanceof NotFound) {
 		var page = { title: 'Not Found', bodyClass: 'error' };

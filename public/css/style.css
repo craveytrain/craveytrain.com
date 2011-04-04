@@ -197,25 +197,20 @@ body {
 	top: 0;
 	left: 0;
 	right: 0;
-	height: 1.5em;
+	height: 1.563em;
 	background: #000;
 	color: #fff;
+	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-align: center;
 }
 
 #logo {
 	position: absolute;
-	top: -2em;
+	top: .2em;
 	left: 2em;
-	width: 8em;
-	height: 8em;
-	border-radius: 50%;
-	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	text-transform: uppercase;
-	line-height: 8em;
-	background: #fff;
-	color: #000;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+	font-size: 1.563em;
+	line-height: 1;
+	color: #fff;
 }
 
 .siteNav {
@@ -226,7 +221,6 @@ body {
 	margin: 0 auto;
 	width: 58%;
 	height: 1em;
-	font-family: AkzidenzGroteskRegular, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-transform: uppercase;
 }
 
@@ -238,10 +232,10 @@ body {
 .siteNav a {
 	position: relative;
 	float: left;
-	height: 4em;
+	height: 3.5em;
 	padding: .5em 1.5em .5em 1.5em;
 	color: #fff;
-	font-size: .75em;
+	font-size: .813em;
 	text-decoration: none;
 	letter-spacing: .1em;
 	line-height: 1;
