@@ -1,0 +1,13 @@
+article.post
+	h1
+		a(href: '/posts/' + post._id) #{post.title}
+	p!= post.excerpt
+	div.metadata
+		time.timestamp= post.timestamp.toRelative()
+		ul.tags
+			- var iLastTag = post.tags.length - 1
+			- each tag, i in post.tags
+				li
+					a(href: '/tags/' + tag)= "#" + tag
+					- if (i < iLastTag)
+						|	,&nbsp;
