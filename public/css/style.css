@@ -229,7 +229,7 @@ body {
 	margin-right: .5em;
 }
 
-.siteNav a {
+.siteNav .navItem {
 	position: relative;
 	float: left;
 	height: 3.5em;
@@ -249,31 +249,35 @@ body {
 	margin-left: -6em;
 }
 
-
-.siteNav a:hover, .siteNav .selected a:hover {
+.siteNav a:hover {
 	color: #fff;
 	background: #666;
+	-moz-text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
+	-o-text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
+	-webkit-text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
 }
 
 .siteNav a:hover .tail {
-	border-top: 0;
 	border-right: 6em solid #666;
 	border-bottom: 2em solid #fff;
 	border-left: 6em solid #666;
 }
 
-.siteNav .selected a {
+.siteNav .selected .navItem {
 	color: #000;
 	background: #ddd;
+	-moz-text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+	-o-text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+	-webkit-text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 .siteNav .selected .tail {
 	border-top: 2em solid #ddd;
 	border-right: 6em solid #fff;
-	border-bottom: 0;
 	border-left: 6em solid #fff;
 }
-
 
 article {
 	margin-bottom: 48px;

@@ -22,22 +22,38 @@ html(lang="en").no-js
 			div#logo craveytrain
 			nav.siteNav
 				ul
-					- var home = (page.bodyId === 'home') ? 'selected' : '';
-					li(class: home)
-						a(href: '/') Home
-							span.tail
-					- var posts = (page.bodyId === 'posts') ? 'selected' : '';
-					li(class: posts)
-						a(href: '/posts') Posts
-							span.tail
-					- var about = (page.bodyId === 'about') ? 'selected' : '';
-					li(class: about)
-						a(href: '/about') About
-							span.tail
-					- var contact = (page.bodyId === 'contact') ? 'selected' : '';
-					li(class: contact)
-						a(href: '/contact') Contact
-							span.tail
+					- if (page.bodyId === 'home')
+						li.selected
+							span.navItem Home
+								span.tail
+					- else
+						li
+							a.navItem(href: '/') Home
+								span.tail
+					- if (page.bodyId === 'posts')
+						li.selected
+							span.navItem Posts
+								span.tail
+					- else
+						li
+							a.navItem(href: '/posts') Posts
+								span.tail
+					- if (page.bodyId === 'about')
+						li.selected
+							span.navItem About
+								span.tail
+					- else
+						li
+							a.navItem(href: '/about') About
+								span.tail
+					- if (page.bodyId === 'contact')
+						li.selected
+							span.navItem Contact
+								span.tail
+					- else
+						li
+							a.navItem(href: '/') Contact
+								span.tail
 		section.main(role: 'main')!= body
 
 //- TODO: put this back in when going to prod
