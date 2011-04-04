@@ -63,7 +63,7 @@ var get = {
 		});
 	},
 	posts: function(req, res, next) {
-		request({ uri: get.db + '_design/posts/_view/posts' }, function(error, response, body) {
+		request({ uri: get.db + '_design/posts/_view/byDate?descending=true' }, function(error, response, body) {
 			var results;
 			if (!error && response.statusCode === 200) {
 				results = JSON.parse(body).rows;
@@ -78,7 +78,7 @@ var get = {
 		});
 	},
 	byTag: function(req, res, next) {
-		request({ uri: get.db + '_design/byTag/_view/byTag?"key"="' + req.params.name + '"' }, function(error, response, body) {
+		request({ uri: get.db + '_design/byTag/_view/byDate?descending=true&"key"="[' + req.params.name + ']"' }, function(error, response, body) {
 			var results;
 			if (!error && response.statusCode === 200) {
 				results = JSON.parse(body).rows;
