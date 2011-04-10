@@ -35,7 +35,9 @@ Object.defineProperty(Date.prototype, 'toRelative', {
 		if (delta < 7200) return '1 hour ago';
 		if (delta < 86400) return Math.floor(delta / 3600) + ' hours ago';
 		if (delta < 172800) return '1 day ago';
-		if (delta < 31536000) return Math.floor(delta / 86400) + ' days ago';
+		if (delta < 2592000) return Math.floor(delta / 86400) + ' days ago';
+		if (delta < 5184000) return '1 month ago';
+		if (delta < 31536000) return Math.floor(delta / 2592000) + ' months ago';
 		if (delta < 63072000) return '1 year ago';
 		return Math.floor(delta / 31536000) + ' years ago';
 	}
