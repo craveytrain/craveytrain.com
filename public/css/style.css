@@ -252,10 +252,10 @@ body {
 .siteNav a:hover {
 	color: #fff;
 	background: #666;
-	-moz-text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
-	-o-text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
-	-webkit-text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
-	text-shadow: 0 -1px 1px rgba(0, 0, 0, 1);
+	-moz-text-shadow: 0 -1px 1px rgba(0, 0, 0, .5);
+	-o-text-shadow: 0 -1px 1px rgba(0, 0, 0, .5);
+	-webkit-text-shadow: 0 -1px 1px rgba(0, 0, 0, .5);
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, .5);
 }
 
 .siteNav a:hover .tail {
