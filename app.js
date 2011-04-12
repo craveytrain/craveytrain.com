@@ -1,7 +1,10 @@
 var express = require('express'),
 		http = require('http'),
 		md = require('markdown').markdown,
-		request = require('request');
+		request = require('request'),
+		qs = require('querystring');
+		
+require('./libs/prototype.js');
 
 var app = express.createServer(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
@@ -21,28 +24,6 @@ app.register('.md', {
 	}
 });
 
-Object.defineProperty(Date.prototype, 'toRelative', {
-	enumerable: false,
-	value: function() {
-		var now = new Date().getTime() / 1000,
-				then = this.getTime() / 1000,
-				delta = Math.floor(now - then);
-				
-		if (delta === 1) return '1 second ago';
-		if (delta < 60) return delta + ' seconds ago';
-		if (delta < 120) return '1 minute ago';
-		if (delta < 3600) return Math.floor(delta / 60) + ' minutes ago';
-		if (delta < 7200) return '1 hour ago';
-		if (delta < 86400) return Math.floor(delta / 3600) + ' hours ago';
-		if (delta < 172800) return '1 day ago';
-		if (delta < 2592000) return Math.floor(delta / 86400) + ' days ago';
-		if (delta < 5184000) return '1 month ago';
-		if (delta < 31536000) return Math.floor(delta / 2592000) + ' months ago';
-		if (delta < 63072000) return '1 year ago';
-		return Math.floor(delta / 31536000) + ' years ago';
-	}
-});
-
 function NotFound(msg) {
 	this.name = 'NotFound';
 	Error.call(this, msg);
@@ -53,9 +34,8 @@ var get = {
 	db: 'http://localhost:5984/craveytrain/',
 	post: function(req, res, next) {
 		request({ uri: get.db + req.params.slug }, function(error, response, body) {
-			var post;
 			if (!error && response.statusCode === 200) {
-				post = JSON.parse(body);
+				var post = JSON.parse(body);
 				post.timestamp = new Date(post.timestamp);
 				req.post = post;
 				next();
@@ -66,10 +46,8 @@ var get = {
 	},
 	posts: function(req, res, next) {
 		request({ uri: get.db + '_design/posts/_view/byDate?descending=true' }, function(error, response, body) {
-			var results;
 			if (!error && response.statusCode === 200) {
-				results = JSON.parse(body).rows;
-				req.posts = results.map(function(post) {
+				req.posts = JSON.parse(body).rows.map(function(post) {
 					post.value.timestamp = new Date(post.value.timestamp);
 					return post.value;
 				});
@@ -80,11 +58,11 @@ var get = {
 		});
 	},
 	byTag: function(req, res, next) {
-		request({ uri: get.db + '_design/byTag/_view/byDate?descending=true&"key"="[' + req.params.name + ']"' }, function(error, response, body) {
-			var results;
+		req.params.tag = req.params.tag.unurlify();
+		var url = get.db + '_design/byTag/_view/byDate?descending=true&startkey=[%22' + qs.escape(req.params.tag) + '%22,{}]&endkey=[%22' + qs.escape(req.params.tag) + '%22]';
+		request({ uri: url }, function(error, response, body) {
 			if (!error && response.statusCode === 200) {
-				results = JSON.parse(body).rows;
-				req.articles = results.map(function(art) {
+				req.articles = JSON.parse(body).rows.map(function(art) {
 					art.value.timestamp = new Date(art.value.timestamp);
 					return art.value;
 				});
@@ -125,8 +103,8 @@ app.get('/posts/:slug', get.post, function(req, res, next) {
 });
 
 // Tags
-app.get('/tags/:name', get.byTag, function (req, res) {
-	var page = { title:  'Articles tagged with ' + req.params.name, bodyId: 'tags', bodyClass: 'list' };
+app.get('/tags/:tag', get.byTag, function (req, res) {
+	var page = { title:  'Articles tagged with ' + req.params.tag, bodyId: 'tags', bodyClass: 'list' };
 	res.render('tags', { articles: req.articles, page: page });
 });
 

@@ -8,6 +8,6 @@ article.post
 			- var iLastTag = tags.length - 1
 			- each tag, i in tags
 				li
-					a(href: '/tags/' + tag)= "#" + tag
+					a(href: '/tags/' + tag.urlify())= "#" + tag
 					- if (i < iLastTag)
 						|	,&nbsp;

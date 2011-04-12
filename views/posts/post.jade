@@ -5,7 +5,7 @@ article.post!= post.content
 			- var iLastTag = post.tags.length - 1
 			- each tag, i in post.tags
 				li
-					a(href: '/tags/' + tag)= "#" + tag
+					a(href: '/tags/' + tag.urlify())= "#" + tag
 					- if (i < iLastTag)
 						|	,&nbsp;
 					
