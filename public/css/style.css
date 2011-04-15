@@ -232,7 +232,7 @@ body {
 .siteNav .navItem {
 	position: relative;
 	float: left;
-	height: 3.5em;
+	height: 4em;
 	padding: .5em 1.5em .5em 1.5em;
 	color: #fff;
 	font-size: .813em;
@@ -246,7 +246,7 @@ body {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
-	margin-left: -4em;
+	margin-left: -6em;
 }
 
 .siteNav a:hover {
@@ -259,9 +259,9 @@ body {
 }
 
 .siteNav a:hover .tail {
-	border-right: 4em solid #666;
-	border-bottom: 2em solid #fff;
-	border-left: 4em solid #666;
+	border-right: 6em solid #666;
+	border-bottom: 3em solid #fff;
+	border-left: 6em solid #666;
 }
 
 .siteNav .selected .navItem {
@@ -274,9 +274,9 @@ body {
 }
 
 .siteNav .selected .tail {
-	border-top: 2em solid #ddd;
-	border-right: 4em solid #fff;
-	border-left: 4em solid #fff;
+	border-top: 3em solid #ddd;
+	border-right: 6em solid #fff;
+	border-left: 6em solid #fff;
 }
 
 article {
