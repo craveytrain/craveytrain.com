@@ -207,7 +207,8 @@ body {
 #logo {
 	position: absolute;
 	top: .2em;
-	left: 2em;
+	left: 10.48%;
+	margin-left: -2.44em;
 	font-size: 1.563em;
 	line-height: 1;
 	color: #fff;
@@ -377,138 +378,66 @@ p {
 
 /* Tablet / medium width */
 @media screen and (max-width: 768px) {
-	.main {
-		float: none;
-		width: auto;
-		margin-top: 44px;
+	html {
+		font-size: .8em;
 	}
 	
-  .rail {
-		position: absolute;
-		top: 2%;
-		left: 2%;
+	body {
+		margin-left: 21%;
+		margin-right: 2%;
 		width: auto;
-	}
-	
-	#logo {
-		position: absolute;
-		margin-top: 2px;
 	}
 	
 	.siteNav {
-		position: absolute;
-		right: 0;
-		width: 275px;
+		left: 21%;
+		width: auto;
 	}
-	
-	.siteNav li {
-		display: inline-block;
-		margin-left: 10px;
-		font-size: .75em;
-		font-weight: normal;
-	}
-	
-	.siteNav li a {
-		display: inline-block;
-		width: 54px;
-		margin-left: 0;
-		padding: 6px 12px 5px;
-		text-align: center;
-	}
-
-	h1, h2, h3, h4, h5, h6 {
-		margin: 0;
-	}
-	
-	h1 {
-		font-size: 2em;
-		line-height: 1;
-	}
-	
-	h2 {
-		font-size: 2em;
-		line-height: 1;
-	}
-	
-	h3 {
-		font-size: 1.125em;
-		line-height: 1.222;
-	}
-	
-	h4 {
-		font-size: .872em;
-		line-height: 1.571;
-	}
-	
 }
 
 
 /* Phones / small width */
 @media screen and (max-width: 480px) {
-	body {
+	html {
 		font-size: .75em;
 		line-height: 1.333;
 	}
 	
-	.main {
-		float: none;
-		width: auto;
-		margin-top: 32px;
-	}
-	
-  .rail {
-		position: absolute;
-		top: 0;
-		left: 2%;
-		right: 2%;
-		width: auto;
+	body {
+		margin: 5em .5em .5em;
 	}
 	
 	#logo {
-		position: static;
-		display: block;
-		margin-top: 20px;
-		font-size: 1em;
-		line-height: 1;
+		position: relative;
+		left: 0;
+		right: 0;
 		text-align: center;
 	}
 	
 	.siteNav {
-		position: absolute;
-		top: 0;
+		position: relative;
 		left: 0;
-		text-align: center;
-		font-size: .625em;
+		right: 0;
+		margin-top: .5em;
 	}
 	
 	.siteNav li {
-		display: inline-block;
-		margin: 0 5px;
-		font-weight: normal;
-	}
-	
-	h1, h2, h3, h4, h5, h6 {
+		float: left;
+		width: 25%;
 		margin: 0;
+		text-align: center;
 	}
 	
-	h1 {
-		font-size: 1.25em;
-		line-height: 1.2;
+	.siteNav .tail {
+		display: none;
 	}
 	
-	h2 {
-		font-size: 1em;
-		line-height: 1;
-	}
-	
-	h3 {
-		font-size: .875em;
-		line-height: 1.143;
-	}
-	
-	h4 {
-		font-size: .75em;
-		line-height: 1.333;
+	.siteNav .navItem {
+		height: auto;
+		-moz-border-radius: .5em;
+		-o-border-radius: .5em;
+		-webkit-border-radius: .5em;
+		border-radius: .5em;
+		color: #000;
 	}
 }
 
