@@ -1,4 +1,6 @@
-article.post!= post.content
+article.post
+	h1= post.title
+	!= post.content
 	footer
 		time(datetime: post.timestamp, pubdate)= post.timestamp.toRelative()
 		ul.tags
