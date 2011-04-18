@@ -1,0 +1,8 @@
+!!! xml
+rss(version='2.0')
+	channel
+		title= page.title
+		link http://craveytrain.com
+		pubDate= items[0].timestamp.toString()
+		- each item in items
+			!=partial('item', item)

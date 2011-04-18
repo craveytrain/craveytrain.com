@@ -57,6 +57,20 @@ var get = {
 			}
 		});
 	},
+	feed: function(req, res, next) {
+		request({ uri: get.db + '_design/posts/_view/byDate?descending=true' }, function(error, response, body) {
+			if (!error && response.statusCode === 200) {
+				req.items = JSON.parse(body).rows.map(function(item) {
+					item.value.timestamp = new Date(item.value.timestamp);
+					item.url = 'http://craveytrain/posts/' + item.slug;
+					return item.value;
+				});
+				next();
+			} else {
+				next(new NotFound);
+			}
+		});
+	},
 	byTag: function(req, res, next) {
 		req.params.tag = req.params.tag.unurlify();
 		var url = get.db + '_design/byTag/_view/byDate?descending=true&startkey=[%22' + qs.escape(req.params.tag) + '%22,{}]&endkey=[%22' + qs.escape(req.params.tag) + '%22]';
@@ -103,9 +117,15 @@ app.get('/posts/:slug', get.post, function(req, res, next) {
 });
 
 // Tags
-app.get('/tags/:tag', get.byTag, function (req, res) {
+app.get('/tags/:tag', get.byTag, function(req, res) {
 	var page = { title:  'Articles tagged with ' + req.params.tag, bodyId: 'tags', bodyClass: 'list' };
 	res.render('tags', { articles: req.articles, page: page });
+});
+
+// Feed
+app.get('/feed', get.feed, function(req, res) {
+	var page = { title: 'Craveytrain' };
+	res.render('feed', { layout: 'feed/index', items: req.items, page: page });
 });
 
 app.get('/404', function(req, res) {
