@@ -21,13 +21,14 @@ var post = new Post();
 
 function parseFile (contents, slug) {
 	var mdTree = md.parse(contents),
-			content = md.toHTML(mdTree),
-			excerptStart = content.indexOf('</h1>') + 5,
-			excerptEnd = content.indexOf('.', excerptStart + 250) + 1;
+			body = md.toHTML(mdTree),
+			contentStart = body.indexOf('</h1>') + 5,
+			content = body.substring(contentStart).replace(/^\s+/, ''),
+			excerptEnd = content.indexOf('.', 250) + 1 || content.length;
 	post._id = slug;
 	post.title = mdTree[1][2];
 	post.content = content;
-	post.excerpt = content.substring(excerptStart, excerptEnd).replace(/<.*?>/g, '').replace(/(\n\s?|\s{2,})/g, ' ');
+	post.excerpt = content.substring(0, excerptEnd).replace(/<.*?>/g, '').replace(/(\n\s?|\s{2,})/g, ' ');
 	checkDoc(slug);
 }
 
@@ -55,21 +56,22 @@ function checkDoc (slug) {
 }
 
 function push (slug) {
-	var opts = {
+	var notNew = (post._rev) ? true : false,
+	 		opts = {
 				host: db.host,
 				port: db.port,
-				method: 'PUT',
-				path: db.path + slug,
+				method: (notNew) ? 'PUT' : 'POST',
+				path: (notNew) ? db.path + slug : db.path,
 				headers: {
 					'content-type': 'application/json',
 					'Authorization': auth()
 				}
-			};
-	req = http.request(opts, function (res) {
-		if (res.statusCode !== 201) {
-			// TODO: trap error and do something with it
-		}
-	});
+			},
+			req = http.request(opts, function (res) {
+				if (res.statusCode !== 201) {
+					// TODO: trap error and do something with it
+				}
+			});
 	req.end(JSON.stringify(post));
 }
 
