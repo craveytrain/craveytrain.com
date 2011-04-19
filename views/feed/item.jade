@@ -1,6 +1,9 @@
 item
 	title= title
 	link= url
+	pubDate= timestamp.toUTCString()
 	description
 		:cdata
 			!{content}
+	-each tag in tags
+		category= tag
