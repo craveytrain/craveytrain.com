@@ -62,7 +62,7 @@ var get = {
 			if (!error && response.statusCode === 200) {
 				req.items = JSON.parse(body).rows.map(function(item) {
 					item.value.timestamp = new Date(item.value.timestamp);
-					item.url = 'http://craveytrain/posts/' + item.slug;
+					item.value.url = 'http://craveytrain/posts/' + item.value._id;
 					return item.value;
 				});
 				next();
@@ -90,7 +90,7 @@ var get = {
 };
 
 app.get('/', get.posts,  function(req, res) {
-	var page = { title: 'craveytrain', bodyId: "home" };
+	var page = { title: 'craveytrain', bodyId: "home", desc: 'The website of Mike Cravey.' };
 	res.render('index', { posts: req.posts, page: page });
 });
 
@@ -124,7 +124,7 @@ app.get('/tags/:tag', get.byTag, function(req, res) {
 
 // Feed
 app.get('/feed', get.feed, function(req, res) {
-	var page = { title: 'Craveytrain' };
+	var page = { title: 'Craveytrain', desc: 'The website of Mike Cravey.' };
 	res.render('feed', { layout: 'feed/index', items: req.items, page: page });
 });
 
