@@ -125,6 +125,7 @@ app.get('/tags/:tag', get.byTag, function(req, res) {
 // Feed
 app.get('/feed', get.feed, function(req, res) {
 	var page = { title: 'Craveytrain', desc: 'The website of Mike Cravey.' };
+	res.contentType('application/xml');
 	res.render('feed', { layout: 'feed/index', items: req.items, page: page });
 });
 
