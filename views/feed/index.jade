@@ -8,4 +8,13 @@ rss(version:'2.0', 'xmlns:atom': 'http://www.w3.org/2005/Atom')
 		language en-us
 		pubDate= items[0].timestamp.toUTCString()
 		- each item in items
-			!=partial('item', item)
+			item
+				title= item.title
+				link= item.url
+				guid= item.url
+				pubDate= item.timestamp.toUTCString()
+				description
+					:cdata
+						!{item.content}
+				-each tag in item.tags
+					category= tag
