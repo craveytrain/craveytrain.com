@@ -89,6 +89,64 @@ var get = {
 	}
 };
 
+var gist = {
+	re: /^(\<p\>)?\<a href="https:\/\/gist.github.com\/(\d+)#?(file_)?([\da-z_\.]+)?"\>[\w\s_\.\d]+\<\/a\>(\<\/p\>)?$/gim,
+	find: function(req, res, next) {
+		var content = req.post.content;
+				
+		req.counter = req.counter || 0;
+		req.gists = {};
+		
+		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ gistId, blah2, /* String? */ filename){
+			var file = (filename) ? '?file=' + filename : '',
+					url = 'https://gist.github.com/' + gistId + '.js' + file,
+					id = gistId + filename;
+			
+			req.counter++;		
+			req.gists[id] = '';
+					
+			request({ uri: url }, function(error, response, body) {
+				if (error) next();
+				gist.parse(body, req, res, next, id);
+			});
+			
+			return str;
+		});
+	},
+	parse: function(body, req, res, next, id) {
+		var re = /^document.write\('(.*)'\)$/gm;
+		
+		body.replace(re, function(/* String */ dWrite, /* String */ innerCode) {
+			var code = innerCode.replace(/\\(["'\/])/g, '$1').replace(/\\n/g, '');
+			if (code.indexOf('<link') === 0) {
+				req.gistCss = req.gistCss || code.match(/https:\/\/gist.github.com\/[a-z\d_\-\/\.]+/)[0];
+			} else {
+				req.gists[id] = code;
+			}
+			return;
+		});
+		
+		gist.replace(req, res, next);
+	},
+	replace: function(req, res, next) {
+		var content = req.post.content;
+		
+		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ gistId, blah2, /* String? */ filename) {
+			var id = gistId + filename,
+					code = req.gists[id];
+			
+			if (code) {
+				req.counter--;
+				return code;
+			} else {
+				return str
+			}
+		});
+				
+		if (!req.counter) next();	
+	}
+};
+
 app.get('/', get.posts,  function(req, res) {
 	var page = { title: 'craveytrain', bodyId: "home", desc: 'The website of Mike Cravey.' };
 	res.render('index', { posts: req.posts, page: page });
@@ -96,12 +154,12 @@ app.get('/', get.posts,  function(req, res) {
 
 // Static pages
 app.get('/about', function(req, res) {
-	var page = { title: 'About', bodyId: 'about', bodyClass: 'static' };
+	var page = { title: 'About craveytrain', bodyId: 'about', bodyClass: 'static' };
 	res.render('about.md', { layout: 'layout.jade', page: page });
 });
 
 app.get('/contact', function(req, res) {
-	var page = { title: 'Contact', bodyId: 'contact', bodyClass: 'static' };
+	var page = { title: 'Contact craveytrain', bodyId: 'contact', bodyClass: 'static' };
 	res.render('contact.md', { layout: 'layout.jade', page: page });
 });
 
@@ -111,8 +169,8 @@ app.get('/posts', get.posts,  function(req, res) {
 	res.render('posts', { posts: req.posts, page: page });
 });
 
-app.get('/posts/:slug', get.post, function(req, res, next) {
-	var page = { bodyId: req.params.slug, bodyClass: 'single' };
+app.get('/posts/:slug', get.post, gist.find, function(req, res, next) {
+	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, styleUrl: req.gistCss };
 	res.render('posts/post', { post: req.post, page: page });
 });
 

@@ -361,6 +361,10 @@ p {
 	font-size: .816em;
 }
 
+.gist {
+	font-size: .8em;
+}
+
 /*
  * Media queries for responsive design
  * These follow after primary styles so they will successfully override. 
