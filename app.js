@@ -7,7 +7,11 @@ var express = require('express'),
 require('./libs/prototype.js');
 
 var app = express.createServer(express.static(__dirname + '/public'));
-app.set('view engine', 'jade');
+
+app.configure(function() {
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'jade');
+});
 
 app.register('.md', {
 	compile: function(str, options){
