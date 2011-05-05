@@ -2,9 +2,15 @@ var express = require('express'),
 		http = require('http'),
 		md = require('markdown').markdown,
 		request = require('request'),
-		qs = require('querystring');
+		qs = require('querystring'),
+		redis = require('redis'),
+		client = redis.createClient();
 		
 require('./libs/prototype.js');
+
+client.on('error', function(err) {
+	console.log('Error ' + err);
+});
 
 var app = express.createServer(express.static(__dirname + '/public'));
 
@@ -98,56 +104,56 @@ var gist = {
 	find: function(req, res, next) {
 		var content = req.post.content;
 				
-		req.counter = req.counter || 0;
 		req.gists = {};
 		
-		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ gistId, blah2, /* String? */ filename){
-			var file = (filename) ? '?file=' + filename : '',
-					url = 'https://gist.github.com/' + gistId + '.js' + file,
-					id = gistId + filename;
-			
-			req.counter++;		
-			req.gists[id] = '';
-					
-			request({ uri: url }, function(error, response, body) {
-				if (error) next();
-				gist.parse(body, req, res, next, id);
-			});
-			
+		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ id){
+			req.gists[id] = {};
 			return str;
 		});
+
+		gist.fetch(req, res, next);
 	},
-	parse: function(body, req, res, next, id) {
-		var re = /^document.write\('(.*)'\)$/gm;
-		
-		body.replace(re, function(/* String */ dWrite, /* String */ innerCode) {
-			var code = innerCode.replace(/\\(["'\/])/g, '$1').replace(/\\n/g, '');
-			if (code.indexOf('<link') === 0) {
-				req.gistCss = req.gistCss || code.match(/https:\/\/gist.github.com\/[a-z\d_\-\/\.]+/)[0];
-			} else {
-				req.gists[id] = code;
+	fetch: function(req, res, next) {
+		for (id in req.gists) {
+			if (req.gists.hasOwnProperty(id)) {
+				request({ url: 'https://api.github.com/gists/' + id }, function(error, response, body) {
+					var gistObj = (body) ? JSON.parse(body) : {};
+					client.get(id, function(err, cached) {
+						if (error && !cached) next();
+						cached = JSON.parse(cached);
+						
+						if (!cached || (cached.created_at !== gistObj.created_at)) {
+							// if cached doesn't exists or the dates don't match
+							// beautify it
+							cached = gist.prettify(gistObj);
+
+							// cache it
+							client.set(id, JSON.stringify(cached));
+						}
+
+						req.gists[id] = cached;
+
+						// if gists is full, pass the dutchie
+						for (id2 in req.gists) {
+							if (req.gists.hasOwnProperty(id2) && req.gists[id2]) gist.replace(req, res, next);
+						}
+					});
+				});
 			}
-			return;
-		});
-		
-		gist.replace(req, res, next);
+		}
+	},
+	prettify: function(/* Object */ gistObj) {
+		// TODO: do something here
+		return gistObj;
 	},
 	replace: function(req, res, next) {
 		var content = req.post.content;
 		
-		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ gistId, blah2, /* String? */ filename) {
-			var id = gistId + filename,
-					code = req.gists[id];
-			
-			if (code) {
-				req.counter--;
-				return code;
-			} else {
-				return str
-			}
+		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ id, blah2, /* String? */ filename) {
+			return req.gists[id].files[filename].content;
 		});
 				
-		if (!req.counter) next();	
+		next();	
 	}
 };
 
@@ -174,7 +180,7 @@ app.get('/posts', get.posts,  function(req, res) {
 });
 
 app.get('/posts/:slug', get.post, gist.find, function(req, res, next) {
-	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, styleUrl: req.gistCss };
+	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title };
 	res.render('posts/post', { post: req.post, page: page });
 });
 
