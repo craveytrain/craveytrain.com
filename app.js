@@ -4,7 +4,8 @@ var express = require('express'),
 		request = require('request'),
 		qs = require('querystring'),
 		redis = require('redis'),
-		client = redis.createClient();
+		client = redis.createClient(),
+		hl = require('highlight').Highlight;
 		
 require('./libs/prototype.js');
 
@@ -143,14 +144,18 @@ var gist = {
 		}
 	},
 	prettify: function(/* Object */ gistObj) {
-		// TODO: do something here
+		for (file in gistObj.files) {
+			if (gistObj.files.hasOwnProperty(file)) {
+				gistObj.files[file].content = hl(gistObj.files[file].content);
+			}
+		}
 		return gistObj;
 	},
 	replace: function(req, res, next) {
 		var content = req.post.content;
 		
 		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ id, blah2, /* String? */ filename) {
-			return req.gists[id].files[filename].content;
+			return '<pre class="gist">' + req.gists[id].files[filename].content + '</pre>';
 		});
 				
 		next();	
@@ -180,7 +185,7 @@ app.get('/posts', get.posts,  function(req, res) {
 });
 
 app.get('/posts/:slug', get.post, gist.find, function(req, res, next) {
-	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title };
+	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, gist: (req.gist) ? true: false };
 	res.render('posts/post', { post: req.post, page: page });
 });
 
