@@ -103,16 +103,21 @@ var get = {
 var gist = {
 	re: /^(\<p\>)?\<a href="https:\/\/gist.github.com\/(\d+)#?(file_)?([\da-z_\.]+)?"\>[\w\s_\.\d]+\<\/a\>(\<\/p\>)?$/gim,
 	find: function(req, res, next) {
-		var content = req.post.content;
+		var content = req.post.content, hasGists = false;
 				
 		req.gists = {};
 		
 		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ id){
 			req.gists[id] = {};
+			hasGists = true;
 			return str;
 		});
-
-		gist.fetch(req, res, next);
+		
+		if (hasGists) {
+			gist.fetch(req, res, next);
+		} else {
+			next();
+		}
 	},
 	fetch: function(req, res, next) {
 		for (id in req.gists) {
@@ -155,7 +160,18 @@ var gist = {
 		var content = req.post.content;
 		
 		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ id, blah2, /* String? */ filename) {
-			return '<pre class="gist">' + req.gists[id].files[filename].content + '</pre>';
+			if (filename) {
+				return '<pre class="gist">' + req.gists[id].files[filename].content + '</pre>';
+			} else {
+				var multiGist = '';
+				for (file in req.gists[id].files) {
+					if (req.gists[id].files.hasOwnProperty(file)) {
+						multiGist += '<pre class="gist">' + req.gists[id].files[file].content + '</pre>';
+					}
+				}
+				
+				return multiGist;
+			}
 		});
 				
 		next();	
