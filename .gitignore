@@ -6,3 +6,4 @@
 *.out
 *Thumbs.db
 node_modules
+keys.js

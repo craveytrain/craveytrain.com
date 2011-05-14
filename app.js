@@ -5,7 +5,8 @@ var express = require('express'),
 		qs = require('querystring'),
 		redis = require('redis'),
 		client = redis.createClient(),
-		hl = require('highlight').Highlight;
+		hl = require('highlight').Highlight,
+		oauth = require('oauth').OAuth;
 		
 require('./libs/prototype.js');
 
@@ -13,11 +14,31 @@ client.on('error', function(err) {
 	console.log('Error ' + err);
 });
 
-var app = express.createServer(express.static(__dirname + '/public'));
+var app = express.createServer();
+
+var keys = require('./keys.js');
+
+var oa = new oauth(
+	'https://twitter.com/oauth/request_token',
+	'https://twitter.com/oauth/access_token',
+	keys._twitterConsumerKey,
+	keys._twitterConsumerSecret,
+	'1.0A',
+	'http://localhost/sessions/callback',
+	'HMAC-SHA1'
+);
 
 app.configure(function() {
+	app.use(express.static(__dirname + '/public'))
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
+	app.use(express.cookieParser());
+	app.use(express.session({ secret: 'test' }));
+});
+
+app.configure('dev', function() {
+	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+	app.use(express.logger());
 });
 
 app.register('.md', {
@@ -216,6 +237,40 @@ app.get('/feed', get.feed, function(req, res) {
 	var page = { title: 'Craveytrain', desc: 'The website of Mike Cravey.' };
 	res.contentType('application/xml');
 	res.render('feed', { layout: 'feed/index', items: req.items, page: page });
+});
+
+// OAuth sign up
+app.get('/sessions/connect', function(req, res) {
+	oa.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret, results) {
+		if (error) {
+			res.send("Error getting OAuth request token : " + sys.inspect(error), 500);
+		} else {
+			req.session.oauthRequestToken = oauthToken;
+			req.session.oauthRequestTokenSecret = oauthTokenSecret;
+			res.redirect("https://twitter.com/oauth/authorize?oauth_token="+req.session.oauthRequestToken);      
+		}
+	});
+});
+
+// OAuth Callback
+app.get('/sessions/callback', function(req, res) {
+	oa.getOAuthAccessToken(req.session.oauthRequestToken, req.session.oauthRequestTokenSecret, req.query.oauth_verifier, function(error, oauthAccessToken, oauthAccessTokenSecret, results) {
+		if (error) {
+			res.send("Error getting OAuth access token : " + sys.inspect(error) + "["+oauthAccessToken+"]"+ "["+oauthAccessTokenSecret+"]"+ "["+sys.inspect(results)+"]", 500);
+		} else {
+			req.session.oauthAccessToken = oauthAccessToken;
+			req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
+			// Right here is where we would write out some nice user stuff
+			oa.get("http://twitter.com/account/verify_credentials.json", req.session.oauthAccessToken, req.session.oauthAccessTokenSecret, function (error, data, response) {
+				if (error) {
+					res.send("Error getting twitter screen name : " + sys.inspect(error), 500);
+				} else {
+					req.session.twitterScreenName = JSON.parse(data).screen_name;
+					res.send('You are signed in: ' + req.session.twitterScreenName);
+				}  
+			});  
+		}
+	});
 });
 
 app.get('/404', function(req, res) {
