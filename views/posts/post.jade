@@ -11,6 +11,7 @@ article.post
 					- if (i < iLastTag)
 						|	,&nbsp;
 	aside#comments
+		h2= post.comments.length + ' Comment'.pluralize(post.comments.length)
 		form#commentForm
 			input#author(name: 'author', type: 'hidden', value: '')
 			textarea#comment(name: 'comment')
