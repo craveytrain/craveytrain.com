@@ -10,4 +10,8 @@ article.post
 					a(href: '/tags/' + tag.urlify())= "#" + tag
 					- if (i < iLastTag)
 						|	,&nbsp;
-					
+	aside#comments
+		form#commentForm
+			input#author(name: 'author', type: 'hidden', value: '')
+			textarea#comment(name: 'comment')
+			button#submit= 'Comment'

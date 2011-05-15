@@ -9,6 +9,8 @@ var express = require('express'),
 		
 require('./libs/prototype.js');
 
+var gist = require('./libs/gist.js');
+
 client.on('error', function(err) {
 	console.log('Error ' + err);
 });
@@ -101,8 +103,6 @@ var db = {
 		}
 	}
 };
-
-var gist = require('./libs/gist.js');
 
 app.get('/', db.get.posts,  function(req, res) {
 	var page = { title: 'craveytrain', bodyId: "home", desc: 'The website of Mike Cravey.' };
