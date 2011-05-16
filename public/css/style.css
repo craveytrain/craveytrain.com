@@ -286,7 +286,7 @@ body {
 	padding: .25em .5em;
 }
 
-.error {
+.messages.error {
 	border: 3px solid rgb(213, 78, 33);
 	background: rgba(213, 78, 33, .2);
 }

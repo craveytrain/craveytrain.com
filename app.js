@@ -48,12 +48,20 @@ function NotFound(msg) {
 
 var db = {
 	connString: keys.protocol + '://' + keys.host + ':' + keys.port + keys.path,
+	auth: function(u, p) {
+		u = u || keys.u;
+		p = p || keys.p;
+		return 'Basic ' + new Buffer(u + ':' + p).toString('base64');
+	},
 	get: {
 		post: function(req, res, next) {
 			request({ uri: db.connString + req.params.slug }, function(error, response, body) {
 				if (!error && response.statusCode === 200) {
 					var post = JSON.parse(body);
 					post.timestamp = new Date(post.timestamp);
+					post.comments.forEach(function(comment) {
+						comment.timestamp = new Date(comment.timestamp);
+					})
 					req.post = post;
 					next();
 				} else {
@@ -110,11 +118,15 @@ var db = {
 			request({ uri: db.connString + req.params.slug }, function(error, response, body) {
 				var post = JSON.parse(body);
 				post.comments.push(req.body);
-				console.log(post);
-
-
-
-				next();
+				
+				request.put({
+					uri: db.connString + req.params.slug,
+					body: JSON.stringify(post),
+					headers: {
+						'Content-type': 'application/json',
+						'Authorization': db.auth()
+					}
+				}, function(saveError, saveResponse, saveBody) { next() });
 			});
 		}
 	}

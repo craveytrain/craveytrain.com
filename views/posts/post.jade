@@ -10,8 +10,13 @@ article.post
 					a(href: '/tags/' + tag.urlify())= "#" + tag
 					- if (i < iLastTag)
 						|	,&nbsp;
-	aside.comments
+	aside#comments
 		h1= post.comments.length + ' Comment'.pluralize(post.comments.length)
+		- each comment in post.comments
+			article.comment
+				p= comment.author
+				div!= comment.comment
+				p= comment.timestamp.toRelative()
 		form#commentForm(action: '/comment/' + post._id, method: 'post')
 			input#author(name: 'author', type: 'hidden', value: 'temp')
 			label(for: 'comment') Leave your own comment
