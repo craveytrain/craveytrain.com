@@ -280,6 +280,17 @@ body {
 	border-left: 6em solid #fff;
 }
 
+.messages {
+	list-style: none;
+	margin-left: 0;
+	padding: .25em .5em;
+}
+
+.error {
+	border: 3px solid rgb(213, 78, 33);
+	background: rgba(213, 78, 33, .2);
+}
+
 article {
 	margin-bottom: 48px;
 }

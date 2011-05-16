@@ -21,6 +21,8 @@ app.configure(function() {
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 	app.use(express.bodyParser());
+	app.use(express.cookieParser());
+	app.use(express.session({ secret: 'holas' }));
 });
 
 app.register('.md', {
@@ -106,23 +108,11 @@ var db = {
 };
 
 function validateForm(req, res, next) {
-	var form = req.body, errors = [];
-	console.log(form);
+	var form = req.body;
 	
-	for (field in form) {
-		if (form.hasOwnProperty(field)) {
-			if (!form[field]) {
-				errors.push(field + ' is blank');
-			}
-		}
-	}
+	if (!form.comment) req.flash('error', 'Comment cannot be blank');
 	
-	if (!errors.length) {
-		next();
-	} else {
-		console.log(errors);
-		next();
-	}
+	next();
 }
 
 app.get('/', db.get.posts,  function(req, res) {
@@ -148,7 +138,7 @@ app.get('/posts', db.get.posts,  function(req, res) {
 });
 
 app.get('/posts/:slug', db.get.post, gist.find, function(req, res, next) {
-	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, gist: (req.gist) ? true: false };
+	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, msgs: req.flash() };
 	res.render('posts/post', { post: req.post, page: page });
 });
 
