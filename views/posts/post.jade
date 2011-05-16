@@ -12,7 +12,7 @@ article.post
 						|	,&nbsp;
 	aside#comments
 		h2= post.comments.length + ' Comment'.pluralize(post.comments.length)
-		form#commentForm
-			input#author(name: 'author', type: 'hidden', value: '')
+		form#commentForm(action: '/comment/' + post._id, method: 'post')
+			input#author(name: 'author', type: 'hidden', value: 'temp')
 			textarea#comment(name: 'comment')
 			button#submit= 'Comment'

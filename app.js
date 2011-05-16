@@ -20,6 +20,7 @@ var app = express.createServer(express.static(__dirname + '/public'));
 app.configure(function() {
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
+	app.use(express.bodyParser());
 });
 
 app.register('.md', {
@@ -104,6 +105,26 @@ var db = {
 	}
 };
 
+function validateForm(req, res, next) {
+	var form = req.body, errors = [];
+	console.log(form);
+	
+	for (field in form) {
+		if (form.hasOwnProperty(field)) {
+			if (!form[field]) {
+				errors.push(field + ' is blank');
+			}
+		}
+	}
+	
+	if (!errors.length) {
+		next();
+	} else {
+		console.log(errors);
+		next();
+	}
+}
+
 app.get('/', db.get.posts,  function(req, res) {
 	var page = { title: 'craveytrain', bodyId: "home", desc: 'The website of Mike Cravey.' };
 	res.render('index', { posts: req.posts, page: page });
@@ -129,6 +150,10 @@ app.get('/posts', db.get.posts,  function(req, res) {
 app.get('/posts/:slug', db.get.post, gist.find, function(req, res, next) {
 	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, gist: (req.gist) ? true: false };
 	res.render('posts/post', { post: req.post, page: page });
+});
+
+app.post('/comment/:slug', validateForm, function(req, res, next) {
+	res.redirect('/posts/' + req.params.slug);
 });
 
 // Tags

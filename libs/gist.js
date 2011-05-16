@@ -7,17 +7,18 @@ var gist = {
 	re: /^(\<p\>)?\<a href="https:\/\/gist.github.com\/(\d+)#?(file_)?([\da-z_\.]+)?"\>[\w\s_\.\d]+\<\/a\>(\<\/p\>)?$/gim,
 
 	find: function(req, res, next) {
-		var content = req.post.content, hasGists = false;
+		var content = req.post.content, hasGist = false;
 
 		req.gists = {};
+		req.gistCount = 0;
 
 		req.post.content = content.replace(gist.re, function(str, blah1, /* String */ id){
 			req.gists[id] = {};
-			hasGists = true;
+			hasGist = true;
 			return str;
 		});
 
-		if (hasGists) {
+		if (hasGist) {
 			gist.fetch(req, res, next);
 		} else {
 			next();
@@ -27,33 +28,56 @@ var gist = {
 	fetch: function(req, res, next) {
 		for (id in req.gists) {
 			if (req.gists.hasOwnProperty(id)) {
+				// Add one for each gist
+				req.gistCount++;
 				request({ url: 'https://api.github.com/gists/' + id }, function(error, response, body) {
-					var gistObj = (body) ? JSON.parse(body) : {};
-					client.get(id, function(err, cached) {
-						if (error && !cached) next();
-						cached = JSON.parse(cached);
-
-						if (!cached || (cached.created_at !== gistObj.created_at)) {
-							// if cached doesn't exists or the dates don't match
-							// beautify it
-							cached = gist.prettify(gistObj);
-
-							// cache it
-							client.set(id, JSON.stringify(cached));
-						}
-
-						req.gists[id] = cached;
-
-						// if gists is full, pass the dutchie
-						for (id2 in req.gists) {
-							if (req.gists.hasOwnProperty(id2) && req.gists[id2]) gist.replace(req, res, next);
-						}
-					});
+					req.gists[id] = (!error && response.statusCode === 200) ? JSON.parse(body) : null;
+					gist.getCached(req, res, next, id);
 				});
 			}
 		}
 	},
+	
+	getCached: function(req, res, next, id) {
+		client.get(id, function(err, cached) {
+			var local = (cached) ? local = JSON.parse(cached) : null,
+					gotResponse = false;
+			
+			// Minus one for the gist
+			req.gistCount--;
 
+			// if github has it
+			if (req.gists[id]) {
+
+				// if it's not local or if they don't have the same date
+				if (!local || (local.created_at !== req.gists[id].created_at)) {
+
+					// pretty it up
+					local = gist.prettify(req.gists[id]);
+					
+					// store it for next time
+					client.set(id, JSON.stringify(local));
+				}
+			}
+
+			// add it to the request object
+			req.gists[id] = local;
+			
+			if (!req.gistCount) {
+				for (gistId in req.gists) {
+					if (req.gists.hasOwnProperty(gistId)) {
+						if (req.gists[gistId]) gotResponse = true;
+					}
+				}
+				if (gotResponse) {
+					gist.replace(req, res, next);
+				} else {
+					next();
+				}
+			}
+		});
+	},
+	
 	prettify: function(/* Object */ gistObj) {
 		for (file in gistObj.files) {
 			if (gistObj.files.hasOwnProperty(file)) {
