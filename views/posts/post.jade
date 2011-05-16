@@ -10,9 +10,10 @@ article.post
 					a(href: '/tags/' + tag.urlify())= "#" + tag
 					- if (i < iLastTag)
 						|	,&nbsp;
-	aside#comments
-		h2= post.comments.length + ' Comment'.pluralize(post.comments.length)
+	aside.comments
+		h1= post.comments.length + ' Comment'.pluralize(post.comments.length)
 		form#commentForm(action: '/comment/' + post._id, method: 'post')
 			input#author(name: 'author', type: 'hidden', value: 'temp')
+			label(for: 'comment') Leave your own comment
 			textarea#comment(name: 'comment')
-			button#submit= 'Comment'
+			button#submit Post

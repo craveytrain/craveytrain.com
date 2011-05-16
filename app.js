@@ -104,16 +104,40 @@ var db = {
 				}
 			});
 		}
+	},
+	post: {
+		comment: function(req, res, next) {
+			request({ uri: db.connString + req.params.slug }, function(error, response, body) {
+				var post = JSON.parse(body);
+				post.comments.push(req.body);
+				console.log(post);
+
+
+
+				next();
+			});
+		}
 	}
 };
 
-function validateForm(req, res, next) {
-	var form = req.body;
-	
-	if (!form.comment) req.flash('error', 'Comment cannot be blank');
-	
-	next();
-}
+var comment = {
+	validate: function(req, res, next) {
+		var form = req.body;
+
+		if (form.comment) {
+			form = comment.format(form);
+			db.post.comment(req, res, next);
+		} else {
+			req.flash('error', 'Comment cannot be blank');
+			next();
+		}
+	},
+	format: function(/* Object */ form) {
+		form.comment = md.toHTML(form.comment);
+		form.comment = form.comment.replace(/\<a\s/gi, '<a rel="nofollow" ');
+		form.timestamp = new Date();
+	}
+};
 
 app.get('/', db.get.posts,  function(req, res) {
 	var page = { title: 'craveytrain', bodyId: "home", desc: 'The website of Mike Cravey.' };
@@ -139,10 +163,11 @@ app.get('/posts', db.get.posts,  function(req, res) {
 
 app.get('/posts/:slug', db.get.post, gist.find, function(req, res, next) {
 	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, msgs: req.flash() };
+	// console.log(req.post);
 	res.render('posts/post', { post: req.post, page: page });
 });
 
-app.post('/comment/:slug', validateForm, function(req, res, next) {
+app.post('/comment/:slug', comment.validate, function(req, res, next) {
 	res.redirect('/posts/' + req.params.slug);
 });
 
