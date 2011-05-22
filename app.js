@@ -9,6 +9,7 @@ var port = process.env.PORT || 3000,
 		hl = require('highlight').Highlight,
 		oauth = require('oauth').OAuth,
 		request = require('request'),
+		crypto = require('crypto'),
 		keys = require('./keys.js');
 		
 require('./libs/prototype.js');
@@ -160,21 +161,27 @@ var db = {
 
 var comment = {
 	validate: function(req, res, next) {
-		console.log(req.session);
 		var form = req.body;
 
 		if (form.comment) {
-			form = comment.format(form);
+			comment.format(form);
+			comment.addMeta(form, req);
 			db.post.comment(req, res, next);
 		} else {
 			req.flash('error', 'Comment cannot be blank');
 			next();
 		}
+		
+		if (!req.session.user) next();
 	},
 	format: function(/* Object */ form) {
 		form.comment = md.toHTML(form.comment);
-		form.comment = form.comment.replace(/\<a\s/gi, '<a rel="nofollow" ');
+		form.comment = form.comment.replace(/\<a\s/gi, '<a rel="external nofollow" ');
+	},
+	addMeta: function(/* Object*/form, /* Object */req) {
 		form.timestamp = new Date();
+		form.author = req.session.user;
+		form.id = 'c' + form.timestamp.getTime();
 	}
 };
 
@@ -276,6 +283,7 @@ app.get('/auth/callback', function(req, res) {
 		} else {
 			req.session.oauthAccessToken = oauthAccessToken;
 			req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
+			// TODO: push access token and secret to cookie for return visitors
 			// Redirect back to view
 			res.redirect(req.session.returnUrl);
 		}

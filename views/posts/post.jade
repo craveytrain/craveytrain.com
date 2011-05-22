@@ -14,9 +14,12 @@ article.post
 		h1= post.comments.length + ' Comment'.pluralize(post.comments.length)
 		- each comment in post.comments
 			article.comment
-				p= comment.author
-				div!= comment.comment
-				p= comment.timestamp.toRelative()
+				img.authorImg(src: comment.author.img, alt: comment.author.name)
+				p.authorName
+					a.authorLink(href: comment.author.url, rel: 'external nofollow')= comment.author.name
+				div.commentTxt!= comment.comment
+				p.timeStamp
+					a(href: '#' + comment.id)= comment.timestamp.toRelative()
 		- if (page.user)
 			form#commentForm(action: '/comment/' + post._id, method: 'post')
 				label(for: 'comment') Leave your own comment
