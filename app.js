@@ -1,4 +1,5 @@
 var port = process.env.PORT || 3000,
+		host = process.env.HOST || 'localhost',
 		express = require('express'),
 		http = require('http'),
 		md = require('markdown').markdown,
@@ -28,7 +29,7 @@ var oa = new oauth(
 	keys._twitterConsumerKey,
 	keys._twitterConsumerSecret,
 	'1.0A',
-	'http://localhost/sessions/callback',
+	'http://' + host + ':' + port + '/auth/callback',
 	'HMAC-SHA1'
 );
 
@@ -159,6 +160,7 @@ var db = {
 
 var comment = {
 	validate: function(req, res, next) {
+		console.log(req.session);
 		var form = req.body;
 
 		if (form.comment) {
@@ -173,6 +175,33 @@ var comment = {
 		form.comment = md.toHTML(form.comment);
 		form.comment = form.comment.replace(/\<a\s/gi, '<a rel="nofollow" ');
 		form.timestamp = new Date();
+	}
+};
+
+var getUser = function(req, res, next) {
+	if (req.session.user) {
+		next();
+		return;
+	}
+	
+	if (req.session.oauthAccessToken) {
+		oa.get("http://twitter.com/account/verify_credentials.json", req.session.oauthAccessToken, req.session.oauthAccessTokenSecret, function (error, data, response) {
+			if (error) {
+				// What error is this?
+			} else {
+				var twitter = JSON.parse(data);
+				req.session.user = {
+					id: twitter.id,
+					name: twitter.screen_name,
+					url: 'http://twitter.com/' + twitter.screen_name,
+					img: twitter.profile_image_url
+				}
+			}
+			next();  
+		});  
+	} else {
+		req.session.returnUrl = req.url;
+		next();
 	}
 };
 
@@ -198,9 +227,14 @@ app.get('/posts', db.get.posts,  function(req, res) {
 	res.render('posts', { posts: req.posts, page: page });
 });
 
-app.get('/posts/:slug', db.get.post, gist.find, function(req, res, next) {
-	var page = { bodyId: req.params.slug, bodyClass: 'single', title: req.post.title, msgs: req.flash() };
-	// console.log(req.post);
+app.get('/posts/:slug', db.get.post, gist.find, getUser, function(req, res, next) {
+	var page = { 
+		bodyId: req.params.slug, 
+		bodyClass: 'single', 
+		title: req.post.title, 
+		msgs: req.flash(),
+		user: req.session.user
+	};
 	res.render('posts/post', { post: req.post, page: page });
 });
 
@@ -222,35 +256,28 @@ app.get('/feed', db.get.feed, function(req, res) {
 });
 
 // OAuth sign up
-app.get('/sessions/connect', function(req, res) {
+app.get('/auth/login', function(req, res) {
 	oa.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret, results) {
 		if (error) {
-			res.send("Error getting OAuth request token : " + sys.inspect(error), 500);
+			// What error is this?
 		} else {
 			req.session.oauthRequestToken = oauthToken;
 			req.session.oauthRequestTokenSecret = oauthTokenSecret;
-			res.redirect("https://twitter.com/oauth/authorize?oauth_token="+req.session.oauthRequestToken);      
+			res.redirect("https://twitter.com/oauth/authenticate?oauth_token="+req.session.oauthRequestToken);      
 		}
 	});
 });
 
 // OAuth Callback
-app.get('/sessions/callback', function(req, res) {
+app.get('/auth/callback', function(req, res) {
 	oa.getOAuthAccessToken(req.session.oauthRequestToken, req.session.oauthRequestTokenSecret, req.query.oauth_verifier, function(error, oauthAccessToken, oauthAccessTokenSecret, results) {
 		if (error) {
-			res.send("Error getting OAuth access token : " + sys.inspect(error) + "["+oauthAccessToken+"]"+ "["+oauthAccessTokenSecret+"]"+ "["+sys.inspect(results)+"]", 500);
+			// What error is this?
 		} else {
 			req.session.oauthAccessToken = oauthAccessToken;
 			req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
-			// Right here is where we would write out some nice user stuff
-			oa.get("http://twitter.com/account/verify_credentials.json", req.session.oauthAccessToken, req.session.oauthAccessTokenSecret, function (error, data, response) {
-				if (error) {
-					res.send("Error getting twitter screen name : " + sys.inspect(error), 500);
-				} else {
-					req.session.twitterScreenName = JSON.parse(data).screen_name;
-					res.send('You are signed in: ' + req.session.twitterScreenName);
-				}  
-			});  
+			// Redirect back to view
+			res.redirect(req.session.returnUrl);
 		}
 	});
 });

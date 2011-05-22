@@ -17,8 +17,11 @@ article.post
 				p= comment.author
 				div!= comment.comment
 				p= comment.timestamp.toRelative()
-		form#commentForm(action: '/comment/' + post._id, method: 'post')
-			input#author(name: 'author', type: 'hidden', value: 'temp')
-			label(for: 'comment') Leave your own comment
-			textarea#comment(name: 'comment')
-			button#submit Post
+		- if (page.user)
+			form#commentForm(action: '/comment/' + post._id, method: 'post')
+				label(for: 'comment') Leave your own comment
+				textarea#comment(name: 'comment')
+				button#submit Post
+		- else
+			a(href: '/auth/login')
+				img(alt: 'Sign in with Twitter to comment', src: '/img/sign-in-with-twitter-d.png')
