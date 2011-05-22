@@ -241,6 +241,7 @@ app.get('/posts', db.get.posts,  function(req, res) {
 app.get('/posts/:slug', db.get.post, gist.find, getUser, function(req, res, next) {
 	var page = { 
 		bodyId: req.params.slug, 
+		desc: req.post.excerpt,
 		bodyClass: 'single', 
 		title: req.post.title, 
 		msgs: req.flash(),

@@ -13,18 +13,23 @@ article.post
 	aside#comments
 		h1= post.comments.length + ' Comment'.pluralize(post.comments.length)
 		- each comment in post.comments
-			article.comment
-				img.authorImg(src: comment.author.img, alt: comment.author.name)
+			article.comment.vcard(id: comment.id)
+				img.authorImg.photo(src: comment.author.img, alt: comment.author.name)
 				p.authorName
-					a.authorLink(href: comment.author.url, rel: 'external nofollow')= comment.author.name
+					a.authorLink.fn.n.url(href: comment.author.url, rel: 'external nofollow')= comment.author.name
 				div.commentTxt!= comment.comment
 				p.timeStamp
 					a(href: '#' + comment.id)= comment.timestamp.toRelative()
 		- if (page.user)
+			article#commentPreview.comment
+				img.authorImg(src: page.user.img, alt: page.user.name)
+				p.authorName
+					a.authorLink(href: page.user.url, rel: 'external nofollow')= page.user.name
+				div.commentTxt
 			form#commentForm(action: '/comment/' + post._id, method: 'post')
-				label(for: 'comment') Leave your own comment
+				label(for: 'comment') Enter your comment
 				textarea#comment(name: 'comment')
-				button#submit Post
+				button#submit Submit
 		- else
 			a(href: '/auth/login')
 				img(alt: 'Sign in with Twitter to comment', src: '/img/sign-in-with-twitter-d.png')

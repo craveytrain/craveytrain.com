@@ -1,11 +1,11 @@
 !!! 5
 /if IE lt 7
-	html(lang="en").no-js.ie6
+	html(lang='en-US', dir: 'ltr').no-js.ie6
 /if IE 7
-	html(lang="en").no-js.ie7
+	html(lang='en-US', dir: 'ltr').no-js.ie7
 /if IE 8
-	html(lang="en").no-js.ie8
-html(lang="en").no-js
+	html(lang='en-US', dir: 'ltr').no-js.ie8
+html(lang='en-US', dir: 'ltr').no-js
 
 	head
 		meta(charset: 'utf-8')
@@ -18,11 +18,13 @@ html(lang="en").no-js
 		link(rel: 'stylesheet', href: '/css/style.css')
 		link(rel: 'stylesheet', href: '/css/github.css')
 		link(rel: 'alternate', title: 'All of Craveytrain', href: '/feed', type: 'application/rss+xml')
-		//script(src: '/js/libs/modernizr.js')
+		link(rel: 'author', href: '/about', title: 'About the author')
+		link(rel: 'home', href: '/', title: 'Home')
+		// Welcome to the source code. Enjoy yourself. Questions, concerns, comments, drop me a line via any of the means on my contact page.
 	body(id: page.bodyId, class: page.bodyClass)
-		header#siteHead(role: 'nav')
+		header#siteHead(role: 'banner')
 			div#logo craveytrain
-			nav.siteNav
+			nav.siteNav(role: 'navigation')
 				ul
 					- if (page.bodyId === 'home')
 						li.selected
