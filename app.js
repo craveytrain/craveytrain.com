@@ -186,10 +186,14 @@ var comment = {
 };
 
 var getUser = function(req, res, next) {
-	console.log(req.session);
 	if (req.session.user) {
 		next();
 		return;
+	}
+	
+	if (req.cookies.oauthaccesstoken) {
+		req.session.oauthAccessToken = req.cookies.oauthaccesstoken;
+		req.session.oauthAccessTokenSecret = req.cookies.oauthaccesstokensecret;
 	}
 	
 	if (req.session.oauthAccessToken) {
@@ -284,9 +288,8 @@ app.get('/auth/callback', function(req, res) {
 		} else {
 			req.session.oauthAccessToken = oauthAccessToken;
 			req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
-			res.cookie('oauthAccessToken', oauthAccessToken);
-			res.cookie('oauthAccessTokenSecret', oauthAccessTokenSecret);
-			// TODO: push access token and secret to cookie for return visitors
+			res.cookie('oauthAccessToken', oauthAccessToken, { path: '/', maxAge: 900000 });
+			res.cookie('oauthAccessTokenSecret', oauthAccessTokenSecret, { path: '/', maxAge: 900000 });
 			// Redirect back to view
 			res.redirect(req.session.returnUrl);
 		}
