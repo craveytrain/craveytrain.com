@@ -17,9 +17,9 @@ article.post
 				img.authorImg.photo(src: comment.author.img, alt: comment.author.name)
 				p.authorName
 					a.authorLink.fn.n.url(href: comment.author.url, rel: 'external nofollow')= comment.author.name
+					a.commentTime(href: '#' + comment.id)
+						time(datetime: post.timestamp, pubdate)= comment.timestamp.toRelative()
 				div.commentTxt!= comment.comment
-				p.timeStamp
-					a(href: '#' + comment.id)= comment.timestamp.toRelative()
 		- if (page.user)
 			article#commentPreview.comment
 				img.authorImg(src: page.user.img, alt: page.user.name)

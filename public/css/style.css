@@ -372,6 +372,14 @@ p {
 	margin-bottom: 0;
 }
 
+.commentTime {
+	float: right;
+}
+
+.commentTxt {
+	clear: both;
+}
+
 #commentForm {
 	padding: 1em 0;
 	border-top: 1px dashed #bbb;
@@ -400,7 +408,6 @@ p {
 	height: 150px;
 	font-family: Cambria, Georgia, Times, "Times New Roman", serif;
 }
-
 
 .gist {
 	font-size: .8em;
