@@ -35,6 +35,7 @@ var oa = new oauth(
 );
 
 app.configure(function() {
+	app.use(express.logger());
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
 	app.use(express.session({ secret: 'holas' }));
@@ -44,7 +45,6 @@ app.configure(function() {
 });
 
 app.configure('dev', function() {
-	app.use(express.logger());
 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
@@ -186,6 +186,7 @@ var comment = {
 };
 
 var getUser = function(req, res, next) {
+	console.log(req.session);
 	if (req.session.user) {
 		next();
 		return;
@@ -207,7 +208,6 @@ var getUser = function(req, res, next) {
 			next();  
 		});  
 	} else {
-		req.session.returnUrl = req.url;
 		next();
 	}
 };
@@ -264,6 +264,7 @@ app.get('/feed', db.get.feed, function(req, res) {
 
 // OAuth sign up
 app.get('/auth/login', function(req, res) {
+	req.session.returnUrl = req.headers.referer;
 	oa.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret, results) {
 		if (error) {
 			// What error is this?
@@ -283,6 +284,8 @@ app.get('/auth/callback', function(req, res) {
 		} else {
 			req.session.oauthAccessToken = oauthAccessToken;
 			req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
+			res.cookie('oauthAccessToken', oauthAccessToken);
+			res.cookie('oauthAccessTokenSecret', oauthAccessTokenSecret);
 			// TODO: push access token and secret to cookie for return visitors
 			// Redirect back to view
 			res.redirect(req.session.returnUrl);
