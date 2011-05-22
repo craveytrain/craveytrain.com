@@ -67,12 +67,20 @@ html(lang='en-US', dir: 'ltr').no-js
 			!= body
 
 		script
-			Modernizr.load({
-				load: '//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js',
-				complete: function() {
-					if (!window.jQuery) Modernizr.load('/js/libs/jquery-1.6.1.min.js')
+			Modernizr.load([
+				{
+					load: '//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js',
+					complete: function() {
+						if (!window.jQuery) Modernizr.load('/js/libs/jquery-1.6.1.min.js')
+					}
+				},
+				{
+					load: '/js/plugins/showdown.js'
+				},
+				{
+					load: '/js/global.js'
 				}
-			});
+			]);
 		script
 			var _gaq = [["_setAccount","UA-3516156-4"], ["_trackPageview"], ['_trackPageLoadTime']];
 			Modernizr.load(('https:' == location.protocol ? '//ssl' : '//www' ) + '.google-analytics.com/ga.js');
