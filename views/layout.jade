@@ -20,6 +20,8 @@ html(lang='en-US', dir: 'ltr').no-js
 		link(rel: 'alternate', title: 'All of Craveytrain', href: '/feed', type: 'application/rss+xml')
 		link(rel: 'author', href: '/about', title: 'About the author')
 		link(rel: 'home', href: '/', title: 'Home')
+		script
+			var ct = {};
 		script(src: '/js/libs/modernizr.js')
 		// Welcome to the source code. Enjoy yourself. Questions, concerns, comments, drop me a line via any of the means on my contact page.
 	body(id: page.bodyId, class: page.bodyClass)
@@ -73,9 +75,6 @@ html(lang='en-US', dir: 'ltr').no-js
 					complete: function() {
 						if (!window.jQuery) Modernizr.load('/js/libs/jquery-1.6.1.min.js')
 					}
-				},
-				{
-					load: '/js/plugins/showdown.js'
 				},
 				{
 					load: '/js/global.js'

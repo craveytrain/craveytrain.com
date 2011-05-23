@@ -28,6 +28,8 @@ article.post
 				div.commentTxt
 			form#commentForm(action: '/comment/' + post._id, method: 'post')
 				label(for: 'comment') Enter your comment
+				p.note
+					| This form takes Markdown. Please see the <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax reference</a>.
 				textarea#comment(name: 'comment')
 				button#submit Submit
 		- else

@@ -1,7 +1,23 @@
-/* TODO:
-Setup event listeners on the comment form for focus, blur & keypress.
-On focus, show previewer.
-On blur, hide previewer (and clean it out).
-On keypress, grab the value, append the event data value and send it to showdown.
-Once that text is processed, drop it in the previewer.
-*/
+ct.markdown = (function(md, $) {
+			init = function() {
+				var $comment = $('#comment'),
+						$preview = $('#commentPreview'),
+						$previewTxt = $preview.find('.commentTxt');
+				
+				$comment.focus(function() {
+					$preview.slideDown();
+				});
+				
+				
+				$comment.keyup(function() {
+					$.post('/markdownify', $comment.serialize(), function(markup) {
+						$previewTxt.html(markup);
+					});
+				});
+			};
+	
+	$(document).ready(init);
+	
+	return md;
+	
+}(ct.markdown || {}, jQuery));

@@ -297,6 +297,11 @@ app.get('/auth/callback', function(req, res) {
 	});
 });
 
+app.post('/markdownify', function(req, res) {
+	// console.log(req.body);
+	res.send(md.toHTML(req.body.comment));
+});
+
 app.get('/404', function(req, res) {
 	throw new NotFound;
 });

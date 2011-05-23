@@ -409,6 +409,12 @@ p {
 	font-family: Cambria, Georgia, Times, "Times New Roman", serif;
 }
 
+.note {
+	font-size: .8em;
+	margin-bottom: .8em;
+}
+
+
 .gist {
 	font-size: .8em;
 }
