@@ -16,3 +16,7 @@ This is the software that runs craveytrain.com. It's nothing special, just reall
 - Add link type of content
 
 - Paginate
+
+- Search
+
+- Add colophon
