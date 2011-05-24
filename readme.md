@@ -12,3 +12,7 @@ This is the software that runs craveytrain.com. It's nothing special, just reall
 - Make markdown realtime client side. Tried using showdown and it threw up on characters like <. I expect any markdown library should escape those property. That's actually imperative to using markdown as a comment syntax.
 
 - Invoke commenter script only on those pages either via plugin format that only invokes when the selector comes back with a collection or better yet, only invoke the script at all on those pages. Look into modular scripting options or layout template placeholders.
+
+- Add link type of content
+
+- Paginate
