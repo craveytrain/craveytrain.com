@@ -10,7 +10,7 @@ var port = process.env.PORT || 3000,
 		oauth = require('oauth').OAuth,
 		request = require('request'),
 		crypto = require('crypto'),
-		keys = require('./keys.js');
+		keys = require('../keys.js');
 		
 require('./libs/prototype.js');
 
@@ -21,8 +21,6 @@ client.on('error', function(err) {
 });
 
 var app = express.createServer();
-
-var keys = require('./keys.js');
 
 var oa = new oauth(
 	'https://twitter.com/oauth/request_token',
