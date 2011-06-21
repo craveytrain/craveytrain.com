@@ -1,6 +1,6 @@
 article.post
 	h1
-		a(href: '/posts/' + _id)= title
+		a(href='/posts/' + _id)= title
 	p!= excerpt
 	div.metadata
 		time.timestamp= timestamp.toRelative()
@@ -8,6 +8,6 @@ article.post
 			- var iLastTag = tags.length - 1
 			- each tag, i in tags
 				li
-					a(href: '/tags/' + tag.urlify())= "#" + tag
+					a(href='/tags/' + tag.urlify())= "#" + tag
 					- if (i < iLastTag)
 						|	,&nbsp;
