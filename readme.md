@@ -19,4 +19,4 @@ This is the software that runs craveytrain.com. It's nothing special, just reall
 
 - Add colophon
 
-- Try out ender
+- Try out [ender](https://github.com/ender-js/Ender)

@@ -1,31 +1,32 @@
 !!! 5
-/if IE lt 7
-	html(lang='en-US', dir: 'ltr').no-js.ie6
-/if IE 7
-	html(lang='en-US', dir: 'ltr').no-js.ie7
-/if IE 8
-	html(lang='en-US', dir: 'ltr').no-js.ie8
-html(lang='en-US', dir: 'ltr').no-js
+
+//if IE lt 7
+	html(lang='en-US', dir='ltr').no-js.ie6
+//if IE 7
+	html(lang='en-US', dir='ltr').no-js.ie7
+//if IE 8
+	html(lang='en-US', dir='ltr').no-js.ie8
+html(lang='en-US', dir='ltr').no-js
 
 	head
-		meta(charset: 'utf-8')
+		meta(charset='utf-8')
 		title= page.title
-		meta(name: 'description', content: page.desc)
-		meta(name: 'author', content: 'Mike Cravey')
-		meta(name: 'viewport', content: 'width=device-width, initial-scale=1.0')
+		meta(name='description', content=page.desc)
+		meta(name='author', content='Mike Cravey')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		script
 			var ct = {};
-		script(src: '/js/libs/modernizr.js')
-		link(rel: 'stylesheet', href: '/css/style.css')
-		link(rel: 'stylesheet', href: '/css/github.css')
-		link(rel: 'alternate', title: 'All of Craveytrain', href: '/feed', type: 'application/rss+xml')
-		link(rel: 'author', href: '/about', title: 'About the author')
-		link(rel: 'home', href: '/', title: 'Home')
+		script(src='/js/libs/modernizr.js')
+		link(rel='stylesheet', href='/css/style.css')
+		link(rel='stylesheet', href='/css/github.css')
+		link(rel='alternate', title='All of Craveytrain', href='/feed', type='application/rss+xml')
+		link(rel='author', href='/about', title='About the author')
+		link(rel='home', href='/', title='Home')
 		// Welcome to the source code. Enjoy yourself. Questions, concerns, comments, drop me a line via any of the means on my contact page.
-	body(id: page.bodyId, class: page.bodyClass)
-		header#siteHead(role: 'banner')
+	body(id=page.bodyId, class=page.bodyClass)
+		header#siteHead(role='banner')
 			div#logo craveytrain
-			nav.siteNav(role: 'navigation')
+			nav.siteNav(role='navigation')
 				ul
 					- if (page.bodyId === 'home')
 						li.selected
@@ -33,7 +34,7 @@ html(lang='en-US', dir: 'ltr').no-js
 								span.tail
 					- else
 						li
-							a.navItem(href: '/') Home
+							a.navItem(href='/') Home
 								span.tail
 					- if (page.bodyId === 'posts')
 						li.selected
@@ -41,7 +42,7 @@ html(lang='en-US', dir: 'ltr').no-js
 								span.tail
 					- else
 						li
-							a.navItem(href: '/posts') Posts
+							a.navItem(href='/posts') Posts
 								span.tail
 					- if (page.bodyId === 'about')
 						li.selected
@@ -49,7 +50,7 @@ html(lang='en-US', dir: 'ltr').no-js
 								span.tail
 					- else
 						li
-							a.navItem(href: '/about') About
+							a.navItem(href='/about') About
 								span.tail
 					- if (page.bodyId === 'contact')
 						li.selected
@@ -57,11 +58,11 @@ html(lang='en-US', dir: 'ltr').no-js
 								span.tail
 					- else
 						li
-							a.navItem(href: '/contact') Contact
+							a.navItem(href='/contact') Contact
 								span.tail
-		section.main(role: 'main')
+		section.main(role='main')
 			- for (var type in page.msgs)
-				ul(class: type + ' messages')
+				ul(class=type + ' messages')
 					- each msg in page.msgs[type]
 						li= msg
 			!= body
