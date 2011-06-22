@@ -1,23 +1,25 @@
-ct.markdown = (function(md, $) {
-			init = function() {
-				var $comment = $('#comment'),
-						$preview = $('#commentPreview'),
-						$previewTxt = $preview.find('.commentTxt');
-				
-				$comment.focus(function() {
-					$preview.slideDown();
-				});
-				
-				
-				$comment.keyup(function() {
-					$.post('/markdownify', $comment.serialize(), function(markup) {
-						$previewTxt.html(markup);
-					});
-				});
-			};
+(function(context) {
+	var init = function() {
+		var $comment = $('#comment'),
+				$preview = $('#commentPreview'),
+				$previewTxt = $preview.find('.commentTxt');
+		
+		$comment.bind('focus', function() {
+			$preview[0].style.display = 'block';
+		});
+		
+		$comment.bind('keyup', function() {
+			$.ajax({
+				url: '/markdownify',
+				type: 'html',
+				data: 'comment=' + $comment[0].value,
+				method: 'post',
+				success: function(markup) {
+					$previewTxt.html(markup);
+				}
+			});
+		});
+	};
 	
-	$(document).ready(init);
-	
-	return md;
-	
-}(ct.markdown || {}, jQuery));
+	$.domReady(init);
+}(this));

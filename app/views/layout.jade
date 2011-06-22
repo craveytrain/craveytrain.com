@@ -16,7 +16,6 @@ html(lang='en-US', dir='ltr').no-js
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		script
 			var ct = {};
-		script(src='/js/libs/modernizr.js')
 		link(rel='stylesheet', href='/css/style.css')
 		link(rel='stylesheet', href='/css/github.css')
 		link(rel='alternate', title='All of Craveytrain', href='/feed', type='application/rss+xml')
@@ -67,18 +66,9 @@ html(lang='en-US', dir='ltr').no-js
 						li= msg
 			!= body
 
+		script(src='/js/libs/ender.min.js')
 		script
-			Modernizr.load([
-				{
-					load: '//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js',
-					complete: function() {
-						if (!window.jQuery) Modernizr.load('/js/libs/jquery-1.6.1.min.js')
-					}
-				},
-				{
-					load: '/js/global.js'
-				}
-			]);
+			$script('/js/global.js')
 		script
 			var _gaq = [["_setAccount","UA-3516156-4"], ["_trackPageview"], ['_trackPageLoadTime']];
-			Modernizr.load(('https:' == location.protocol ? '//ssl' : '//www' ) + '.google-analytics.com/ga.js');
+			$script(('https:' == location.protocol ? '//ssl' : '//www' ) + '.google-analytics.com/ga.js');
