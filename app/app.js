@@ -215,7 +215,7 @@ var getUser = function(req, res, next) {
 
 app.get('/', db.get.posts,  function(req, res) {
 	var page = { title: 'craveytrain', bodyId: "home", desc: 'The website of Mike Cravey.' };
-	res.render('index', { posts: req.posts, page: page });
+	res.render('index', { post: req.posts[0], page: page });
 });
 
 // Static pages
