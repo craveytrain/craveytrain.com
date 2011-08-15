@@ -358,6 +358,22 @@ table { border-collapse: collapse; border-spacing: 0; }
 	.homePostTitle {
 		margin-top: 0;
 	}
+	
+	.home .post p {
+		float: left;
+		width: 62.5%;
+		border-right: 1px solid #aaa;
+		padding-right: 2em;
+		margin-right: 2em;
+	}
+	
+	.home .post .metadata {
+		margin-top: 1.2em;
+	}
+	
+	.home .post .tags {
+		display: block;
+	}
 
 	h1 a, h1 a:visited, .homePostTitle a, .homePostTitle a:visited {
 		text-decoration: none;
