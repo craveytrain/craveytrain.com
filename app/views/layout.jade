@@ -23,17 +23,19 @@ html(lang='en-US', dir='ltr').no-js
 		link(rel='home', href='/', title='Home')
 		// Welcome to the source code. Enjoy yourself. Questions, concerns, comments, drop me a line.
 	body(id=page.bodyId, class=page.bodyClass)
-		header(role='banner')
-			nav#siteNav(role='navigation')
+		header.siteBanner(role='banner')
+			p.siteName
+				a(href='/', target='_top') craveytrain
+			nav(role='navigation')
 				ul
 					li
-						a.navItem.home(href='/', target='_top') Craveytrain
+						a(href='/', target='_top') Home
 					li
-						a.navItem(href='/posts') Posts
+						a(href='/posts') Posts
 					li
-						a.navItem(href='/#about') About
+						a(href='/#about') About
 					li
-						a.navItem(href='/#contact') Contact
+						a(href='/#contact') Contact
 		section.main(role='main')
 			- for (var type in page.msgs)
 				ul(class=type + ' messages')
