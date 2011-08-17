@@ -1,0 +1,1018 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Slide Deck</title>
+  <meta name="description" content="JavaScript and jQuery basics">
+  <meta name="author" content="Mike Cravey">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans&v1" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata&v1" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/prettify.css">
+</head>
+
+<body>
+	<header class="siteHeader">
+		<h1>JavaScript is your friend</h1>
+	</header>
+	
+	<section class="slides">
+		<article id="jsBasics" class="slide title">
+			<h1>JavaScript Basics</h1>
+		</article>
+		
+		<article id="falsy" class="slide">
+			<header><h1>Falsiness</h1></header>
+			
+<pre contenteditable><code>''        // Empty string
+0         // Number
+undefined // Tricky
+null      // Obvious
+false     // Boolean
+NaN       // Weirdness
+</code></pre>
+
+<pre contenteditable><code>var name; // Undefined
+if (name) { ... } // Never runs
+name = 'Big Mike';
+if (name) { ... } // Runs
+</code></pre>
+
+<pre contenteditable><code>NaN !== NaN // This is the world we live in
+isNaN('37') // False: can be parsed to a number
+isNaN('asdfasdf') // True: cannot be parsed to a number
+isNaN('') or isNaN(' ') // False: can be parsed as a number?
+</code></pre>
+
+<pre contenteditable><code>var secretDigit; // Undefined
+if (secretDigit === undefined) { ... } // Maybe do some init of 'secretDigit'
+undefined = 'I am no longer empty' // Bad, bad man
+if (typeof secretDigit === 'undefined') { ... } // Much better
+</code></pre>
+		</article>
+		
+		<article id="truthy" class="slide">
+			<header><h1>Truthiness</h1></header>
+			<p>Pretty much everything else</p>
+			<h2>Interesting Truthinesses</h2>
+<pre contenteditable><code>' '         // True: non-empty string
+'null'      // True: non-empty string
+'0'         // True: non-empty string
+-1          // True: non-zero number
+'undefined' // True: non-empty string
+'false'     // True: non-empty string
+[]          // True: Empty Array (use length property)
+{}          // True: Empty Object (more complicated)
+</code></pre>
+
+<pre contenteditable><code>function isEmpty(obj) {
+  for(var prop in obj) {
+    if(obj.hasOwnProperty(prop)) return false;
+  }
+  return true;
+}
+
+var obj = {};
+isEmpty(obj) // True
+</code></pre>
+		</article>
+
+		<article id="comparison" class="slide">
+			<header><h1>Comparison</h1></header>
+			<h2>===</h2>
+			<ul>
+				<li>compares type and value</li>
+				<li>slightly faster because no coercion</li>
+			</ul>
+<pre contenteditable><code>0 === '0' // False
+</code></pre>
+
+
+			<h2>==</h2>
+			<ul>
+				<li>coerces type and compares value</li>
+			</ul>
+<pre contenteditable><code>0 == '0' // True
+</code></pre>
+
+		</article>
+		
+		<article id="flipping-bools" class="slide">
+			<header><h1>Bang that (non)Boolean</h1></header>
+			<ol>
+				<li>determine truthiness/falsiness</li>
+				<li>flip the boolean value</li>
+			</ol>
+<pre contenteditable><code>if (0)  // Falsy
+if (!0) // True
+if (!1) // False
+</code></pre>
+			<h2>Coerce booleans</h2>
+<pre contenteditable><code>var label = ''; // Falsy
+var opposite = !label; // true
+var bool = !!label; // false
+</code></pre>
+		</article>
+		
+		<article id="conditionals" class="slide">
+			<header><h1>Conditionals</h1></header>
+<pre contenteditable><code>something || somethingElse || somethingElseElse // Evals left to right until something is true
+something && somethingElse && somethingElseElse // Evals left to right until something is false
+
+(isTrueOrFalse) ? something : somethingElse                   // Basic ternary
+(ifTrueOrFalse) ? (something) ? minor : major : somethingElse // Nested
+(ifTrueOrFalse)                                               // More legible?
+  ? (something)
+    ? minor
+    : major
+  :somethingElse
+
+if (varName === 'foo' || varName === 'bar') {...} // Old and busted
+
+switch (varName) {                                // More or less the same as the if method
+  case 'foo':
+  case 'bar':
+    ...
+    break;
+}
+
+if (/^(foo|bar)$/.test(varName)) {...}          // Better
+
+if (({ foo: 1, bar: 1 })[varName]) {...}        // Mo Betta, Truthy
+if (({ foo: 0, bar: 0 })[varName]) {...}        // Mo Betta, Falsy
+
+if ((function(varName){...}())) {...}     // Questionable
+
+if (someFunction(varName)) {...}          // Better
+
+var cached = someFunction(varName);
+if (cached) {...}                         // Better still (if applicable)
+
+var cached;
+if (cached = someFunction(varName)) {...} // Fun for the whole family
+</code></pre>
+			<footer><a href="https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence">Operator Precedence</a></footer>
+		</article>
+
+		<article id="functions" class="slide">
+			<header><h1>Functions</h1></header>
+
+			<ul>
+				<li>Goal of a single focus per function</li>
+				<li>Anonymous functions suck (when invoked)</li>
+			</ul>
+
+<pre contenteditable><code>// Bad
+function doinSumpin() {
+  $('.someClass').each(function(){
+    $(this).addClass('holas');
+    $(this).bind('mouseover', function() {
+      $(this).find('.child').bind('mouseover', function() {
+        $(this).bind('click', function() {
+          doSumpin(); // Incites rage
+        });
+      });
+    });
+  });
+}
+
+// Better
+function doinSumpin() {
+  $('.someClass')
+    .addClass('holas')
+    .bind('mouseover', onHover);
+  });
+}
+
+function onHover(e) {
+  $(e.target).find('.child').bind('mouseover', onChildHover);
+}
+
+function onChildHover(e) {
+  $(e.target).bind('click', onClick);
+}
+
+function onClick(e) {
+  doSumpin(); // Much less anger
+}
+</code></pre>
+		</article>
+		
+		<article id="var-scope" class="slide">
+			<header><h1>Var Scope</h1></header>
+			<p>Variable scope is defined at <strong>function level</strong></p>
+			<p>Scopes are inherited</p>
+
+<pre contenteditable><code>function() {
+  var i = 1;
+
+  function() {
+    var j = 2;
+    
+    return i + j; // returns 3
+  }
+}
+</code></pre>			
+
+			<h2>Cache vars to local scope</h2>
+<pre contenteditable><code>// array lengths
+var l = arr.length;
+
+// properties
+var sumpin = object.subObject.sumpin;
+
+// responses from functions
+var isSomething = testSomething();
+</code></pre>
+		</article>
+
+		<article id="hoisting" class="slide">
+			<header><h1>Var/Function Hoisting</h1></header>
+			<ul>
+				<li>initialized at the start of their scope</li>
+				<li>undefined until they are defined</li>
+			</ul>
+<pre contenteditable><code>function() {
+  if (false) var x = 0;
+  return;
+  var y = 0;
+}</code></pre>
+<p>might as well be:</p>
+<pre contenteditable><code>function() {
+  var x, y;
+  if (false) x = 0;
+  return;
+  y = 0;
+}</code></pre>
+
+			<footer><a href="http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting">js scoping and hoisting</a></footer>
+		</article>
+
+		<article id="closures" class="slide">
+			<header><h1>Closures</h1></header>
+			<p>functions remember their environment</p>
+<pre contenteditable><code>// Might be confusing if done accidentally
+function counter() {
+  var i = 0,
+      addMe = function() {
+        return i + 1;
+      };
+  i++;
+  return addMe;
+}
+
+var countMe = counter();
+
+countMe(); // returns 2
+</code></pre>			
+<pre contenteditable><code>// Mini-module pattern
+(function(){
+  var foo = 'bar',
+      showMe = function() {
+        return foo;
+      };
+  
+  window['showMe'] = showMe;
+}());
+
+showMe(); // returns 'bar'
+</code></pre>
+		</article>
+				
+		<article id="iife" class="slide">
+			<header><h1>iife</h1></header>
+			<ul>
+				<li>Executes immediately</li>
+				<li>Can be anonymous</li>
+			</ul>
+<pre contenteditable><code>// feature detection
+var canSupport = (function(d){
+  if (!d['querySelectorAll']) return false; // supports qsa
+  if (!d['addEventListener']) return false; // support w3c style event listeners
+  if (!d['isSameNode']) return false; // supports isSameNode method
+  if (!'onhashchange' in window) return false; // supports hash change event
+
+  return true;
+}(document));
+
+if (canSupport) {...}
+</code></pre>
+
+			<footer><a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression</a></footer>
+		</article>
+
+		<article id="global-namespace" class="slide">
+			<header><h1>Global namespace</h1></header>
+			
+			<p>Avoid the global namespace</p>
+			<ul>
+				<li>higher chance of name collision with other plugins/scripts/natives</li>
+				<li>no privacy</li>
+				<li>higher likelihood of matching malware signature (probably totally bs, but sounds good)</li>
+			</ul>
+		</article>
+		
+		<article id="obj-literal" class="slide">
+			<header><h1>Object literal</h1></header>
+			<ul>
+				<li>everything in the public</li>
+				<li>simplest code organization</li>
+			</ul>
+
+<pre contenteditable><code>// Define
+var plugin = {
+  variableName: '',
+  init: function() {...},
+  doSomething: function() {...}
+};
+
+// Usage
+plugin.init();
+plugin.doSomething();
+</code></pre>
+	</article>
+
+		<article id="module-pattern" class="slide">
+			<header><h1>Module pattern</h1></header>
+			<ul>
+				<li>Private vars/functions</li>
+				<li>Runs when loaded and exposes public methods/vars</li>
+				<li>I use this pattern about 80% of the time</li>
+			</ul>
+			
+<pre contenteditable><code>// Define
+(function(context) {
+  var privateVar = 'keep it on the down low',
+      privateMethod = function() {...},
+      plugin = {
+        publicVar: 'whip it out in public',
+        publicMethod: function() {
+          return privateVar;
+        }
+      };
+      
+  context['plugin'] = plugin;
+}(namespace));
+
+// Usage
+plugin.publicVar // 'whip it out in public'
+plugin.privateVar // undefined
+plugin.privateMethod() // undefined
+plugin.publicMethod() // returns 'keep it on the down low'
+</code></pre>
+		</article>
+		<article id="jq-basics" class="slide title">
+			<h1>jQuery Basics</h1>
+		</article>
+
+		<article id="DOM" class="slide">
+			<header><h1>DOM</h1></header>
+
+			<ul>
+				<li>API for HTML</li>
+				<li>Ids must be unique per document (think of them as an index)</li>
+				<li>Working with the DOM is expensive; reduce reads and writes</li>
+				<li>DOM is a tree made up of several types of nodes:
+					<ul>
+						<li><code>1</code> Element,</li>
+						<li><code>2</code> Attribute and </li>
+						<li><code>3</code> Text are most common.</li>
+					</ul>
+				</li>
+			</ul>
+
+<pre contenteditable><code>&lt;ul id="parent">
+  &lt;li>List item 1&lt;/li>
+  ...
+&lt;/ul>
+</code></pre>
+
+<pre contenteditable><code>var list = document.getElementById('parent') // sets node to element with id of 'parent' (ul)
+list.nodeType === 1 // it's an element (ul)
+list.childNodes // array of immediate descendent nodes (all types)
+list.childNodes[0].nodeType === 3 //the line break and tabs/spaces before the first list item
+
+var listElems = [];
+for (var i = 0; i < list.childNodes.length; i++) {
+  if (list.childNodes[i].nodeType === 1) listElems.push(list.childNodes[i]);
+}
+</code></pre>
+
+<pre contenteditable><code>// jQuery Style
+$('#parent').children('li')
+</code></pre>
+
+		<footer><a href="https://developer.mozilla.org/en/DOM/About_the_Document_Object_Model">About the DOM</a>, <a href="https://developer.mozilla.org/en/Gecko_DOM_Reference">Gecko DOM Reference</a>, <a href="http://api.jquery.com/category/traversing/">jQuery Traversing DOM</a></footer>
+		</article>
+
+		<article id="DOM-ready" class="slide">
+			<header><h1>DOM Ready</h1></header>
+
+			<ul>
+				<li>Until DOM is ready, cannot guarantee the completeness of selection</li>
+				<li>jQuery provides mechanism to wait until DOM is ready to work on it</li>
+			</ul>
+
+<pre contenteditable><code>// Old school method
+if (addEventListener && document.addEventListener('DOMContentLoaded')) {
+	... // listen for that event
+} else if (attachEvent && document.attachEvent('onreadystatechange')) {
+	... // listen for event and test if it starts with a 'c' (for complete)
+} else {
+	... // try to scroll the page to see if it will let you. if it will, then DOM is ready
+}
+</code></pre>
+
+<pre contenteditable><code>// DOM ready: jQuery style
+$(document).ready(function() {
+  ... // Do something with the DOM
+});
+</code></pre>
+
+<pre contenteditable><code>// better yet
+var plugin = {
+  init: function() {...},
+  somethingElse: function() {...}
+};
+
+$(document).ready(plugin.init)
+</code></pre>
+
+			<p>All jQuery events (including DOMReady) queue up, first in, first out.</p>
+		</article>
+
+		<article id="jq-collections" class="slide">
+			<header><h1>jQuery Collections</h1></header>
+			<ul>
+				<li>Think of it as an array of DOM elements with lots of custom methods</li>
+				<li>0 indexed 
+					<ul>
+						<li><code>$('.class')[0]</code> first DOM element in collection</li>
+						<li><code>$('.class')[4]</code> fifth DOM element in collection</li>
+					</ul>
+				</li>
+			</ul>
+
+<pre contenteditable><code>var $links = $('a') // jQuery Collection
+var link = $('a')[0] // DOM Element
+
+// jQuery method
+$links.addClass('some') // adds class to all the links in the collection
+link.addClass('some') // fails, not a jQuery collection
+
+// DOM property
+$links.href // fails, not a DOM node
+link.href // returns the href attribute value
+$links.eq(0).attr('href') // way to get it with jQuery (obviously slower)
+</code></pre>
+
+			<h2>Chaining</h2>
+
+			<ul>
+				<li>Most methods return the jQuery collection</li>
+			</ul>
+<pre contenteditable><code>&lt;div class="some">&lt/div>
+
+$('.some').addClass('test').text('Test text').append('&lt;p>Child&lt;/p>');
+
+&lt;div class="some test">
+  Test text
+  &lt;p>Child&lt;/p>
+&lt/div>
+</code></pre>
+		</article>
+
+		<article id="jq-selectors" class="slide">
+			<header><h1>Selectors</h1></header>
+
+			<ul>
+				<li>CSS Notation
+					<ul>
+						<li><code>#</code> for Id</li>
+						<li><code>.</code> for class</li>
+						<li><code>space</code> for descendant (not necessarily direct)</li>
+						<li><code>&gt;</code> for direct descendent</li>
+						<li>Pseudo selectors: <code>:first-child</code>, <code>:hidden</code>, <code>:input</code>, etc</li>
+						<li>Attribute selectors: <code>[contenteditable]</code>, <code>[type="text"]</code>, etc</li>
+					</ul>
+				</li>
+				<li>Selectors get executed right to left</li>
+				<li>Give selectors context</li>
+				<li>Cache selectors</li>
+			</ul>
+
+<pre contenteditable><code>// sample selectors
+$('#myId') // get the node with that id
+$('.className') // get any node that has that class
+$('div.className') // get any div that has that class. more efficient
+$('ul li') // get the lis that are under uls, including nested ones
+$('ul > li') // get the lis that are immediate children of uls
+$(':input') // gets all inputs, textareas, selects & buttons
+$('[type="email"]') // get all nodes with a type of email (new HTML form field type)
+</code></pre>
+
+<pre contenteditable><code>// selectors with context (& cached)
+$('#myForm > :input') // slow
+
+var $form = $('#myForm');
+$form.find('> :input') // gets there, could be faster
+$form.children(':input') // super fast
+
+$(':input', $form) === $form.find(':input')
+
+$('.data td.domain') // faster
+$('table.data .domain') // slower
+</code></pre>
+			<footer><a href="http://api.jquery.com/category/selectors/">jQuery Selectors</a>, <a href="http://jsperf.com/jquery-selectors-context/7">Selector tests</a></footer>
+		</article>
+
+
+		<article id="jq-XHR" class="slide">
+			<header><h1>XHR (AJAX)</h1></header>
+
+			<ul>
+				<li><code>$.get</code>, <code>$.getJSON</code>, <code>$.post</code>, etc are more convenient</li>
+				<li><code>$.ajax</code> is more flexible</li>
+				<li>success is defined by a 200 response (400 & 500 are errors)</li>
+			</ul>
+
+<pre contenteditable><code>// convenience methods
+$.get('/url', { requestParam: value }, function(d) {
+  ... // success callback, d = response
+}); 
+
+$.getJSON('/url', { requestParam: value }, function(d) {
+  ... // success callback, d = parsed json
+});
+
+$.post('/url', $form.serialize(), function(d) {
+  ... // success callback, d = response
+});
+</code></pre>
+
+<pre contenteditable><code>// Notable methods/properties
+$.ajax({
+  url: '/url',
+  type: 'get', // you know as method, head and preflight work as well
+  data: { request: param }, // or post payload, also, request=param as a string works
+  dataType: 'json', // type of response data. Tries to parse based on type
+  success: function(){}, // do something with the response
+  error: function() {}, // This is an http error, not a data error (think 404)
+  beforeSend: function() {
+    $throbber.show();
+  }, 
+  complete: function() { // fires on success and error
+    $throbber.hide();
+  }
+});
+</code></pre>
+			<footer><a href="http://api.jquery.com/category/ajax/">jQuery Ajax Methods</a>, <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a></footer>
+		</article>
+
+		<article id="cross-domain" class="slide">
+			<header><h1>Cross Domain</h1></header>
+			<ul>
+				<li>XHR requests are limited to same domain, until recently (CORS)</li>
+				<li>Images, scripts and stylesheets don't have that limitation</li>
+				<li>JSONP is simply embedding a script tag from another domain</li>
+				<li>JSONP is a GET</li>
+			</li>
+
+<pre contenteditable><code>// Applies to EVERY ajax request
+$.ajaxPrefilter('json', function(options, orig, jqXHR) {
+  if (options.crossDomain && !$.support.cors) return 'jsonp'
+});
+
+// fetch the data
+$.ajax({
+  url: 'http://somewhere.else',
+  dataType: 'json',
+  success: doSumpin
+});
+
+function doSumpin(d) {
+  ... // Do something with that ajaxy goodness
+}
+</code></pre>
+
+<pre contenteditable><code>// Use auth
+$.ajax({
+  ...
+  xhrFields: {
+    withCredentials: true // Sends cookies, auth & ssl certs
+  }
+})
+
+</code></pre>
+
+			<footer><a href="http://www.nczonline.net/blog/2010/05/25/cross-domain-ajax-with-cross-origin-resource-sharing/">Cross Domain Ajax with CORS</a>, <a href="http://www.flickr.com/photos/iluvrhinestones/5889370258/">cross-domain xhr</a></footer>
+		</article>
+
+		<article id="jq-deferreds" class="slide">
+			<header><h1>Deferreds/Promises</h1></header>
+
+			<ul>
+				<li>XHR returns object that is promise (resolved or rejected on response)</li>
+				<li>Can roll your own</li>
+				<li>If already satisfied, just executes</li>
+				<li>If not, queues up, first come, first serve</li>
+			</ul>
+
+<pre contenteditable><code>// XHR
+var get = $.get('/url');
+get.done(function(d) { /* Do something with d */ });
+...
+get.done(function(d) { /* Do something else */ });
+</code></pre>
+
+<pre contenteditable><code>// Roll your own
+var dfd = $.Deferred(); // setup deferred obj
+
+function doSumpin(data) {...} // Do something with the data that was resolved
+
+dfd.done(doSumpin) // setup doSumpin to fire once the deferred is resolved
+
+...
+
+dfd.resolve('value'); // resolve the deferred, triggering the done
+</code></pre>
+
+<pre contenteditable><code>// Chaining deferreds
+var get1 = $.ajax( '/url1', { dataType: 'json' } ),
+    get2 = function(data) {
+      	return $.ajax( '/url2', { data: { user: data.userId } } );
+    },
+    chained = get1.pipe(get2);
+
+chained.done(function( data ) { /* data retrieved from url2 as provided by the first request */ });
+</code></pre>
+
+			<footer><a href="http://api.jquery.com/category/deferred-object/">Deferred Object</a></footer>
+		</article>
+
+
+		<article id="jq-events" class="slide">
+			<header><h1>Events</h1></header>			
+
+			<ul>
+				<li>Passes an <a href="http://api.jquery.com/category/events/event-object/">event object</a></li>
+				<li>Good idea to namespace events (at least in plugins)</li>
+				<li>Prefer to use <code>bind</code> and <code>trigger</code> vs. helpers (<code>click(function)</code> and <code>click()</code>, respectively)
+					<ul>
+						<li>Less confusion as to what is going on</li>
+						<li>Can't namespace helper methods</li>
+					</ul>
+				</li>
+				<li><code>.one</code> listens for an event once and then removes itself</li>
+				<li><code>hover</code> triggers on mouseenter and mouseleave. Can provide a handler for each or 1 that triggers on both events</li>
+				<li><code>toggle</code> takes multiple handlers. For each success click event, fires next one in the list and then recycles</li>
+			</ul>
+<pre contenteditable><code>$('a').bind('click.namespace', function(){ // namespace is an additional hook to get at event listener
+  ...
+});
+
+$('form').bind('submit', function() {
+  ... // do some of that fun filled form validation we all know and love
+});
+
+$('.nav-item').hover(function() {
+  ... // mouseenter function
+}, function() {
+  ... // mouseleave function
+});
+
+$('.nav-item').hover(function() {
+  ... // one function to rule them all (and handle both events)
+});
+
+$('button').toggle(function() { // alternate clicks between the callbacks
+  ... // handle first click
+}, function() {
+  ... // handle second click
+});
+</code></pre>
+			<footer><a href="http://api.jquery.com/category/events/">Events</a>, <a href="http://docs.jquery.com/Namespaced_Events">Namespaced Events</a></footer>
+		</article>
+
+		<article id="trigger-event" class="slide">
+			<header><h1>Triggering Events</h1></header>
+			<ul>
+				<li><code>trigger</code>
+					<ul>
+						<li>simulates a real event (by trigger handlers and bubbling up DOM)</li>
+						<li>does not perform default behavior</li>
+					</ul>
+				</li>
+				<li><code>triggerHandler</code>
+					<ul>
+						<li>does not bubble up DOM</li>
+						<li>only executes the handler on the first element of the jQuery collection</li>
+					</ul>
+				</li>
+			</ul>
+<pre contenteditable><code>// Simulate an event
+$('.some').click();
+$('.some').trigger('click');
+
+// call the event handler
+$('.some').triggerHandler('click');
+</code></pre>
+		<footer><a href="http://api.jquery.com/triggerHandler/">$.triggerHandler()</a></footer>
+		</article>
+
+		<article id="event-bubbling" class="slide">
+			<header><h1>Event Bubbling</h1></header>
+			<ul>
+				<li>Events bubble up the DOM</li>
+			</ul>
+
+<pre contenteditable><code>&lt;ul>        ↑
+  &lt;li>      ↑
+    &lt;a>  (click)
+</code></pre>
+
+<pre contenteditable><code>$('a').bind('click', function() { /* fires FIRST! */ });
+
+$('li').bind('click', function() { /* fires second */ });
+
+$('ul').bind('click', function() { /* fires third */ });
+</code></pre>
+
+			<h2>Event Stoppage</h2>
+				<ul>
+					<li><code>preventDefault()</code> stops the default behavior (link redirection, form submitting, etc)</li>
+					<li><code>stopPropagation()</code> stops the bubbling of the event up the DOM</li>
+					<li><code>return false</code> does both</li>
+				</ul>
+
+<pre contenteditable><code>// Canceling behaviors
+$('form').bind('submit', function(e) {
+  e.preventDefault(); // stop form from submitting
+});
+
+$('a').bind('click', function(e) {
+  e.stopPropagation(); // Stop click event from bubbling (rarely wanted)
+});
+
+$('a').bind('click', function(e) {
+  return false; // stops bubbling and prevents default (usually not a good idea)
+});
+</code></pre>
+		</article>
+
+		<article id="event-delegation" class="slide">
+			<header><h1>Event Delegation</h1></header>
+			<ul>
+				<li>Delegation puts a listener further up the DOM and checks to see if the selected element was the target</li>
+				<li><code>undelegate</code> and <code>die</code> have to use the same selector/elem they were bound with</li>
+			</ul>
+
+<pre contenteditable><code>// Non-delegated event listeners
+$('a').each(function() {
+  $(this).bind('click', function(){...}); // Each one of these has a memory footprint, 500 links = 500 event listeners
+});
+$('a').bind('click', function() {...}); // Same thing
+</code></pre>
+
+<pre contenteditable><code>// Delegated event listeners
+$('a').live('click', function() {...}); // Delegated, 1 event listener
+$(document).delegate('a', 'click', function() {...}); // Same thing
+
+&lt;document>      ↑
+  &lt;body>        ↑
+    &lt;a>      (click)
+</code></pre>
+
+<pre contenteditable><code>// Undelegate
+$(document).undelegate('a', 'click');
+</code></pre>
+
+			<footer><a href="http://api.jquery.com/delegate/">.delegate()</a>, <a href="http://api.jquery.com/live/">.live()</a></footer>
+		</article>
+
+		<article id="event-data" class="slide">
+			<header><h1>Event Data</h1></header>
+			<ul>
+				<li>Event data is set when the handler is bound, not when it's executed</li>
+				<li>Data is accessible via <code>e.data</code></li>
+			</ul>
+<pre contenteditable><code>// Busted
+for (var i = 0; i < 5; i++) {
+  $('.some').bind('click', function() {
+    alert(i); // 5 alerts, all of them say 5
+  });
+}
+</code></pre>
+<pre contenteditable><code>// Works
+for (var i = 0; i < 5; i++) {
+  $('.some').bind('click', { i: i }, function(e) {
+    alert(e.data.i); // 5 alerts, in counting order from 0 to 4
+  });
+}
+</code></pre>
+		</article>
+
+		<article id="custom-events" class="slide">
+			<header><h1>Custom Events</h1></header>
+			<ul>
+				<li>Bubble up DOM</li>
+				<li>Can be namespaced</li>
+			</ul>
+<pre contenteditable><code>$('.some').bind('dinner.bell', function() {
+  alert('yay!');
+});
+
+$('.some').triggerHandler('dinner');
+</code></pre>	
+		</article>
+
+		<article id="inArray" class="slide">
+			<header><h1>inArray</h1></header>
+			<ul>
+				<li>Returns the index of something if it's in an array</li>
+				<li>Otherwise it returns -1</li>
+				<li>jQuery version of Array.indexOf()</li>
+			</ul>
+
+<pre contenteditable><code>var arr = [2, 3, 4, 5];
+$.inArray(2, arr) // returns 0
+$.inArray(7, arr) // returns -1
+~$.inArray(7, arr) // return 0 (if you don't need index, just testing if is in array)
+</code></pre>			
+
+			<footer><a href="http://api.jquery.com/jquery.inArray/">jQuery.inArray()</a></footer>
+		</article>
+
+		<article id="extend" class="slide">
+			<header><h1>Extend</h1></header>
+			<ul>
+				<li>Merge Objects into each other</li>
+				<li>Create a copy of an object (or merged objects)</li>
+				<li><code>true</code> makes it a deep (recursive) copy</li>
+			</ul>
+
+<pre contenteditable><code>// Merge objects
+$.extend(origObj, newObj) // merge newObj into origObj
+var newObj = $.extend({}, origObj) // newObj is a copy of origObj
+$.extend(true, origObj, newObj) // recursively merges newObj into origObj
+</code></pre>
+
+			<footer><a href="http://api.jquery.com/jQuery.extend/">jQuery.extend()</a></footer>
+		</article>
+
+		<article id="jquery-data" class="slide">
+			<header><h1>jQuery Data</h1></header>
+			<ul>
+				<li>Stores data in reference to a DOM element</li>
+				<li>Reads html5 <code>data-</code> attributes (coerces values)</li>
+				<li>Faster than looking up DOM properties (after populated)</li>
+				<li>Used heavily by plugins</li>
+			</ul>
+
+<pre contenteditable><code>// Usage
+$('#some').data('key', 'value'); // Setter
+$('#some').data('key') // Getter: returns 'value'
+
+var pluginData = {
+  foo: 42,
+  bar: 'holas'
+};
+$('.some').data('pluginName', pluginData);
+$('.some').data('pluginName').bar // returns 'holas'
+</code></pre>
+
+			<footer><a href="http://api.jquery.com/category/data/">jQuery Data</a></footer>
+		</article>
+
+		<article id="check-length" class="slide">
+			<header><h1>Check Length</h1></header>
+			<p>Check the lengths of jQuery collections before running 3rd party plugins</p>
+
+<pre contenteditable><code>$('.some').pluginName() // Can be expensive
+
+// Plugin code
+(function($) {
+  $.fn.pluginName = function(options) {
+    if (!this.length) return this; // this is the magic line
+    ...
+  };
+  ...
+})(jQuery);
+</code></pre>
+
+<pre contenteditable><code>// Safer usage
+var $somes = $('.some');
+if ($somes.length) $somes.pluginName();
+</code></pre>
+		</article>
+
+		<article id="jq-plugin" class="slide">
+			<header><h1>jQuery plugin</h1></header>
+
+			<P>Use when working with DOM elements/events, especially collections</p>
+
+<pre contenteditable><code>// Define
+(function($) {
+  $.fn.pluginName = function(options) {
+    if (!this.length) return this;
+
+    var opts = $.extend({}, $.fn.pluginName.defaults, options);
+
+    // Global init stuff goes here
+
+    this.each(function() {
+      var $this = $(this);
+      // Per node code goes here
+    });
+
+    return this;
+  };
+
+  function privateFunction() {...}
+
+  $.fn.pluginName.publicFunction = function() {...};
+
+  $.fn.pluginName.defaults = {...};
+})(jQuery);
+
+// Usage
+$('.someClass').pluginName(optsObj);
+</code></pre>
+		</article>
+
+		<article id="jq-widget" class="slide">
+			<header><h1>jQuery Widget</h1></header>
+
+			<p>Use when state is needed</p>
+<pre contenteditable><code>// Define
+(function($){
+  $.widget('wsm.pluginName', {
+    options: {...},
+
+    _create: function () {
+      this; // plugin
+      this.element; // jQuery collection of the single element it was called on
+    },
+
+    _private: function () {...},
+
+    public: function () {...},
+
+    destroy: function () {
+      // Take out what you brought in
+      $.Widget.prototype.destroy.call(this);
+    }
+  });
+})(jQuery);
+
+// Usage
+$('.someClass').pluginName(optsObj);
+</code></pre>
+			</article>
+
+		<article id="when-to-jquery" class="slide">
+			<header><h1>When to use jQuery vs regular js</h1></header>
+
+			<h2>What I said to a bunch of .Net developers I work with:</h2>
+
+			<p><strong>TL;DR: Use jQuery when available</strong></p>
+
+			<p>Unless you know the feature is supported by all the browsers we have to support, use jQuery. It ensures compatible fallback to all the browsers it supports (which supercedes our own support matrix).</p>
+
+			<h2>What I say to you:</h2>
+
+			<p>Find out if what you are doing can be done with <strong>straight JavaScript</strong> consistently, cross browser and with minimal additional abstractions/forking. Only then can you make the educated decision to use it or not.</p>
+
+			<footer><a href="http://kangax.github.com/es5-compat-table/">ECMAScript 5 compat table</a></footer>
+		</article>
+
+		<article id="resources" class="slide">
+			<header><h1>Resources</h1></header>
+			<ul>
+				<li><a href="http://jqfundamentals.com">JQ Fundamentals</a></li>
+				<li><a href="https://developer.mozilla.org/en-US">MDN</a></li>
+				<li><a href="http://jsperf.com/browse">JS Perf</a></li>
+				<li><a href="http://jsfiddle.net/">JS Fiddle</a></li>
+				<li><a href="http://api.jquery.com/">jQuery API</a></li>
+				<li><a href="http://learn.appendto.com/">Learn jQuery & Javascript</a></li>
+				<li><a href="https://developer.mozilla.org/en-US">MDN</a></li>
+				<li><a href="http://jsperf.com/browse">JS Perf</a></li>
+				<li><a href="http://jsfiddle.net/">JS Fiddle</a></li>
+				<li><a href="http://www.quora.com/What-are-the-most-interesting-HTML-JS-DOM-CSS-hacks-that-most-web-developers-dont-know-about">Little known JS/DOM/CSS hotness</a></li>
+			</ul>
+		</article>
+	</section>
+	
+	<footer class="siteFooter">
+		<p>August 16, 2011 by <a href="https://twitter.com/craveytrain">Mike Cravey</a></p>
+	</footer>
+	
+	<script src="js/prettify.js"></script>
+	<script src="js/slides.js"></script>
+</body>
+</html>

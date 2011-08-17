@@ -1,0 +1,153 @@
+body {
+	font-family: 'Open Sans', Verdana, sans-serif;
+	color: #2c2c2c;
+}
+
+a {
+	color: #0082b3;
+}
+
+.show {
+	margin: 0;
+	padding: 0;
+	background: #ccc;
+	overflow: hidden;
+}
+
+.show .siteHeader {
+	position: absolute;
+	top: 0;
+	left: 10%;
+	right: 10%;
+	height: 10%;
+}
+
+.show .siteHeader h1 {
+	position: absolute;
+	bottom: 0;
+	margin: 0;
+	font-size: 1.5em;
+}
+
+.show .siteFooter {
+	position: absolute;
+	bottom: 0;
+	left: 10%;
+	right: 10%;
+	height: 10%;
+	color: rgba(0,0,0,.5);
+	font-size: 11px;
+}
+
+.show .siteFooter p {
+	margin-top: 0;
+}
+
+.show .slide {
+	position: absolute;
+	top: 10%;
+	width: 80%;
+	height: 80%;
+	display: none;
+	padding: 60px 60px 40px 60px;
+	overflow: hidden;
+	background: #fff;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px; 
+	border-radius: 10px; 
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; 
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0,.5); 
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.5); 
+	box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  -o-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	-o-transition: left .3s ease-out;
+	-moz-transition: left .3s ease-out;
+	-webkit-transition: left .3s ease-out;
+	transition: left .3s ease-out;
+}
+
+.slide > ul {
+	padding-left: 0;
+}
+
+.show .slide.title {
+	background: #00adef;
+	color: #fff;
+}
+
+.show .slide.title h1 {
+	margin: 0;
+	font-size: 6em;
+	text-shadow: -1px -1px 1px rgba(0, 0, 0, .1);
+}
+
+.show .current {
+	display: block;
+	left: 10%;
+}
+
+.show .past {
+	display: block;
+	left: -75%;
+}
+
+.show .future {
+	display: block;
+	left: 95%;
+}
+
+pre code {
+	font-family: Inconsolata, monospace;
+}
+
+.show .slide header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	padding-left: 60px;
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+	border-bottom: 1px solid #00709b;
+	background: #00adef;
+	color: #fff;
+}
+
+.show .slide header h1 {
+	margin: 0;
+	line-height: 60px;
+	font-size: 2.5em;
+	text-shadow: -1px -1px 1px rgba(0, 0, 0, .1);
+}
+
+.show .slide footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 40px;
+	padding: 0 60px;
+	font-size: 12px;
+	line-height: 40px;
+	background: #efefef;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
+	border-radius: 0 0 10px 10px;
+}
+
+code {
+	background: #efefef;
+}
+
+pre[contenteditable] {
+	padding: 1em;
+	background: #efefef;
+}
