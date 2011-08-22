@@ -16,49 +16,36 @@ html(lang='en-US', dir='ltr').no-js
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		script
 			var ct = {};
+		style
+			@font-face {
+				font-family: 'MuseoSlab500';
+				src: url('/font/museoslab/Museo_Slab_500-webfont.eot');
+				src: url('/font/museoslab/Museo_Slab_500-webfont.eot?iefix') format('eot'),
+				url('/font/museoslab/Museo_Slab_500-webfont.woff') format('woff'),
+				url('/font/museoslab/Museo_Slab_500-webfont.ttf') format('truetype');
+				font-weight: normal;
+				font-style: normal;
+			}
 		link(rel='stylesheet', href='/css/style.css')
 		link(rel='stylesheet', href='/css/github.css')
 		link(rel='alternate', title='All of Craveytrain', href='/feed', type='application/rss+xml')
 		link(rel='author', href='/about', title='About the author')
 		link(rel='home', href='/', title='Home')
-		// Welcome to the source code. Enjoy yourself. Questions, concerns, comments, drop me a line via any of the means on my contact page.
+		// Welcome to the source code. Enjoy yourself. Questions, concerns, comments, drop me a line.
 	body(id=page.bodyId, class=page.bodyClass)
-		header#siteHead(role='banner')
-			div#logo craveytrain
-			nav.siteNav(role='navigation')
+		header.siteBanner(role='banner')
+			p.siteName
+				a(href='/', target='_top') craveytrain
+			nav(role='navigation')
 				ul
-					- if (page.bodyId === 'home')
-						li.selected
-							span.navItem Home
-								span.tail
-					- else
-						li
-							a.navItem(href='/') Home
-								span.tail
-					- if (page.bodyId === 'posts')
-						li.selected
-							span.navItem Posts
-								span.tail
-					- else
-						li
-							a.navItem(href='/posts') Posts
-								span.tail
-					- if (page.bodyId === 'about')
-						li.selected
-							span.navItem About
-								span.tail
-					- else
-						li
-							a.navItem(href='/about') About
-								span.tail
-					- if (page.bodyId === 'contact')
-						li.selected
-							span.navItem Contact
-								span.tail
-					- else
-						li
-							a.navItem(href='/contact') Contact
-								span.tail
+					li
+						a(href='/', target='_top') Home
+					li
+						a(href='/posts') Posts
+					li
+						a(href='/#about') About
+					li
+						a(href='/#contact') Contact
 		section.main(role='main')
 			- for (var type in page.msgs)
 				ul(class=type + ' messages')

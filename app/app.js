@@ -214,19 +214,8 @@ var getUser = function(req, res, next) {
 };
 
 app.get('/', db.get.posts,  function(req, res) {
-	var page = { title: 'craveytrain', bodyId: "home", desc: 'The website of Mike Cravey.' };
-	res.render('index', { posts: req.posts, page: page });
-});
-
-// Static pages
-app.get('/about', function(req, res) {
-	var page = { title: 'About craveytrain', bodyId: 'about', bodyClass: 'static' };
-	res.render('about.md', { layout: 'layout.jade', page: page });
-});
-
-app.get('/contact', function(req, res) {
-	var page = { title: 'Contact craveytrain', bodyId: 'contact', bodyClass: 'static' };
-	res.render('contact.md', { layout: 'layout.jade', page: page });
+	var page = { title: 'craveytrain', bodyClass: "home", desc: 'The website of Mike Cravey.' };
+	res.render('index', { post: req.posts[0], page: page });
 });
 
 // Posts
