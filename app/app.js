@@ -218,17 +218,6 @@ app.get('/', db.get.posts,  function(req, res) {
 	res.render('index', { post: req.posts[0], page: page });
 });
 
-// Static pages
-app.get('/about', function(req, res) {
-	var page = { title: 'About craveytrain', bodyId: 'about', bodyClass: 'static' };
-	res.render('about.md', { layout: 'layout.jade', page: page });
-});
-
-app.get('/contact', function(req, res) {
-	var page = { title: 'Contact craveytrain', bodyId: 'contact', bodyClass: 'static' };
-	res.render('contact.md', { layout: 'layout.jade', page: page });
-});
-
 // Posts
 app.get('/posts', db.get.posts,  function(req, res) {
 	var page = { title: 'Posts on craveytrain', bodyId: 'posts', bodyClass: 'list' };
