@@ -1,5 +1,5 @@
 h2.sectionTitle Latest Post
-article.post
+article.post.summary
 	h3.homePostTitle
 		a(href='/posts/' + post._id)= post.title
 	p!= post.excerpt
@@ -11,7 +11,7 @@ article.post
 				li
 					a(href='/tags/' + tag.urlify())= "#" + tag
 					- if (i < iLastTag)
-						|	,&nbsp;
+						|,&nbsp;
 
 
 h2#about.sectionTitle About

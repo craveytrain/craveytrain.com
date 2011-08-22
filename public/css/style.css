@@ -226,12 +226,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 		font-family: Calibri, "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-size: 1em;
 		background-color: #fff;
-		background-image: -moz-linear-gradient(left, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,0.25) 100%); /* FF3.6+ */
-		background-image: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.25)), color-stop(5%,rgba(0,0,0,0)), color-stop(95%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.25))); /* Chrome,Safari4+ */
-		background-image: -webkit-linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 5%,rgba(0,0,0,0) 95%,rgba(0,0,0,0.25) 100%); /* Chrome10+,Safari5.1+ */
-		background-image: -o-linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 5%,rgba(0,0,0,0) 95%,rgba(0,0,0,0.25) 100%); /* Opera11.10+ */
-		background-image: -ms-linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 5%,rgba(0,0,0,0) 95%,rgba(0,0,0,0.25) 100%); /* IE10+ */
-		background-image: linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 5%,rgba(0,0,0,0) 95%,rgba(0,0,0,0.25) 100%); /* W3C */
+		background-image: -moz-linear-gradient(left, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 3%, rgba(0,0,0,0) 97%, rgba(0,0,0,0.25) 100%); /* FF3.6+ */
+		background-image: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.25)), color-stop(5%,rgba(0,0,0,0)), color-stop(97%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.25))); /* Chrome,Safari4+ */
+		background-image: -webkit-linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 3%,rgba(0,0,0,0) 97%,rgba(0,0,0,0.25) 100%); /* Chrome10+,Safari5.1+ */
+		background-image: -o-linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 3%,rgba(0,0,0,0) 97%,rgba(0,0,0,0.25) 100%); /* Opera11.10+ */
+		background-image: -ms-linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 3%,rgba(0,0,0,0) 97%,rgba(0,0,0,0.25) 100%); /* IE10+ */
+		background-image: linear-gradient(left, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 3%,rgba(0,0,0,0) 97%,rgba(0,0,0,0.25) 100%); /* W3C */
 	}
 
 	body.home:before {
@@ -241,21 +241,8 @@ table { border-collapse: collapse; border-spacing: 0; }
 		text-align: center;
 		margin-left: -100px;
 		margin: -2em auto 0 auto;
-		height: 150px;
+		height: 175px;
 		width: 200px;
-		background-color: #222;
-	}
-	
-	body.home:after {
-		content: "";
-		position: absolute;
-		top: 150px;
-		left: 50%;
-		margin-left: -100px;
-		border-top: 0;
-		border-left: 100px solid #222;
-		border-right: 100px solid #222;
-		border-bottom: 25px solid transparent;
 	}
 
 	.siteBanner {
@@ -359,7 +346,11 @@ table { border-collapse: collapse; border-spacing: 0; }
 		margin-top: 0;
 	}
 	
-	.home .post p {
+	.summary {
+		clear: both;
+	}
+	
+	.summary p {
 		float: left;
 		width: 62.5%;
 		border-right: 1px solid #aaa;
@@ -367,12 +358,13 @@ table { border-collapse: collapse; border-spacing: 0; }
 		margin-right: 2em;
 	}
 	
-	.home .post .metadata {
+	.summary .metadata {
 		margin-top: 1.2em;
 	}
 	
-	.home .post .tags {
+	.summary .tags {
 		display: block;
+		margin-top: 0;
 	}
 
 	h1 a, h1 a:visited, .homePostTitle a, .homePostTitle a:visited {
