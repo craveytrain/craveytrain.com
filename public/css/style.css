@@ -212,8 +212,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 		position: relative;
 		margin: 2.5em auto 0 auto;
 		padding: 2em 7em 4.5em 7em;
-		width: 80%;
-		max-width: 50em;
+		width: 50em;
 		line-height: 1.5;
 		font-family: Calibri, "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-size: 1em;
@@ -240,9 +239,10 @@ table { border-collapse: collapse; border-spacing: 0; }
 	.siteBanner {
 		position: fixed;
 		top: 0;
-		width: 80%;
-		max-width: 64em;
-		margin-left: -7em;
+		left: 0;
+		right: 0;
+		width: 64em;
+		margin: 0 auto;
 		line-height: 1;
 		background-color: #222;
 		background-color: rgba(34, 34, 34, .85);
