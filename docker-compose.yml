@@ -3,7 +3,7 @@ web:
   ports:
     - "80:80"
   volumes_from:
-    - data
+    - data:ro
 data:
   build: .
   volumes:

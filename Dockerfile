@@ -1,2 +1,2 @@
 FROM busybox
-COPY ./dest /usr/share/nginx/html
+COPY ./public /usr/share/nginx/html
