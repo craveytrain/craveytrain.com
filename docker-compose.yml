@@ -1,0 +1,10 @@
+web:
+  image: nginx
+  ports:
+    - "80:80"
+  volumes_from:
+    - data
+data:
+  build: .
+  volumes:
+    - /usr/share/nginx/html
