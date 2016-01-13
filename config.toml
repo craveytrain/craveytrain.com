@@ -1,3 +1,8 @@
-baseurl = "http://replace-this-with-your-hugo-site.com/"
+baseurl = "http://craveytrain.com"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Craveytrain"
+
+[params]
+author = "Mike Cravey"
+description = "The personal site of Mike Cravey (@craveytrain)."
+subtitle = "I'm a little geek bot, short and stout…"

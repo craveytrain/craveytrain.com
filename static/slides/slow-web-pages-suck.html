@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Page Speed</title>
+
+		<meta name="description" content="Come get yer page speed...">
+		<meta name="author" content="Chris Holmok & Mike Cravey">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+			<div class="slides">
+			    <section>
+			        <h1>Slow Web Pages Suck</h1>
+			    </section>
+			    <section>
+			        <h2>So your site is slow...</h2>
+		            <img src="img/loading.gif">
+			    </section>
+			    <section>
+					<section>
+						<h1>Testing</h1>
+					</section>
+			        <section>
+			            <h1>
+			                <a href="http://www.webpagetest.org/">WebPagetest</a>
+			            </h1>
+			        </section>
+			        <section>
+			            <h2>80/20 in Waterfalls</h2>
+	                    <img src="img/golden-waterfall.png">
+			        </section>
+				    <section>
+				        <h2>Prod-like Environment</h2>
+			            <ul>
+			                <li>CDN</li>
+			                <li>Minified assets</li>
+			                <li>Cache headers</li>
+			                <li>Fully localized environments</li>
+			            </ul>
+				    </section>
+			    </section>
+			    <section>
+			        <section>
+			            <h1>Key Metrics</h1>
+			        </section>
+			        <section>
+			            <h2>Start Render</h2>
+		                <img src="img/start-render.png">
+			            <blockquote>when something non-[blank] is first displayed</blockquote>
+			        </section>
+			        <section>
+			            <h1>
+			                <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index">Speed Index</a>
+			            </h1>
+			        </section>
+			        <section>
+			            <h2>Document Complete</h2>
+			            <img src="img/doc-complete.png">
+			        </section>
+			        <section>
+			            <h2>Fully Loaded</h2>
+			            <blockquote>total elapsed time to the point where all browser activity [stopped]</blockquote>
+			        </section>
+			    </section>
+			    <section>
+			        <section>
+			            <h1>Calculations</h1>
+			        </section>
+			        <section>
+			            <h2>Browser Weightings</h2>
+					    <table>
+					        <thead>
+					            <tr>
+					                <th>Browser</th>
+					                <th>Percentage</th>
+					                <th>Weighting</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <td>Chrome 26</td>
+					                <td>24.4%</td>
+					                <td>.464</td>
+					            </tr>
+					            <tr>
+					                <td>Firefox 20</td>
+					                <td>14.4%</td>
+					                <td>.274</td>
+					            </tr>
+					            <tr>
+					                <td>IE 9</td>
+					                <td>13.8%</td>
+					                <td>.262</td>
+					            </tr>
+					        </tbody>
+					    </table>
+				</section>
+			    <section>
+			        <h2>Olympic Style Scoring</h2>
+		            <ul>
+		                <li>
+		                    Drop the top and bottom, average the rest
+		                </li>
+		                <li>
+		                    Precision, not necessarily accuracy
+		                </li>
+		            </ul>
+		            <img src="img/precision.jpg">
+			    </section>
+			</section>
+			<section>
+			    <section>
+			        <h1>Process</h1>
+			    </section>
+			    <section>
+					<h2>Ideate</h2>
+
+					<img src="img/buzzword-bingo.png" width="681" height="510">
+				</section>
+			    <section>
+			        <h2>Ideate</h2>
+
+		            <h3>Performance Truth</h3>
+	                <p>Less bytes is faster</p>
+
+	                <br><br>
+
+		            <h3>Waterfall Games</h3>
+		            <ul>
+		                <li>Connections</li>
+		                <li>Lazy loading</li>
+		                <li>Blocking</li>
+		            </ul>
+			    </section>
+			    <section>
+			        <h2>Minimum Viable Product</h2>
+		            <p>Limit comments to 5 per offer</p>
+		            <img src="img/RMN-7199.png">
+			    </section>
+			    <section>
+			        <h2>Measure</h2>
+			        <img src="img/spreadsheet.png">
+			</section>
+			    <section>
+			        <h2>Combine &amp; Re-measure</h2>
+					<p class="fragment" style="width: 40%; float: left">Remove all extraneous images from store page</p>
+					<p class="fragment" style="font-weight: bold; line-height: 3; width: 20%; float: left;">+</p>
+					<p class="fragment" style="width: 40%; float: right">Reduce all CDNs to 1</p>
+		            <img class="fragment" style="clear:both;" src="img/the_carlton.gif">
+			    </section>
+			    <section>
+			        <h2>Evaluate Viability</h2>
+			        <p>Limit comments to 5 per offer</p>
+			        <ul>
+						<li>UX</li>
+						<li>SEO</li>
+						<li>Technical</li>
+					</ul>
+			    </section>
+			    <section>
+			        <h2>Release</h2>
+		            <ul>
+		                <li>A/B Test</li>
+		                <li>Measure, push, re-measure</li>
+			            <li>Craft your story</li>
+			        </ul>
+			        <br><br>
+			        <table class="fragment">
+						<thead>
+							<tr>
+								<th>Time</th>
+								<th>Browser</th>
+								<th>Old</th>
+								<th>New</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="vertical-align:middle;">1200ms</td>
+								<td style="vertical-align:middle;">Chrome</td>
+								<td><img src="img/DSW-prod-old-Chrome-1200.jpg" height="145" width="214.8"></td>
+								<td><img src="img/DSW-prod-new-Chrome-1200.jpg" height="145" width="214.8"></td>
+							</tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+			    <h2>Repeat</h2>
+		        <ul>
+		            <li>What's your end goal?</li>
+		            <li>Beware diminishing returns</li>
+		        </ul>
+			</section>
+		</section>
+		<section>
+		    <section>
+		        <h1>Results</h1>
+		    </section>
+		    <section>
+		        <h2>Past</h2>
+			    <img src="img/13.04.7.jpg">
+				<table>
+				    <thead>
+				        <tr>
+						    <th>Start Render</th>
+						    <th>Speed Index</th>
+						    <th>Document Complete</th>
+						    <th>Fully Loaded</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						    <td>1702ms</td>
+						    <td>1817</td>
+						    <td>2439ms</td>
+						    <td>6502ms</td>
+						</tr>
+					</tbody>
+				</table>
+		    </section>
+		    <section>
+		        <h2>First Cut</h2>
+			    <img src="img/13.04.8.jpg">
+				<table>
+				    <thead>
+				        <tr>
+				            <th>Start Render</th>
+				            <th>Speed Index</th>
+				            <th>Document Complete</th>
+				            <th>Fully Loaded</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr>
+				            <td>
+								1297ms
+								<br><span class="fragment" style="color:#17ff2e;">-405ms</span>
+							</td>
+				            <td>
+								1346
+								<br><span class="fragment" style="color:#17ff2e;">471</span>
+							</td>
+				            <td>
+								1680ms
+								<br><span class="fragment" style="color:#17ff2e;">759ms</span>
+							</td>
+				            <td>
+								5000ms
+								<br><span class="fragment" style="color:#17ff2e;">1502ms</span>
+							</td>
+				        </tr>
+				    </tbody>
+				</table>
+			</section>
+		    <section>
+		        <h2>Present</h2>
+			    <img src="img/present-store.jpg">
+				<table>
+				    <thead>
+				        <tr>
+				            <th>Start Render</th>
+				            <th>Speed Index</th>
+				            <th>Document Complete</th>
+				            <th>Fully Loaded</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr>
+				            <td>
+								1512ms
+								<br><span class="fragment" style="color:#ff2c2d;">+215ms</span>
+							</td>
+				            <td>
+								1557
+								<br><span class="fragment" style="color:#ff2c2d;">+211</span>
+							</td>
+				            <td>
+								1938ms
+								<br><span class="fragment" style="color:#ff2c2d;">+258ms</span>
+							</td>
+				            <td>
+								3745ms
+								<br><span class="fragment" style="color:#17ff2e;">-1255ms</span>
+							</td>
+				        </tr>
+				    </tbody>
+				</table>
+			</section>
+	        <section>
+	            <h2>Future</h2>
+                <ul>
+					<li class="fragment fade-out">500ms Start Render</li>
+                    <li>2000ms Fully Loaded<span class="fragment">?</span></li>
+                    <li>Per release (commit?) tracking</li>
+                    <li>SLAs for page speed</li>
+                </ul>
+	        </section>
+	    </section>
+		<section>
+			<section>
+				<h1>Now Yer All Fast Yer Dun, Right?!?</h1>
+				<div class="fragment">
+					<img alt="nope" src="img/nope.gif">
+					<h3>nope.</h3>
+				</div>
+			</section>
+			<section>
+				<h2>Performance Monitoring</h2>
+				<ul>
+					<li>Business Metric, Not an Issue to Fix</li>
+					<li>Synthetic Testing</li>
+					<li>Real User Monitoring</li>
+					<li>Service Level Agreements (SLA)</li>
+					<li>Stuff We Found</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h1>Synthetic Tests<h1>
+			</section>
+			<section>
+				<h2>Browser Mob (Neustar)</h2>
+				<ul>
+					<li>SaaS</li>
+					<li>Load Testing Monitoring</li>
+					<li>Basic HAR data</li>
+					<li>Only Firefox</li>
+				<ul>
+			</section>
+			<section>
+				<h2>WebPagetest (WPT)</h2>
+				<ul>
+					<li>SaaS (public, free, UI only)</li>
+					<li>Open Source</li>
+					<li>Powerful API (Private Hosted)</li>
+					<li>Lots More Data</li>
+					<li>Many Browsers (IE8,Safari, Chrome, iOS, Android)</li>
+				<ul>
+			</section>
+			<section>
+				<h2><a href="https://wiki.whalesharkmedia.com/display/eng/Hourly+WPT+Site+Tests">Automating WPT</a></h2>
+				<ul>
+					<li>Node CLI</li>
+					<li>Hourly against our site (All Browsers)</li>
+					<li>Daily against our competitors</li>
+					<li>Google Keywords and Test the Top 10</li>
+					<li>"Productionize" Server and Agents</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h1>BACON!!!</h1>
+				<img style="border:0;background:transparent;box-shadow:none;" src="img/bacon.png" alt="bacon">
+				<h3 class="fragment">...actually Beacon.</h3>
+			</section>
+			<section>
+				<h2>Real User Monitoring (Beacon)</h2>
+				<ul>
+					<li>Web site makes requests to beacon server to record events</li>
+					<li>An Apache Server that hosts a one pixel, transparent gif</li>
+					<li>Ship web logs go to Amazon S3</li>
+					<li>Loaded Hadoop/Hive</li>
+					<li>Pulled via Thrift into Vertica and DashboardDB</li>
+					<li>Lag is approx. hour</li>
+				</ul>
+			</section>
+			<section>
+				<h2>What We Collect</h2>
+				<ul>
+					<li>Stuff in the query (Performance Timings, A/B Test, etc.)</li>
+					<li>Cookies, Useragent, Referrer, etc. (standard web log stuff)</li>
+					<li>RequestId cookie glues it together</li>
+					<li>40-60 beacons a sec</li>
+				</ul>
+			</section>
+			<section>
+				<h2>When We Fire Beacons</h2>
+				<ul>
+					<li><strong>Top of Page</strong> <span class="fragment"><em> &rarr; Simple HTML img tag, first element in body</em></span></li>
+					<li><strong>Page View</strong> <span class="fragment"><em> &rarr; Fires after Document Complete</em></span></li>
+					<li><strong>Out Click</strong> <span class="fragment"><em> &rarr; Fires before redemption flow</em></span></li>
+					<li><strong>Client Event</strong> <span class="fragment"><em> &rarr; Fires on beaconed client events</em></span></li>
+				</ul>
+			</section>
+			<section>
+				<h2>Metrics</h2>
+				<ul>
+					<li>Browser Performance Object</li>
+					<li>Page Completion: "Top Of Page" beacon that has an associated "Page View" for a given "Request Id"</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Dimensions</h2>
+				<ul>
+					<li>Browser Type</li>
+					<li>Test Buckets</li>
+					<li>Pages, Sections of Sites</li>
+					<li>Feature Roll Outs</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h1>Service Level Agreements (SLA)<h1>
+			</section>
+			<section>
+				<h2>Establish Rules</h2>
+				<ul>
+					<li>No request for any resource takes longer than an second</li>
+					<li>No request returns a status >= 400</li>
+					<li>Only requests to white-listed domains prior to doc complete</li>
+					<li>WPT Performance Metrics:</li>
+						<ul>
+							<li>Time to First Byte</li>
+							<li>Time To Render</li>
+							<li>Doc Complete</li>
+							<li>Speed Index</li>
+						</ul>
+				<ul>
+			</section>
+			<section>
+				<h2>Set Expectable Level</h2>
+				<ul>
+					<li>Not all pages are equal</li>
+					<li>Some page need to be exceptions</li>
+					<li>Don't change to get into green</li>
+					<li>Change to raise expectations</li>
+				<ul>
+			</section>
+			<section>
+				<h1><a href="https://wiki.whalesharkmedia.com/display/eng/WPT+Site+SLA">Dashboard It</a></h1>
+				<ul>
+					<li>Green, Yellow, Orange, RED!!!!</li>
+					<li>Include Trends (Graphs tell a story)</li>
+					<li>Put it every where</li>
+				<ul>
+			</section>
+		</section>
+			<section>
+				<section>
+					<img src="img/chicken.png">
+					<h3 class="fragment">Stuff We Found</h3>
+				</section>
+				<section>
+					<h2>Actual Performance Impact</h2>
+					<img src="img/page_perf.png">
+				</section>
+				<section>
+					<h2>Time of Day Performance</h2>
+					<img src="img/hourly_perf.png">
+				</section>
+
+				<section>
+					<h2>Finding Issues</h2>
+					<h2 class="fragment">Finding The Source</h2>
+					<h2 class="fragment">Seeing the results</h2>
+					<img  class="fragment" src="img/top_of_page.png">
+				</section>
+
+				<section>
+					<h2>Lessons Learned</h2>
+					<ul>
+						<li>Data Lies / Investigate</li>
+						<li>Look for correlations (GA, Site Catalyst, etc.)</li>
+						<li>The more you record to more you can drill down</li>
+						<li>Make the data available to everyone</li>
+						<li>Performance is a debugging tool</li>
+						<li>Performance is a business metric</li>
+					</ul>
+				</section>
+
+			</section>
+	    <section>
+			<h1>Thank You</h1>
+			<article style="float: left; width: 50%">
+				<h2>Chris Holmok</h2>
+				<p>
+					<a href="mailto:cholmok@rmn.com">cholmok@rmn.com</a>
+				</p>
+				<p>
+					<a href="https://twitter.com/holmok">@holmok</a>
+				</p>
+			</article>
+
+			<article style="float: right; width: 50%">
+				<h2>Mike Cravey</h2>
+				<p>
+					<a href="mailto:mcravey@rmn.com">mcravey@rmn.com</a>
+				</p>
+				<p>
+					<a href="https://twitter.com/craveytrain">@craveytrain</a>
+				</p>
+			</article>
+		</section>
+	</div>
+
+
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

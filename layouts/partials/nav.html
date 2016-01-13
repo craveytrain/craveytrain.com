@@ -1,0 +1,14 @@
+<nav class="page-nav" role="navigation">
+	<ul>
+		<li class="nav-home"><a href="/">{{.Site.Title}}</a></li>
+		<li><a href="/posts">Posts</a></li>
+		<li><a href="/#about">About</a></li>
+		<li><a href="/#contact">Contact</a></li>
+			<li class="nav-search">
+				<form id="search" method="get" action="http://google.com/search" role="search">
+					<input type="hidden" name="sitesearch" value="{{ .Site.BaseURL }}">
+					<input type="search" id="q" name="q" value="" placeholder="search">
+				</form>
+			</li>
+	</ul>
+</nav>

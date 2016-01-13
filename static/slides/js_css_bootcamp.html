@@ -1,0 +1,748 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>JS & CSS Bootcamp</title>
+    <meta name="description" content="JS & CSS bootcamp">
+    <meta name="author" content="Mike Cravey">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans&v1" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata&v1" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prettify.css">
+</head>
+
+<body>
+    <header class="siteHeader">
+        <h1>WSM Eng: JS & CSS Bootcamp</h1>
+    </header>
+
+    <section class="slides">
+        <article id="intro" class="slide title">
+            <h1>JS & CSS Bootcamp</h1>
+        </article>
+
+        <article id="html" class="slide title">
+            <h1>HTML</h1>
+        </article>
+
+        <article id="html-tool" class="slide">
+            <header><h1>Elements</h1></header>
+
+            <img src="img/elements.png" />
+        </article>
+
+        <article id="html-tree" class="slide">
+            <header><h1>Tree</h1></header>
+            <ul>
+                <li>Heiarchial Tree</li>
+                <li>Content and structure only (in theory)</li>
+            </ul>
+            <footer><a href="http://gsnedders.html5.org/outliner/">HTML5 Outliner</a></footer>
+        </article>
+
+        <article id="html-semantics" class="slide">
+            <header><h1>Semantics</h1></header>
+            <h2>Use the correct markup for the content</h2>
+
+            <ul>
+                <li><code>&lt;ul></code> is for unordered lists</li>
+                <li><code>&lt;ol></code> is for ordered lists</li>
+                <li><code>&lt;table></code> is for tabular and only tabular data</li>
+                <li><code>&lt;b></code> has been replaced with <code>&lt;strong></code></li>
+                <li><code>&lt;i></code> has been replaced with <code>&lt;em></code></li>
+                <li><code>&lt;h1></code>, <code>&lt;h2></code>,<code>&lt;h3></code>, etc is for headings, not text style</li>
+            </ul>
+
+            <footer><a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">HTML Semantics</a></footer>
+        </article>
+
+        <article id="css" class="slide title">
+            <h1>CSS</h1>
+        </article>
+
+        <article id="css-tool" class="slide">
+            <header><h1>Styles</h1></header>
+
+            <img src="img/styles.png" />
+        </article>
+
+        <article id="selectors" class="slide">
+            <header><h1>Selectors</h1></header>
+            <ul>
+                <li><code>.class</code></li>
+                <li><code>#id</code></li>
+                <li><code>ancestor descendent</code></li>
+                <li><code>parent > child</code></li>
+                <li><code>:first-child</code>, <code>:hidden</code>, <code>:input</code>, &hellip;</li>
+                <li><code>[contenteditable]</code>, <code>[type="text"]</code>, &hellip;</li>
+            </ul>
+
+            <footer><a href="http://csswizardry.com/2011/09/writing-efficient-css-selectors/">Writing efficient selectors</a></footer>
+        </article>
+
+        <article id="specificity" class="slide">
+            <header><h1>Specifity</h1></header>
+            <h2>Ascending order of specificity (orders of magnitude)</h2>
+            <ol>
+                <li><code>tag</code></li>
+                <li><code>.class</code></li>
+                <li><code>#id</code></li>
+            </ol>
+
+            <p>If specifity is equal in multiple rules, the last one declared wins.</p>
+
+            <footer><a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">CSS specificity explained</a></footer>
+        </article>
+
+        <article id="css-layouts" class="slide">
+            <header><h1>CSS Layouts</h1></header>
+            <ul>
+                <li>what's in the <a href="http://css-tricks.com/the-css-box-model/">box model</a>?</li>
+                <li>you know what they say, it's all about <a href="http://css-tricks.com/video-screencasts/110-quick-overview-of-css-position-values/">position</a>, <a href="http://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/">position</a>, <a href="http://www.alistapart.com/articles/css-positioning-101/">position</a></li>
+            </ul>
+        </article>
+
+        <article id="pseudo-elements" class="slide">
+            <header><h1>Pseudo Elements</h1></header>
+            <ul>
+                <li><code>:before</code> and <code>:after</code> are "elements" inside of but before the content of selected elements.</li>
+                <li>Great for icons and non-standard bullets</li>
+                <li><a href="http://css-tricks.com/pseudo-element-roundup/">Awesome stuff</a> you can do with pseudo elements</li>
+            </ul>
+
+            <footer><a href="http://css-tricks.com/video-screencasts/94-intro-to-pseudo-elements/">Intro to pseudo-elements</a></footer>
+        </article>
+
+        <article id="css3" class="slide">
+            <header><h1>CSS3</h1></header>
+
+            <p>Generally used for progressive enhancements (support is <a href="http://caniuse.com/#cats=CSS">varied</a>)</p>
+
+            <ul>
+                <li><a href="http://border-radius.com/"><code>border-radius</code></a> gives us the pretty rounded corners</li>
+                <li><a href="http://gradients.glrzad.com/"><code>gradients</code></a> can be linear or radial</li>
+                <li><a href="http://css-tricks.com/snippets/css/css-box-shadow/"><code>box-shadow</code></a> creates depth</li>
+            </ul>
+        </article>
+
+        <article id="js" class="slide title">
+            <h1>JavaScript</h1>
+        </article>
+
+        <article id="tools-scripts" class="slide">
+            <header><h1>Scripts/Sources</h1></header>
+            <img src="img/sources.png" />
+        </article>
+
+        <article id="natives" class="slide">
+            <header><h1>Natives</h1></header>
+<pre contenteditable><code>[]           // Array (enumerable)
+{}           // Object (hash)
+1            // Number
+'', ""       // String
+true, false  // Boolean
+function(){} // Function
+Date()       // Date
+RegExp       // Regular Expression
+</code></pre>
+
+        <footer><a href="https://developer.mozilla.org/en/JavaScript/Reference">JavaScript Reference</a></footer>
+        </article>
+
+        <article id="falsiness" class="slide">
+            <header><h1>Falsiness</h1></header>
+<pre contenteditable><code>''        // Empty string
+0         // Number
+undefined // Tricky
+null      // Obvious
+false     // Boolean
+NaN       // Weirdness
+</code></pre>
+
+<pre contenteditable><code>NaN !== NaN // This is the world we live in
+isNaN('37') // False: can be parsed to a number
+isNaN('asdfasdf') // True: cannot be parsed to a number
+isNaN('') or isNaN(' ') // False: can be parsed as a number?
+</code></pre>
+        </article>
+
+        <article id="truthiness" class="slide">
+            <header><h1>Truthiness</h1></header>
+            <p>Pretty much everything else</p>
+
+<pre contenteditable><code>' ', 'null', '0' // True: non-empty string
+-1               // True: non-zero number
+[]               // True: Empty Array (use length)
+{}               // True: Empty Object (see below)
+
+function isEmpty(obj) {
+  for(var prop in obj) {
+    if(obj.hasOwnProperty(prop)) return false;
+  }
+  return true;
+}
+
+isEmpty({}) // True
+</code></pre>
+        </article>
+
+        <article id="comparison" class="slide">
+            <header><h1>Comparison</h1></header>
+            <h2>===</h2>
+            <ul>
+                <li>compares type and value</li>
+                <li>slightly faster because no coercion</li>
+                <li>use this unless you really know what you are doing</li>
+            </ul>
+<pre contenteditable><code>0 === '0' // False
+</code></pre>
+
+
+            <h2>==</h2>
+            <ul>
+                <li>coerces type and compares value</li>
+            </ul>
+<pre contenteditable><code>0 == '0' // True
+</code></pre>
+        </article>
+
+        <article id="control-flow" class="slide">
+            <header><h1>Control Flow</h1></header>
+<pre contenteditable><code>for (var i = 0, l = array.length; i < l; i++) {...}
+for (var prop in object) {...}
+if (condition) {...}
+var name = condition ? true : false;
+</code></pre>
+
+<pre contenteditable><code>if (name === 'bar' || name === 'foo') {...} // No
+if (({foo: 1, bar: 1})[name]) {...} // Yes
+
+var name;
+if (name = true) {...} // Secret Sauce
+</code></pre>
+        </article>
+
+        <article id="var-scope" class="slide">
+            <header><h1>Var Scope</h1></header>
+            <ul>
+                <li>Variable scope is defined at <strong>function level</strong></li>
+                <li>Scopes are inherited</li>
+            </ul>
+
+<pre contenteditable><code>function() {
+  var i = 1;
+
+  function() {
+    var j = 2;
+
+    return i + j; // returns 3
+  }
+}
+</code></pre>
+        </article>
+
+        <article id="hoisting" class="slide">
+            <header><h1>Var/Function Hoisting</h1></header>
+
+            <ul>
+                <li>initialized at the start of their scope</li>
+                <li>undefined until they are defined</li>
+            </ul>
+
+<pre contenteditable><code>function() {
+  if (false) var x = 0;
+  return;
+  var y = 0;
+}
+// Might as well be
+function() {
+  var x, y;
+  if (false) x = 0;
+  return;
+  y = 0;
+}</code></pre>
+
+            <footer><a href="http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting">js scoping and hoisting</a></footer>
+        </article>
+
+        <article id="iife" class="slide">
+            <header><h1>IIFE</h1></header>
+            <ul>
+                <li>Executes immediately</li>
+                <li>Can be anonymous</li>
+            </ul>
+<pre contenteditable><code>// feature detection
+var canSupport = (function(d){
+  if (!d['querySelectorAll']) return false;
+  if (!d['isSameNode']) return false;
+
+  return true;
+}(document));
+
+if (canSupport) {...}
+</code></pre>
+
+            <footer><a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression</a></footer>
+        </article>
+
+        <article id="closures" class="slide">
+            <header><h1>Closures</h1></header>
+<pre contenteditable><code>
+(function(context){
+  var foo = 'bar',
+      showMe = function() {
+        return foo;
+      };
+
+  context.showMe = showMe;
+}(window));
+
+showMe(); // returns 'bar'
+</code></pre>
+        </article>
+
+        <article id="obj-literal" class="slide">
+            <header><h1>Object Literal</h1></header>
+            <ul>
+                <li>everything in the public</li>
+                <li>simplest code organization</li>
+            </ul>
+
+<pre contenteditable><code>// Define
+var plugin = {
+  variableName: 'holas',
+  init: function() {...},
+  doSomething: function() {...}
+};
+
+// Usage
+plugin.variableName // 'holas'
+plugin.init();
+plugin.doSomething();
+</code></pre>
+        </article>
+
+        <article id="module-pattern" class="slide">
+            <header><h1>Module pattern</h1></header>
+            <ul>
+                <li>Private vars/functions</li>
+                <li>Runs when loaded and exposes public methods/vars</li>
+            </ul>
+
+<pre contenteditable><code>(function(context) {
+  var privateVar = 'keep it on the dl',
+      plugin = {
+        publicMethod: function() {
+          return privateVar;
+        }
+      };
+
+  context.plugin = plugin;
+}(namespace));
+
+plugin.privateVar // undefined
+plugin.publicMethod() // 'keep it on the dl'
+</code></pre>
+        </article>
+
+        <article id="require-module" class="slide">
+            <header><h1>RequireJS Module</h1></header>
+            <p>Dependency management in JS</p>
+
+<pre contenteditable><code>// storage.js
+define(function(){
+    return {
+        setItem: function() {...}
+    };
+});
+
+// someotherfile.js
+define(['storage'], function(storage) {
+    var greeting = 'Holas';
+
+    storage.setItem(greeting, 'greeting');
+});
+</code></pre>
+            <footer><a href="http://requirejs.org/">RequireJS Docs</a></footer>
+        </article>
+
+        <article id="dom" class="slide title">
+            <h1>DOM</h1>
+        </article>
+
+        <article id="dom-tool" class="slide">
+            <header><h1>Console</h1></header>
+
+            <img src="img/console.png" />
+        </article>
+
+        <article id="dom-definition" class="slide">
+            <header><h1>What is the DOM?</h1></header>
+            <ul>
+                <li>API for HTML</li>
+                <li>Ids must be unique per document (think of them as an index)</li>
+                <li>Working with the DOM is expensive; reduce reads and writes</li>
+            </ul>
+
+<pre contenteditable><code>&lt;ul id="parent">
+  ...
+&lt;/ul>
+</code></pre>
+
+<pre contenteditable><code>var list = document.getElementById('parent') // sets node to element with id of 'parent' (ul)
+</code></pre>
+
+            <footer><a href="https://developer.mozilla.org/en/DOM/About_the_Document_Object_Model">About the DOM</a></footer>
+        </article>
+
+        <article id="namespace" class="slide">
+            <header><h1>Namespace</h1></header>
+            <ul>
+                <li><code>window</code> is global</li>
+                <li><code>document</code> is the html document</li>
+                <li>Minimize namespace footprint</li>
+            </ul>
+        </article>
+
+        <article id="events" class="slide title">
+            <h1>Events</h1>
+        </article>
+
+        <article id="event-intro" class="slide">
+            <header><h1>Events Intro</h1></header>
+
+            <ul>
+                <li><code>click</code></li>
+                <li><code>submit</code></li>
+                <li><code>load</code></li>
+                <li><code>mouseover/mousenter, mouseout/mouseleave</code></li>
+                <li><code>focus, blur</code></li>
+            </ul>
+        </article>
+
+
+        <article id="events-bubbling" class="slide">
+            <header><h1>Event Bubbling</h1></header>
+            <ul>
+                <li>Events bubble up the DOM</li>
+            </ul>
+
+<pre contenteditable><code>&lt;ul>        ↑
+  &lt;li>      ↑
+    &lt;a>  (click)
+</code></pre>
+
+            <h2>Event stoppage</h2>
+            <ul>
+                <li><code>preventDefault()</code> stops the default behavior (link redirection, form submitting, etc)</li>
+                <li><code>stopPropagation()</code> stops the bubbling of the event up the DOM</li>
+            </ul>
+        </article>
+
+        <article id="event-listening" class="slide">
+            <header><h1>Event Listening</h1></header>
+<pre contenteditable><code>if (addEventListener) {
+    el.addEventListener('event', callback, false);
+} else if (attachEvent) {
+    el.attachEvent('onevent', callback);
+} else {
+    el.onevent = callback;
+}
+</code></pre>
+        </article>
+
+
+        <article id="dom-ready" class="slide">
+            <header><h1>DOM Ready</h1></header>
+            <ul>
+                <li>When the entire document has been downloaded, parsed and is available</li>
+                <li>Until DOM is ready, completeness of selection not guaranteed</li>
+            </ul>
+
+            <h2>Document Complete</h2>
+            <p>DOM is ready and all external assets (images, css, scripts, etc) are downloaded.</p>
+
+        </article>
+
+
+        <article id="jquery" class="slide title">
+            <h1>jQuery</h1>
+        </article>
+
+        <article id="jq-collections" class="slide">
+            <header><h1>jQuery Collections</h1></header>
+            <ul>
+                <li>Think of it as an array of DOM elements with custom methods</li>
+                <li>0 indexed</li>
+            </ul>
+
+<pre contenteditable><code>var $links = $('a') // jQuery Collection
+var link = $('a')[0] // DOM Element
+</code></pre>
+
+
+<pre contenteditable><code>$links.addClass('some') // adds class to the links
+link.addClass('some') // fails, not a jQ collection
+</code></pre>
+
+<pre contenteditable><code>$links.href // fails, not a DOM node
+link.href // returns the href attribute value
+$links[0].href // returns the href attribute
+$links.eq(0).attr('href') // jQ method (slower)
+</code></pre>
+        </article>
+
+        <article id="jq-chaining" class="slide">
+            <header><h1>Chaining</h1></header>
+
+            <p>Most methods return the jQuery collection</p>
+
+<pre contenteditable><code>&lt;div class="some">&lt/div>
+
+$('.some').addClass('test').text('Test text').append('&lt;p>Child&lt;/p>');
+
+&lt;div class="some test">
+  Test text
+  &lt;p>Child&lt;/p>
+&lt/div>
+</code></pre>
+        </article>
+
+        <article id="jq-selectors" class="slide">
+            <header><h1>Selectors</h1></header>
+
+            <ul>
+                <li>CSS Notation</li>
+                <li>Selectors get executed right to left</li>
+                <li>Give selectors context</li>
+                <li>Cache selectors</li>
+            </ul>
+
+<pre contenteditable><code>$('#myForm > :input') // slow
+
+var $form = $('#myForm');
+$form.find('> :input') // gets there, could be faster
+$form.children(':input') // super fast
+
+$('table.data .domain') // slower
+$('.data td.domain') // faster
+</code></pre>
+            <footer><a href="http://api.jquery.com/category/selectors/">jQuery Selectors</a>, <a href="http://jsperf.com/jquery-selectors-context/7">Selector tests</a></footer>
+        </article>
+
+        <article id="jq-length" class="slide">
+            <header><h1>Check the length</h1></header>
+
+            <ul>
+                <li>Always compare to the length of a jQuery collection</li>
+                <li>Check before running 3rd party plugins</li>
+            </ul>
+
+<pre contenteditable><code>var $empty = $('notARealTagName') // empty
+
+if ($empty) {...} // will always be true (object)
+$empty.length // 0
+if ($empty.length) {...} // 0 is falsy
+</code></pre>
+
+<pre contenteditable><code>var $links = $('a')
+
+if ($links.length) {...} // if we found links
+</code></pre>
+        </article>
+
+        <article id="jq-event-listen" class="slide">
+            <header><h1>Event Listener</h1></header>
+
+            <ul>
+                <li>Passes an <a href="http://api.jquery.com/category/events/event-object/">event object</a></li>
+                <li>Good idea to namespace events</li>
+                <li>use <code>on</code> and <code>off</code> vs <code>bind</code> or <code>click</code></li>
+                    <ul>
+                        <li>Less confusion as to what is going on</li>
+                        <li>Can't namespace helper methods</li>
+                    </ul>
+                </li>
+                <li><code>.one</code> listens for an event once and then removes itself</li>
+            </ul>
+
+<pre contenteditable><code>$('a').on('click.namespace', function(){...});
+
+$('form').on('submit', function() {...});
+</code></pre>
+
+            <footer><a href="http://api.jquery.com/category/events/">Events</a>, <a href="http://docs.jquery.com/Namespaced_Events">Namespaced Events</a></footer>
+        </article>
+
+        <article id="jq-event-trigger" class="slide">
+            <header><h1>Event Trigger</h1></header>
+            <h2><code>trigger</code></h2>
+            <ul>
+                <li>Use this over helper (<code>.click()</code>)</li>
+                <li>Simulates a real event (trigger handlers and bubble up DOM)</li>
+                <li>Does not perform default behavior</li>
+            </ul>
+            <pre contenteditable><code>$('.some').trigger('click');</code></pre>
+
+            <h2><code>triggerHandler</code></h2>
+            <ul>
+                <li>Does not bubble up DOM</li>
+                <li>Executes the handler for first element of the jQ collection</li>
+            </ul>
+
+            <pre contenteditable><code>$('.some').triggerHandler('click');</code></pre>
+        <footer><a href="http://api.jquery.com/triggerHandler/">$.triggerHandler()</a></footer>
+        </article>
+
+        <article id="event-delegation" class="slide">
+            <header><h1>Event Delegation</h1></header>
+            <p>Delegation puts a listener further up the DOM and uses bubbling to see if the selected element was the target</p>
+
+<pre contenteditable><code>// Non-delegated event listeners
+$('a').on('click', function() {...}); // 500 links = 500 event listeners
+</code></pre>
+
+<pre contenteditable><code>// Delegated event listeners
+$(document).on('click', 'a', function() {...}); // Delegated, 1 event listener
+
+&lt;document>      ↑
+  &lt;body>        ↑
+    &lt;a>      (click)
+</code></pre>
+
+<pre contenteditable><code>$(document).off('click', 'a'); // Undelegate
+</code></pre>
+        </article>
+
+        <article id="inArray" class="slide">
+            <header><h1>inArray</h1></header>
+            <ul>
+                <li>Returns the index of something if it's in an array</li>
+                <li>Otherwise it returns -1</li>
+                <li>jQuery version of Array.indexOf()</li>
+            </ul>
+
+<pre contenteditable><code>var arr = [2, 3, 4, 5];
+$.inArray(2, arr) // returns 0
+$.inArray(7, arr) // returns -1
+~$.inArray(7, arr) // return 0 (if you don't need index, just testing if is in array)
+</code></pre>
+            <footer><a href="http://api.jquery.com/jquery.inArray/">jQuery.inArray()</a></footer>
+        </article>
+
+        <article id="extend" class="slide">
+            <header><h1>Extend</h1></header>
+            <ul>
+                <li>Merge Objects into each other</li>
+                <li>Create a copy of an object (or merged objects)</li>
+                <li><code>true</code> makes it a deep (recursive) copy</li>
+            </ul>
+
+<pre contenteditable><code>// merge newObj into origObj
+$.extend(origObj, newObj)
+
+// newObj is a copy of origObj
+var newObj = $.extend({}, origObj)
+
+// recursively merges newObj into origObj
+$.extend(true, origObj, newObj)
+</code></pre>
+
+            <footer><a href="http://api.jquery.com/jQuery.extend/">jQuery.extend()</a></footer>
+        </article>
+
+        <article id="jquery-data" class="slide">
+            <header><h1>jQuery Data</h1></header>
+            <ul>
+                <li>Stores data in reference to a DOM element</li>
+                <li>Reads html5 <code>data-</code> attributes (coerces values)</li>
+                <li>Faster than looking up DOM properties (after populated)</li>
+            </ul>
+
+<pre contenteditable><code>// Usage
+$('#some').data('key', 'value'); // Setter
+$('#some').data('key') // Getter: returns 'value'
+
+var pluginData = {
+  foo: 42,
+  bar: 'holas'
+};
+$('.some').data('pluginName', pluginData);
+$('.some').data('pluginName').bar // 'holas'
+</code></pre>
+
+            <footer><a href="http://api.jquery.com/category/data/">jQuery Data</a></footer>
+        </article>
+
+        <article id="xhr" class="slide title">
+            <h1>XHR (AJAX)</h1>
+        </article>
+
+        <article id="jq-XHR" class="slide">
+            <header><h1>XHR (AJAX)</h1></header>
+
+            <ul>
+                <li><code>$.get</code>, <code>$.getJSON</code>, <code>$.post</code> more convenient <code>$.ajax</code> is more flexible</li>
+                <li>success is defined by a 200 response (400 & 500 are errors)</li>
+            </ul>
+
+<pre contenteditable><code>$.get('/url', {reqParam: value}, function(d) {
+  ... // success callback, d = response
+});
+
+$.getJSON('/url', {reqParam: value}, function(d) {
+  ... // success callback, d = parsed json
+});
+
+$.post('/url', $form.serialize(), function(d) {
+  ... // success callback, d = response
+});
+</code></pre>
+            <footer><a href="http://api.jquery.com/category/ajax/">jQuery Ajax Methods</a>, <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a></footer>
+        </article>
+
+        <article id="jqxhr-methods" class="slide">
+            <header><h1>Notable Ajax Methods</h1></header>
+<pre contenteditable><code>$.ajax({
+  url: '/url',
+  type: 'get', // method
+  data: { request: param }, // or post payload
+  dataType: 'json', // type of response data
+  success: function(){},
+  error: function() {}, // (400, 500)
+  beforeSend: function() {
+    $throbber.show();
+  },
+  complete: function() { // success and error
+    $throbber.hide();
+  }
+});
+</code></pre>
+        </article>
+
+        <article id="resources" class="slide">
+            <header><h1>Resources</h1></header>
+            <ul>
+                <li><a href="http://jqfundamentals.com">JQ Fundamentals</a></li>
+                <li><a href="https://developer.mozilla.org/en-US">MDN</a></li>
+                <li><a href="http://api.jquery.com/">jQuery API</a></li>
+                <li><a href="http://learn.appendto.com/">Learn jQuery & Javascript</a></li>
+                <li><a href="https://developer.mozilla.org/en-US">MDN</a></li>
+                <li><a href="http://jsperf.com/browse">JS Perf</a></li>
+                <li><a href="http://jsfiddle.net/">JS Fiddle</a></li>
+                <li><a href="http://www.quora.com/What-are-the-most-interesting-HTML-JS-DOM-CSS-hacks-that-most-web-developers-dont-know-about">Little known JS/DOM/CSS hotness</a></li>
+            </ul>
+        </article>
+
+    </section>
+
+    <footer class="siteFooter">
+        <p>June 7th, 2012 by <a href="http://craveytrain.com">Mike Cravey</a></p>
+    </footer>
+
+    <script src="js/prettify.js"></script>
+    <script src="js/slides.js"></script>
+</body>
+</html>

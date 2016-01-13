@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}" dir="ltr" class="no-js">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="list">
+    {{ partial "nav.html" . }}
+
+    <section class="main" role="main">
+        {{ range .Data.Pages }}
+            <article>
+                <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+                <time datetime="{{ .Date }}" pubdate>{{ .Date.Format "Jan 2, 2006" }}</time>
+
+            	{{ with .Params.tags }}
+            		<footer>
+            			<p class="meta">Posted in
+            				{{ delimit (apply (apply (sort .) "partial" "link-tags" ".") "chomp" ".") ", " }}
+            			</p>
+            		</footer>
+            	{{ end }}
+            </article>
+        {{ end }}
+    </section>
+
+    {{ partial "foot.html" . }}
+</body>
+
+</html>
