@@ -1,8 +1,0 @@
-@import url(vars.css);
-
-.page-footer {
-    display: block;
-    margin: auto;
-    padding: 0 1em;
-    max-width: var(--width-large);
-}

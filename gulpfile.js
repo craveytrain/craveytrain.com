@@ -1,82 +1,107 @@
-const path = require( 'path' );
-const gulp = require( 'gulp' );
-const sourcemaps = require( 'gulp-sourcemaps' );
+const gulp = require('gulp');
+const sourcemaps = require('gulp-sourcemaps');
+const render = require('./lib/render');
+const rev = require('gulp-rev');
 
-gulp.task( 'clean', done => {
-	require( 'del' )( [
-		'static/css',
-		'static/img',
-		'static/favicons',
-		'static/js',
-	] )
-	.then( () => {
-		done();
-	} );
-} );
+const dest = 'public';
 
-gulp.task( 'copy', function () {
-	return gulp.src( [ 'img/favicons/**/*' ], { base: '.' } )
-	.pipe( gulp.dest( 'static/' ) );
-} );
+const getPages = (glob, opts) => gulp.src(glob, opts)
+  .pipe(require('gulp-gray-matter')())
+  .pipe(require('./lib/excerpt')())
+  .pipe(require('gulp-marked')({
+    highlight: code => require('highlight.js').highlightAuto(code).value
+  }))
+  .pipe(require('./lib/pageType')())
+  .pipe(require('./lib/directorize')());
 
-gulp.task( 'svg', function () {
-	return gulp
-		.src( 'img/sprite/*.svg' )
-		.pipe( require( 'gulp-svgmin' )( function ( file ) {
-			var prefix = path.basename( file.relative, path.extname( file.relative ) );
-			return {
-				plugins: [ {
-					cleanupIDs: {
-						prefix: prefix + '-',
-						minify: true,
-					},
-				} ],
-			}
-		} ) )
-		.pipe( require( 'gulp-svgstore' )() )
-		.pipe( gulp.dest( 'static/img' ) );
-} );
+gulp.task('generate:home', ['assets'], () => getPages(['content/*.md'])
+  .pipe(require('./lib/home')())
+  .pipe(require('./lib/site')({
+    destination: dest
+  }))
+  .pipe(render())
+  .pipe(gulp.dest(dest))
+);
 
-gulp.task( 'css', () => {
-	const processors = [
-		require( 'postcss-import' ),
-		require( 'postcss-cssnext' )( {
-			browsers: [ 'last 2 versions' ],
-			warnForDuplicates: false, // autoprefixer run by cssnext and cssnano
-		} ),
-		require( 'postcss-rgba-hex' ), // Inline svg needs hex colors
-		require( 'postcss-inline-svg' ),
-		require( 'cssnano' ),
-	];
+gulp.task('generate:pages', ['assets'], () => getPages(['content/**/*.md', '!content/posts'])
+  .pipe(require('./lib/site')({
+    destination: dest
+  }))
+  .pipe(render())
+  .pipe(gulp.dest(dest))
+);
 
-	return gulp.src( './css/*.css' )
-		.pipe( sourcemaps.init() )
-		.pipe( require( 'gulp-postcss' )( processors ) )
-		.pipe( sourcemaps.write( '.' ) )
-		.pipe( gulp.dest( './static/css' ) );
-} );
+gulp.task('generate:posts', ['assets'], () => getPages(['content/posts/*.md'], {base: 'content'})
+  .pipe(require('./lib/site')({
+    destination: dest
+  }))
+  .pipe(render())
+  .pipe(gulp.dest(dest))
+);
 
-gulp.task( 'js', () => {
-	const bundler = require( 'browserify' )( {
-		entries: 'js/main.js',
-		debug: true,
-	} );
+gulp.task('generate:tags', ['assets'], () => getPages(['content/posts/*.md'], {base: 'content'})
+  .pipe(require('./lib/tags')())
+  .pipe(require('./lib/site')({
+    destination: dest
+  }))
+  .pipe(render())
+  .pipe(gulp.dest(dest))
+);
 
-	bundler.transform( require( 'babelify' ) );
+gulp.task('generate:lists', ['assets'], () => getPages(['content/posts/*.md'], {base: 'content'})
+  .pipe(require('./lib/lists')())
+  .pipe(require('./lib/site')({
+    destination: dest
+  }))
+  .pipe(render())
+  .pipe(gulp.dest(dest))
+);
 
-	bundler.bundle()
-		.on( 'error', function ( err ) {
-			/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
-			console.error( err );
-		} )
-		.pipe( require( 'vinyl-source-stream' )( 'main.js' ) )
-		.pipe( require( 'vinyl-buffer' )() )
-		.pipe( sourcemaps.init( {
-			loadMaps: true,
-		} ) )
-		.pipe( require( 'gulp-uglify' )() )
-		.pipe( sourcemaps.write( './' ) )
-		.pipe( gulp.dest( './static/js' ) );
-} );
+gulp.task('generate:feed', ['assets'], () => getPages(['content/posts/*.md'], {base: 'content'})
+  .pipe(require('./lib/feed')())
+  .pipe(require('./lib/site')({
+    destination: dest
+  }))
+  .pipe(render())
+  .pipe(gulp.dest(dest))
+);
 
-gulp.task( 'build', [ 'css', 'js', 'svg', 'copy' ] );
+gulp.task('css', () => gulp.src(
+  [
+    'css/**/*.css',
+    'node_modules/highlight.js/styles/solarized-dark.css'
+  ])
+  .pipe(sourcemaps.init())
+  .pipe(require('gulp-postcss')([
+    require('postcss-cssnext')(),
+    require('cssnano')({autoprefixer: false})
+  ]))
+  .pipe(rev())
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest(`${dest}/css`))
+  .pipe(rev.manifest())
+  .pipe(gulp.dest(dest))
+);
+
+gulp.task('statics', () => gulp.src(
+  [
+    'static/**/*.*'
+  ])
+  .pipe(gulp.dest(dest))
+);
+
+gulp.task('assets', [
+  'css',
+  'statics'
+]);
+
+gulp.task('build', [
+  'generate:posts',
+  'generate:pages',
+  'generate:home',
+  'generate:tags',
+  'generate:lists',
+  'generate:feed'
+]);
+
+gulp.task('default', ['build']);

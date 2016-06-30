@@ -1,8 +1,11 @@
-+++
-title = "Resilient modals"
-date = "2010-11-16"
-tags = ["accessibility", "modal", "tutorial"]
-+++
+---
+title: Resilient modals
+date: 2010-11-16
+tags:
+- accessibility
+- modal
+- tutorial
+---
 Modals: Love them, hate them they are a current fad (and have been for a while). Modals are usually implemented via javascript for older browser support (though there are some cool things being done with CSS3 on the matter). I've seen it done lots of ways, but here's a simple way to make modals "work" on a browser without javascript.
 
 __Make the trigger link link to the hashtag of the id of the modal.__

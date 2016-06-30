@@ -1,0 +1,18 @@
+doctype xml
+feed(xmlns='http://www.w3.org/2005/Atom', xml:lang='en')
+  title=site.title
+  id=`${site.baseurl}${site.feed}`
+  link(href=`${site.baseurl}${site.feed}`, rel='self')/
+  link(href=site.baseurl)/
+  updated=posts[0].timestamp
+  author
+    name=site.author
+
+  each post in posts
+    entry
+      title=post.title
+      id=`${site.baseurl}${post.url}`
+      link(href=`${site.baseurl}${post.url}`)/
+      updated=post.timestamp
+      content(type='xhtml')
+        div!= post.contents

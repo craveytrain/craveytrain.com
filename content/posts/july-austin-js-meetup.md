@@ -1,8 +1,13 @@
-+++
-title = "July austin JS meetup"
-date = "2010-07-21"
-tags = ["austin", "javascript", "meetup", "node", "scripty2"]
-+++
+---
+title: July austin JS meetup
+date: 2010-07-21
+tags:
+- austin
+- javascript
+- meetup
+- node
+- scripty2
+---
 Tonight I made it to my second [Austin JavaScript Meetup](http://www.austinjavascript.com/) and I left thinking "Dammit! Why have I been missing these?!" Well, I know why but the point is, I'm there now and plan on making the rest of them.
 
 Tonight [Joe McCann](http://subprint.com/) gave a talk (with attempted demo) of node.js. Things went wrong as coding live is often prone to do and we were left with more of an explanation than a demo. Still, Joe's an excellent speaker, engages the audience well and does a good job of keeping the banter going while working through the issues. I've learned the JS group has no lack of banter.

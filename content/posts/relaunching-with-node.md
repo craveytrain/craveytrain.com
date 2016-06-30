@@ -1,8 +1,14 @@
-+++
-title = "Relaunching with nodejs"
-date = "2011-04-19"
-tags = ["psa", "nodejs", "markdown", "express", "jade", "couchdb"]
-+++
+---
+title: Relaunching with nodejs
+date: 2011-04-19
+tags:
+- psa
+- nodejs
+- markdown
+- express
+- jade
+- couchdb
+---
 So, over the weekend, I relaunched my blog on [Node.js](http://nodejs.org/). I tried Tumblr, Blogger, Wordpress (hosted and self), Django, Rails and was just about to rebuild it in Sinatra when a [friend](http://blog.rubikzube.com/) suggested I just build it in Node. Of course! Why didn't I think of that?
 
 As for what drove me to roll my own blog when there are plenty of solutions that do it just fine, it was 1 part being anal about URLs (which Tumblr and Wordpress just wouldn't give me the level of control I wanted), 1 part wanting to serve up different types of content (ala Tumblr) and 1 part "why the hell not"?

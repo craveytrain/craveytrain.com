@@ -1,8 +1,13 @@
-+++
-title = "Getting the gist"
-date = "2010-12-10"
-tags = ["gist", "git", "github", "javascript", "jquery"]
-+++
+---
+title: Getting the gist
+date: 2010-12-10
+tags:
+- gist
+- git
+- github
+- javascript
+- jquery
+---
 I really like [Gist](https://gist.github.com/), a lot. They are full on git repos and as such have version control, remote updating, all of the things you would expect out of a github repo including most of the social aspects. They also have the best syntax highlighting I have seen. Yes, there are other libs that do it in various languages, but I really like theirs and I like having my code in 1 place.
 
 I've made several gists since I have become a member and expect that I will be making more now that I have gotten this down. The main complaint I have with gists is that to embed them in your blog you have to include a script tag that does a document.write. Aside from my misgivings about document.write, this poses a performance and user experience issue. Consider on a blog post with multiple snippets of code, the page stops loading until the scripts are downloaded and executed. Nevermind anything they may clobber during the process. And finally, I end up with a stylesheet in the DOM for each included gist that are all the exact same. So, I did:

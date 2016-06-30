@@ -1,8 +1,7 @@
-+++
-title = "Colophon"
-date = "2016-06-07"
-+++
-
+---
+title: Colophon
+date: 2016-06-07
+---
 While this site has cycled it's tech stack a few times, it's always been built on the hard work of the open source community. While it's entirety is available on [github](http://github.com/craveytrain/craveytrain.com), I would like to recognize the tools I am using now, as well as others I have used through the years, to build this site.
 
 ## Version 5 (current)

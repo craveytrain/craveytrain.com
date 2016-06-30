@@ -1,8 +1,3 @@
-public
-themes
 node_modules
-.DS_Store
-static/css
-static/img
-static/js
-npm-debug.log
+public
+rev-manifest.json

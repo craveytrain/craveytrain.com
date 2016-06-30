@@ -1,0 +1,21 @@
+extends layout
+
+mixin tagList(tags)
+  each tag, index in tags
+    a(href=tag.url)= tag.title
+    if index < tags.length - 1
+      = ', '
+
+block content
+  h1= title
+  ol
+    each post in posts
+      li
+        h3
+          a(href=post.url)= post.title
+        p.timestamp
+          time(datetime=post.timestamp, pubdate)= post.dateFormat
+        if post.tags
+          footer
+            p.meta= 'Posted in '
+            +tagList(post.tags)

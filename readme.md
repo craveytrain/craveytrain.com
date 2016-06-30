@@ -25,3 +25,11 @@ Build, package, and deploy the containers.
 ```
 make deploy
 ```
+
+
+# TODO
+-   update docker packaging/deployment
+-   non-expiring static assets
+-   cert
+-   http2
+-   styling
