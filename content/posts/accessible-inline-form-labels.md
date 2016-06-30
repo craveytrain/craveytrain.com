@@ -1,8 +1,14 @@
-+++
-title = "Accessible inline form labels"
-date = "2009-06-17"
-tags = ["accessibility", "css", "forms", "html", "javascript", "labels"]
-+++
+---
+title: Accessible inline form labels
+date: 2009-06-17
+tags:
+- accessibility
+- css
+- forms
+- html
+- javascript
+- labels
+---
 __Update:__ Added the check to make sure the input is empty before showing the overlayed label the first time.
 
 I recently read [Trevor Davis](http://trevordavis.net/)‘ post on [inline form labels](http://trevordavis.net/blog/tutorial/jquery-inline-form-labels/). First off, I have the utmost respect for TD. I read his blog regularly and have learned a lot from his posts. While I respect the work he has done for his plugin, I approach things differently. I am a UX Architect for a government site so I have significant concerns about accessibility, semantics and progressive enhancement.

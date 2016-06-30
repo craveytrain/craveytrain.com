@@ -1,0 +1,18 @@
+doctype html
+
+//- global mixins for site wide love
+mixin listOLinks(url, title)
+  li
+    a(href=url)= title
+
+html.no-js(lang='en-us', dir='ltr')
+  head
+    include includes/head
+
+  body
+    block header
+    section.main(role='main')
+      block content
+        != body
+    include includes/nav
+    include includes/footer

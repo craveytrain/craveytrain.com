@@ -1,8 +1,12 @@
-+++
-title = "Making inputs behave"
-date = "2010-07-26"
-tags = ["css", "css3", "forms", "html"]
-+++
+---
+title: Making inputs behave
+date: 2010-07-26
+tags:
+- css
+- css3
+- forms
+- html
+---
 Anyone who has styled forms understands the frustration that is the input/textarea (or whatever your weapon of choice for masochism). They can be frustrating to make behave consistently. I found a technique I used today that I thought I would share. I seriously doubt I'm the first to use it but none-the-less maybe someone hasn't seen this before.
 
 I had always assumed inputs (from here on out, when input is used, assume all inputable form elements) act weirdly. They aren't inline, they aren't block, they are just... weird. While most of us have become accustomed to dealing with this, this can be particularly troublesome making them do things like behave like a block level element but have padding.

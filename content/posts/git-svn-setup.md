@@ -1,8 +1,11 @@
-+++
-title = "Git SVN setup"
-date = "2010-11-11"
-tags = ["git-svn", "tutorial", "git"]
-+++
+---
+title: Git SVN setup
+date: 2010-11-11
+tags:
+- git-svn
+- tutorial
+- git
+---
 So I've been using Git-SVN for about a month at work now thanks largely to a [gist](https://gist.github.com/594472) put together by the magnanimous [Lachlan Hardy](http://lachstock.com.au/). Honestly, if you are getting started and have a standard SVN layout, that has all you are gonna need. Naturally, where I work doesn't exactly have a standard layout so I had to adjust the instructions a little bit. I wanted to help explain to others how to handle these other variants I have encountered.
 
 ## Getting Git Going

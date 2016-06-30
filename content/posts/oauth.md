@@ -1,8 +1,12 @@
-+++
-title = "OAuth"
-date = "2011-05-24"
-tags = ["oauth", "nodejs", "twitter", "markdown"]
-+++
+---
+title: OAuth
+date: 2011-05-24
+tags:
+- oauth
+- nodejs
+- twitter
+- markdown
+---
 I had been trying to decide what to do with comments. I like to give the ability to people to make comments but I just did not want to deal with keeping track of people's username, passwords, etc. Furthermore, I absolutely abhor CAPTCHA or anything of the sort. I got to thinking about using something like OpenID. The main problem I have with that is adoption. I don't want to make it hard for people to comment, but I don't want to deal with user info. Then I read [Chris Shiflett write about using Twitter for comments](http://shiflett.org/blog/2011/mar/using-twitter-for-comments) and I knew that was the key for me.
 
 There are several popular oauth networks out there but Twitter seems to make the most sense for my audience (both of you) and my subject matter (primarily technical blatherings). So, I set out to learn oauth and use Twitter. Had I known how long it would take me, I might have gone another route. But I'm here with lots of lessons learned and a much stronger understanding of the oauth paradigm. And that is the real reason I rolled my own blog: to give myself the reason to go learn new things.

@@ -1,8 +1,10 @@
-+++
-title = "Moving to octopress"
-date = "2012-05-07"
-tags = ["psa", "octopress"]
-+++
+---
+title: Moving to octopress
+date: 2012-05-07
+tags:
+- psa
+- octopress
+---
 I'm [following](http://alexsexton.com/) [the](http://rmurphey.com/) [trend](http://mattgemmell.com/) and moving over to [Octopress](http://octopress.org). While I do love my custom node blog, the amount of work it took to get a new post up and the stack it required for a simple blog was just overkill. It was a fun experiment and I will continue to play with node in all sorts of varieties, I just am not interested in rolling my own blog in it for now. Enter Octopress.
 
 Octopress is billed as a hacker's blog tool. It met my rather modest criteria:
