@@ -1,0 +1,19 @@
+@import url(vars.css);
+
+@media (--breakpoint-large) {
+    .post {
+        & main h1 {
+            font-size: var(--font-size-largestest);
+            line-height: var(--line-height-largestest);
+        }
+    }
+}
+
+.meta {
+    margin: calc(var(--margin-bottom-base) / 2) 0;
+    color: var(--color-silver-chalice);
+
+    & a {
+        color: color(var(--color-silver-chalice) blackness(+ 50%));
+    }
+}

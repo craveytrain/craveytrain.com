@@ -67,8 +67,10 @@ VIM is better (hence the name).
 
 Some really interesting stuff goes on here, and frankly, some if it I'm still just copying and pasting. Basically, I'm telling it to show dirty state, show stashed files, show untracked files and then sending it some colors to shade the branch info from the bash_completion script. I'm setting my basic prompt to:
 
-	user@host:/full/path (git branch)
-	$
+```bash
+user@host:/full/path (git branch)
+$
+```
 
 Notice the prompt wraps to the second line cause that path can get lengthy.
 

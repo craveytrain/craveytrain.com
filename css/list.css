@@ -1,0 +1,30 @@
+@import url(vars.css);
+
+.list {
+    & li {
+        list-style: none;
+    }
+
+    & .nav-posts a {
+        background-color: var(--color-white);
+        color: var(--color-mine-shaft);
+    }
+
+    & main h2 {
+        display: none;
+    }
+}
+
+.list-article {
+    padding: 0;
+
+    & h3 {
+        font-family: var(--font-sans);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+    }
+
+    & p {
+        margin: 0;
+    }
+}

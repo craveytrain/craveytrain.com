@@ -1,0 +1,50 @@
+{
+  "name": "craveytrain.com",
+  "version": "5.0.0",
+  "description": "The personal site of Mike Cravey (@craveytrain).",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf public && gulp clean",
+    "svg": "mkdir -p static/img && svgstore 'img/*.svg' static/img/sprite.svg",
+    "prebuild": "npm run clean",
+    "build": "gulp build && hugo",
+    "watch": "watch 'npm run build' css img content layouts",
+    "server": "browser-sync start --server 'public' --files 'public/css/*.css'",
+    "prestart": "npm run build",
+    "start": "run-p watch server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craveytrain/craveytrain.com.git"
+  },
+  "keywords": [
+    "blog",
+    "craveytrain"
+  ],
+  "author": "Mike Cravey <techie@craveytrain.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craveytrain/craveytrain.com/issues"
+  },
+  "homepage": "https://github.com/craveytrain/craveytrain.com#readme",
+  "dependencies": {
+    "prismjs": "^1.5.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "cssnano": "^3.7.1",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-svgmin": "^1.2.2",
+    "gulp-svgstore": "^6.0.0",
+    "npm-run-all": "^2.3.0",
+    "postcss": "^5.0.21",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-import": "^8.1.2",
+    "postcss-inline-svg": "^2.0.1",
+    "postcss-rgba-hex": "^0.3.5",
+    "watch": "^0.19.1"
+  }
+}

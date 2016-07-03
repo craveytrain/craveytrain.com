@@ -1,0 +1,25 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "plugins": ["plugins/markdown"],
+    "markdown": {
+        "parser": "gfm",
+        "tags": ["param"]
+    },
+    "source": {
+    	"includePattern": ".+\\.js(doc)?|.+\\.es6$"
+    },
+    "templates": {
+        "displayName": "",
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "outputSourceFiles": true,
+        "outputSourcePath": true,
+        "footer": "",
+        "linenums": true,
+        "collapseSymbols": false,
+        "inverseNav": true,
+        "highlightTutorialCode": true
+    }
+}

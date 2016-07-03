@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Inconsolata-g';
+    src: url('/fonts/inconsolata-g/inconsolata-g.woff2') format('woff2'),
+         url('/fonts/inconsolata-g/inconsolata-g.woff') format('woff'),
+         url('/fonts/inconsolata-g/inconsolata-g.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}

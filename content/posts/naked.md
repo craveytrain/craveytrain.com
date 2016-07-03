@@ -11,4 +11,4 @@ I have finally moved off [Wordpress](http://wordpress.org/). I have used Wordpre
 
 Which brings me to my last point. Style, I have none. Well, more specifically, my blog has none but hey... if the shoe fits... I will eventually style this blog but I didn't want it to get in the way of my content or hold me up. So I have decided to launch the site naked. This will force me to concentrate on markup and content of the site, making sure I have things as appropriate as possible, then layering on the design.
 
-So, here's to hoping I actually stick with it this time. Oh, and stop picturing me naked.
+So, here's to hoping I actually stick with it this time. Oh, and stop picturing my site naked.
