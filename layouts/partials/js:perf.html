@@ -1,0 +1,16 @@
+<script type="text/javascript">
+    window.__ct = window.__ct || {};
+    window.__ct.perf = window.__ct.perf || {};
+
+    ( function( context, global ) {
+        var hasPerformance = !!( global.performance && global.performance.mark );
+
+        function mark( label ) {
+            lobal.performance.clearMarks( label );
+            global.performance.mark( label );
+        }
+
+        context.mark = hasPerformance ? mark : Function.prototype;
+        context.measure = hasPerformance ? global.performance.measure.bind( performance ) : Function.prototype;
+    } ( __ct.perf, window ) );
+</script>

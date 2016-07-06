@@ -1,6 +1,13 @@
-<header class="page-header" role="banner">
-	<hgroup>
-		<h1>{{ .Site.Title }}</h1>
-		<h2>{{ .Site.Params.subtitle }}</h2>
-	</hgroup>
+<header class="page-header">
+	<h1>
+		<a href="/">
+			<svg class="logo underlay" viewBox="0 0 100 100">
+				{{ .Site.Title }}
+				<use xlink:href="/img/sprite.svg#logo"></use>
+			</svg>
+			<svg class="logo overlay" viewBox="0 0 100 100">
+				<use xlink:href="/img/sprite.svg#logo"></use>
+			</svg>
+		</a>
+	</h1>
 </header>

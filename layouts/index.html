@@ -10,33 +10,38 @@
 
     {{ partial "nav.html" . }}
 
-    <section class="main" role="main">
-		<h2>Latest Post</h2>
+    <main role="main">
+    	<section id="about" class="about">
+    		<h2>About me</h2>
 
-    	<article id="latest-post">
-            {{ range first 1 .Data.Pages  }}
-                {{ partial "post.html" . }}
-            {{ end }}
-    	</article>
+    		<p>Hi, my name is Mike Cravey. I'm a father, a geek, and looking for my next gig. Feel free to <a href="#contact">reach out</a>. When I'm not working, I play with my <a href="https://github.com/craveytrain/dotfiles">dotfiles</a> repo and am constantly trying to find new tools/processes.</p>
+    	</section>
 
-    	<article id="about">
-    		<h2>About</h2>
+        <section class="latest-post">
+            <h2>Latest Post</h2>
 
-    		<p>Hi, my name is Mike Cravey. Through the years my identity and role has changed, but these days I'm a father, a geek, and the Head of Web Development at <a href="https://www.student.com">Student.com</a> in London, UK. When I'm not working on our products (and sometimes when I should be) I play with my <a href="https://github.com/craveytrain/dotfiles">dotfiles</a> repo and am constantly trying to find new tools/processes.</p>
-    	</article>
+        	<article id="latest-post">
+                {{ range first 1 .Data.Pages  }}
+                    <h3>{{ .Title }}</h3>
+                    {{ .Summary }}
+                {{ end }}
+        	</article>
+        </section>
 
-    	<article id="contact">
+    	<section id="contact" class="contact">
     		<h2>Contact</h2>
 
     		<p>Have something to say you would like me to hear? Feel free to drop me a line at any one of the following fine establishments (or anywhere else you see me):</p>
 
     		<ul>
-    			<li class="icon-twitter"><a href="http://twitter.com/craveytrain">Twitter</a></li>
-    			<li class="icon-github"><a href="http://github.com/craveytrain">GitHub</a></li>
-    			<li class="icon-linkedin"><a href="http://www.linkedin.com/in/craveytrain">LinkedIn</a></li>
+    			<li class="link-twitter"><a href="http://twitter.com/craveytrain">Twitter</a></li>
+    			<li class="link-github"><a href="http://github.com/craveytrain">GitHub</a></li>
+    			<li class="link-linkedin"><a href="http://www.linkedin.com/in/craveytrain">LinkedIn</a></li>
     		</ul>
-    	</article>
-    </section>
+    	</section>
+    </main>
+
+    {{ partial "footer.html" . }}
 
     {{ partial "foot.html" . }}
 </body>

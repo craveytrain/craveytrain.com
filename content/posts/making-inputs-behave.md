@@ -11,4 +11,11 @@ In a proper block level element, if you want it to take up the full available wi
 
 CSS3 introduced a nice little property called [box-sizing](http://www.css3.info/preview/box-sizing/). Essentially with a value of border-box this can make an element behave like Quirks mode in IE. Initially my response to this was "WTF?! Why?!". But this allows you to turn it on for 1 element. 1 element that normally won't adhere to the box model for block level elements. So, without further ado, full width inputs with padding:
 
-{{< gist craveytrain 491078 >}}
+```css
+input {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+}
+```

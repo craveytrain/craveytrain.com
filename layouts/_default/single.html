@@ -6,11 +6,13 @@
 </head>
 
 <body class="post">
+    {{ partial "header.html" . }}
+
     {{ partial "nav.html" . }}
 
-    <section class="main" role="main">
+    <main role="main">
         {{ partial "post.html" . }}
-    </section>
+    </main>
 
     {{ partial "foot.html" . }}
 </body>

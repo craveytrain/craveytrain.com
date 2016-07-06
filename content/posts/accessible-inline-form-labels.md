@@ -14,11 +14,65 @@ My approach differs from him in 2 main facets:
 
 That is not to say my technique is not without issue. It relies on good support of the CSS box model.
 
-{{< gist craveytrain 476405 >}}
+```html
+<form id="contact">
+	<ul>
+		<li>
+			<label for="name">Name</label>
+			<input type="text" id="name" name="name" value="" />
+		</li>
+		<li>
+			<label for="email">Email</label>
+			<input type="text" id="email" name="email" value="" />
+		</li>
+		<li>
+			<label for="verbiage">Message…</label>
+			<textarea id="verbiage" name="verbiage" rows="5" cols="25"></textarea>
+		</li>
+	</ul>
+</form>
+```
 
 Simple markup, just your basic form. I’m an unordered list guy for forms, but certainly your favorite method of marking up forms should be fine. Except for tables, cause that’s just wrong.
 
+```css
+form li {
+	line-height: 1.5;
+	margin-bottom: 1.5em;
+	position: relative;
+}
+
+form label.overlayed {
+	position: absolute;
+	top: .15em;
+	left: .5em;
+	white-space: nowrap;
+	color: #999;
+}
+```
+
 Again, simple stuff, note the position: relative on the li. That’s sets a bounding box for everything inside of it. Then we are free to use position:absolute for the label (when overlayed). That effectively removes it from layout allowing the inputs to slide left (or up, depending on your form layout).
+
+```js
+var oTxtFields = $('input,textarea');
+$.each(oTxtFields, function(){
+	var label = $('label[for=' + $(this).attr('id') + ']');
+	label.addClass('overlayed');
+	if (!$(this).val() == '') {
+		label.hide();
+	}
+	$(this)
+		.focus(function(e){
+			$('label[for=' + $(e.target).attr('id') + ']').hide();
+		})
+		.blur(function(e){
+			if ($(e.target).val() == '') {
+				$('label[for=' + $(e.target).attr('id') + ']').show();
+			}
+		})
+	;
+});
+```
 
 Notice the use of the overlayed class. I could just style the labels this way by default, but the whole technique here needs javascript. As a general rule of thumb, I use the same technology to add something as I use to manipulate it. Since I will need JavaScript to manipulate the label visibility, I will use JavaScript to put it in position to begin with. I could have styled the label in a default manner (left of the input, above the input, etc) but chose not to for simplicity’s sake.
 

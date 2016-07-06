@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 
 <!-- if a page node ? page title : site title -->
-<title>{{ if .IsPage }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 <meta name="author" content="{{ .Site.Params.author }}">
 {{ with .Keywords }}<meta name="keywords" content="{{ . }}">{{ end }}
 
@@ -19,6 +19,10 @@
 <link rel="home" href="/" title="Home">
 
 <link href="/css/main.css" rel="stylesheet">
+
+{{ partial "favicon.html" . }}
+
+{{ partial "js:perf.html" . }}
 
 {{ .Hugo.Generator }}
 
