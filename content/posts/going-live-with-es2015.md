@@ -1,8 +1,7 @@
 +++
 date = "2016-01-27T22:30:35Z"
-draft = true
 title = "Going live with es2015"
-
+tags = ["talk", "JS Monthly London", "es2015", "process"]
 +++
 
 Last night, I gave a talk at [JS Monthly London](http://www.meetup.com/js-monthly-london/) on [Going live with ES2015](http://craveytrain.com/slides/live_with_es2015/). It was my first talk since moving to London in August. It was nice to dust the cobwebs off my public speaking, but I'm glad it wasn't recorded.
@@ -51,3 +50,11 @@ If we are going to use this code every day, it should be something that we are e
 
 ## Proof of concept
 So we made a decision, how do we know if it was a good one? We had to start putting it through it's paces. We created a POC that would prove if the idea could work. It had to solve those goals and nothing more. This is a hard thing to do. Again, resist the urge to figure out how it will work in your build system. Just focus on making the basic idea work first. Knowing how it will integrate in your system ultimately just isn't valuable at this juncture and what you learn in the process will help inform how to solve that problem later.
+
+## Pilot
+Now it's a matter of taking that concept you know it works and actually shipping something based on it. The most important thing here is that you ship it all the way to production. This forces you to think through a lot of the pitfalls. I suggest picking something relatively simple and isolated, so you can work out the process of shipping that new functionality without complicating it with how to integrate it into the rest of your ecosystem.
+
+## Iterate
+Here is the part where most things tend to die. You have to follow through with the rest of the delivery. However, remember to take byte size chunks and deliver them all way to production. Allowing code to stagnate between development and deployment often leads to an abortion of the whole project.
+
+These are the tactics I have honed over time to facilitate new initiatives. I hope y'all found this useful.
