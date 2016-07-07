@@ -1,5 +1,7 @@
 .PHONY: env run deploy
 
+project_name = craveytrain
+
 # need a task
 default:
 
@@ -10,6 +12,7 @@ ifeq ($(strip $(DOCKER_MACHINE_NAME)),)
 else
 	@echo "running on $(DOCKER_MACHINE_NAME)"
 endif
+export COMPOSE_PROJECT_NAME=$(project_name)
 
 # have to rm data otherwise web won't pick up the changes
 package: env
