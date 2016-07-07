@@ -22,7 +22,7 @@
 
         	<article id="latest-post">
                 {{ range first 1 .Data.Pages  }}
-                    <h3>{{ .Title }}</h3>
+                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                     {{ .Summary }}
                 {{ end }}
         	</article>
