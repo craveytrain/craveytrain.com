@@ -22,6 +22,10 @@
         font-family: var(--font-sans);
         font-size: var(--font-size-base);
         line-height: var(--line-height-base);
+
+        @nest .hasLeagueSpartan & {
+            font-family: var(--font-league-spartan);
+        }
     }
 
     & p {

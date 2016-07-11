@@ -21,6 +21,10 @@ body {
     color: var(--color-mine-shaft);
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+
+    @nest .hasLibreBaskerville & {
+        font-family: var(--font-libre-baskerville);
+    }
 }
 
 blockquote,
@@ -56,7 +60,11 @@ ul, ol {
    font-family: var(--font-sans);
    font-weight: bold;
    text-transform: uppercase;
- }
+
+   @nest .hasLeagueSpartan & {
+       font-family: var(--font-league-spartan);
+   }
+}
 
 h2 {
     font-size: var(--font-size-larger);

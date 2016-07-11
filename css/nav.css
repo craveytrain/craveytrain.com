@@ -8,6 +8,10 @@
     font-size: var(--font-size-small);
     text-transform: uppercase;
 
+    @nest .hasLeagueSpartan & {
+        font-family: var(--font-league-spartan);
+    }
+
     & h2 {
         display: none;
     }

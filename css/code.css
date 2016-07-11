@@ -3,6 +3,10 @@
 
 pre, code {
     font-family: var(--font-mono);
+
+    @nest .hasInconsolata & {
+        font-family: var(--font-inconsolata);
+    }
 }
 
 pre {

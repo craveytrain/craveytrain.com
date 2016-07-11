@@ -6,9 +6,14 @@
     --color-silver-chalice: gray(157);
 
     /* # Font families */
-    --font-serif: 'Libre Baskerville', serif;
-    --font-sans: 'League Spartan', sans-serif;
-    --font-mono: 'Inconsolata-g', monospace;
+    --font-libre-baskerville: 'Libre Baskerville', serif;
+    --font-serif: serif;
+
+    --font-league-spartan: 'League Spartan', sans-serif;
+    --font-sans: sans-serif;
+
+    --font-inconsolata: 'Inconsolata-g', monospace;
+    --font-mono: monospace;
 
     /* # Vertical rhythm */
     /* ## Font size */

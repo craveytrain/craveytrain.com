@@ -1,4 +1,7 @@
 <script type="text/javascript">
+    document.firstElementChild.classList.remove('no-js');
+    document.firstElementChild.classList.add('hasJS');
+
     window.__ct = window.__ct || {};
     window.__ct.perf = window.__ct.perf || {};
 
@@ -6,7 +9,7 @@
         var hasPerformance = !!( global.performance && global.performance.mark );
 
         function mark( label ) {
-            lobal.performance.clearMarks( label );
+            global.performance.clearMarks( label );
             global.performance.mark( label );
         }
 

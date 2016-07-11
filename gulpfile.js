@@ -15,12 +15,9 @@ gulp.task( 'clean', done => {
 } );
 
 gulp.task( 'copy', function () {
-	return gulp.src( [
-		'img/favicons/**/*',
-		'js/**/*',
-	], { base: '.' } )
-		.pipe(gulp.dest('static/'));
-});
+	return gulp.src( [ 'img/favicons/**/*' ], { base: '.' } )
+	.pipe( gulp.dest( 'static/' ) );
+} );
 
 gulp.task( 'svg', function () {
 	return gulp
@@ -59,4 +56,27 @@ gulp.task( 'css', () => {
 		.pipe( gulp.dest( './static/css' ) );
 } );
 
-gulp.task( 'build', [ 'css', 'svg', 'copy' ] );
+gulp.task( 'js', () => {
+	const bundler = require( 'browserify' )( {
+		entries: 'js/main.js',
+		debug: true,
+	} );
+
+	bundler.transform( require( 'babelify' ) );
+
+	bundler.bundle()
+		.on( 'error', function ( err ) {
+			/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
+			console.error( err );
+		} )
+		.pipe( require( 'vinyl-source-stream' )( 'main.js' ) )
+		.pipe( require( 'vinyl-buffer' )() )
+		.pipe( sourcemaps.init( {
+			loadMaps: true,
+		} ) )
+		.pipe( require( 'gulp-uglify' )() )
+		.pipe( sourcemaps.write( './' ) )
+		.pipe( gulp.dest( './static/js' ) );
+} );
+
+gulp.task( 'build', [ 'css', 'js', 'svg', 'copy' ] );

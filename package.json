@@ -8,7 +8,7 @@
     "svg": "mkdir -p static/img && svgstore 'img/*.svg' static/img/sprite.svg",
     "prebuild": "npm run clean",
     "build": "gulp build && hugo",
-    "watch": "watch 'npm run build' css img content layouts",
+    "watch": "watch 'npm run build' content css img js layouts",
     "server": "browser-sync start --server 'public' --files 'public/css/*.css'",
     "prestart": "npm run build",
     "start": "run-p watch server"
@@ -28,23 +28,42 @@
   },
   "homepage": "https://github.com/craveytrain/craveytrain.com#readme",
   "dependencies": {
-    "prismjs": "^1.5.1"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.13.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "browserify-shim": "^3.8.12",
     "cssnano": "^3.7.1",
-    "del": "^2.2.1",
+    "fontfaceobserver": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-postcss": "^6.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-svgmin": "^1.2.2",
     "gulp-svgstore": "^6.0.0",
-    "npm-run-all": "^2.3.0",
+    "gulp-uglify": "^1.5.4",
     "postcss": "^5.0.21",
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.1.2",
     "postcss-inline-svg": "^2.0.1",
     "postcss-rgba-hex": "^0.3.5",
+    "prismjs": "^1.5.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
+    "eslint": "^3.0.1",
+    "npm-run-all": "^2.3.0",
     "watch": "^0.19.1"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "__ct": "global:__ct"
   }
 }
