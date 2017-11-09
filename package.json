@@ -9,7 +9,9 @@
     "build": "gulp build",
     "lint": "eslint **/*.js",
     "pretest": "npm run lint",
-    "test": "tape tests/**/*.js | tap-summary",
+    "test": "yarn test:base | tap-summary",
+    "test:base" : "tape tests/**/*.js",
+    "test:ci": "yarn test:base | tap-xunit",
     "serve": "browser-sync start --server public --files public",
     "prestart": "npm run build",
     "start": "npm run serve"
@@ -53,6 +55,7 @@
     "eslint-plugin-markdown": "^1.0.0-beta.4",
     "rimraf": "^2.6.1",
     "tap-summary": "^4.0.0",
+    "tap-xunit": "^1.7.0",
     "tape": "^4.6.3"
   }
 }

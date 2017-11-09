@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: yarn install
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+  test:
+    docker:
+      - image: circleci/node:8.9.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Mkdir
+          command: mkdir -p ~/reports
+          when: always
+      - run:
+          name: Lint
+          command: yarn lint --format junit --output-file ~/reports/eslint-results.xml
+      - run:
+          name: Test
+          command: yarn test:ci > ~/reports/test-results.xml
+      - store_test_results:
+          path: ~/reports
+      - store_artifacts:
+          path: ~/reports
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
