@@ -7,9 +7,7 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run:
-          name: yarn install
-          command: yarn install
+      - run: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
@@ -21,10 +19,7 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run:
-          name: Mkdir
-          command: mkdir -p ~/reports
-          when: always
+      - run: mkdir -p ~/reports
       - run:
           name: Lint
           command: yarn lint --format junit --output-file ~/reports/eslint-results.xml
@@ -37,6 +32,21 @@ jobs:
           path: ~/reports
       - store_artifacts:
           path: ~/reports
+  deploy:
+    docker:
+      - image: circleci/node:8.9.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run: yarn build
+      - setup_remote_docker
+      - run:
+          name: Build and Push Docker Image
+          command: |
+            make build
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            make deploy
 workflows:
   version: 2
   test:
@@ -45,3 +55,17 @@ workflows:
       - test:
           requires:
             - build
+          filters:
+            branches:
+              ignore:
+                - master
+  deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
