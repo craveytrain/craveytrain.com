@@ -2,8 +2,10 @@ const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const render = require('./lib/render');
 const rev = require('gulp-rev');
+const browserSync = require('browser-sync').create();
 
 const dest = 'public';
+const ENV = process.env.NODE_ENV || 'development';
 
 const getPages = (glob, opts) => gulp.src(glob, opts)
   .pipe(require('gulp-gray-matter')())
@@ -77,10 +79,19 @@ gulp.task('css', () => gulp.src(
     require('cssnano')({autoprefixer: false})
   ]))
   .pipe(rev())
+  .pipe(require('through2').obj((file, enc, cb) => {
+    if (ENV !== 'production') {
+      file.path = file.revOrigPath;
+    }
+
+    // send it back to stream
+    cb(null, file);
+  }))
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(`${dest}/css`))
   .pipe(rev.manifest())
   .pipe(gulp.dest(dest))
+  .pipe(browserSync.stream())
 );
 
 gulp.task('statics', () => gulp.src(
@@ -104,4 +115,22 @@ gulp.task('build', [
   'generate:feed'
 ]);
 
-gulp.task('default', ['build']);
+gulp.task('build-watch', ['build'], done => {
+  browserSync.reload();
+  done();
+});
+
+gulp.task('serve', ['build'], () => {
+  browserSync.init({
+    server: './public'
+  });
+
+  gulp.watch('css/*.css', ['css']);
+  gulp.watch([
+    'content/**/*.md',
+    'lib/**/*.js',
+    'templates/**/*.pug'
+  ], ['build-watch']);
+});
+
+gulp.task('default', ['serve']);
