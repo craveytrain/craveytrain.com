@@ -1,5 +1,10 @@
+imageName="craveytrain/craveytrain.com"
+
 build:
-	docker build -t craveytrain/craveytrain.com .
+	docker build -t $(imageName) .
+
+run: build
+	docker run -p 8080:80 $(imageName)
 
 deploy:
-	docker push craveytrain/craveytrain.com
+	docker push $(imageName)
