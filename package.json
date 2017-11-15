@@ -6,13 +6,11 @@
   "scripts": {
     "clean": "rimraf public",
     "prebuild": "npm run clean",
-    "build": "gulp build",
+    "build": "NODE_ENV=production gulp build",
     "lint": "eslint **/*.js",
     "pretest": "npm run lint",
     "test": "tape tests/**/*.js | tap-summary",
-    "serve": "browser-sync start --server public --files public",
-    "prestart": "npm run build",
-    "start": "npm run serve"
+    "start": "gulp serve"
   },
   "repository": {
     "type": "git",
