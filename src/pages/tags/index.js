@@ -6,13 +6,10 @@ import Link from 'gatsby-link';
 const TagsPage = ({
   data: {
     allMarkdownRemark: { group },
-    site: {
-      siteMetadata: { title },
-    },
   },
 }) => (
   <div>
-    <Helmet title={title} />
+    <Helmet title="Tags" />
     <div>
       <h1>Tags</h1>
       <ul>

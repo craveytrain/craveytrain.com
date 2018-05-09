@@ -1,5 +1,6 @@
 import React from 'react';
 import PostLink from '../../components/post-link';
+import Helmet from 'react-helmet';
 
 const IndexPage = ({
   data: {
@@ -12,6 +13,7 @@ const IndexPage = ({
 
   return (
     <div>
+      <Helmet title="Posts" />
       <h1>Posts</h1>
       <ol>{Posts}</ol>
     </div>
