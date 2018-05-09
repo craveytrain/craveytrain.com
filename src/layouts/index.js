@@ -14,6 +14,7 @@ const Layout = ({ children, data }) => (
          lang: 'en-us',
          dir: 'ltr'
       }}
+      defaultTitle={data.site.siteMetadata.title}
       titleTemplate={`%s | ${data.site.siteMetadata.title}`}
       meta={[
         { name: 'description', content: data.site.siteMetadata.description },

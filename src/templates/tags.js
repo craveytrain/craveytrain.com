@@ -3,6 +3,7 @@ import React from 'react';
 // Components
 import Link from 'gatsby-link';
 import PostLink from '../components/post-link';
+import Helmet from 'react-helmet';
 
 const Tags = ({ pathContext, data }) => {
   const { tag } = pathContext;
@@ -10,9 +11,11 @@ const Tags = ({ pathContext, data }) => {
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
   } tagged with "${tag}"`;
+  const tagTitle = `${tag} posts`;
 
   return (
     <div>
+      <Helmet title={tagTitle} />
       <h1>{tagHeader}</h1>
       <ul>
         {edges.map(({ node }) => {
