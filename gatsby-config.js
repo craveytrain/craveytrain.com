@@ -74,16 +74,17 @@ module.exports = {
       }
     },
     {
-        resolve: `gatsby-plugin-manifest`,
-        options: {
-          name: 'Craveytrain',
-          short_name: 'Craveytrain',
-          start_url: '/',
-          background_color: '#ffffff',
-          theme_color: '#000000',
-          display: 'minimal-ui',
-          icon: 'img/logo.svg', // This path is relative to the root of the site.
-        },
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Craveytrain',
+        short_name: 'Craveytrain',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#000000',
+        display: 'minimal-ui',
+        icon: 'img/logo.svg', // This path is relative to the root of the site.
       },
+    },
+    'gatsby-plugin-offline'
   ]
 };
