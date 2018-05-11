@@ -20,6 +20,7 @@ module.exports = {
       options: {
         plugins: [
           'gatsby-remark-smartypants',
+          'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-prismjs',
             options: {
