@@ -85,6 +85,18 @@ module.exports = {
         icon: 'img/logo.svg', // This path is relative to the root of the site.
       },
     },
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-3516156-4',
+        // Puts tracking script in the head instead of the body
+        head: false,
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: true
+      },
+    }
   ]
 };
