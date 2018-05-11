@@ -7,6 +7,24 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-next',
+    {
+      resolve: 'gatsby-plugin-favicon',
+      options: {
+        logo: './img/favicon.png',
+        injectHTML: true,
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          twitter: true,
+          yandex: true,
+          windows: true
+        }
+      }
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
     {
