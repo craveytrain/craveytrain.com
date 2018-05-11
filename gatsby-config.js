@@ -15,12 +15,12 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           'gatsby-remark-smartypants',
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: 'gatsby-remark-prismjs',
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;
               // defaults to 'language-' (eg <pre class="language-js">).
@@ -48,7 +48,7 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: 'gatsby-plugin-feed',
       options: {
         feeds: [{
           query: `
@@ -77,7 +77,7 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Craveytrain',
         short_name: 'Craveytrain',
@@ -90,7 +90,7 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-3516156-4',
         // Puts tracking script in the head instead of the body
@@ -100,6 +100,7 @@ module.exports = {
         // Setting this parameter is also optional
         respectDNT: true
       },
-    }
+    },
+    'gatsby-plugin-netlify' // make sure to put last in the array
   ]
 };
