@@ -1,8 +1,7 @@
 import React from 'react';
 
-const IndexPage = ({data: { site, about, contact}}) => (
+const IndexPage = ({data: { about, contact}}) => (
   <div>
-    <h1>{site.siteMetadata.title}</h1>
     <article id="about">
       <h2>{about.frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: about.html }} />
