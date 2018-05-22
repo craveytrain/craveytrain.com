@@ -1,24 +1,9 @@
 import React from 'react';
+import styles from './nav.module.scss';
 import Link from 'gatsby-link';
+import Logo from '../../img/logo.svg';
+import SearchIcon from '../../img/search.svg';
 
-<<<<<<< Updated upstream
-const Nav = () => (
-  <nav className="page-nav" role="navigation">
-    <ul>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/posts">Posts</Link></li>
-      <li><Link to="/#about">About</Link></li>
-      <li><Link to="/#contact">Contact</Link></li>
-      <li className="nav-search">
-        <form id="search" method="get" action="http://google.com/search" role="search">
-          <input type="hidden" name="sitesearch" value="http://craveytrain.com" />
-          <input id="q" type="search" name="q" placeholder="search" />
-        </form>
-      </li>
-    </ul>
-  </nav>
-);
-=======
 const Nav = ({title}) => {
   const navItems = [
     {
@@ -39,7 +24,8 @@ const Nav = ({title}) => {
       <ul className={styles.navList}>
         <li className={styles.navListItem}>
           <Link to="/" className={styles.homeNavLink}>
-            <Logo className={styles.logo} />{title}
+            <Logo className={styles.logo} />
+            <span className={styles.siteTitle}>{title}</span>
           </Link>
         </li>
         {navItems.map(navItem => <li key={navItem.url} className={styles.navListItem}>
@@ -48,18 +34,13 @@ const Nav = ({title}) => {
           </Link>
         </li>)}
         <li className={styles.navListItem}>
-          <a href="#search-box" className={styles.navLink}>
+          <a className={styles.navLink} href="https://www.google.com/search?sitesearch=craveytrain.com">
             <SearchIcon className={styles.searchIcon} />
           </a>
-          <form className={styles.searchBox} id="search-box" method="get" action="http://google.com/search" role="search">
-            <input type="hidden" name="sitesearch" value="http://craveytrain.com" />
-            <input id="q" type="search" name="q" placeholder="search" />
-          </form>
         </li>
       </ul>
     </nav>
   );
 };
->>>>>>> Stashed changes
 
 export default Nav;

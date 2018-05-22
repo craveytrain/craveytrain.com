@@ -29,7 +29,7 @@ const Layout = ({ children, data }) => (
     <section className="main" role="main">
       {children()}
     </section>
-    <Nav />
+    <Nav title={data.site.siteMetadata.title} />
     <Footer />
   </div>
 );

@@ -8,6 +8,19 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-next',
     {
+      resolve: `gatsby-plugin-postcss-sass`,
+      options: {
+        // postCssPlugins: [somePostCssPlugin()],
+        precision: 8 // SASS default: 5
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        include: /img/
+      }
+    },
+    {
       resolve: 'gatsby-plugin-favicon',
       options: {
         logo: './img/favicon.png',
