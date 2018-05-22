@@ -1,0 +1,69 @@
+.nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  background: black;
+  color: white;
+  text-transform: lowercase;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 0;
+}
+
+.navListItem {
+  flex: 1 1 auto;
+  margin: 0;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.homeNavLink {
+  @extend .navLink;
+}
+
+.logo {
+  height: 1.78rem;
+  width: 2rem;
+  fill: white;
+}
+
+.siteTitle {
+  @media (min-width: 425px) {
+    display: initial;
+  }
+
+  display: none;
+}
+
+.searchIcon {
+  fill: white;
+  height: 1rem;
+
+  .navLink & {
+    margin: 0.39rem 0; /* half the line height */
+  }
+}

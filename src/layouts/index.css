@@ -1,3 +1,7 @@
 html {
   font-family: system-ui, sans-serif;
 }
+
+.main {
+  padding: 0 1rem;
+}
