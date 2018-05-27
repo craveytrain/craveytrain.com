@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './nav.module.scss';
+import styles from './nav.module.css';
 import Link from 'gatsby-link';
 import Logo from '../../img/logo.svg';
 import SearchIcon from '../../img/search.svg';
@@ -23,7 +23,7 @@ const Nav = ({title}) => {
     <nav className={styles.nav}>
       <ul className={styles.navList}>
         <li className={styles.navListItem}>
-          <Link to="/" className={styles.homeNavLink}>
+          <Link to="/" className={styles.navLink}>
             <Logo className={styles.logo} />
             <span className={styles.siteTitle}>{title}</span>
           </Link>
