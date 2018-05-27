@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './index.module.css';
 
 const IndexPage = ({data: { about, contact}}) => (
   <div>
@@ -6,7 +7,7 @@ const IndexPage = ({data: { about, contact}}) => (
       <h2>{about.frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: about.html }} />
     </article>
-    <article id="contact">
+    <article className={styles.contact} id="contact">
       <h2>{contact.frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: contact.html }} />
     </article>

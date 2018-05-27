@@ -1,7 +1,19 @@
-html {
-  font-family: system-ui, sans-serif;
+@import "base.css";
+
+:root {
+  --text-color: gray(20%);
+  --bg-color: white;
+  --heading-color: gray(20%);
+  --link-color: black;
+  --link-hover-color: gray(20%);
+  --link-active-color: gray(40%);
 }
 
 .main {
-  padding: 0 1rem;
+  padding: 4rem 1rem 0;
+  margin: auto;
+
+  @media (min-width: 66rem) {
+    width: 66rem;
+  }
 }

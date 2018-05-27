@@ -1,0 +1,82 @@
+html {
+  background: var(--bg-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0 0 1.5rem 0;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+h2 {
+  font-size: 1.51572rem;
+  line-height: 2.25rem;
+}
+
+h3 {
+  font-size: 1.31951rem;
+  line-height: 2.25rem;
+}
+
+h4 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+h5 {
+  font-size: 0.87055rem;
+  line-height: 1.5rem;
+}
+
+h6 {
+  font-size: 0.81225rem;
+  line-height: 1.5rem;
+}
+
+p,
+ul,
+ol,
+dl {
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+}
+
+a {
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+
+  &:active {
+    color: var(--link-active-color);
+  }
+}

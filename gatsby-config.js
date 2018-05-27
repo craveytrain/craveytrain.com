@@ -8,13 +8,6 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-next',
     {
-      resolve: `gatsby-plugin-postcss-sass`,
-      options: {
-        // postCssPlugins: [somePostCssPlugin()],
-        precision: 8 // SASS default: 5
-      }
-    },
-    {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         include: /img/
@@ -40,12 +33,6 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'src/utils/typography',
-      },
-    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
