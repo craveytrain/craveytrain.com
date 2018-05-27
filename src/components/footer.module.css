@@ -1,6 +1,11 @@
+:root {
+  --footer-border-color: gray(20%);
+}
+
 .footer {
-  padding: 0 1rem;
+  padding: 1rem;
   margin: auto;
+  border-top: 1px solid var(--footer-border-color);
 
   @media (min-width: 66rem) {
     width: 66rem;
