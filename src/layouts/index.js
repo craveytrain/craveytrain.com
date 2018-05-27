@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import Footer from '../components/footer';
 import Nav from '../components/nav';
 import './index.css';
-import 'prismjs/themes/prism-solarizedlight.css';
+import 'prismjs/themes/prism-okaidia.css';
 
 const Layout = ({ children, data }) => (
   <div>
