@@ -1,14 +1,13 @@
 :root {
-  --nav-bg-color: black;
+  --nav-bg-color: #11040e;
   --nav-bg-hover-color: gray(20%);
   --nav-bg-active-color: gray(40%);
   --nav-text-color: white;
+  --hero-bg-color: #11040e;
+  --hero-text-color: white;
 }
 
 .nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
   text-transform: lowercase;
   background: var(--nav-bg-color);
   color: var(--nav-text-color);
@@ -57,14 +56,36 @@
 }
 
 .siteTitle {
+  display: none;
+
   @media (min-width: 425px) {
     display: initial;
   }
-
-  display: none;
 }
 
 .searchIcon {
   height: 1rem;
   margin: 4px 0;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 85vw;
+  background: var(--hero-bg-color) url("../../img/photo.png") no-repeat;
+  background-size: contain;
+  background-position: right -322% center;
+  color: var(--hero-text-color);
+
+  @media (min-width: 400px) {
+    background-position: right -135px center;
+    height: 400px;
+  }
+}
+
+.heroLogo {
+  color: var(--hero-text-color);
+  width: 50%;
 }
