@@ -1,8 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import Footer from '../components/footer';
-import Nav from '../components/nav';
+import Footer from 'components/footer';
+import Nav from 'components/nav';
 import './index.css';
 import 'prismjs/themes/prism-okaidia.css';
 
