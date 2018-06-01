@@ -26,7 +26,7 @@ const Layout = ({ children, data, location }) => (
       ]}
     >
     </Helmet>
-    <Nav title={data.site.siteMetadata.title} location={location} />
+    <Nav title={data.site.siteMetadata.title} isHome={location.pathname === '/'} />
     <section className="main" role="main">
       {children()}
     </section>

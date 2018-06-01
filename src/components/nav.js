@@ -5,7 +5,7 @@ import Logo from 'img/logo.svg';
 import SearchIcon from 'img/search.svg';
 import LogoLong from 'img/logo-long.svg';
 
-const Nav = ({title, location}) => {
+const Nav = ({title, isHome}) => {
   const navItems = [
     {
       name: 'Posts',
@@ -23,7 +23,7 @@ const Nav = ({title, location}) => {
 
   return (
     <div>
-      {location.pathname === '/' &&
+      {isHome &&
         <div className={styles.hero}>
           <h1 className={styles.heroLogo}>
             <LogoLong />
@@ -32,7 +32,7 @@ const Nav = ({title, location}) => {
       }
       <nav className={styles.nav}>
         <ul className={styles.navList}>
-          {location.pathname !== '/' &&
+          {!isHome &&
             <li className={styles.navListItem}>
               <Link to="/" className={styles.navLink}>
                 <Logo className={styles.logo} />
