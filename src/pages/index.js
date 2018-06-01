@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './index.module.css';
+import Logo from '../../img/logo-long.svg';
 
-const IndexPage = ({data: { about, contact}}) => (
+const IndexPage = ({data: { about, contact }}) => (
   <div>
     <article id="about">
       <h2>{about.frontmatter.title}</h2>

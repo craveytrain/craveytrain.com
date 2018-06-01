@@ -6,7 +6,7 @@ import Nav from '../components/nav';
 import './index.css';
 import 'prismjs/themes/prism-okaidia.css';
 
-const Layout = ({ children, data }) => (
+const Layout = ({ children, data, location }) => (
   <div>
     <Helmet
       htmlAttributes={{
@@ -26,10 +26,10 @@ const Layout = ({ children, data }) => (
       ]}
     >
     </Helmet>
+    <Nav title={data.site.siteMetadata.title} location={location} />
     <section className="main" role="main">
       {children()}
     </section>
-    <Nav title={data.site.siteMetadata.title} />
     <Footer />
   </div>
 );
