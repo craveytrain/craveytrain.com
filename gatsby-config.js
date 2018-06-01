@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-next',
+    'gatsby-plugin-resolve-src',
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -16,7 +17,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-favicon',
       options: {
-        logo: './img/favicon.png',
+        logo: './src/img/favicon.png',
         injectHTML: true,
         icons: {
           android: true,

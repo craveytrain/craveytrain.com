@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './index.module.css';
-import Logo from '../../img/logo-long.svg';
 
 const IndexPage = ({data: { about, contact }}) => (
   <div>

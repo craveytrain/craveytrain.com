@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './nav.module.css';
 import Link from 'gatsby-link';
-import Logo from '../../img/logo.svg';
-import SearchIcon from '../../img/search.svg';
-import LogoLong from '../../img/logo-long.svg';
+import Logo from 'img/logo.svg';
+import SearchIcon from 'img/search.svg';
+import LogoLong from 'img/logo-long.svg';
 
 const Nav = ({title, location}) => {
   const navItems = [

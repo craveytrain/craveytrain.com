@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import Link from 'gatsby-link';
-import PostLink from '../components/post-link';
+import PostLink from 'components/post-link';
 import Helmet from 'react-helmet';
 
 const Tags = ({ pathContext, data }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PostLink from '../../components/post-link';
+import PostLink from 'components/post-link';
 import Helmet from 'react-helmet';
 
 const IndexPage = ({
