@@ -1,7 +1,6 @@
 import React from 'react';
-
-// Components
-import Link from 'gatsby-link';
+import { graphql, Link } from 'gatsby'
+import Layout from 'components/layout';
 import PostLink from 'components/post-link';
 import Helmet from 'react-helmet';
 
@@ -14,7 +13,7 @@ const Tags = ({ pathContext, data }) => {
   const tagTitle = `${tag} posts`;
 
   return (
-    <div>
+    <Layout>
       <Helmet title={tagTitle} />
       <h1>{tagHeader}</h1>
       <ul>
@@ -30,7 +29,7 @@ const Tags = ({ pathContext, data }) => {
               We'll come back to it!
             */}
       <Link to="/tags">All tags</Link>
-    </div>
+    </Layout>
   );
 };
 

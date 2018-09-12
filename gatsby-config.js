@@ -1,3 +1,5 @@
+const { resolve } = require('path')
+
 module.exports = {
   siteMetadata: {
     title: 'Craveytrain',
@@ -6,8 +8,13 @@ module.exports = {
     siteUrl: 'https://craveytrain.com'
   },
   plugins: [
-    'gatsby-plugin-react-next',
     'gatsby-plugin-resolve-src',
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        includePaths: [resolve(__dirname, './node_modules')],
+      },
+    },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {

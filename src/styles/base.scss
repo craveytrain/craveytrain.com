@@ -1,10 +1,12 @@
+@import 'vars';
+
 :root {
-  --text-color: gray(20%);
-  --bg-color: white;
-  --heading-color: gray(20%);
-  --link-color: #11040e;
-  --link-hover-color: gray(20%);
-  --link-active-color: gray(40%);
+  --text-color: #{$text-color};
+  --bg-color: #{$bg-color};
+  --heading-color: #{$heading-color};
+  --link-color: #{$link-color};
+  --link-hover-color: #{$link-hover-color};
+  --link-active-color: #{$link-active-color};
 }
 
 html {

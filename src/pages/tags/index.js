@@ -1,14 +1,15 @@
 import React from 'react';
+import { graphql, Link } from 'gatsby'
+import Layout from 'components/layout'
 import kebabCase from 'lodash.kebabcase';
 import Helmet from 'react-helmet';
-import Link from 'gatsby-link';
 
 const TagsPage = ({
   data: {
     allMarkdownRemark: { group },
   },
 }) => (
-  <div>
+  <Layout>
     <Helmet title="Tags" />
     <div>
       <h1>Tags</h1>
@@ -22,7 +23,7 @@ const TagsPage = ({
         ))}
       </ul>
     </div>
-  </div>
+  </Layout>
 );
 
 export default TagsPage;

@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from './index.module.css';
+import { graphql } from 'gatsby'
+import Layout from 'components/layout'
+import styles from 'styles/index.module.scss'
 
 const IndexPage = ({data: { about, contact }}) => (
-  <div>
+  <Layout isHome={true}>
     <article id="about">
       <h2>{about.frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: about.html }} />
@@ -11,7 +13,7 @@ const IndexPage = ({data: { about, contact }}) => (
       <h2>{contact.frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: contact.html }} />
     </article>
-  </div>
+  </Layout>
 );
 
 export default IndexPage;

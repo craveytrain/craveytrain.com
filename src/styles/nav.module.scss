@@ -1,7 +1,9 @@
+@import 'funcs';
+
 :root {
   --nav-bg-color: #11040e;
-  --nav-bg-hover-color: gray(20%);
-  --nav-bg-active-color: gray(40%);
+  --nav-bg-hover-color: #{gray(20%)};
+  --nav-bg-active-color: #{gray(40%)};
   --nav-text-color: white;
   --hero-bg-color: #11040e;
   --hero-text-color: white;
@@ -13,7 +15,7 @@
   color: var(--nav-text-color);
 }
 
-.navList {
+.nav-list {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -26,11 +28,11 @@
   }
 }
 
-.navListItem {
+.nav-list-item {
   flex: 1 1 auto;
 }
 
-.navLink {
+.nav-link {
   display: flex;
   padding: 0.75rem;
   justify-content: center;
@@ -55,7 +57,7 @@
   width: 2rem;
 }
 
-.siteTitle {
+.site-title {
   display: none;
 
   @media (min-width: 425px) {
@@ -85,7 +87,7 @@
   }
 }
 
-.heroLogo {
+.hero-logo {
   color: var(--hero-text-color);
   width: 50%;
 }

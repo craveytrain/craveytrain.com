@@ -1,4 +1,6 @@
 import React from 'react';
+import { graphql } from 'gatsby'
+import Layout from 'components/layout'
 import PostLink from 'components/post-link';
 import Helmet from 'react-helmet';
 
@@ -12,11 +14,11 @@ const IndexPage = ({
     .map(edge => <li key={edge.node.id}><PostLink post={edge.node} /></li>);
 
   return (
-    <div>
+    <Layout>
       <Helmet title="Posts" />
       <h1>Posts</h1>
       <ol>{Posts}</ol>
-    </div>
+    </Layout>
   );
 };
 

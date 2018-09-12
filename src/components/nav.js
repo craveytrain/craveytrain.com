@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './nav.module.css';
+import styles from 'styles/nav.module.scss';
 import Link from 'gatsby-link';
 import Logo from 'img/logo.svg';
 import SearchIcon from 'img/search.svg';

@@ -1,5 +1,7 @@
+@import 'funcs';
+
 :root {
-  --footer-border-color: gray(20%);
+  --footer-border-color: #{gray(20%)};
 }
 
 .footer {
