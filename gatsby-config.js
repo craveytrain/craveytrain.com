@@ -14,24 +14,6 @@ module.exports = {
         include: /img/
       }
     },
-    {
-      resolve: 'gatsby-plugin-favicon',
-      options: {
-        logo: './src/img/favicon.png',
-        injectHTML: true,
-        icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
-          coast: true,
-          favicons: true,
-          firefox: true,
-          twitter: true,
-          yandex: true,
-          windows: true
-        }
-      }
-    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
     {
