@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './footer.module.css';
+import styles from 'styles/footer.module.scss';
 import Link from 'gatsby-link';
 
 const Footer = () => (
