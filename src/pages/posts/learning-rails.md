@@ -2,8 +2,9 @@
 title: Learning rails
 date: 2010-12-30
 tags:
-- psa
+  - psa
 ---
+
 So, I've been doing this Rails tutorial off and on for the last month or so, time permitting. People ask me "Why are you learning Rails?". I tell them it's an easy way for me to get introduced to Ruby. I'm not a proper developer by training. I don't think in the same terms most developers do. I can't just sit down, learn a new syntax and then wield the awesome powers of the new language. I have to relate it to something I know. I know web apps. So Rails teaches me some of the Ruby basics while letting me relate everything back to something I feel comfortable with. Yes, I know there are differing opinions on Rails and there is a bunch of stuff it adds to Ruby that isn't really Ruby itself, but that's ok. It's just a starting point.
 
 I usually then get asked "Why Ruby?". Good question. Cause Java pisses me off, the community around C#/.Net is frustrating to me and Objective C is not widely used enough. Ignoring a lot of other cool technologies out there (such as Erlang) that I have on my list to learn as I get a good foundation, the big one people ask me about is Python. I have a love/hate relationship with Python. I won't get into the nitty gritty details, cause honestly, I don't have the chops. Let's just say there are many things about Python I really like and a few I don't. Ruby is intriguing to me. It's shiny and has huge community support.

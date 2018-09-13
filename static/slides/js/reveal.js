@@ -700,12 +700,12 @@ var Reveal = (function () {
 
       // Slide width may be a percentage of available width
       if (typeof slideWidth === 'string' && /%$/.test(slideWidth)) {
-        slideWidth = parseInt(slideWidth, 10) / 100 * availableWidth
+        slideWidth = (parseInt(slideWidth, 10) / 100) * availableWidth
       }
 
       // Slide height may be a percentage of available height
       if (typeof slideHeight === 'string' && /%$/.test(slideHeight)) {
-        slideHeight = parseInt(slideHeight, 10) / 100 * availableHeight
+        slideHeight = (parseInt(slideHeight, 10) / 100) * availableHeight
       }
 
       dom.slides.style.width = slideWidth + 'px'
@@ -1326,7 +1326,7 @@ var Reveal = (function () {
       }
 
       dom.progressbar.style.width =
-        pastCount / (totalCount - 1) * window.innerWidth + 'px'
+        (pastCount / (totalCount - 1)) * window.innerWidth + 'px'
     }
   }
 
@@ -1790,7 +1790,9 @@ var Reveal = (function () {
       case 32:
         isOverview()
           ? deactivateOverview()
-          : event.shiftKey ? navigatePrev() : navigateNext()
+          : event.shiftKey
+            ? navigatePrev()
+            : navigateNext()
         break
       // return
       case 13:
@@ -1990,7 +1992,7 @@ var Reveal = (function () {
       document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)
     ).length
     var slideIndex = Math.floor(
-      event.clientX / dom.wrapper.offsetWidth * slidesTotal
+      (event.clientX / dom.wrapper.offsetWidth) * slidesTotal
     )
 
     slide(slideIndex)

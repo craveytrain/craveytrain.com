@@ -2,10 +2,11 @@
 title: Prototype methods
 date: 2010-12-03
 tags:
-- glgui
-- javascript
-- prototype
+  - glgui
+  - javascript
+  - prototype
 ---
+
 When I mentioned the [GLGUI Toolbox](http://github.com/glgui/toolbox) repo I failed to mention some of the content already in it. I'm gonna give a quick rundown of the two prototype methods I contributed.
 
 ## Date.toGenString

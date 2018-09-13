@@ -110,9 +110,15 @@
     function i () {
       return e.length && r.length
         ? e[0].offset != r[0].offset
-          ? e[0].offset < r[0].offset ? e : r
-          : r[0].event == 'start' ? e : r
-        : e.length ? e : r
+          ? e[0].offset < r[0].offset
+            ? e
+            : r
+          : r[0].event == 'start'
+            ? e
+            : r
+        : e.length
+          ? e
+          : r
     }
     function o (e) {
       function r (e) {
@@ -267,7 +273,9 @@
       var r = e.cN ? h(e.cN, '', !0) : ''
       e.rB
         ? ((k += r), (M = ''))
-        : e.eB ? ((k += n(t) + r), (M = '')) : ((k += r), (M = t)),
+        : e.eB
+          ? ((k += n(t) + r), (M = ''))
+          : ((k += r), (M = t)),
       (L = Object.create(e, { parent: { value: L } }))
     }
     function m (e, t) {

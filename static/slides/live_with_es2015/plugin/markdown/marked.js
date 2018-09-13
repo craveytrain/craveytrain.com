@@ -248,7 +248,9 @@
             ? 'right'
             : /^ *:-+: *$/.test(h.align[u])
               ? 'center'
-              : /^ *:-+ *$/.test(h.align[u]) ? 'left' : null
+              : /^ *:-+ *$/.test(h.align[u])
+                ? 'left'
+                : null
         }
         for (u = 0; u < h.cells.length; u++) {
           h.cells[u] = h.cells[u].split(/ *\| */)
@@ -335,7 +337,9 @@
             ? 'right'
             : /^ *:-+: *$/.test(h.align[u])
               ? 'center'
-              : /^ *:-+ *$/.test(h.align[u]) ? 'left' : null
+              : /^ *:-+ *$/.test(h.align[u])
+                ? 'left'
+                : null
         }
         for (u = 0; u < h.cells.length; u++) {
           h.cells[u] = h.cells[u]
