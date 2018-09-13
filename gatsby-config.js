@@ -12,8 +12,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        includePaths: [resolve(__dirname, './node_modules')],
-      },
+        includePaths: [resolve(__dirname, './node_modules')]
+      }
     },
     {
       resolve: 'gatsby-plugin-react-svg',
@@ -58,7 +58,7 @@ module.exports = {
               // setting this to '{ sh: "bash" }' will let you use
               // the language "sh" which will highlight using the
               // bash highlighter.
-              aliases: {},
+              aliases: {}
             }
           }
         ]
@@ -67,8 +67,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-feed',
       options: {
-        feeds: [{
-          query: `
+        feeds: [
+          {
+            query: `
               {
                 allMarkdownRemark(
                   limit: 1000,
@@ -89,8 +90,9 @@ module.exports = {
                 }
               }
             `,
-          output: `rss.xml`
-        }]
+            output: `rss.xml`
+          }
+        ]
       }
     },
     {
@@ -102,8 +104,8 @@ module.exports = {
         background_color: '#ffffff',
         theme_color: '#000000',
         display: 'minimal-ui',
-        icon: 'src/img/logo.svg', // This path is relative to the root of the site.
-      },
+        icon: 'src/img/logo.svg' // This path is relative to the root of the site.
+      }
     },
     'gatsby-plugin-offline',
     {
@@ -116,8 +118,8 @@ module.exports = {
         anonymize: true,
         // Setting this parameter is also optional
         respectDNT: true
-      },
+      }
     },
     'gatsby-plugin-netlify' // make sure to put last in the array
   ]
-};
+}

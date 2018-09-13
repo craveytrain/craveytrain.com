@@ -4,6 +4,8 @@
   "description": "The personal site of Mike Cravey (@craveytrain).",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf .cache public",
+    "prebuild": "npm run clean",
     "build": "gatsby build",
     "lint": "npm run eslint && npm run stylelint",
     "lint:fix": "npm run eslint:fix && npm run stylelint:fix",
@@ -11,6 +13,9 @@
     "eslint:fix": "eslint . --fix",
     "stylelint": "stylelint **/*.css",
     "stylelint:fix": "stylelint **/*.css --fix",
+    "precommit": "lint-staged",
+    "preformat": "npm run clean",
+    "format": "prettier-standard '**/*.js'",
     "start": "gatsby develop",
     "upgrade-interactive": "npm-check --update"
   },
@@ -67,7 +72,11 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-markdown": "^1.0.0-beta.4",
     "eslint-plugin-react": "^7.11.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
     "npm-check": "^5.8.0",
+    "prettier-standard": "^8.0.1",
+    "rimraf": "^2.6.2",
     "stylelint": "^9.5.0",
     "stylelint-config-standard": "^18.2.0"
   }

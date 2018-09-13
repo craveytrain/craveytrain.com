@@ -1,19 +1,22 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
-const kebabCase = require('lodash.kebabcase');
+const kebabCase = require('lodash.kebabcase')
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve('./src/templates/page.js');
-    const tagsTemplate = path.resolve('src/templates/tags.js');
+    const blogPostTemplate = path.resolve('./src/templates/page.js')
+    const tagsTemplate = path.resolve('src/templates/tags.js')
 
     resolve(
       graphql(
         `
           {
-            allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+            allMarkdownRemark(
+              sort: { fields: [frontmatter___date], order: DESC }
+              limit: 1000
+            ) {
               edges {
                 node {
                   fields {
@@ -35,7 +38,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors)
         }
 
-        const posts = result.data.allMarkdownRemark.edges;
+        const posts = result.data.allMarkdownRemark.edges
 
         // Create blog posts pages.
         posts.forEach(post => {
@@ -44,24 +47,24 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             component: blogPostTemplate,
             context: {
               slug: post.node.fields.slug
-            },
+            }
           })
         })
 
         // Tag pages
         const tags = posts.reduce((acc, post) => {
-          const postTags = post.node.frontmatter.tags;
+          const postTags = post.node.frontmatter.tags
 
           if (postTags) {
             postTags.forEach(tag => {
               if (!acc.includes(tag)) {
-                acc.push(tag);
+                acc.push(tag)
               }
-            });
+            })
           }
 
-          return acc;
-        }, []);
+          return acc
+        }, [])
 
         // Make tag pages
         tags.forEach(tag => {
@@ -71,23 +74,23 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             context: {
               tag
             }
-          });
-        });
+          })
+        })
       })
     )
   })
 }
 
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators;
+  const { createNodeField } = boundActionCreators
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    const value = createFilePath({ node, getNode })
 
     createNodeField({
       name: 'slug',
       node,
       value
-    });
+    })
   }
-};
+}
