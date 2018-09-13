@@ -1,160 +1,187 @@
-(function(d) {
-	var hasSupport = (function() {
-				if (!d['querySelectorAll']) return false; // Bool
-				if (!d['addEventListener']) return false; // Bool
-				if (!d['isSameNode']) return false; // Bool
-				if (!'onhashchange' in window) return false; // Bool
+;(function (d) {
+  var hasSupport = (function () {
+    if (!d['querySelectorAll']) return false // Bool
+    if (!d['addEventListener']) return false // Bool
+    if (!d['isSameNode']) return false // Bool
+    if (!('onhashchange' in window)) return false // Bool
 
-				return true; // Bool
-			}()),
-			currentIdx,
-			slides,
-			toc,
-			storedCodes = [],
-			states = ['past', 'current', 'future'],
-			addClass = function(/* DOM Node */el, /* String */className) {
-				var re = RegExp('\\b' + className + '\\b');
-				if (!el.className.match(re)) el.className += ((el.className.length) ? ' ' : '') + className;
-			},
-			remClass = function(/* DOM Node */el, /* String */className) {
-				var re = RegExp('\\b' + className + '\\b');
-				el.className = el.className.replace(re, '');
-			},
-			getId = function(/* Int */idx) {
-				return slides[idx - 1].id || idx;
-			},
-			getCurrent = function(/* String */hash) {
-				var current, i;
+    return true // Bool
+  })()
 
-				if (hash) {
-					current = d.getElementById(hash);
-					if (current) {
-						for (i = 0, l = slides.length; i < l; i++) {
-							if (current.isSameNode(slides[i])) return i; // Int
-						}
-					} else if (!isNaN(hash)) {
-						return parseInt(hash) - 1; // Int
-					} else {
-						return 0; // Int
-					}
-				} else {
-					return 0; // Int
-				}
-			},
-			showCurrent = function(/* Int */idx, /* Boolean */reset) {
-				var classAction = reset ? remClass : addClass,
-						lastIdx = slides.length - 1;
+  var currentIdx
 
-				classAction.call(this, slides[idx], states[1]);
+  var slides
 
-				if (idx > 0) classAction.call(this, slides[idx - 1], states[0]);
+  var toc
 
-				if (idx < lastIdx) classAction.call(this, slides[idx + 1], states[2]);
+  var storedCodes = []
 
-				console.log(reset);
-				console.log(idx);
+  var states = ['past', 'current', 'future']
 
-				classAction.call(this, toc[idx], 'current');
+  var addClass = function (/* DOM Node */ el, /* String */ className) {
+    var re = RegExp('\\b' + className + '\\b')
+    if (!el.className.match(re)) {
+      el.className += (el.className.length ? ' ' : '') + className
+    }
+  }
 
-				currentIdx = idx;
-			},
-			keyHandler = function(e) {
-				if (typeof e.target.getAttribute('contenteditable') === 'string') return;
+  var remClass = function (/* DOM Node */ el, /* String */ className) {
+    var re = RegExp('\\b' + className + '\\b')
+    el.className = el.className.replace(re, '')
+  }
 
-				switch (e.keyCode) {
-					// Enter
-					case 13:
-					// Space
-					case 32:
-					// Down Arrow
-					case 40:
-					// Right arrow
-					case 39:
-						e.preventDefault();
-						setHash(currentIdx + 2);
-						break;
-					// Backspace
-					case 8:
-					// Up Arrow
-					case 38:
-					// Left Arrow
-					case 37:
-						e.preventDefault();
-						setHash(currentIdx);
-						break;
-				}
-			},
-			setHash = function(/* Int */idx) {
-				var hash, l = slides.length;
-				if (idx > 0) {
-					if (idx < l) {
-						hash = getId(idx);
-					} else {
-						hash = getId(l);
-					}
-				} else {
-					hash = getId(1);
-				}
-				d.location.hash = hash;
+  var getId = function (/* Int */ idx) {
+    return slides[idx - 1].id || idx
+  }
 
-			},
-			hashHandler = function() {
-				var idx = getCurrent(d.location.hash.substring(1));
+  var getCurrent = function (/* String */ hash) {
+    var current, i
 
-				showCurrent(currentIdx, true);
-				showCurrent(idx);
-			},
-			prettify = function() {
-				var codes = d.getElementsByTagName('code'),
-						i = 0,
-						l = codes.length,
-						code;
+    if (hash) {
+      current = d.getElementById(hash)
+      if (current) {
+        for (i = 0, l = slides.length; i < l; i++) {
+          if (current.isSameNode(slides[i])) return i // Int
+        }
+      } else if (!isNaN(hash)) {
+        return parseInt(hash) - 1 // Int
+      } else {
+        return 0 // Int
+      }
+    } else {
+      return 0 // Int
+    }
+  }
 
-				for (; i < l; i++) {
-					code = codes[i];
-					code.className += ((code.className) ? ' ' : '') + 'prettyprint';
-					storedCodes[i] = code.innerText;
-				}
+  var showCurrent = function (/* Int */ idx, /* Boolean */ reset) {
+    var classAction = reset ? remClass : addClass
 
-				if (l) prettyPrint();
-			},
-			buildIndex = function() {
-				var index = d.createElement('ol'), str = '';
-				index.id = 'index';
+    var lastIdx = slides.length - 1
 
-				Array.prototype.forEach.apply(slides, [function(slide) {
-					var title = slide.querySelector('h1').innerText;
-					str += '<li><a href="#' + slide.id + '">' + title + '</a></li>';
-				}]);
+    classAction.call(this, slides[idx], states[1])
 
-				index.innerHTML = str;
+    if (idx > 0) classAction.call(this, slides[idx - 1], states[0])
 
-				d.body.appendChild(index);
+    if (idx < lastIdx) classAction.call(this, slides[idx + 1], states[2])
 
-				toc = index.querySelectorAll('li');
-			},
-			init = function() {
-				slides = d.querySelectorAll('.slide');
+    console.log(reset)
+    console.log(idx)
 
-				var idx = getCurrent(d.location.hash.substring(1));
+    classAction.call(this, toc[idx], 'current')
 
-				addClass(d.body, 'show');
+    currentIdx = idx
+  }
 
-				if (idx === 0) d.location.hash = getId(1);
+  var keyHandler = function (e) {
+    if (typeof e.target.getAttribute('contenteditable') === 'string') return
 
-				buildIndex();
+    switch (e.keyCode) {
+      // Enter
+      case 13:
+      // Space
+      case 32:
+      // Down Arrow
+      case 40:
+      // Right arrow
+      case 39:
+        e.preventDefault()
+        setHash(currentIdx + 2)
+        break
+      // Backspace
+      case 8:
+      // Up Arrow
+      case 38:
+      // Left Arrow
+      case 37:
+        e.preventDefault()
+        setHash(currentIdx)
+        break
+    }
+  }
 
-				showCurrent(idx);
+  var setHash = function (/* Int */ idx) {
+    var hash
 
-				d.addEventListener('keydown', keyHandler, false);
+    var l = slides.length
+    if (idx > 0) {
+      if (idx < l) {
+        hash = getId(idx)
+      } else {
+        hash = getId(l)
+      }
+    } else {
+      hash = getId(1)
+    }
+    d.location.hash = hash
+  }
 
-				window.addEventListener('hashchange', hashHandler, false);
+  var hashHandler = function () {
+    var idx = getCurrent(d.location.hash.substring(1))
 
-				prettify();
-			};
+    showCurrent(currentIdx, true)
+    showCurrent(idx)
+  }
 
-	if (hasSupport) d.addEventListener('DOMContentLoaded', init, false);
-}(document));
+  var prettify = function () {
+    var codes = d.getElementsByTagName('code')
+
+    var i = 0
+
+    var l = codes.length
+
+    var code
+
+    for (; i < l; i++) {
+      code = codes[i]
+      code.className += (code.className ? ' ' : '') + 'prettyprint'
+      storedCodes[i] = code.innerText
+    }
+
+    if (l) prettyPrint()
+  }
+
+  var buildIndex = function () {
+    var index = d.createElement('ol')
+
+    var str = ''
+    index.id = 'index'
+
+    Array.prototype.forEach.apply(slides, [
+      function (slide) {
+        var title = slide.querySelector('h1').innerText
+        str += '<li><a href="#' + slide.id + '">' + title + '</a></li>'
+      }
+    ])
+
+    index.innerHTML = str
+
+    d.body.appendChild(index)
+
+    toc = index.querySelectorAll('li')
+  }
+
+  var init = function () {
+    slides = d.querySelectorAll('.slide')
+
+    var idx = getCurrent(d.location.hash.substring(1))
+
+    addClass(d.body, 'show')
+
+    if (idx === 0) d.location.hash = getId(1)
+
+    buildIndex()
+
+    showCurrent(idx)
+
+    d.addEventListener('keydown', keyHandler, false)
+
+    window.addEventListener('hashchange', hashHandler, false)
+
+    prettify()
+  }
+
+  if (hasSupport) d.addEventListener('DOMContentLoaded', init, false)
+})(document)
 
 /* TODO:
 - swipe events/mobile support

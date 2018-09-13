@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'gatsby-link';
+import React from 'react'
+import Link from 'gatsby-link'
 
 const PostLink = ({ post }) => (
   <div>
@@ -8,17 +8,21 @@ const PostLink = ({ post }) => (
         {post.frontmatter.title}
       </Link>
     </h2>
-    <p className="timestamp">{post.frontmatter.date}</p>
+    <p className='timestamp'>{post.frontmatter.date}</p>
     {post.frontmatter.tags && (
       <footer>
-        <p className="meta">Posted in {post.frontmatter.tags.map((tag, i) =>
-          <span key={tag}>{!!i && ', '}
-            <Link to={`/tags/${tag}`}>{tag}</Link>
-          </span>
-        )}</p>
+        <p className='meta'>
+          Posted in{' '}
+          {post.frontmatter.tags.map((tag, i) => (
+            <span key={tag}>
+              {!!i && ', '}
+              <Link to={`/tags/${tag}`}>{tag}</Link>
+            </span>
+          ))}
+        </p>
       </footer>
     )}
   </div>
-);
+)
 
-export default PostLink;
+export default PostLink

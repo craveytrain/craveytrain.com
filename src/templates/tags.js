@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Layout from 'components/layout';
-import PostLink from 'components/post-link';
-import Helmet from 'react-helmet';
+import Layout from 'components/layout'
+import PostLink from 'components/post-link'
+import Helmet from 'react-helmet'
 
 const Tags = ({ pathContext, data }) => {
-  const { tag } = pathContext;
-  const { edges, totalCount } = data.allMarkdownRemark;
+  const { tag } = pathContext
+  const { edges, totalCount } = data.allMarkdownRemark
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
-  } tagged with "${tag}"`;
-  const tagTitle = `${tag} posts`;
+  } tagged with "${tag}"`
+  const tagTitle = `${tag} posts`
 
   return (
     <Layout>
@@ -18,22 +18,24 @@ const Tags = ({ pathContext, data }) => {
       <h1>{tagHeader}</h1>
       <ul>
         {edges.map(({ node }) => {
-          const { slug } = node.fields;
+          const { slug } = node.fields
           return (
-            <li key={slug}><PostLink post={node} /></li>
-          );
+            <li key={slug}>
+              <PostLink post={node} />
+            </li>
+          )
         })}
       </ul>
       {/*
               This links to a page that does not yet exist.
               We'll come back to it!
             */}
-      <Link to="/tags">All tags</Link>
+      <Link to='/tags'>All tags</Link>
     </Layout>
-  );
-};
+  )
+}
 
-export default Tags;
+export default Tags
 
 export const pageQuery = graphql`
   query TagPage($tag: String) {
@@ -57,4 +59,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
