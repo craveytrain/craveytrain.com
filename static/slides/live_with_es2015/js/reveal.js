@@ -1805,12 +1805,12 @@
 
     // Slide width may be a percentage of available width
     if (typeof size.width === 'string' && /%$/.test(size.width)) {
-      size.width = parseInt(size.width, 10) / 100 * size.presentationWidth
+      size.width = (parseInt(size.width, 10) / 100) * size.presentationWidth
     }
 
     // Slide height may be a percentage of available height
     if (typeof size.height === 'string' && /%$/.test(size.height)) {
-      size.height = parseInt(size.height, 10) / 100 * size.presentationHeight
+      size.height = (parseInt(size.height, 10) / 100) * size.presentationHeight
     }
 
     return size
@@ -3373,7 +3373,7 @@
 
         // Add fragment progress to the past slide count
         pastCount +=
-          visibleFragments.length / allFragments.length * fragmentWeight
+          (visibleFragments.length / allFragments.length) * fragmentWeight
       }
     }
 
@@ -4214,7 +4214,9 @@
         case 32:
           isOverview()
             ? deactivateOverview()
-            : event.shiftKey ? navigatePrev() : navigateNext()
+            : event.shiftKey
+              ? navigatePrev()
+              : navigateNext()
           break
         // return
         case 13:
@@ -4456,7 +4458,7 @@
       dom.wrapper.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)
     ).length
     var slideIndex = Math.floor(
-      event.clientX / dom.wrapper.offsetWidth * slidesTotal
+      (event.clientX / dom.wrapper.offsetWidth) * slidesTotal
     )
 
     if (config.rtl) {

@@ -2,13 +2,14 @@
 title: Resilient modals
 date: 2010-11-16
 tags:
-- accessibility
-- modal
-- tutorial
+  - accessibility
+  - modal
+  - tutorial
 ---
+
 Modals: Love them, hate them they are a current fad (and have been for a while). Modals are usually implemented via javascript for older browser support (though there are some cool things being done with CSS3 on the matter). I've seen it done lots of ways, but here's a simple way to make modals "work" on a browser without javascript.
 
-__Make the trigger link link to the hashtag of the id of the modal.__
+**Make the trigger link link to the hashtag of the id of the modal.**
 
 Sounds too simple, I know. And in truth, that is slightly oversimplified, but given the assumption that the contents of the modal are not dynamic but are known at initial download of the page, this is the most resilient way to make a modal.
 
@@ -50,47 +51,55 @@ Since I know that's a little light on the implementation details, lemme throw to
 
 ```css
 body {
-	margin: 0;
+  margin: 0;
 }
 
 .modal {
-	display: none;
-	position: absolute;
-	top: 0;
-	left: 50%;
-	margin-left: -100px;
-	width: 200px;
-	background: #fff;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+  background: #fff;
 }
 
 #backdrop {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: block;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, .8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
 }
 ```
 
 ```js
-$(document).ready(function () {
-	$('.trigger').click(function (e) {
-		e.preventDefault();
-		var id = $(this).attr('href').substring(1),
-				$modal = $('#' + id),
-				$backdrop = ($('#backdrop').length) ? $('#backdrop').show() : $('<div>', {id: 'backdrop'}).prependTo('body');
+$(document).ready(function() {
+  $('.trigger').click(function(e) {
+    e.preventDefault()
+    var id = $(this)
+        .attr('href')
+        .substring(1),
+      $modal = $('#' + id),
+      $backdrop = $('#backdrop').length
+        ? $('#backdrop').show()
+        : $('<div>', { id: 'backdrop' }).prependTo('body')
 
-		$modal.show()
-			.find('.close').text('close').click(function (e) {
-				e.preventDefault();
-				$('#backdrop').hide();
-				$(this).closest('.modal').hide();
-			})
-		;
-	});
-});
+    $modal
+      .show()
+      .find('.close')
+      .text('close')
+      .click(function(e) {
+        e.preventDefault()
+        $('#backdrop').hide()
+        $(this)
+          .closest('.modal')
+          .hide()
+      })
+  })
+})
 ```
 
 And before you rail on me, this is proof of concept code. This is in no way considered production ready.

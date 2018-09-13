@@ -4,9 +4,13 @@ import Layout from 'components/layout'
 import kebabCase from 'lodash.kebabcase'
 import Helmet from 'react-helmet'
 
-const TagsPage = ({ data: { allMarkdownRemark: { group } } }) => (
+const TagsPage = ({
+  data: {
+    allMarkdownRemark: { group }
+  }
+}) => (
   <Layout>
-    <Helmet title='Tags' />
+    <Helmet title="Tags" />
     <div>
       <h1>Tags</h1>
       <ul>

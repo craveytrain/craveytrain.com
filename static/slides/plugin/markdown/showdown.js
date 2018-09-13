@@ -581,7 +581,7 @@ var Showdown = {}
       (a = a.replace(/~B(.+?)~A/g, function (a, b, c) {
         var d = b
 
-        var e = 4 - d.length % 4
+        var e = 4 - (d.length % 4)
         for (var f = 0; f < e; f++) d += ' '
         return d
       })),

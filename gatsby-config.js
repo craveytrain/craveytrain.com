@@ -8,7 +8,6 @@ module.exports = {
     siteUrl: 'https://craveytrain.com'
   },
   plugins: [
-    'gatsby-plugin-resolve-src',
     {
       resolve: `gatsby-plugin-sass`,
       options: {

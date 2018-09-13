@@ -4,8 +4,8 @@ import Layout from 'components/layout'
 import PostLink from 'components/post-link'
 import Helmet from 'react-helmet'
 
-const Tags = ({ pathContext, data }) => {
-  const { tag } = pathContext
+const Tags = ({ pageContext, data }) => {
+  const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
@@ -26,11 +26,7 @@ const Tags = ({ pathContext, data }) => {
           )
         })}
       </ul>
-      {/*
-              This links to a page that does not yet exist.
-              We'll come back to it!
-            */}
-      <Link to='/tags'>All tags</Link>
+      <Link to="/tags">All tags</Link>
     </Layout>
   )
 }
