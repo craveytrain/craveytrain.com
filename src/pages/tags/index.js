@@ -1,16 +1,12 @@
-import React from 'react';
+import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Layout from 'components/layout'
-import kebabCase from 'lodash.kebabcase';
-import Helmet from 'react-helmet';
+import kebabCase from 'lodash.kebabcase'
+import Helmet from 'react-helmet'
 
-const TagsPage = ({
-  data: {
-    allMarkdownRemark: { group },
-  },
-}) => (
+const TagsPage = ({ data: { allMarkdownRemark: { group } } }) => (
   <Layout>
-    <Helmet title="Tags" />
+    <Helmet title='Tags' />
     <div>
       <h1>Tags</h1>
       <ul>
@@ -24,9 +20,9 @@ const TagsPage = ({
       </ul>
     </div>
   </Layout>
-);
+)
 
-export default TagsPage;
+export default TagsPage
 
 export const pageQuery = graphql`
   query TagsQuery {
@@ -35,13 +31,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
-      limit: 2000
-    ) {
+    allMarkdownRemark(limit: 2000) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
       }
     }
   }
-`;
+`
