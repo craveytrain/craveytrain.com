@@ -2,11 +2,12 @@
 title: Bidet
 date: 2006-12-06
 tags:
-- anecdotal
-- bidet
-- humor
-- honeymoon
+  - anecdotal
+  - bidet
+  - humor
+  - honeymoon
 ---
+
 We are back and it was a great, albeit long, trip. It was a beautiful wedding and a blissful honeymoon. However, I have tales to tell. Really, just my perspective on things. Though these aren’t in chronological order, I thought I would start with the story that has been told a couple times already so it has some form.
 
 “And here is your [bidet](http://en.wikipedia.org/wiki/Bidet)” our butler told us as he gave us a tour of our villa. I had heard of a bidet, but I had never actually seen one. See, down in Texas, we uh… just use paper. And admittedly, even in my time traveling, I have never happened across one. I knew what it was for, and honestly, I was curious. I was determined to figure it out.

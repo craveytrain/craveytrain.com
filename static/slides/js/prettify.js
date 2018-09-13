@@ -632,9 +632,13 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
       var type = c.nodeType
       wrapper =
         type === 1 // Element Node
-          ? wrapper ? element : c
+          ? wrapper
+            ? element
+            : c
           : type === 3 // Text Node
-            ? notWs.test(c.nodeValue) ? element : wrapper
+            ? notWs.test(c.nodeValue)
+              ? element
+              : wrapper
             : wrapper
     }
     return wrapper === element ? undefined : wrapper
@@ -1146,7 +1150,7 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
       // Stick a class on the LIs so that stylesheets can
       // color odd/even rows, or any other row pattern that
       // is co-prime with 10.
-      li.className = 'L' + (i + offset) % 10
+      li.className = 'L' + ((i + offset) % 10)
       if (!li.firstChild) {
         li.appendChild(document.createTextNode('\xA0'))
       }
@@ -1574,7 +1578,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
             // 1-indexed number of the first line.
             var lineNums = cs.className.match(/\blinenums\b(?::(\d+))?/)
             lineNums = lineNums
-              ? lineNums[1] && lineNums[1].length ? +lineNums[1] : true
+              ? lineNums[1] && lineNums[1].length
+                ? +lineNums[1]
+                : true
               : false
             if (lineNums) {
               numberLines(cs, lineNums)

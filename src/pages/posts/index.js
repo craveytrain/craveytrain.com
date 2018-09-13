@@ -4,7 +4,11 @@ import Layout from 'components/layout'
 import PostLink from 'components/post-link'
 import Helmet from 'react-helmet'
 
-const IndexPage = ({ data: { allMarkdownRemark: { edges } } }) => {
+const IndexPage = ({
+  data: {
+    allMarkdownRemark: { edges }
+  }
+}) => {
   const Posts = edges
     .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
     .map(edge => (
@@ -15,7 +19,7 @@ const IndexPage = ({ data: { allMarkdownRemark: { edges } } }) => {
 
   return (
     <Layout>
-      <Helmet title='Posts' />
+      <Helmet title="Posts" />
       <h1>Posts</h1>
       <ol>{Posts}</ol>
     </Layout>

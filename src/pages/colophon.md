@@ -2,9 +2,11 @@
 title: Colophon
 date: 2018-05-09
 ---
+
 While this site has cycled it's tech stack a few times, it's always been built on the hard work of the open source community. While it's entirety is available on [github](http://github.com/craveytrain/craveytrain.com), I would like to recognize the tools I am using now, as well as others I have used through the years, to build this site.
 
 ## Version 7 (current)
+
 ### 2018 - current
 
 I decided home grown static site generators are a pain, so I switched gears and went with Gatsby. This is also the first version in a while where I got out of the business of operations work for the site. I'm now using Netlify (after an aborted attempt to get it working in serverless fashion with AWS Lambdas and S3).
@@ -26,6 +28,7 @@ I decided home grown static site generators are a pain, so I switched gears and 
 - [Solarized](http://ethanschoonover.com/solarized): I use light and dark for terminal and IDE.
 
 ## Version 6 (current)
+
 ### 2016 - 2018
 
 This was a home grown version of a static site generator, because, why not? I stripped down the visual style on this version (or, more accurately, I didn't bother building it back in).
@@ -40,9 +43,10 @@ This was a home grown version of a static site generator, because, why not? I st
 - [Git](https://git-scm.com/): This tool has changed how I work and allows me to be productive no matter where I am.
 - [Docker](https://www.docker.com/): Containerization has really simplified how I deploy and portability of my site.
 - [ESLint](http://eslint.org/): Linting protects and style checking makes my code conform to standards.
-- *SVG*: From [svgo](https://github.com/svg/svgo) to [svgstore](https://github.com/w0rm/gulp-svgstore), vector graphics have really crispened up my site.
+- _SVG_: From [svgo](https://github.com/svg/svgo) to [svgstore](https://github.com/w0rm/gulp-svgstore), vector graphics have really crispened up my site.
 
 ## Version 5
+
 ### 2012 - 2016
 
 This is the current version of the site and represents a lot of the go-tos in my current toolkit. I have tried several different static site generators, starting off with [Octopress](http://octopress.org/), tried out [Github Pages](https://pages.github.com/), a bunch of aborted attempts of rolling my own, and eventually have settled on [Hugo](https://gohugo.io/). Here's my current set of tools:
@@ -62,21 +66,28 @@ This is the current version of the site and represents a lot of the go-tos in my
 - [Docker](https://www.docker.com/): Containerization has really simplified how I deploy and portability of my site.
 - [ESLint](http://eslint.org/): Linting protects and style checking makes my code conform to standards.
 - [JSBeautify](https://github.com/beautify-web/js-beautify): I like my code looking consistent.
-- *SVG*: From [svgo](https://github.com/svg/svgo) to [svgstore](https://github.com/w0rm/gulp-svgstore), vector graphics have really crispened up my site.
-
+- _SVG_: From [svgo](https://github.com/svg/svgo) to [svgstore](https://github.com/w0rm/gulp-svgstore), vector graphics have really crispened up my site.
 
 ## Version 4
+
 ### 2009 - 2012
+
 This is where this site gets a bit more relevant. I rebuilt this site several times and went from [Wordpress](https://wordpress.org/) (self hosted) -> Tumblr -> [Wordpress](https://wordpress.com/) (hosted) -> [Django](https://www.djangoproject.com/) -> [Rails](http://rubyonrails.org/) -> [Node](https://nodejs.org/en/) ([express](http://expressjs.com/)). I believed I needed a big, powerful site to host all of my dynamic content. Hindsight is truly 20/20.
 
 ## Version 3
+
 ### 2005 - 2009
+
 Aaahh, the discovery of [Wordpress](https://wordpress.org/). The main topics here were more focused on food recipes and slow pitch softball. The one post that is preserved from this era is the [Bidet](/posts/bidet) post. Still my most popular post, ever.
 
 ## Version 2
+
 ### 2003 - 2005
+
 [Movable Type](https://movabletype.org/). Aaahh... that was fun. I launched craveytrain.com in this time. I have some, terrible, terrible blog posts that are not worth preserving, hence they are not here. This was before I was fully aware how long things would be on the internet.
 
 ## Version 1
+
 ### 2001 - 2003
+
 This was just built on blogger. I recall almost nothing about this site and there is, thankfully, no content available from it. This actually predates the domain.

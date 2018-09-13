@@ -2,11 +2,12 @@
 title: New design
 date: 2010-12-13
 tags:
-- design
-- font stack
-- media queries
-- psa
+  - design
+  - font stack
+  - media queries
+  - psa
 ---
+
 Yes, it's that time of the year. Time for me to do another half assed design. This one looks particularly half baked, I know. But this one has rhyme and reason where the others were just laziness. This is still a transitional design, but instead of going naked, I'm going for a few simple design principles and then will fill in the rest as I go.
 
 ## Legibility

@@ -2,8 +2,9 @@
 title: Naked
 date: 2010-07-15
 tags:
-- psa
+  - psa
 ---
+
 You may have noticed the new digs. You may have noticed I actually posted something. You may have a noticed a terrible mental visual in your head. Yeah, sorry about that last one. I am starting my blog anew. I have ported over the last few posts that were worthwhile and am primed to get going. However, I made some changes I feel are worth sharing.
 
 I am not going to try to scope the content of this blog. That is a mistake I have made several times and it just never works out. This is going to be a blog about whatever I feel like posting about. Tech, personal, photos, videos, quotes, code, whatever. My only rule is the general rule I have about putting things in writing (only do it if you don't mind being quoted on it).

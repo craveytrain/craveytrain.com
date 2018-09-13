@@ -41,7 +41,7 @@ const Layout = ({ children, isHome }) => (
           ]}
         />
         <Nav title={data.site.siteMetadata.title} isHome={isHome} />
-        <main className='main' role='main'>
+        <main className="main" role="main">
           {children}
         </main>
         <Footer />

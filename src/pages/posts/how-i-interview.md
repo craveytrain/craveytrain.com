@@ -2,8 +2,9 @@
 title: How i interview
 date: 2012-12-16
 tags:
-- interview
+  - interview
 ---
+
 As engineers, when we are asked to interview someone our primary directive is to assess someone's technical abilities. In fact, not just a passing assessment, but an assessment with a high degree of confidence. We need to know with as much certainty as possible this person is capable of doing the job. This is a team member, someone who will be relied upon and if they can't pull their own weight it will be felt by everyone else on the team.
 
 There are many different ways people can interview and I feel like I've been through them all. I was once asked to write up a sample DNS record on a white board when interviewing for a design/front end position because I had server admin with dns and others listed as experience on my resume. Pro tip: cull your resume to be relevant to the position you are applying for. Showing breadth of experience is great but make sure it's focused to the gig.

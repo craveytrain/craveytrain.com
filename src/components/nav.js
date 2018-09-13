@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from 'styles/nav.module.scss'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import Logo from 'img/logo.svg'
 import SearchIcon from 'img/search.svg'
 import LogoLong from 'img/logo-long.svg'
+import styles from 'styles/nav.module.scss'
 
 const Nav = ({ title, isHome }) => {
   const navItems = [
@@ -22,7 +22,7 @@ const Nav = ({ title, isHome }) => {
   ]
 
   return (
-    <div>
+    <>
       {isHome && (
         <div className={styles.hero}>
           <h1 className={styles.heroLogo}>
@@ -34,7 +34,7 @@ const Nav = ({ title, isHome }) => {
         <ul className={styles.navList}>
           {!isHome && (
             <li className={styles.navListItem}>
-              <Link to='/' className={styles.navLink}>
+              <Link to="/" className={styles.navLink}>
                 <Logo className={styles.logo} />
                 <span className={styles.siteTitle}>{title}</span>
               </Link>
@@ -50,14 +50,14 @@ const Nav = ({ title, isHome }) => {
           <li className={styles.navListItem}>
             <a
               className={styles.navLink}
-              href='https://www.google.com/search?sitesearch=craveytrain.com'
+              href="https://www.google.com/search?sitesearch=craveytrain.com"
             >
               <SearchIcon className={styles.searchIcon} />
             </a>
           </li>
         </ul>
       </nav>
-    </div>
+    </>
   )
 }
 

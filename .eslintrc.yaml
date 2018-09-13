@@ -1,0 +1,10 @@
+extends:
+  - standard
+  - standard-react
+  - standard-jsx
+
+rules:
+  jsx-quotes:
+    - error
+    - prefer-double
+  react/prop-types: 0
