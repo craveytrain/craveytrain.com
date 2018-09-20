@@ -1,0 +1,19 @@
+@mixin css-vars-media-queries($map) {
+  // stash the keys
+  $keys: map-keys($map);
+
+  // cause sass has 1 based indexes
+  @for $i from 2 through length($keys) {
+    $breakpoint: nth($keys, $i);
+
+    @if map-has-key($breakpoints, $breakpoint) {
+      @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @include css-vars(map-get($map, $breakpoint));
+      }
+    }
+
+    @else {
+      @error "#{$breakpoints} has no `#{$breakpoint}` key defined";
+    }
+  }
+}

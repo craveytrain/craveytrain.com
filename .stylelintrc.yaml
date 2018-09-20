@@ -7,3 +7,12 @@ rules:
     - ignoreAtRules:
         - function
         - return
+        - extend
+        - if
+        - else
+        - error
+        - each
+        - while
+        - for
+        - include
+        - mixin
