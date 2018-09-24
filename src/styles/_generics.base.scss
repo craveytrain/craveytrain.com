@@ -1,7 +1,7 @@
 @import 'vars';
 
 html {
-  background: get(bg-color);
+  background-color: get(bg-color);
   color: get(text-color);
   font-family: system-ui, sans-serif;
   font-size: 16px;
@@ -14,8 +14,20 @@ html {
 body {
   margin: 0;
   // hack for mix-blend-mode
-  background: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(233, 168, 202, 0.1) 40%,
+    rgba(195, 224, 229, 0.1) 60%
+  );
   color: inherit;
+
+  @media (min-width: map-get($breakpoints, 'breakover')) {
+    background: linear-gradient(
+      90deg,
+      rgba(233, 168, 202, 0.1) 60%,
+      rgba(195, 224, 229, 0.1) 87%
+    );
+  }
 }
 
 %heading {

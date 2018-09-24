@@ -16,3 +16,4 @@ rules:
         - for
         - include
         - mixin
+  declaration-colon-newline-after: null
