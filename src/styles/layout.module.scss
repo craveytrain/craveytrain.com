@@ -1,0 +1,11 @@
+@import 'vars';
+
+.layout {
+  min-width: get(min-width);
+  max-width: get(max-width);
+  margin: auto;
+}
+
+.main {
+  padding: get(main-padding-vert) get(main-padding-horz) 0;
+}

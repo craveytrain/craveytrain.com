@@ -4,8 +4,9 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import Footer from 'components/footer'
 import Nav from 'components/nav'
+import styles from 'styles/layout.module.scss'
+
 import 'styles/index.scss'
-import 'prismjs/themes/prism-okaidia.css'
 
 const Layout = ({ children, isHome }) => (
   <StaticQuery
@@ -19,7 +20,7 @@ const Layout = ({ children, isHome }) => (
       }
     `}
     render={data => (
-      <>
+      <div className={styles.layout}>
         <Helmet
           htmlAttributes={{
             className: 'no-js',
@@ -41,11 +42,11 @@ const Layout = ({ children, isHome }) => (
           ]}
         />
         <Nav title={data.site.siteMetadata.title} isHome={isHome} />
-        <main className="main" role="main">
+        <main className={styles.main} role="main">
           {children}
         </main>
         <Footer />
-      </>
+      </div>
     )}
   />
 )
