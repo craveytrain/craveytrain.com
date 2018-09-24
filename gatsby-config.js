@@ -9,6 +9,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Alfa Slab One', 'Nixie One']
+        }
+      }
+    },
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
         includePaths: [resolve(__dirname, './node_modules')]

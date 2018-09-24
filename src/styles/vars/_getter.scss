@@ -1,0 +1,13 @@
+@function get($token, $map: $tokens) {
+  @if type-of($map) != 'map' {
+    @error "#{$map} not a valid map";
+  }
+
+  @if map-has-key($map, 'default') {
+    @return var(--#{$token}, #{get-token($token, $map)});
+  }
+
+  @else {
+    @error "#{$map} does not have a `default` key";
+  }
+}

@@ -1,15 +1,7 @@
-@import 'funcs';
-
-:root {
-  --footer-border-color: #{gray(20%)};
-}
+@import 'vars';
 
 .footer {
-  padding: 1rem;
-  margin: auto;
-  border-top: 1px solid var(--footer-border-color);
-
-  @media (min-width: 66rem) {
-    width: 66rem;
-  }
+  padding: 10px get(main-padding-horz);
+  font-size: 14px;
+  border-top: 1px solid get(color-trans-gray);
 }

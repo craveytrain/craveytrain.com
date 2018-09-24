@@ -1,0 +1,11 @@
+@function get-token($token, $map) {
+  $defaults: map-get($map, 'default');
+
+  @if map-has-key($defaults, $token) {
+    @return map-get($defaults, $token);
+  }
+
+  @else {
+    @error "#{$token} not found in #{$defaults}";
+  }
+}
