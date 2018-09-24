@@ -7,7 +7,8 @@
 $font-stack-alfa-slab-one: 'Alfa Slab One', serif;
 
 $breakpoints: (
-  'breathing-room': 500px
+  'breathing-room': 500px,
+  'breakover': 750px
 );
 
 $tokens: (
@@ -24,7 +25,13 @@ $tokens: (
     'nav-text-color': white,
     'h1-family': $font-stack-alfa-slab-one,
     'h1-size': 43px,
-    'h1-weight': normal
+    'h1-weight': normal,
+    'body-bg':
+    linear-gradient(
+      90deg,
+      rgba(233, 168, 202, 0.1) 60%,
+      rgba(195, 224, 229, 0.2) 87%
+    )
   ),
   'breathing-room': (
     'main-padding-horz': 50px,

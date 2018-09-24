@@ -1,8 +1,6 @@
 @import 'vars';
 @import 'functions';
 
-$breakover-width: 750px;
-
 .hero {
   display: flex;
   align-items: center;
@@ -16,7 +14,7 @@ $breakover-width: 750px;
   font-family: 'Nixie One', serif;
   text-align: center;
 
-  @media (min-width: $breakover-width) {
+  @media (min-width: map-get($breakpoints, 'breakover')) {
     min-height: calc(300px + #{get(text-vert-rhythm)});
     padding-right: 325px;
     padding-top: 0;
@@ -42,7 +40,7 @@ $breakover-width: 750px;
   margin-left: calc(-1 * #{get(main-padding-horz)});
   margin-right: calc(-1 * #{get(main-padding-horz)});
 
-  @media (min-width: $breakover-width) {
+  @media (min-width: map-get($breakpoints, 'breakover')) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 30px;
