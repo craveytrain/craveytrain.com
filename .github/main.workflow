@@ -1,13 +1,19 @@
 # pushes trigger the testsuite
-# workflow "Push Event" {
-#   on = "push"
-#   resolves = ["Test"]
-# }
+workflow "Push Event" {
+  on = "push"
+  resolves = ["Test"]
+}
 
 # pull-requests trigger the testsuite
 workflow "Pull Request" {
-  on = "pull_request"
   resolves = ["Test"]
+  on = "pull_request"
+
+  # pushes trigger the testsuite
+  # workflow "Push Event" {
+  #   on = "push"
+  #   resolves = ["Test"]
+  # }
 }
 
 # # releases trigger new binary artifacts
@@ -19,7 +25,6 @@ workflow "Pull Request" {
 ##
 ## The actions
 ##
-
 
 ##
 ## Run the test-cases, via .github/run-tests.sh
