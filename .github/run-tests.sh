@@ -6,4 +6,4 @@ set -e
 # # test runs build and lint first
 # npm run test
 
-exit 0
+exit 1
