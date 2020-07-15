@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'League Spartan';
-    src: url('/fonts/league-spartan/leaguespartan-bold.woff2') format('woff2'),
-         url('/fonts/league-spartan/leaguespartan-bold.woff') format('woff'),
-         url('/fonts/league-spartan/leaguespartan-bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
+	font-family: 'League Spartan';
+	src: url('/fonts/league-spartan/leaguespartan-bold.woff2') format('woff2'),
+		url('/fonts/league-spartan/leaguespartan-bold.woff') format('woff'),
+		url('/fonts/league-spartan/leaguespartan-bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
 }
