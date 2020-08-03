@@ -34,7 +34,7 @@
 	<article>
 		<h2>Github</h2>
 		<p>
-			On the intenet is where I was raised, on
+			On the internet is where I was raised, on
 			<a href="https://github.com/">Github</a>
 			is where I spend most my days. One of my fav projects is my
 			<a href="https://github.com/craveytrain/dotfiles">dotfiles</a>
