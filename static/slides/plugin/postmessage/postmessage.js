@@ -25,19 +25,19 @@
 */
 
 ;(function () {
-  window.addEventListener(
-    'message',
-    function (event) {
-      var data = JSON.parse(event.data)
+	window.addEventListener(
+		'message',
+		function (event) {
+			var data = JSON.parse(event.data)
 
-      var method = data.method
+			var method = data.method
 
-      var args = data.args
+			var args = data.args
 
-      if (typeof Reveal[method] === 'function') {
-        Reveal[method].apply(Reveal, data.args)
-      }
-    },
-    false
-  )
+			if (typeof Reveal[method] === 'function') {
+				Reveal[method].apply(Reveal, data.args)
+			}
+		},
+		false
+	)
 })()

@@ -6,9 +6,10 @@ based on dark.css by Ivan Sagalaev
 */
 
 pre code {
-  display: block; padding: 0.5em;
-  background: #3F3F3F;
-  color: #DCDCDC;
+	display: block;
+	padding: 0.5em;
+	background: #3f3f3f;
+	color: #dcdcdc;
 }
 
 pre .keyword,
@@ -18,25 +19,25 @@ pre .django .keyword,
 pre .css .class,
 pre .css .id,
 pre .lisp .title {
-  color: #E3CEAB;
+	color: #e3ceab;
 }
 
 pre .django .template_tag,
 pre .django .variable,
 pre .django .filter .argument {
-  color: #DCDCDC;
+	color: #dcdcdc;
 }
 
 pre .number,
 pre .date {
-  color: #8CD0D3;
+	color: #8cd0d3;
 }
 
 pre .dos .envvar,
 pre .dos .stream,
 pre .variable,
 pre .apache .sqbracket {
-  color: #EFDCBC;
+	color: #efdcbc;
 }
 
 pre .dos .flow,
@@ -45,12 +46,12 @@ pre .python .exception,
 pre .python .built_in,
 pre .literal,
 pre .tex .special {
-  color: #EFEFAF;
+	color: #efefaf;
 }
 
 pre .diff .chunk,
 pre .ruby .subst {
-  color: #8F8F8F;
+	color: #8f8f8f;
 }
 
 pre .dos .keyword,
@@ -65,7 +66,7 @@ pre .apache .tag,
 pre .nginx .built_in,
 pre .tex .command,
 pre .input_number {
-    color: #efef8f;
+	color: #efef8f;
 }
 
 pre .dos .winutils,
@@ -75,7 +76,7 @@ pre .ruby .symbol .keyword,
 pre .ruby .symbol .keymethods,
 pre .ruby .string,
 pre .ruby .instancevar {
-  color: #DCA3A3;
+	color: #dca3a3;
 }
 
 pre .diff .deletion,
@@ -93,7 +94,7 @@ pre .attr_selector,
 pre .pseudo,
 pre .apache .cbracket,
 pre .tex .formula {
-  color: #CC9393;
+	color: #cc9393;
 }
 
 pre .shebang,
@@ -103,13 +104,12 @@ pre .java .annotation,
 pre .template_comment,
 pre .pi,
 pre .doctype {
-  color: #7F9F7F;
+	color: #7f9f7f;
 }
 
 pre .xml .css,
 pre .xml .javascript,
 pre .xml .vbscript,
 pre .tex .formula {
-  opacity: 0.5;
+	opacity: 0.5;
 }
-

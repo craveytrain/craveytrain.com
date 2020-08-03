@@ -61,7 +61,7 @@
 #### Designer/Developer/Sys Admin/Technician • 1998 - 2000
 
 - Designed and developed the user experience for a domain registration system and encompassing web site
-- Designed and developed the largest cattle sales/trading web site which brokered over $9M in transactions per year
+- Designed and developed the largest cattle sales/trading web site which brokered over \$9M in transactions per year
 - Sys Admin for colocated hosting with primary responsibilities in DNS, Web, & Email servers
 
 ## Projects

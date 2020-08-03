@@ -5,18 +5,18 @@
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #222;
-  color: #fff;
-  font-family: Menlo, Monaco, 'Andale Mono', 'Lucida Console', 'Courier New', monospace;
-  -webkit-text-size-adjust: none;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #222;
+	color: #fff;
+	font-family: Menlo, Monaco, 'Andale Mono', 'Lucida Console', 'Courier New', monospace;
+	-webkit-text-size-adjust: none;
 }
 
 .hljs-comment,
 .hljs-title {
-  color: #777;
+	color: #777;
 }
 
 .hljs-variable,
@@ -29,20 +29,20 @@
 .xml .pi,
 .xml .doctype,
 .html .doctype {
-  color: #ab875d;
+	color: #ab875d;
 }
 
 .css .value {
-  color: #cd6a51;
+	color: #cd6a51;
 }
 
 .css .value .function,
 .css .value .string {
-  color: #a67f59;
+	color: #a67f59;
 }
 
 .css .value .number {
-  color: #9b869c;
+	color: #9b869c;
 }
 
 .css .id,
@@ -50,7 +50,7 @@
 .css-pseudo,
 .css .selector,
 .css .tag {
-  color: #dfc48c;
+	color: #dfc48c;
 }
 
 .hljs-number,
@@ -59,12 +59,12 @@
 .hljs-literal,
 .hljs-params,
 .hljs-constant {
-  color: #ab875d;
+	color: #ab875d;
 }
 
 .ruby .class .title,
 .css .rules .attribute {
-  color: #9b869b;
+	color: #9b869b;
 }
 
 .hljs-string,
@@ -73,11 +73,11 @@
 .hljs-header,
 .ruby .symbol,
 .xml .cdata {
-  color: #8f9c6c;
+	color: #8f9c6c;
 }
 
 .css .hexcolor {
-  color: #cd6a51;
+	color: #cd6a51;
 }
 
 .function,
@@ -88,10 +88,10 @@
 .perl .sub,
 .javascript .title,
 .coffeescript .title {
-  color: #fff;
+	color: #fff;
 }
 
 .hljs-keyword,
 .javascript .function {
-  color: #8f9c6c;
+	color: #8f9c6c;
 }

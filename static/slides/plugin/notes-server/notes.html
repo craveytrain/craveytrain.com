@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8" />
 
 		<title>reveal.js - Slide Notes</title>
 
@@ -27,18 +27,18 @@
 				width: 1280px;
 				height: 1024px;
 				border: none;
-				
+
 				-webkit-transform-origin: 0 0;
-				   -moz-transform-origin: 0 0;
-				    -ms-transform-origin: 0 0;
-				     -o-transform-origin: 0 0;
-				        transform-origin: 0 0;
-				 
+				-moz-transform-origin: 0 0;
+				-ms-transform-origin: 0 0;
+				-o-transform-origin: 0 0;
+				transform-origin: 0 0;
+
 				-webkit-transform: scale(0.5);
-				   -moz-transform: scale(0.5);
-				    -ms-transform: scale(0.5);
-				     -o-transform: scale(0.5);
-				        transform: scale(0.5);
+				-moz-transform: scale(0.5);
+				-ms-transform: scale(0.5);
+				-o-transform: scale(0.5);
+				transform: scale(0.5);
 			}
 
 			#wrap-next-slide {
@@ -53,18 +53,18 @@
 				width: 1280px;
 				height: 1024px;
 				border: none;
-				
+
 				-webkit-transform-origin: 0 0;
-				   -moz-transform-origin: 0 0;
-				    -ms-transform-origin: 0 0;
-				     -o-transform-origin: 0 0;
-				        transform-origin: 0 0;
+				-moz-transform-origin: 0 0;
+				-ms-transform-origin: 0 0;
+				-o-transform-origin: 0 0;
+				transform-origin: 0 0;
 
 				-webkit-transform: scale(0.35);
-				   -moz-transform: scale(0.35);
-				    -ms-transform: scale(0.35);
-				     -o-transform: scale(0.35);
-				        transform: scale(0.35);
+				-moz-transform: scale(0.35);
+				-ms-transform: scale(0.35);
+				-o-transform: scale(0.35);
+				transform: scale(0.35);
 			}
 
 			.slides {
@@ -81,13 +81,12 @@
 				left: 3px;
 				font-weight: bold;
 				font-size: 14px;
-				color: rgba( 255, 255, 255, 0.9 );
+				color: rgba(255, 255, 255, 0.9);
 			}
 		</style>
 	</head>
 
 	<body>
-
 		<div id="wrap-current-slide" class="slides">
 			<iframe src="/?receiver" width="1280" height="1024" id="current-slide"></iframe>
 		</div>
@@ -102,38 +101,39 @@
 		<script src="/plugin/markdown/showdown.js"></script>
 
 		<script>
-		var socketId = '{{socketId}}';
-		var socket = io.connect(window.location.origin);
-		var notes = document.getElementById('notes');
-		var currentSlide = document.getElementById('current-slide');
-		var nextSlide = document.getElementById('next-slide');
+			var socketId = '{{socketId}}'
+			var socket = io.connect(window.location.origin)
+			var notes = document.getElementById('notes')
+			var currentSlide = document.getElementById('current-slide')
+			var nextSlide = document.getElementById('next-slide')
 
-		socket.on('slidedata', function(data) {
-			// ignore data from sockets that aren't ours
-			if (data.socketId !== socketId) { return; }
+			socket.on('slidedata', function (data) {
+				// ignore data from sockets that aren't ours
+				if (data.socketId !== socketId) {
+					return
+				}
 
-			if (data.markdown) {
-				notes.innerHTML = (new Showdown.converter()).makeHtml(data.notes);
-			}
-			else {
-				notes.innerHTML = data.notes;
-			}
+				if (data.markdown) {
+					notes.innerHTML = new Showdown.converter().makeHtml(data.notes)
+				} else {
+					notes.innerHTML = data.notes
+				}
 
-			currentSlide.contentWindow.Reveal.slide(data.indexh, data.indexv);
-			nextSlide.contentWindow.Reveal.slide(data.nextindexh, data.nextindexv);
-		});
-		socket.on('fragmentdata', function(data) {
-			// ignore data from sockets that aren't ours
-			if (data.socketId !== socketId) { return; }
+				currentSlide.contentWindow.Reveal.slide(data.indexh, data.indexv)
+				nextSlide.contentWindow.Reveal.slide(data.nextindexh, data.nextindexv)
+			})
+			socket.on('fragmentdata', function (data) {
+				// ignore data from sockets that aren't ours
+				if (data.socketId !== socketId) {
+					return
+				}
 
-			if (data.fragment === 'next') {
-				currentSlide.contentWindow.Reveal.nextFragment();
-			}
-			else if (data.fragment === 'previous') {
-				currentSlide.contentWindow.Reveal.prevFragment();
-			}
-		});
+				if (data.fragment === 'next') {
+					currentSlide.contentWindow.Reveal.nextFragment()
+				} else if (data.fragment === 'previous') {
+					currentSlide.contentWindow.Reveal.prevFragment()
+				}
+			})
 		</script>
-
 	</body>
 </html>
