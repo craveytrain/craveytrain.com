@@ -4,12 +4,12 @@
  * https://github.com/idleberg/Hopscotch
  *
  * This work is licensed under the Creative Commons CC0 1.0 Universal License
- */ 
+ */
 
 /* Comment */
 .hljs-comment,
 .hljs-title {
-  color: #989498;
+	color: #989498;
 }
 
 /* Red */
@@ -25,7 +25,7 @@
 .css .hljs-id,
 .css .hljs-class,
 .css .hljs-pseudo {
-  color: #dd464c;
+	color: #dd464c;
 }
 
 /* Orange */
@@ -35,13 +35,13 @@
 .hljs-literal,
 .hljs-params,
 .hljs-constant {
-  color: #fd8b19;
+	color: #fd8b19;
 }
 
 /* Yellow */
 .ruby .hljs-class .hljs-title,
 .css .hljs-rules .hljs-attribute {
-  color: #fdcc59;
+	color: #fdcc59;
 }
 
 /* Green */
@@ -51,12 +51,12 @@
 .hljs-header,
 .ruby .hljs-symbol,
 .xml .hljs-cdata {
-  color: #8fc13e;
+	color: #8fc13e;
 }
 
 /* Aqua */
 .css .hljs-hexcolor {
-  color: #149b93;
+	color: #149b93;
 }
 
 /* Blue */
@@ -68,20 +68,20 @@
 .perl .hljs-sub,
 .javascript .hljs-title,
 .coffeescript .hljs-title {
-  color: #1290bf;
+	color: #1290bf;
 }
 
 /* Purple */
 .hljs-keyword,
 .javascript .hljs-function {
-  color: #c85e7c;
+	color: #c85e7c;
 }
 
 .hljs {
-  display: block;
-  background: #322931;
-  color: #b9b5b8;
-  padding: 0.5em;
+	display: block;
+	background: #322931;
+	color: #b9b5b8;
+	padding: 0.5em;
 }
 
 .coffeescript .javascript,
@@ -91,5 +91,5 @@
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.5;
+	opacity: 0.5;
 }

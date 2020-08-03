@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8" />
 
 		<title>reveal.js - Slide Notes</title>
 
@@ -29,16 +29,16 @@
 				border: none;
 
 				-webkit-transform-origin: 0 0;
-				   -moz-transform-origin: 0 0;
-					-ms-transform-origin: 0 0;
-					 -o-transform-origin: 0 0;
-						transform-origin: 0 0;
+				-moz-transform-origin: 0 0;
+				-ms-transform-origin: 0 0;
+				-o-transform-origin: 0 0;
+				transform-origin: 0 0;
 
 				-webkit-transform: scale(0.5);
-				   -moz-transform: scale(0.5);
-					-ms-transform: scale(0.5);
-					 -o-transform: scale(0.5);
-						transform: scale(0.5);
+				-moz-transform: scale(0.5);
+				-ms-transform: scale(0.5);
+				-o-transform: scale(0.5);
+				transform: scale(0.5);
 			}
 
 			#wrap-next-slide {
@@ -55,16 +55,16 @@
 				border: none;
 
 				-webkit-transform-origin: 0 0;
-				   -moz-transform-origin: 0 0;
-					-ms-transform-origin: 0 0;
-					 -o-transform-origin: 0 0;
-						transform-origin: 0 0;
+				-moz-transform-origin: 0 0;
+				-ms-transform-origin: 0 0;
+				-o-transform-origin: 0 0;
+				transform-origin: 0 0;
 
 				-webkit-transform: scale(0.35);
-				   -moz-transform: scale(0.35);
-					-ms-transform: scale(0.35);
-					 -o-transform: scale(0.35);
-						transform: scale(0.35);
+				-moz-transform: scale(0.35);
+				-ms-transform: scale(0.35);
+				-o-transform: scale(0.35);
+				transform: scale(0.35);
 			}
 
 			.slides {
@@ -81,7 +81,7 @@
 				left: 3px;
 				font-weight: bold;
 				font-size: 14px;
-				color: rgba( 255, 255, 255, 0.9 );
+				color: rgba(255, 255, 255, 0.9);
 			}
 
 			.error {
@@ -104,9 +104,9 @@
 				opacity: 0;
 
 				-webkit-transition: opacity 0.4s;
-				   -moz-transition: opacity 0.4s;
-				     -o-transition: opacity 0.4s;
-				        transition: opacity 0.4s;
+				-moz-transition: opacity 0.4s;
+				-o-transition: opacity 0.4s;
+				transition: opacity 0.4s;
 			}
 
 			.elapsed,
@@ -131,18 +131,24 @@
 			.elapsed .mute {
 				color: #ddd;
 			}
-
 		</style>
 	</head>
 
 	<body>
-
 		<div id="wrap-current-slide" class="slides">
-			<script>document.write( '<iframe width="1280" height="1024" id="current-slide" src="'+ window.opener.location.href +'"></iframe>' );</script>
+			<script>
+				document.write(
+					'<iframe width="1280" height="1024" id="current-slide" src="' + window.opener.location.href + '"></iframe>'
+				)
+			</script>
 		</div>
 
 		<div id="wrap-next-slide" class="slides">
-			<script>document.write( '<iframe width="640" height="512" id="next-slide" src="'+ window.opener.location.href +'"></iframe>' );</script>
+			<script>
+				document.write(
+					'<iframe width="640" height="512" id="next-slide" src="' + window.opener.location.href + '"></iframe>'
+				)
+			</script>
 			<span>UPCOMING:</span>
 		</div>
 
@@ -161,92 +167,86 @@
 
 		<script src="../../plugin/markdown/showdown.js"></script>
 		<script>
+			window.addEventListener(
+				'load',
+				function () {
+					if (window.opener && window.opener.location && window.opener.location.href) {
+						var notes = document.getElementById('notes'),
+							currentSlide = document.getElementById('current-slide'),
+							nextSlide = document.getElementById('next-slide')
 
-			window.addEventListener( 'load', function() {
+						window.addEventListener(
+							'message',
+							function (event) {
+								var data = JSON.parse(event.data)
+								// No need for updating the notes in case of fragment changes
+								if (data.notes !== undefined) {
+									if (data.markdown) {
+										notes.innerHTML = new Showdown.converter().makeHtml(data.notes)
+									} else {
+										notes.innerHTML = data.notes
+									}
+								}
 
-				if( window.opener && window.opener.location && window.opener.location.href ) {
+								// Showing and hiding fragments
+								if (data.fragment === 'next') {
+									currentSlide.contentWindow.Reveal.nextFragment()
+								} else if (data.fragment === 'prev') {
+									currentSlide.contentWindow.Reveal.prevFragment()
+								} else {
+									// Update the note slides
+									currentSlide.contentWindow.Reveal.slide(data.indexh, data.indexv)
+									nextSlide.contentWindow.Reveal.slide(data.nextindexh, data.nextindexv)
+								}
+							},
+							false
+						)
 
-					var notes = document.getElementById( 'notes' ),
-						currentSlide = document.getElementById( 'current-slide' ),
-						nextSlide = document.getElementById( 'next-slide' );
+						var start = new Date(),
+							timeEl = document.querySelector('.time'),
+							clockEl = document.getElementById('clock'),
+							hoursEl = document.getElementById('hours'),
+							minutesEl = document.getElementById('minutes'),
+							secondsEl = document.getElementById('seconds')
 
-					window.addEventListener( 'message', function( event ) {
-						var data = JSON.parse( event.data );
-						// No need for updating the notes in case of fragment changes
-						if ( data.notes !== undefined) {
-							if( data.markdown ) {
-								notes.innerHTML = (new Showdown.converter()).makeHtml( data.notes );
-							}
-							else {
-								notes.innerHTML = data.notes;
-							}
-						}
+						setInterval(function () {
+							timeEl.style.opacity = 1
 
-						// Showing and hiding fragments
-						if( data.fragment === 'next' ) {
-							currentSlide.contentWindow.Reveal.nextFragment();
-						}
-						else if( data.fragment === 'prev' ) {
-							currentSlide.contentWindow.Reveal.prevFragment();
-						}
-						else {
-							// Update the note slides
-							currentSlide.contentWindow.Reveal.slide( data.indexh, data.indexv );
-							nextSlide.contentWindow.Reveal.slide( data.nextindexh, data.nextindexv );
-						}
+							var diff,
+								hours,
+								minutes,
+								seconds,
+								now = new Date()
 
-					}, false );
+							diff = now.getTime() - start.getTime()
+							hours = parseInt(diff / (1000 * 60 * 60))
+							minutes = parseInt((diff / (1000 * 60)) % 60)
+							seconds = parseInt((diff / 1000) % 60)
 
-					var start = new Date(),
-						timeEl = document.querySelector( '.time' ),
-						clockEl = document.getElementById( 'clock' ),
-						hoursEl = document.getElementById( 'hours' ),
-						minutesEl = document.getElementById( 'minutes' ),
-						secondsEl = document.getElementById( 'seconds' );
+							clockEl.innerHTML = now.toLocaleTimeString()
+							hoursEl.innerHTML = zeroPadInteger(hours)
+							hoursEl.className = hours > 0 ? '' : 'mute'
+							minutesEl.innerHTML = ':' + zeroPadInteger(minutes)
+							minutesEl.className = minutes > 0 ? '' : 'mute'
+							secondsEl.innerHTML = ':' + zeroPadInteger(seconds)
+						}, 1000)
 
-					setInterval( function() {
+						// Navigate the main window when the notes slide changes
+						currentSlide.contentWindow.Reveal.addEventListener('slidechanged', function (event) {
+							window.opener.Reveal.slide(event.indexh, event.indexv)
+						})
+					} else {
+						document.body.innerHTML =
+							'<p class="error">Unable to access <code>window.opener.location</code>.<br>Make sure the presentation is running on a web server.</p>'
+					}
+				},
+				false
+			)
 
-						timeEl.style.opacity = 1;
-
-						var diff, hours, minutes, seconds,
-							now = new Date();
-
-						diff = now.getTime() - start.getTime();
-						hours = parseInt( diff / ( 1000 * 60 * 60 ) );
-						minutes = parseInt( ( diff / ( 1000 * 60 ) ) % 60 );
-						seconds = parseInt( ( diff / 1000 ) % 60 );
-
-						clockEl.innerHTML = now.toLocaleTimeString();
-						hoursEl.innerHTML = zeroPadInteger( hours );
-						hoursEl.className = hours > 0 ? "" : "mute";
-						minutesEl.innerHTML = ":" + zeroPadInteger( minutes );
-						minutesEl.className = minutes > 0 ? "" : "mute";
-						secondsEl.innerHTML = ":" + zeroPadInteger( seconds );
-
-					}, 1000 );
-
-					// Navigate the main window when the notes slide changes
-					currentSlide.contentWindow.Reveal.addEventListener( 'slidechanged', function( event ) {
-
-						window.opener.Reveal.slide( event.indexh, event.indexv );
-
-					} );
-
-				}
-				else {
-
-					document.body.innerHTML =  '<p class="error">Unable to access <code>window.opener.location</code>.<br>Make sure the presentation is running on a web server.</p>';
-
-				}
-
-
-			}, false );
-
-			function zeroPadInteger( num ) {
-				var str = "00" + parseInt( num );
-				return str.substring( str.length - 2 );
+			function zeroPadInteger(num) {
+				var str = '00' + parseInt(num)
+				return str.substring(str.length - 2)
 			}
-
 		</script>
 	</body>
 </html>

@@ -5,18 +5,18 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #232323;
-  color: #e6e1dc;
-  -webkit-text-size-adjust: none;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #232323;
+	color: #e6e1dc;
+	-webkit-text-size-adjust: none;
 }
 
 .hljs-comment,
 .hljs-shebang {
-  color: #bc9458;
-  font-style: italic;
+	color: #bc9458;
+	font-style: italic;
 }
 
 .hljs-keyword,
@@ -26,7 +26,7 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 .nginx .hljs-title,
 .method,
 .hljs-list .hljs-title {
-  color: #c26230;
+	color: #c26230;
 }
 
 .hljs-string,
@@ -41,11 +41,11 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 .tex .hljs-command,
 .asciidoc .hljs-link_label,
 .markdown .hljs-link_label {
-  color: #a5c261;
+	color: #a5c261;
 }
 
 .hljs-subst {
-  color: #519f50;
+	color: #519f50;
 }
 
 .hljs-tag,
@@ -55,25 +55,24 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 .hljs-sub .hljs-identifier,
 .hljs-pi,
 .input_number {
-  color: #e8bf6a;
+	color: #e8bf6a;
 }
 
 .hljs-identifier {
-  color: #d0d0ff;
+	color: #d0d0ff;
 }
 
 .hljs-class .hljs-title,
 .hljs-type,
 .smalltalk .hljs-class,
 .hljs-doctag {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .hljs-constant,
 .hljs-name {
-  color: #da4939;
+	color: #da4939;
 }
-
 
 .hljs-symbol,
 .hljs-built_in,
@@ -82,95 +81,93 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 .asciidoc .hljs-link_url,
 .markdown .hljs-link_url,
 .hljs-attribute {
-  color: #6d9cbe;
+	color: #6d9cbe;
 }
 
 .asciidoc .hljs-link_url,
 .markdown .hljs-link_url {
-  text-decoration: underline;
+	text-decoration: underline;
 }
-
-
 
 .hljs-params,
 .hljs-variable,
 .clojure .hljs-attribute {
-  color: #d0d0ff;
+	color: #d0d0ff;
 }
 
 .css .hljs-tag,
 .hljs-rule .hljs-property,
 .hljs-pseudo,
 .tex .hljs-special {
-  color: #cda869;
+	color: #cda869;
 }
 
 .css .hljs-class {
-  color: #9b703f;
+	color: #9b703f;
 }
 
 .hljs-rule .hljs-keyword {
-  color: #c5af75;
+	color: #c5af75;
 }
 
 .hljs-rule .hljs-value {
-  color: #cf6a4c;
+	color: #cf6a4c;
 }
 
 .css .hljs-id {
-  color: #8b98ab;
+	color: #8b98ab;
 }
 
 .hljs-annotation,
 .apache .hljs-sqbracket,
 .nginx .hljs-built_in {
-  color: #9b859d;
+	color: #9b859d;
 }
 
 .hljs-preprocessor,
 .hljs-preprocessor *,
 .hljs-pragma {
-  color: #8996a8 !important;
+	color: #8996a8 !important;
 }
 
 .hljs-hexcolor,
 .css .hljs-value .hljs-number {
-  color: #a5c261;
+	color: #a5c261;
 }
 
 .hljs-title,
 .hljs-decorator,
 .css .hljs-function {
-  color: #ffc66d;
+	color: #ffc66d;
 }
 
 .diff .hljs-header,
 .hljs-chunk {
-  background-color: #2f33ab;
-  color: #e6e1dc;
-  display: inline-block;
-  width: 100%;
+	background-color: #2f33ab;
+	color: #e6e1dc;
+	display: inline-block;
+	width: 100%;
 }
 
 .diff .hljs-change {
-  background-color: #4a410d;
-  color: #f8f8f8;
-  display: inline-block;
-  width: 100%;
+	background-color: #4a410d;
+	color: #f8f8f8;
+	display: inline-block;
+	width: 100%;
 }
 
 .hljs-addition {
-  background-color: #144212;
-  color: #e6e1dc;
-  display: inline-block;
-  width: 100%;
+	background-color: #144212;
+	color: #e6e1dc;
+	display: inline-block;
+	width: 100%;
 }
 
 .hljs-deletion {
-  background-color: #600;
-  color: #e6e1dc;
-  display: inline-block;
-  width: 100%;
+	background-color: #600;
+	color: #e6e1dc;
+	display: inline-block;
+	width: 100%;
 }
 
 .coffeescript .javascript,
@@ -180,5 +177,5 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.7;
+	opacity: 0.7;
 }

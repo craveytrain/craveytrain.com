@@ -7,18 +7,18 @@ Ported by Fabrício Tavares de Oliveira
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #fff;
-  -webkit-text-size-adjust: none;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #fff;
+	-webkit-text-size-adjust: none;
 }
 
 .hljs,
 .hljs-subst,
 .hljs-tag .hljs-title,
 .nginx .hljs-title {
-  color: #000;
+	color: #000;
 }
 
 .hljs-string,
@@ -48,7 +48,7 @@ Ported by Fabrício Tavares de Oliveira
 .markdown .hljs-header,
 .coffeescript .hljs-attribute,
 .hljs-name {
-  color: #756bb1;
+	color: #756bb1;
 }
 
 .smartquote,
@@ -58,7 +58,7 @@ Ported by Fabrício Tavares de Oliveira
 .hljs-chunk,
 .asciidoc .hljs-blockquote,
 .markdown .hljs-blockquote {
-  color: #636363;
+	color: #636363;
 }
 
 .hljs-number,
@@ -76,7 +76,7 @@ Ported by Fabrício Tavares de Oliveira
 .markdown .hljs-bullet,
 .asciidoc .hljs-link_url,
 .markdown .hljs-link_url {
-  color: #31a354;
+	color: #31a354;
 }
 
 .hljs-label,
@@ -108,10 +108,8 @@ Ported by Fabrício Tavares de Oliveira
 .lasso .hljs-attribute,
 .coffeescript .hljs-property,
 .hljs-phony {
-  color: #88f;
+	color: #88f;
 }
-
-
 
 .hljs-keyword,
 .hljs-id,
@@ -130,16 +128,16 @@ Ported by Fabrício Tavares de Oliveira
 .markdown .hljs-strong,
 .hljs-request,
 .hljs-status {
-  color: #3182bd;
+	color: #3182bd;
 }
 
 .asciidoc .hljs-emphasis,
 .markdown .hljs-emphasis {
-  font-style: italic;
+	font-style: italic;
 }
 
 .nginx .hljs-built_in {
-  font-weight: normal;
+	font-weight: normal;
 }
 
 .coffeescript .javascript,
@@ -150,16 +148,16 @@ Ported by Fabrício Tavares de Oliveira
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 .css .hljs-attribute,
 .html .hljs-attribute {
-  color: #e6550d;
+	color: #e6550d;
 }
 
 .css .hljs-class,
 .html .hljs-tag,
 .html .hljs-title {
-  color: #3182bd;
+	color: #3182bd;
 }

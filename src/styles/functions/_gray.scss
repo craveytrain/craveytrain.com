@@ -1,3 +1,0 @@
-@function gray($intensity, $alpha: 1) {
-  @return rgba($intensity, $intensity, $intensity, $alpha);
-}

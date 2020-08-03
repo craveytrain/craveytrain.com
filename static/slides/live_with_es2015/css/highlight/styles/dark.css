@@ -5,11 +5,11 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #444;
-  -webkit-text-size-adjust: none;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #444;
+	-webkit-text-size-adjust: none;
 }
 
 .hljs-keyword,
@@ -19,12 +19,12 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .hljs-flow,
 .nginx .hljs-title,
 .tex .hljs-special {
-  color: white;
+	color: white;
 }
 
 .hljs,
 .hljs-subst {
-  color: #ddd;
+	color: #ddd;
 }
 
 .hljs-string,
@@ -57,7 +57,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .hljs-prompt,
 .coffeescript .hljs-attribute,
 .hljs-name {
-  color: #d88;
+	color: #d88;
 }
 
 .hljs-comment,
@@ -69,7 +69,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .hljs-shebang,
 .apache .hljs-sqbracket,
 .tex .hljs-formula {
-  color: #777;
+	color: #777;
 }
 
 .hljs-keyword,
@@ -89,7 +89,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .tex .hljs-special,
 .hljs-request,
 .hljs-status {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .coffeescript .javascript,
@@ -99,5 +99,5 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.5;
+	opacity: 0.5;
 }

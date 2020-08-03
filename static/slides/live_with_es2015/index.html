@@ -1,165 +1,192 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
 
-  <head>
-    <meta charset="utf-8">
+		<title>Prez</title>
 
-    <title>Prez</title>
+		<meta name="description" content="-- DESCRIPTION HERE --" />
+		<meta name="author" content="mcravey" />
 
-    <meta name="description" content="-- DESCRIPTION HERE --">
-    <meta name="author" content="mcravey">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+		/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme" />
 
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="css/highlight/styles/solarized_light.css" id="highlight-theme" />
 
-    <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="css/highlight/styles/solarized_light.css" id="highlight-theme">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement('link')
+			link.rel = 'stylesheet'
+			link.type = 'text/css'
+			link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css'
+			document.getElementsByTagName('head')[0].appendChild(link)
+		</script>
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement( 'link' );
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
-    </script>
+		<link rel="stylesheet" href="css/custom.css" />
+	</head>
 
-    <link rel="stylesheet" href="css/custom.css">
-
-  </head>
-
-  <body>
-
-    <div class="reveal">
-      <div class="slides"><section id="intro" class="slide">
-<h1>Going live with ES2015</h1><h2>by Mike Cravey</h2>
-</section>
-<section id="who" class="slide" data-has-notes="true">
-<h1>Mike Cravey</h1><p>Head of Web Development at <a href="https://www.student.com">Student.com</a></p>
-<p><img src="images/crocodile_cravey.png" alt=""></p><aside class="notes"><p>//TODO: image</p></aside>
-</section>
-<section>
-<section id="process-problem" class="slide">
-<h1>Process</h1><ul>
-<li>Problem</li>
-<li>Solution</li>
-<li>POC</li>
-<li>Pilot</li>
-<li>Iterate</li>
-</ul>
-</section>
-<section id="process-symptom" class="slide">
-<h2>Symptom</h2><ul>
-<li>race conditions</li>
-<li>regression in &quot;untouched&quot; code</li>
-</ul>
-<p><img src="images/race_condition.jpg" alt=""></p>
-</section>
-<section id="process-cause" class="slide">
-<h2>Cause</h2><ul>
-<li>lack of modularlization/dependency mgmt</li>
-<li>concat</li>
-<li>globals</li>
-<li>auto-executing</li>
-</ul>
-<p><img src="images/bad_js.png" alt=""></p>
-</section>
-<section id="process-goals" class="slide">
-<h2>Goals</h2><ul>
-<li>modularized</li>
-<li>invokable</li>
-<li>extensible</li>
-<li>testable</li>
-<li>loosely coupled<ul>
-<li>separation of DOM and service layers</li>
-<li>pub/sub</li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="process-discussion" class="slide">
-<h2>Discussion</h2><ul>
-<li>team-wide</li>
-<li>research ahead of time</li>
-<li>discussed based on goals plus:<ul>
-<li>expected future-proofness</li>
-<li>ease of comprehension</li>
-<li>excitement</li>
-</ul>
-</li>
-</ul>
-<p><code>ES2015 -&gt; CommonJS -&gt; Browser bundle</code></p>
-</section>
-<section id="process-poc" class="slide">
-<h1>POC</h1><blockquote>
-<p>bare minimum to prove the idea can work</p>
-</blockquote>
-</section>
-<section id="process-testing_pyramid" class="slide">
-<h2>Testing pyramid</h2><p><img src="images/automatedtestingpyramid.png" alt=""></p>
-</section>
-<section id="process-cravey_coding" class="slide">
-<h2>Resourcing</h2><p><img src="images/craveycoding.jpg" alt=""></p>
-</section>
-<section id="process-pilot" class="slide">
-<h1>Pilot</h1><ul>
-<li>proving of implementation</li>
-<li>resist urge to fix &quot;all the things&quot;</li>
-</ul>
-</section>
-<section id="process-iterate" class="slide">
-<h2>Iterate</h2><ul>
-<li>long-tail: module by module</li>
-</ul>
-<p><img src="images/long_tail.jpg" alt=""></p>
-</section>
-<section id="process-future" class="slide" data-has-notes="true">
-<h1>Future</h1><ul>
-<li>changes in decisions</li>
-</ul><aside class="notes"><p>controversial decisions</p>
-<ul>
-<li>classes</li>
-</ul></aside>
-</section>
-</section>
-<section>
-<section id="es2015-index" class="slide">
-<h1>ES2015</h1><ul>
-<li>modules</li>
-<li>classes</li>
-<li>default parameters + destructuring</li>
-<li>const &amp; let</li>
-<li>arrows</li>
-<li>template strings</li>
-<li>future</li>
-</ul>
-</section>
-<section id="es2015-modules" class="slide">
-<h2>modules</h2><ul>
-<li>explicit method scoping<ul>
-<li>use linter to expose unused declarations</li>
-</ul>
-</li>
-</ul>
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> stringUtils <span class="hljs-keyword">from</span> <span class="hljs-string">'student/src/utilities/helpers/string'</span>;
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section id="intro" class="slide">
+					<h1>Going live with ES2015</h1>
+					<h2>by Mike Cravey</h2>
+				</section>
+				<section id="who" class="slide" data-has-notes="true">
+					<h1>Mike Cravey</h1>
+					<p>Head of Web Development at <a href="https://www.student.com">Student.com</a></p>
+					<p><img src="images/crocodile_cravey.png" alt="" /></p>
+					<aside class="notes"><p>//TODO: image</p></aside>
+				</section>
+				<section>
+					<section id="process-problem" class="slide">
+						<h1>Process</h1>
+						<ul>
+							<li>Problem</li>
+							<li>Solution</li>
+							<li>POC</li>
+							<li>Pilot</li>
+							<li>Iterate</li>
+						</ul>
+					</section>
+					<section id="process-symptom" class="slide">
+						<h2>Symptom</h2>
+						<ul>
+							<li>race conditions</li>
+							<li>regression in &quot;untouched&quot; code</li>
+						</ul>
+						<p><img src="images/race_condition.jpg" alt="" /></p>
+					</section>
+					<section id="process-cause" class="slide">
+						<h2>Cause</h2>
+						<ul>
+							<li>lack of modularlization/dependency mgmt</li>
+							<li>concat</li>
+							<li>globals</li>
+							<li>auto-executing</li>
+						</ul>
+						<p><img src="images/bad_js.png" alt="" /></p>
+					</section>
+					<section id="process-goals" class="slide">
+						<h2>Goals</h2>
+						<ul>
+							<li>modularized</li>
+							<li>invokable</li>
+							<li>extensible</li>
+							<li>testable</li>
+							<li>
+								loosely coupled
+								<ul>
+									<li>separation of DOM and service layers</li>
+									<li>pub/sub</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section id="process-discussion" class="slide">
+						<h2>Discussion</h2>
+						<ul>
+							<li>team-wide</li>
+							<li>research ahead of time</li>
+							<li>
+								discussed based on goals plus:
+								<ul>
+									<li>expected future-proofness</li>
+									<li>ease of comprehension</li>
+									<li>excitement</li>
+								</ul>
+							</li>
+						</ul>
+						<p><code>ES2015 -&gt; CommonJS -&gt; Browser bundle</code></p>
+					</section>
+					<section id="process-poc" class="slide">
+						<h1>POC</h1>
+						<blockquote>
+							<p>bare minimum to prove the idea can work</p>
+						</blockquote>
+					</section>
+					<section id="process-testing_pyramid" class="slide">
+						<h2>Testing pyramid</h2>
+						<p><img src="images/automatedtestingpyramid.png" alt="" /></p>
+					</section>
+					<section id="process-cravey_coding" class="slide">
+						<h2>Resourcing</h2>
+						<p><img src="images/craveycoding.jpg" alt="" /></p>
+					</section>
+					<section id="process-pilot" class="slide">
+						<h1>Pilot</h1>
+						<ul>
+							<li>proving of implementation</li>
+							<li>resist urge to fix &quot;all the things&quot;</li>
+						</ul>
+					</section>
+					<section id="process-iterate" class="slide">
+						<h2>Iterate</h2>
+						<ul>
+							<li>long-tail: module by module</li>
+						</ul>
+						<p><img src="images/long_tail.jpg" alt="" /></p>
+					</section>
+					<section id="process-future" class="slide" data-has-notes="true">
+						<h1>Future</h1>
+						<ul>
+							<li>changes in decisions</li>
+						</ul>
+						<aside class="notes">
+							<p>controversial decisions</p>
+							<ul>
+								<li>classes</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="es2015-index" class="slide">
+						<h1>ES2015</h1>
+						<ul>
+							<li>modules</li>
+							<li>classes</li>
+							<li>default parameters + destructuring</li>
+							<li>const &amp; let</li>
+							<li>arrows</li>
+							<li>template strings</li>
+							<li>future</li>
+						</ul>
+					</section>
+					<section id="es2015-modules" class="slide">
+						<h2>modules</h2>
+						<ul>
+							<li>
+								explicit method scoping
+								<ul>
+									<li>use linter to expose unused declarations</li>
+								</ul>
+							</li>
+						</ul>
+						<pre><code class="lang-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> stringUtils <span class="hljs-keyword">from</span> <span class="hljs-string">'student/src/utilities/helpers/string'</span>;
 <span class="hljs-keyword">import</span> { renderTemplate } <span class="hljs-keyword">from</span> <span class="hljs-string">'student/src/utilities/templates/render'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">articlesFactory</span>(<span class="hljs-params"> element, options </span>) </span>{
 ...
 }
 </code></pre>
-</section>
-<section id="es2015-default_params_desctructuring" class="slide">
-<h2>Default parameters &amp; destructuring</h2><ul>
-<li>holy first class language, batman!</li>
-<li>low arity</li>
-</ul>
-<pre><code class="lang-js"><span class="hljs-comment">// stickyNav.js</span>
+					</section>
+					<section id="es2015-default_params_desctructuring" class="slide">
+						<h2>Default parameters &amp; destructuring</h2>
+						<ul>
+							<li>holy first class language, batman!</li>
+							<li>low arity</li>
+						</ul>
+						<pre><code class="lang-js"><span class="hljs-comment">// stickyNav.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"> {
     yScrollPos: yScrollPos = 240,
     fixedClass: fixedClass = 'fixed',
@@ -174,148 +201,190 @@
 
 stickyNav();
 </code></pre>
-</section>
-<section id="es2015-const_let" class="slide" data-has-notes="true">
-<h2>Const &amp; let</h2><ul>
-<li>block scoped</li>
-<li>define a policy and enforce</li>
-</ul>
-<p><img src="images/javascript-hoisting-meme.jpg" alt=""></p><aside class="notes"><ul>
-<li>careful w/ differently scoped variables</li>
-</ul></aside>
-</section>
-<section id="es2015-future" class="slide" data-has-notes="true">
-<h2>Future</h2><ul>
-<li>loader spec<ul>
-<li>system.js</li>
-</ul>
-</li>
-<li>set</li>
-<li>Extended Native APIs</li>
-</ul>
-<p><img src="images/carlton.gif" alt=""></p><aside class="notes"><ul>
-<li>all require polyfills</li>
-<li><code>Array.from</code> is my new best friend</li>
-</ul></aside>
-</section>
-</section>
-<section>
-<section id="builds-index" class="slide">
-<h1>Build</h1><ul>
-<li>POC vs prod</li>
-<li>Babel</li>
-<li>browserify</li>
-<li>npm</li>
-</ul>
-</section>
-<section id="builds-poc_vs_prod" class="slide">
-<h2>POC vs prod</h2><ul>
-<li>npm scripts vs make</li>
-</ul>
-<p><img src="images/poc_to_prod.jpg" alt=""></p>
-</section>
-<section id="builds-babel" class="slide">
-<h2>Babel</h2><ul>
-<li>ES2015 in, CommonJS out</li>
-<li>babel-core v6+ is explicit in configuration</li>
-</ul>
-</section>
-<section id="builds-browserify" class="slide">
-<h2>Browserify &amp; npm</h2><ul>
-<li>CommonJS</li>
-<li>picks up npm modules<ul>
-<li>Assert - wrote for file size and simpler use case</li>
-<li>RSVP - file size and <code>finally</code> functionality</li>
-</ul>
-</li>
-</ul>
-</section>
-</section>
-<section>
-<section id="lessons-index" class="slide">
-<h1>Lessons learned</h1><ul>
-<li>process</li>
-<li>technology roadmap</li>
-<li>build process</li>
-</ul>
-</section>
-<section id="lessons-process" class="slide">
-<h2>Process lessons</h2><ul>
-<li>mitigate risk by keeping proofs small and deliverable</li>
-</ul>
-<p><code>problem -&gt; solution -&gt; poc -&gt; pilot -&gt; rinse &amp; repeat</code></p>
-<p><img src="images/shampoo.jpg" alt=""></p>
-</section>
-<section id="lessons-tech" class="slide" data-has-notes="true">
-<h2>Tech lessons</h2><ul>
-<li>be intentional</li>
-<li>everything has a trade-off</li>
-<li>no sacred cows</li>
-<li>nothing is written in stone</li>
-</ul><aside class="notes"><ul>
-<li>intentional: let vs const vs var</li>
-<li>trade-off: developer ergonomics vs file size</li>
-<li>set in stone: classes</li>
-</ul></aside>
-</section>
-<section id="lessons-build" class="slide" data-has-notes="true">
-<h1>Build lessons</h1><ul>
-<li>don&#39;t solve problems before their time</li>
-<li>adoption comes with responsibility</li>
-<li>theory is great and all, but shipping code matters</li>
-</ul><aside class="notes"><ul>
-<li>don&#39;t try to figure out how to plug the code into the system without figuring out if the code works first</li>
-<li>making 3rd party tools part of your development pipeline creates a dependency you must manage</li>
-<li>don&#39;t lose your way discussing &quot;right&quot; way to do things</li>
-</ul></aside>
-</section>
-</section>
-<section id="hiring" class="slide">
-<h1>We are hiring</h1><p>Join us @ <a href="https://www.student.com/careers">https://www.student.com/careers</a></p>
-<ul>
-<li>Frontend</li>
-<li>Web (full stack/backend)</li>
-<li>Micro-service</li>
-</ul>
-</section>
-<section id="q_and_a" class="slide">
-<h1>Thank you</h1><p>Slides available @ <a href="http://craveytrain.com/slides/live_with_es2015/">http://craveytrain.com/slides/live_with_es2015/</a></p>
-</section>
-<section id="reference" class="slide">
-<h2>References</h2><ul>
-<li><a href="https://babeljs.io/docs/learn-es2015">Learn ES2015</a></li>
-<li><a href="http://macr.ae/talks/how-to-not-use-jquery.html">How to not use jQuery</a></li>
-<li><a href="http://watirmelon.com/2011/06/10/yet-another-software-testing-pyramid/">Yet another software testing pyramid</a></li>
-</ul>
-</section></div>
-    </div>
+					</section>
+					<section id="es2015-const_let" class="slide" data-has-notes="true">
+						<h2>Const &amp; let</h2>
+						<ul>
+							<li>block scoped</li>
+							<li>define a policy and enforce</li>
+						</ul>
+						<p><img src="images/javascript-hoisting-meme.jpg" alt="" /></p>
+						<aside class="notes">
+							<ul>
+								<li>careful w/ differently scoped variables</li>
+							</ul>
+						</aside>
+					</section>
+					<section id="es2015-future" class="slide" data-has-notes="true">
+						<h2>Future</h2>
+						<ul>
+							<li>
+								loader spec
+								<ul>
+									<li>system.js</li>
+								</ul>
+							</li>
+							<li>set</li>
+							<li>Extended Native APIs</li>
+						</ul>
+						<p><img src="images/carlton.gif" alt="" /></p>
+						<aside class="notes">
+							<ul>
+								<li>all require polyfills</li>
+								<li><code>Array.from</code> is my new best friend</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section id="builds-index" class="slide">
+						<h1>Build</h1>
+						<ul>
+							<li>POC vs prod</li>
+							<li>Babel</li>
+							<li>browserify</li>
+							<li>npm</li>
+						</ul>
+					</section>
+					<section id="builds-poc_vs_prod" class="slide">
+						<h2>POC vs prod</h2>
+						<ul>
+							<li>npm scripts vs make</li>
+						</ul>
+						<p><img src="images/poc_to_prod.jpg" alt="" /></p>
+					</section>
+					<section id="builds-babel" class="slide">
+						<h2>Babel</h2>
+						<ul>
+							<li>ES2015 in, CommonJS out</li>
+							<li>babel-core v6+ is explicit in configuration</li>
+						</ul>
+					</section>
+					<section id="builds-browserify" class="slide">
+						<h2>Browserify &amp; npm</h2>
+						<ul>
+							<li>CommonJS</li>
+							<li>
+								picks up npm modules
+								<ul>
+									<li>Assert - wrote for file size and simpler use case</li>
+									<li>RSVP - file size and <code>finally</code> functionality</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section id="lessons-index" class="slide">
+						<h1>Lessons learned</h1>
+						<ul>
+							<li>process</li>
+							<li>technology roadmap</li>
+							<li>build process</li>
+						</ul>
+					</section>
+					<section id="lessons-process" class="slide">
+						<h2>Process lessons</h2>
+						<ul>
+							<li>mitigate risk by keeping proofs small and deliverable</li>
+						</ul>
+						<p><code>problem -&gt; solution -&gt; poc -&gt; pilot -&gt; rinse &amp; repeat</code></p>
+						<p><img src="images/shampoo.jpg" alt="" /></p>
+					</section>
+					<section id="lessons-tech" class="slide" data-has-notes="true">
+						<h2>Tech lessons</h2>
+						<ul>
+							<li>be intentional</li>
+							<li>everything has a trade-off</li>
+							<li>no sacred cows</li>
+							<li>nothing is written in stone</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>intentional: let vs const vs var</li>
+								<li>trade-off: developer ergonomics vs file size</li>
+								<li>set in stone: classes</li>
+							</ul>
+						</aside>
+					</section>
+					<section id="lessons-build" class="slide" data-has-notes="true">
+						<h1>Build lessons</h1>
+						<ul>
+							<li>don&#39;t solve problems before their time</li>
+							<li>adoption comes with responsibility</li>
+							<li>theory is great and all, but shipping code matters</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>
+									don&#39;t try to figure out how to plug the code into the system without figuring out if the code
+									works first
+								</li>
+								<li>making 3rd party tools part of your development pipeline creates a dependency you must manage</li>
+								<li>don&#39;t lose your way discussing &quot;right&quot; way to do things</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section id="hiring" class="slide">
+					<h1>We are hiring</h1>
+					<p>Join us @ <a href="https://www.student.com/careers">https://www.student.com/careers</a></p>
+					<ul>
+						<li>Frontend</li>
+						<li>Web (full stack/backend)</li>
+						<li>Micro-service</li>
+					</ul>
+				</section>
+				<section id="q_and_a" class="slide">
+					<h1>Thank you</h1>
+					<p>
+						Slides available @
+						<a href="http://craveytrain.com/slides/live_with_es2015/"
+							>http://craveytrain.com/slides/live_with_es2015/</a
+						>
+					</p>
+				</section>
+				<section id="reference" class="slide">
+					<h2>References</h2>
+					<ul>
+						<li><a href="https://babeljs.io/docs/learn-es2015">Learn ES2015</a></li>
+						<li><a href="http://macr.ae/talks/how-to-not-use-jquery.html">How to not use jQuery</a></li>
+						<li>
+							<a href="http://watirmelon.com/2011/06/10/yet-another-software-testing-pyramid/"
+								>Yet another software testing pyramid</a
+							>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
 
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
 
-    <script>
-    // Full list of configuration options available at:
-    // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-      controls: true,
-      progress: true,
-      history: true,
-      center: true,
+		<script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
 
-      transition: Reveal.getQueryHash().transition || 'slide', // none/fade/slide/convex/concave/zoom
+				transition: Reveal.getQueryHash().transition || 'slide', // none/fade/slide/convex/concave/zoom
 
-      // Optional reveal.js plugins
-      dependencies: [
-        //{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        //{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        //{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-        { src: 'plugin/zoom-js/zoom.js', async: true },
-        { src: 'plugin/notes/notes.js', async: true }
-      ]
-    });
-    </script>
+				// Optional reveal.js plugins
+				dependencies: [
+					//{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					//{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					//{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+				],
+			})
+		</script>
 
-    <script src="js/dynamic-theme.js"></script><script src="js/custom.js"></script>
-
-  </body>
+		<script src="js/dynamic-theme.js"></script>
+		<script src="js/custom.js"></script>
+	</body>
 </html>

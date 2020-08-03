@@ -2,16 +2,16 @@
   Five-color theme from a single blue hue.
 */
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #eaeef3;
-  -webkit-text-size-adjust: none;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #eaeef3;
+	-webkit-text-size-adjust: none;
 }
 
 .hljs,
 .hljs-list .hljs-built_in {
-  color: #00193a;
+	color: #00193a;
 }
 
 .hljs-keyword,
@@ -20,12 +20,12 @@
 .hljs-request,
 .hljs-header,
 .hljs-doctag {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .hljs-comment,
 .hljs-chunk {
-  color: #738191;
+	color: #738191;
 }
 
 .hljs-string,
@@ -42,7 +42,7 @@
 .hljs-blockquote,
 .hljs-header,
 .hljs-name {
-  color: #0048ab;
+	color: #0048ab;
 }
 
 .hljs-decorator,
@@ -64,5 +64,5 @@
 .hljs-bullet,
 .hljs-sqbracket,
 .hljs-phony {
-  color: #4c81c9;
+	color: #4c81c9;
 }

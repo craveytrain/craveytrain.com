@@ -5,16 +5,16 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #000080;
-  -webkit-text-size-adjust: none;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #000080;
+	-webkit-text-size-adjust: none;
 }
 
 .hljs,
 .hljs-subst {
-  color: #0ff;
+	color: #0ff;
 }
 
 .hljs-string,
@@ -36,7 +36,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .apache .hljs-cbracket,
 .tex .hljs-command,
 .coffeescript .hljs-attribute {
-  color: #ff0;
+	color: #ff0;
 }
 
 .hljs-keyword,
@@ -54,7 +54,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .bash .hljs-variable,
 .tex .hljs-special,
 .hljs-name {
-  color: #fff;
+	color: #fff;
 }
 
 .hljs-comment,
@@ -63,7 +63,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .hljs-deletion,
 .apache .hljs-sqbracket,
 .tex .hljs-formula {
-  color: #888;
+	color: #888;
 }
 
 .hljs-number,
@@ -73,7 +73,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .smalltalk .hljs-symbol,
 .smalltalk .hljs-char,
 .clojure .hljs-attribute {
-  color: #0f0;
+	color: #0f0;
 }
 
 .hljs-decorator,
@@ -88,7 +88,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .hljs-shebang,
 .nginx .hljs-built_in,
 .hljs-prompt {
-  color: #008080;
+	color: #008080;
 }
 
 .hljs-keyword,
@@ -106,5 +106,5 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .tex .hljs-special,
 .hljs-request,
 .hljs-status {
-  font-weight: bold;
+	font-weight: bold;
 }

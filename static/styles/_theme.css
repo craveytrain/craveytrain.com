@@ -1,0 +1,25 @@
+:root {
+	--bg-color: white;
+	--secondary-bg-color: rgba(0, 0, 0, 0.05);
+	--text-color: #333;
+	--secondary-text-color: #737373;
+	--link-color: var(--text-color);
+	--link-hover-color: rgb(1, 130, 153);
+	--title-family: 'Alfa Slab One', serif;
+	--title-size: 43px;
+	--title-weight: normal;
+	--color-trans-gray: rgba(0, 0, 0, 0.08);
+	--min-width: 320px;
+	--max-width: 1200px;
+	--text-vert-rhythm: 1.5rem;
+	--main-padding-horz: 25px;
+	--main-padding-vert: 1.5rem;
+	--body-bg: linear-gradient(90deg, rgba(233, 168, 202, 0.1) 60%, rgba(195, 224, 229, 0.2) 87%);
+}
+
+@media (min-width: 500px) {
+	:root {
+		--main-padding-horz: 50px;
+		--title-size: 64px;
+	}
+}

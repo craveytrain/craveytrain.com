@@ -5,17 +5,17 @@ Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #000;
-  color: #f8f8f8;
-  -webkit-text-size-adjust: none;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #000;
+	color: #f8f8f8;
+	-webkit-text-size-adjust: none;
 }
 
 .hljs-comment {
-  color: #aeaeae;
-  font-style: italic;
+	color: #aeaeae;
+	font-style: italic;
 }
 
 .hljs-keyword,
@@ -23,14 +23,14 @@ Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-request,
 .hljs-status,
 .nginx .hljs-title {
-  color: #e28964;
+	color: #e28964;
 }
 
 .hljs-function .hljs-keyword,
 .hljs-sub .hljs-keyword,
 .method,
 .hljs-list .hljs-title {
-  color: #99cf50;
+	color: #99cf50;
 }
 
 .hljs-string,
@@ -43,15 +43,15 @@ Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
 .tex .hljs-command,
 .coffeescript .hljs-attribute,
 .hljs-name {
-  color: #65b042;
+	color: #65b042;
 }
 
 .hljs-subst {
-  color: #daefa3;
+	color: #daefa3;
 }
 
 .hljs-regexp {
-  color: #e9c062;
+	color: #e9c062;
 }
 
 .hljs-title,
@@ -62,92 +62,92 @@ Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-decorator,
 .hljs-shebang,
 .hljs-prompt {
-  color: #89bdff;
+	color: #89bdff;
 }
 
 .hljs-class .hljs-title,
 .hljs-type,
 .smalltalk .hljs-class,
 .hljs-doctag {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 .hljs-symbol,
 .ruby .hljs-symbol .hljs-string,
 .hljs-number {
-  color: #3387cc;
+	color: #3387cc;
 }
 
 .hljs-params,
 .hljs-variable,
 .clojure .hljs-attribute {
-  color: #3e87e3;
+	color: #3e87e3;
 }
 
 .css .hljs-tag,
 .hljs-rule .hljs-property,
 .hljs-pseudo,
 .tex .hljs-special {
-  color: #cda869;
+	color: #cda869;
 }
 
 .css .hljs-class {
-  color: #9b703f;
+	color: #9b703f;
 }
 
 .hljs-rule .hljs-keyword {
-  color: #c5af75;
+	color: #c5af75;
 }
 
 .hljs-rule .hljs-value {
-  color: #cf6a4c;
+	color: #cf6a4c;
 }
 
 .css .hljs-id {
-  color: #8b98ab;
+	color: #8b98ab;
 }
 
 .hljs-annotation,
 .apache .hljs-sqbracket,
 .nginx .hljs-built_in {
-  color: #9b859d;
+	color: #9b859d;
 }
 
 .hljs-preprocessor,
 .hljs-pragma {
-  color: #8996a8;
+	color: #8996a8;
 }
 
 .hljs-hexcolor,
 .css .hljs-value .hljs-number {
-  color: #dd7b3b;
+	color: #dd7b3b;
 }
 
 .css .hljs-function {
-  color: #dad085;
+	color: #dad085;
 }
 
 .diff .hljs-header,
 .hljs-chunk,
 .tex .hljs-formula {
-  background-color: #0e2231;
-  color: #f8f8f8;
-  font-style: italic;
+	background-color: #0e2231;
+	color: #f8f8f8;
+	font-style: italic;
 }
 
 .diff .hljs-change {
-  background-color: #4a410d;
-  color: #f8f8f8;
+	background-color: #4a410d;
+	color: #f8f8f8;
 }
 
 .hljs-addition {
-  background-color: #253b22;
-  color: #f8f8f8;
+	background-color: #253b22;
+	color: #f8f8f8;
 }
 
 .hljs-deletion {
-  background-color: #420e09;
-  color: #f8f8f8;
+	background-color: #420e09;
+	color: #f8f8f8;
 }
 
 .coffeescript .javascript,
@@ -157,5 +157,5 @@ Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.5;
+	opacity: 0.5;
 }

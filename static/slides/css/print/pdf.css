@@ -5,7 +5,6 @@
    Feel free (nay, compelled) to edit, append, and
    manipulate this file as you see fit. */
 
-
 /* SECTION 1: Set default width, margin, float, and
    background. This prevents elements from extending
    beyond the edge of the printed page, and prevents
@@ -50,14 +49,23 @@ html {
 
 /* SECTION 3: Set body font face, size, and color.
    Consider using a serif font for readability. */
-body, p, td, li, div {
+body,
+p,
+td,
+li,
+div {
 	font-size: 18pt;
 }
 
 /* SECTION 4: Set heading font face, sizes, and color.
    Diffrentiate your headings from your body text.
    Perhaps use a large sans-serif for distinction. */
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	text-shadow: 0 0 0 #000 !important;
 }
 
@@ -70,9 +78,11 @@ a:visited {
 	text-decoration: underline;
 }
 
-
 /* SECTION 6: more reveal.js specific additions by @skypanther */
-ul, ol, div, p {
+ul,
+ol,
+div,
+p {
 	visibility: visible;
 	position: static;
 	width: auto;
@@ -99,17 +109,16 @@ ul, ol, div, p {
 	text-align: center;
 
 	-webkit-perspective: none;
-	   -moz-perspective: none;
-	    -ms-perspective: none;
-	        perspective: none;
+	-moz-perspective: none;
+	-ms-perspective: none;
+	perspective: none;
 
 	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
-	   -moz-perspective-origin: 50% 50%;
-	    -ms-perspective-origin: 50% 50%;
-	        perspective-origin: 50% 50%;
+	-moz-perspective-origin: 50% 50%;
+	-ms-perspective-origin: 50% 50%;
+	perspective-origin: 50% 50%;
 }
 .reveal .slides section {
-
 	page-break-after: always !important;
 
 	visibility: visible !important;
@@ -129,14 +138,14 @@ ul, ol, div, p {
 	opacity: 1 !important;
 
 	-webkit-transform-style: flat !important;
-	   -moz-transform-style: flat !important;
-	    -ms-transform-style: flat !important;
-	        transform-style: flat !important;
+	-moz-transform-style: flat !important;
+	-ms-transform-style: flat !important;
+	transform-style: flat !important;
 
 	-webkit-transform: none !important;
-	   -moz-transform: none !important;
-	    -ms-transform: none !important;
-	        transform: none !important;
+	-moz-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
 }
 .reveal section.stack {
 	margin: 0px !important;
@@ -148,9 +157,9 @@ ul, ol, div, p {
 	visibility: visible !important;
 
 	-webkit-transform: none !important;
-	   -moz-transform: none !important;
-	    -ms-transform: none !important;
-	        transform: none !important;
+	-moz-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
 }
 .reveal img {
 	box-shadow: none;
