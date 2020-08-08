@@ -1,36 +1,35 @@
 <script>
 	import Logo from '../img/logo.svg'
-	import Search from '../img/search.svg'
 
 	export let segment
 </script>
 
 <style>
 	nav {
-		background: var(--text-color);
-		color: var(--bg-color);
-		padding: 0 var(--main-padding-horz);
+		padding: var(--main-padding-vert) var(--main-padding-horz);
 	}
 
 	ul {
-		position: relative;
 		display: flex;
 		list-style: none;
-		justify-content: space-between;
 		margin: 0;
 	}
 
 	li {
 		display: flex;
-		align-content: center;
+		padding-left: 20px;
 	}
 
 	a {
-		display: flex;
+		display: block;
 		color: inherit;
 		text-decoration: none;
 		align-self: center;
-		padding: 9px 0;
+	}
+
+	.home {
+		padding: 0;
+		flex: 1 1 auto;
 	}
 
 	.logo {
@@ -40,24 +39,19 @@
 
 <nav>
 	<ul>
-		<li>
+		<li class="home">
 			<a class="logo" aria-current={segment === undefined ? 'page' : undefined} href="/" rel="prefetch">
 				<Logo />
 			</a>
 		</li>
 		<li>
-			<a aria-current={segment === 'posts' ? 'page' : undefined} href="/posts" rel="prefetch">Posts</a>
+			<a aria-current={segment === 'posts' ? 'page' : undefined} href="/posts" rel="prefetch">posts</a>
 		</li>
 		<li>
-			<a aria-current={segment === 'about' ? 'page' : undefined} href="/about" rel="prefetch">About</a>
+			<a aria-current={segment === 'about' ? 'page' : undefined} href="/about" rel="prefetch">about</a>
 		</li>
 		<li>
-			<a aria-current={segment === 'contact' ? 'page' : undefined} href="/contact" rel="prefetch">Contact</a>
-		</li>
-		<li>
-			<a href="https://www.google.com/search?sitesearch=craveytrain.com">
-				<Search />
-			</a>
+			<a aria-current={segment === 'contact' ? 'page' : undefined} href="/contact" rel="prefetch">contact</a>
 		</li>
 	</ul>
 </nav>
