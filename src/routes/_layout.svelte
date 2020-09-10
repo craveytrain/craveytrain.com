@@ -1,3 +1,7 @@
+<script context="module">
+	export async function preload() {}
+</script>
+
 <script>
 	import Nav from '../components/nav.svelte'
 	import Footer from '../components/footer.svelte'
