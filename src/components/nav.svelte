@@ -34,6 +34,7 @@
 
 	.logo {
 		padding: 0;
+		color: var(--text-color);
 	}
 </style>
 
