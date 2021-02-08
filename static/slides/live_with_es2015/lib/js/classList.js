@@ -1,5 +1,8 @@
 /*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js */
-if (typeof document !== 'undefined' && !('classList' in document.createElement('a'))) {
+if (
+	typeof document !== 'undefined' &&
+	!('classList' in document.createElement('a'))
+) {
 	;(function (j) {
 		var a = 'classList'
 
@@ -40,7 +43,10 @@ if (typeof document !== 'undefined' && !('classList' in document.createElement('
 				throw new n('SYNTAX_ERR', 'An invalid or illegal string was specified')
 			}
 			if (/\s/.test(o)) {
-				throw new n('INVALID_CHARACTER_ERR', 'String contains an invalid character')
+				throw new n(
+					'INVALID_CHARACTER_ERR',
+					'String contains an invalid character'
+				)
 			}
 			return c.call(p, o)
 		}

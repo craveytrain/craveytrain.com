@@ -73,7 +73,8 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 	]
 	var COMMON_KEYWORDS = [
 		C_KEYWORDS,
-		'catch,class,delete,false,import,' + 'new,operator,private,protected,public,this,throw,true,try,typeof',
+		'catch,class,delete,false,import,' +
+			'new,operator,private,protected,public,this,throw,true,try,typeof',
 	]
 	var CPP_KEYWORDS = [
 		COMMON_KEYWORDS,
@@ -102,7 +103,8 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		'true,try,unless,until,when,while,yes'
 	var JSCRIPT_KEYWORDS = [
 		COMMON_KEYWORDS,
-		'debugger,eval,export,function,get,null,set,undefined,var,with,' + 'Infinity,NaN',
+		'debugger,eval,export,function,get,null,set,undefined,var,with,' +
+			'Infinity,NaN',
 	]
 	var PERL_KEYWORDS =
 		'caller,delete,die,do,dump,elsif,eval,exit,foreach,for,' +
@@ -122,7 +124,10 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 			'rescue,retry,self,super,then,true,undef,unless,until,when,yield,' +
 			'BEGIN,END',
 	]
-	var SH_KEYWORDS = [FLOW_CONTROL_KEYWORDS, 'case,done,elif,esac,eval,fi,' + 'function,in,local,set,then,until']
+	var SH_KEYWORDS = [
+		FLOW_CONTROL_KEYWORDS,
+		'case,done,elif,esac,eval,fi,' + 'function,in,local,set,then,until',
+	]
 	var ALL_KEYWORDS = [
 		CPP_KEYWORDS,
 		CSHARP_KEYWORDS,
@@ -248,7 +253,11 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 			var regex = regexs[i]
 			if (regex.ignoreCase) {
 				ignoreCase = true
-			} else if (/[a-z]/i.test(regex.source.replace(/\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi, ''))) {
+			} else if (
+				/[a-z]/i.test(
+					regex.source.replace(/\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi, '')
+				)
+			) {
 				needToFoldCase = true
 				ignoreCase = false
 				break
@@ -383,14 +392,14 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 			var parts = regex.source.match(
 				new RegExp(
 					'(?:' +
-					'\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]' + // a character set
-					'|\\\\u[A-Fa-f0-9]{4}' + // a unicode escape
-					'|\\\\x[A-Fa-f0-9]{2}' + // a hex escape
-					'|\\\\[0-9]+' + // a back-reference or octal escape
-					'|\\\\[^ux0-9]' + // other escape sequence
-					'|\\(\\?[:!=]' + // start of a non-capturing group
-					'|[\\(\\)\\^]' + // start/emd of a group, or line start
-					'|[^\\x5B\\x5C\\(\\)\\^]+' + // run of other characters
+						'\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]' + // a character set
+						'|\\\\u[A-Fa-f0-9]{4}' + // a unicode escape
+						'|\\\\x[A-Fa-f0-9]{2}' + // a hex escape
+						'|\\\\[0-9]+' + // a back-reference or octal escape
+						'|\\\\[^ux0-9]' + // other escape sequence
+						'|\\(\\?[:!=]' + // start of a non-capturing group
+						'|[\\(\\)\\^]' + // start/emd of a group, or line start
+						'|[^\\x5B\\x5C\\(\\)\\^]+' + // run of other characters
 						')',
 					'g'
 				)
@@ -474,7 +483,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 			if (regex.global || regex.multiline) {
 				throw new Error('' + regex)
 			}
-			rewritten.push('(?:' + allowAnywhereFoldCaseAndRenumberGroups(regex) + ')')
+			rewritten.push(
+				'(?:' + allowAnywhereFoldCaseAndRenumberGroups(regex) + ')'
+			)
 		}
 
 		return new RegExp(rewritten.join('|'), ignoreCase ? 'gi' : 'g')
@@ -535,7 +546,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		if (node.currentStyle) {
 			whitespace = node.currentStyle.whiteSpace
 		} else if (window.getComputedStyle) {
-			whitespace = document.defaultView.getComputedStyle(node, null).getPropertyValue('white-space')
+			whitespace = document.defaultView
+				.getComputedStyle(node, null)
+				.getPropertyValue('white-space')
 		}
 		var isPreformatted = whitespace && whitespace.substring(0, 3) === 'pre'
 
@@ -789,7 +802,12 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 					}
 					var lang = style.substring(5)
 					// Decorate the left of the embedded source
-					appendDecorations(basePos + tokenStart, token.substring(0, embeddedSourceStart), decorate, decorations)
+					appendDecorations(
+						basePos + tokenStart,
+						token.substring(0, embeddedSourceStart),
+						decorate,
+						decorations
+					)
 					// Decorate the embedded source
 					appendDecorations(
 						basePos + tokenStart + embeddedSourceStart,
@@ -857,14 +875,23 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		}
 		if (options['verbatimStrings']) {
 			// verbatim-string-literal production from the C# grammar.  See issue 93.
-			fallthroughStylePatterns.push([PR_STRING, /^@\"(?:[^\"]|\"\")*(?:\"|$)/, null])
+			fallthroughStylePatterns.push([
+				PR_STRING,
+				/^@\"(?:[^\"]|\"\")*(?:\"|$)/,
+				null,
+			])
 		}
 		var hc = options['hashComments']
 		if (hc) {
 			if (options['cStyleComments']) {
 				if (hc > 1) {
 					// multiline hash comments
-					shortcutStylePatterns.push([PR_COMMENT, /^#(?:##(?:[^#]|#(?!##))*(?:###|$)|.*)/, null, '#'])
+					shortcutStylePatterns.push([
+						PR_COMMENT,
+						/^#(?:##(?:[^#]|#(?!##))*(?:###|$)|.*)/,
+						null,
+						'#',
+					])
 				} else {
 					// Stop C preprocessor declarations at an unclosed open comment
 					shortcutStylePatterns.push([
@@ -885,7 +912,11 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		}
 		if (options['cStyleComments']) {
 			fallthroughStylePatterns.push([PR_COMMENT, /^\/\/[^\r\n]*/, null])
-			fallthroughStylePatterns.push([PR_COMMENT, /^\/\*[\s\S]*?(?:\*\/|$)/, null])
+			fallthroughStylePatterns.push([
+				PR_COMMENT,
+				/^\/\*[\s\S]*?(?:\*\/|$)/,
+				null,
+			])
 		}
 		if (options['regexLiterals']) {
 			/**
@@ -917,7 +948,11 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 
 		var keywords = ('' + options['keywords']).replace(/^ | $/g, '')
 		if (keywords.length) {
-			fallthroughStylePatterns.push([PR_KEYWORD, new RegExp('^(?:' + keywords.replace(/[\s,]+/g, '|') + ')\\b'), null])
+			fallthroughStylePatterns.push([
+				PR_KEYWORD,
+				new RegExp('^(?:' + keywords.replace(/[\s,]+/g, '|') + ')\\b'),
+				null,
+			])
 		}
 
 		shortcutStylePatterns.push([PR_PLAIN, /^\s+/, null, ' \r\n\t\xA0'])
@@ -979,7 +1014,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		if (node.currentStyle) {
 			whitespace = node.currentStyle.whiteSpace
 		} else if (window.getComputedStyle) {
-			whitespace = document.defaultView.getComputedStyle(node, null).getPropertyValue('white-space')
+			whitespace = document.defaultView
+				.getComputedStyle(node, null)
+				.getPropertyValue('white-space')
 		}
 		// If it's preformatted, then we need to split lines on line breaks
 		// in addition to <BR>s.
@@ -1006,7 +1043,11 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 							node.parentNode.removeChild(node)
 						}
 					} else {
-						for (var child = node.firstChild; child; child = child.nextSibling) {
+						for (
+							var child = node.firstChild;
+							child;
+							child = child.nextSibling
+						) {
 							walk(child)
 						}
 					}
@@ -1022,7 +1063,10 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 							var tail = text.substring(match.index + match[0].length)
 							if (tail) {
 								var parent = node.parentNode
-								parent.insertBefore(document.createTextNode(tail), node.nextSibling)
+								parent.insertBefore(
+									document.createTextNode(tail),
+									node.nextSibling
+								)
 							}
 							breakAfter(node)
 							if (!firstLine) {
@@ -1309,7 +1353,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		),
 		['in.tag']
 	)
-	registerLangHandler(createSimpleLexer([], [[PR_ATTRIB_VALUE, /^[\s\S]+/]]), ['uq.val'])
+	registerLangHandler(createSimpleLexer([], [[PR_ATTRIB_VALUE, /^[\s\S]+/]]), [
+		'uq.val',
+	])
 	registerLangHandler(
 		sourceDecorator({
 			keywords: CPP_KEYWORDS,
@@ -1396,7 +1442,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		}),
 		['coffee']
 	)
-	registerLangHandler(createSimpleLexer([], [[PR_STRING, /^[\s\S]+/]]), ['regex'])
+	registerLangHandler(createSimpleLexer([], [[PR_STRING, /^[\s\S]+/]]), [
+		'regex',
+	])
 
 	function applyDecorator(job) {
 		var opt_langExtension = job.langExtension
@@ -1481,7 +1529,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 		var prettyPrintRe = /\bprettyprint\b/
 
 		function doWork() {
-			var endTime = window['PR_SHOULD_USE_CONTINUATION'] ? clock['now']() + 250 /* ms */ : Infinity
+			var endTime = window['PR_SHOULD_USE_CONTINUATION']
+				? clock['now']() + 250 /* ms */
+				: Infinity
 			for (; k < elements.length && clock['now']() < endTime; k++) {
 				var cs = elements[k]
 				var className = cs.className
@@ -1497,7 +1547,11 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 					var langExtension = className.match(langExtensionRe)
 					// Support <pre class="prettyprint"><code class="language-c">
 					var wrapper
-					if (!langExtension && (wrapper = childContentWrapper(cs)) && wrapper.tagName === 'CODE') {
+					if (
+						!langExtension &&
+						(wrapper = childContentWrapper(cs)) &&
+						wrapper.tagName === 'CODE'
+					) {
 						langExtension = wrapper.className.match(langExtensionRe)
 					}
 
@@ -1509,7 +1563,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 					var nested = false
 					for (var p = cs.parentNode; p; p = p.parentNode) {
 						if (
-							(p.tagName === 'pre' || p.tagName === 'code' || p.tagName === 'xmp') &&
+							(p.tagName === 'pre' ||
+								p.tagName === 'code' ||
+								p.tagName === 'xmp') &&
 							p.className &&
 							p.className.indexOf('prettyprint') >= 0
 						) {
@@ -1521,7 +1577,11 @@ window['PR_SHOULD_USE_CONTINUATION'] = true
 						// Look for a class like linenums or linenums:<n> where <n> is the
 						// 1-indexed number of the first line.
 						var lineNums = cs.className.match(/\blinenums\b(?::(\d+))?/)
-						lineNums = lineNums ? (lineNums[1] && lineNums[1].length ? +lineNums[1] : true) : false
+						lineNums = lineNums
+							? lineNums[1] && lineNums[1].length
+								? +lineNums[1]
+								: true
+							: false
 						if (lineNums) {
 							numberLines(cs, lineNums)
 						}

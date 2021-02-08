@@ -1,0 +1,10 @@
+{
+	"title": "Craveytrain",
+	"url": "https://craveytrain.com/",
+	"description": "The personal site of Mike Cravey (@craveytrain).",
+	"XMLfeedUrl": "https://craveytrain.com/feed.xml",
+	"JSONfeedUrl": "https://craveytrain.com/feed.json",
+	"author": {
+		"name": "Mike Cravey"
+	}
+}

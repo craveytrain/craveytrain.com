@@ -7,8 +7,13 @@
 	var socket = io.connect(window.location.origin)
 	var socketId = Math.random().toString().slice(2)
 
-	console.log('View slide notes at ' + window.location.origin + '/notes/' + socketId)
-	window.open(window.location.origin + '/notes/' + socketId, 'notes-' + socketId)
+	console.log(
+		'View slide notes at ' + window.location.origin + '/notes/' + socketId
+	)
+	window.open(
+		window.location.origin + '/notes/' + socketId,
+		'notes-' + socketId
+	)
 
 	// Fires when a fragment is shown
 	Reveal.addEventListener('fragmentshown', function (event) {
@@ -34,7 +39,10 @@
 		var nextindexv
 		var slideElement = event.currentSlide
 
-		if (slideElement.nextElementSibling && slideElement.parentNode.nodeName == 'SECTION') {
+		if (
+			slideElement.nextElementSibling &&
+			slideElement.parentNode.nodeName == 'SECTION'
+		) {
 			nextindexh = event.indexh
 			nextindexv = event.indexv + 1
 		} else {
@@ -50,7 +58,9 @@
 			nextindexh: nextindexh,
 			nextindexv: nextindexv,
 			socketId: socketId,
-			markdown: notes ? typeof notes.getAttribute('data-markdown') === 'string' : false,
+			markdown: notes
+				? typeof notes.getAttribute('data-markdown') === 'string'
+				: false,
 		}
 
 		socket.emit('slidechanged', slideData)

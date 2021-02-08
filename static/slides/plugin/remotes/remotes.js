@@ -9,7 +9,10 @@
 	 * Borrowed from modernizr: https://github.com/Modernizr/Modernizr/blob/master/feature-detects/touch.js
 	 */
 	var hasTouch = (function () {
-		return 'ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)
+		return (
+			'ontouchstart' in window ||
+			(window.DocumentTouch && document instanceof DocumentTouch)
+		)
 	})()
 
 	/**
@@ -40,6 +43,8 @@
 				})
 		})
 
-		head.js('https://raw.github.com/Remotes/Remotes/master/dist/remotes.ne.min.js')
+		head.js(
+			'https://raw.github.com/Remotes/Remotes/master/dist/remotes.ne.min.js'
+		)
 	}
 })(window)

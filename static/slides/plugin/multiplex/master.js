@@ -17,7 +17,10 @@
 				fragmentindex = 0
 			}
 
-			if (slideElement.nextElementSibling && slideElement.parentNode.nodeName == 'SECTION') {
+			if (
+				slideElement.nextElementSibling &&
+				slideElement.parentNode.nodeName == 'SECTION'
+			) {
 				nextindexh = indexh
 				nextindexv = indexv + 1
 			} else {
@@ -44,7 +47,12 @@
 	})
 
 	var fragmentNotify = function (event) {
-		notify(Reveal.getCurrentSlide(), Reveal.getIndices().h, Reveal.getIndices().v, event.origin)
+		notify(
+			Reveal.getCurrentSlide(),
+			Reveal.getIndices().h,
+			Reveal.getIndices().v,
+			event.origin
+		)
 	}
 
 	Reveal.addEventListener('fragmentshown', fragmentNotify)

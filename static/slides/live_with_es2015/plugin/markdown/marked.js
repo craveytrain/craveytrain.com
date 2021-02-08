@@ -52,7 +52,11 @@
 				t === 'colon'
 					? ':'
 					: t.charAt(0) === '#'
-					? String.fromCharCode(t.charAt(1) === 'x' ? parseInt(t.substring(2), 16) : +t.substring(1))
+					? String.fromCharCode(
+							t.charAt(1) === 'x'
+								? parseInt(t.substring(2), 16)
+								: +t.substring(1)
+					  )
 					: ''
 			)
 		})
@@ -63,7 +67,10 @@
 			(t = t || ''),
 			function n(r, s) {
 				return r
-					? ((s = s.source || s), (s = s.replace(/(^|[^\[])\^/g, '$1')), (e = e.replace(r, s)), n)
+					? ((s = s.source || s),
+					  (s = s.replace(/(^|[^\[])\^/g, '$1')),
+					  (e = e.replace(r, s)),
+					  n)
 					: new RegExp(e, t)
 			}
 		)
@@ -121,8 +128,14 @@
 			try {
 				return n && (n = h({}, a.defaults, n)), r.parse(e.lex(t, n), n)
 			} catch (c) {
-				if (((c.message += '\nPlease report this to https://github.com/chjj/marked.'), (n || a.defaults).silent)) {
-					return '<p>An error occured:</p><pre>' + s(c.message + '', !0) + '</pre>'
+				if (
+					((c.message +=
+						'\nPlease report this to https://github.com/chjj/marked.'),
+					(n || a.defaults).silent)
+				) {
+					return (
+						'<p>An error occured:</p><pre>' + s(c.message + '', !0) + '</pre>'
+					)
 				}
 				throw c
 			}
@@ -147,21 +160,21 @@
 	;(p.bullet = /(?:[*+-]|\d+\.)/),
 		(p.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/),
 		(p.item = l(p.item, 'gm')(/bull/g, p.bullet)()),
-		(p.list = l(p.list)(/bull/g, p.bullet)('hr', '\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))')(
-			'def',
-			'\\n+(?=' + p.def.source + ')'
-		)()),
+		(p.list = l(p.list)(/bull/g, p.bullet)(
+			'hr',
+			'\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))'
+		)('def', '\\n+(?=' + p.def.source + ')')()),
 		(p.blockquote = l(p.blockquote)('def', p.def)()),
 		(p._tag =
 			'(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b'),
-		(p.html = l(p.html)('comment', /<!--[\s\S]*?-->/)('closed', /<(tag)[\s\S]+?<\/\1>/)(
-			'closing',
-			/<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/
-		)(/tag/g, p._tag)()),
-		(p.paragraph = l(p.paragraph)('hr', p.hr)('heading', p.heading)('lheading', p.lheading)('blockquote', p.blockquote)(
-			'tag',
-			'<' + p._tag
-		)('def', p.def)()),
+		(p.html = l(p.html)('comment', /<!--[\s\S]*?-->/)(
+			'closed',
+			/<(tag)[\s\S]+?<\/\1>/
+		)('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)(/tag/g, p._tag)()),
+		(p.paragraph = l(p.paragraph)('hr', p.hr)('heading', p.heading)(
+			'lheading',
+			p.lheading
+		)('blockquote', p.blockquote)('tag', '<' + p._tag)('def', p.def)()),
 		(p.normal = h({}, p)),
 		(p.gfm = h({}, p.normal, {
 			fences: /^ *(`{3,}|~{3,}) *(\S+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
@@ -169,7 +182,11 @@
 		})),
 		(p.gfm.paragraph = l(p.paragraph)(
 			'(?!',
-			'(?!' + p.gfm.fences.source.replace('\\1', '\\2') + '|' + p.list.source.replace('\\1', '\\3') + '|'
+			'(?!' +
+				p.gfm.fences.source.replace('\\1', '\\2') +
+				'|' +
+				p.list.source.replace('\\1', '\\3') +
+				'|'
 		)()),
 		(p.tables = h({}, p.gfm, {
 			nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
@@ -194,7 +211,8 @@
 			for (var r, s, i, l, o, h, a, u, c, e = e.replace(/^ +$/gm, ''); e; ) {
 				if (
 					((i = this.rules.newline.exec(e)) &&
-						((e = e.substring(i[0].length)), i[0].length > 1 && this.tokens.push({ type: 'space' })),
+						((e = e.substring(i[0].length)),
+						i[0].length > 1 && this.tokens.push({ type: 'space' })),
 					(i = this.rules.code.exec(e)))
 				) {
 					;(e = e.substring(i[0].length)),
@@ -204,7 +222,8 @@
 							text: this.options.pedantic ? i : i.replace(/\n+$/, ''),
 						})
 				} else if ((i = this.rules.fences.exec(e))) {
-					;(e = e.substring(i[0].length)), this.tokens.push({ type: 'code', lang: i[2], text: i[3] })
+					;(e = e.substring(i[0].length)),
+						this.tokens.push({ type: 'code', lang: i[2], text: i[3] })
 				} else if ((i = this.rules.heading.exec(e))) {
 					;(e = e.substring(i[0].length)),
 						this.tokens.push({
@@ -275,9 +294,12 @@
 							this.options.smartLists &&
 								u !== c - 1 &&
 								((o = p.bullet.exec(i[u + 1])[0]),
-								l === o || (l.length > 1 && o.length > 1) || ((e = i.slice(u + 1).join('\n') + e), (u = c - 1))),
+								l === o ||
+									(l.length > 1 && o.length > 1) ||
+									((e = i.slice(u + 1).join('\n') + e), (u = c - 1))),
 							(s = r || /\n\n(?!\s*$)/.test(h)),
-							u !== c - 1 && ((r = h.charAt(h.length - 1) === '\n'), s || (s = r)),
+							u !== c - 1 &&
+								((r = h.charAt(h.length - 1) === '\n'), s || (s = r)),
 							this.tokens.push({
 								type: s ? 'loose_item_start' : 'list_item_start',
 							}),
@@ -320,17 +342,23 @@
 							: null
 					}
 					for (u = 0; u < h.cells.length; u++) {
-						h.cells[u] = h.cells[u].replace(/^ *\| *| *\| *$/g, '').split(/ *\| */)
+						h.cells[u] = h.cells[u]
+							.replace(/^ *\| *| *\| *$/g, '')
+							.split(/ *\| */)
 					}
 					this.tokens.push(h)
 				} else if (t && (i = this.rules.paragraph.exec(e))) {
 					;(e = e.substring(i[0].length)),
 						this.tokens.push({
 							type: 'paragraph',
-							text: i[1].charAt(i[1].length - 1) === '\n' ? i[1].slice(0, -1) : i[1],
+							text:
+								i[1].charAt(i[1].length - 1) === '\n'
+									? i[1].slice(0, -1)
+									: i[1],
 						})
 				} else if ((i = this.rules.text.exec(e))) {
-					;(e = e.substring(i[0].length)), this.tokens.push({ type: 'text', text: i[0] })
+					;(e = e.substring(i[0].length)),
+						this.tokens.push({ type: 'text', text: i[0] })
 				} else if (e) {
 					throw new Error('Infinite loop on byte: ' + e.charCodeAt(0))
 				}
@@ -383,7 +411,10 @@
 				} else if ((i = this.rules.autolink.exec(e))) {
 					;(e = e.substring(i[0].length)),
 						i[2] === '@'
-							? ((n = this.mangle(i[1].charAt(6) === ':' ? i[1].substring(7) : i[1])), (r = this.mangle('mailto:') + n))
+							? ((n = this.mangle(
+									i[1].charAt(6) === ':' ? i[1].substring(7) : i[1]
+							  )),
+							  (r = this.mangle('mailto:') + n))
 							: ((n = s(i[1])), (r = n)),
 						(l += this.renderer.link(r, null, n))
 				} else if (this.inLink || !(i = this.rules.url.exec(e))) {
@@ -398,7 +429,10 @@
 							(this.inLink = !0),
 							(l += this.outputLink(i, { href: i[2], title: i[3] })),
 							(this.inLink = !1)
-					} else if ((i = this.rules.reflink.exec(e)) || (i = this.rules.nolink.exec(e))) {
+					} else if (
+						(i = this.rules.reflink.exec(e)) ||
+						(i = this.rules.nolink.exec(e))
+					) {
 						if (
 							((e = e.substring(i[0].length)),
 							(t = (i[2] || i[1]).replace(/\s+/g, ' ')),
@@ -408,24 +442,33 @@
 							;(l += i[0].charAt(0)), (e = i[0].substring(1) + e)
 							continue
 						}
-						;(this.inLink = !0), (l += this.outputLink(i, t)), (this.inLink = !1)
+						;(this.inLink = !0),
+							(l += this.outputLink(i, t)),
+							(this.inLink = !1)
 					} else if ((i = this.rules.strong.exec(e))) {
-						;(e = e.substring(i[0].length)), (l += this.renderer.strong(this.output(i[2] || i[1])))
+						;(e = e.substring(i[0].length)),
+							(l += this.renderer.strong(this.output(i[2] || i[1])))
 					} else if ((i = this.rules.em.exec(e))) {
-						;(e = e.substring(i[0].length)), (l += this.renderer.em(this.output(i[2] || i[1])))
+						;(e = e.substring(i[0].length)),
+							(l += this.renderer.em(this.output(i[2] || i[1])))
 					} else if ((i = this.rules.code.exec(e))) {
-						;(e = e.substring(i[0].length)), (l += this.renderer.codespan(s(i[2], !0)))
+						;(e = e.substring(i[0].length)),
+							(l += this.renderer.codespan(s(i[2], !0)))
 					} else if ((i = this.rules.br.exec(e))) {
 						;(e = e.substring(i[0].length)), (l += this.renderer.br())
 					} else if ((i = this.rules.del.exec(e))) {
-						;(e = e.substring(i[0].length)), (l += this.renderer.del(this.output(i[1])))
+						;(e = e.substring(i[0].length)),
+							(l += this.renderer.del(this.output(i[1])))
 					} else if ((i = this.rules.text.exec(e))) {
 						;(e = e.substring(i[0].length)), (l += s(this.smartypants(i[0])))
 					} else if (e) {
 						throw new Error('Infinite loop on byte: ' + e.charCodeAt(0))
 					}
 				} else {
-					;(e = e.substring(i[0].length)), (n = s(i[1])), (r = n), (l += this.renderer.link(r, null, n))
+					;(e = e.substring(i[0].length)),
+						(n = s(i[1])),
+						(r = n),
+						(l += this.renderer.link(r, null, n))
 				}
 			}
 			return l
@@ -434,7 +477,9 @@
 			var n = s(t.href)
 
 			var r = t.title ? s(t.title) : null
-			return e[0].charAt(0) !== '!' ? this.renderer.link(n, r, this.output(e[1])) : this.renderer.image(n, r, s(e[1]))
+			return e[0].charAt(0) !== '!'
+				? this.renderer.link(n, r, this.output(e[1]))
+				: this.renderer.image(n, r, s(e[1]))
 		}),
 		(t.prototype.smartypants = function (e) {
 			return this.options.smartypants
@@ -449,7 +494,9 @@
 		}),
 		(t.prototype.mangle = function (e) {
 			for (var t, n = '', r = e.length, s = 0; r > s; s++) {
-				;(t = e.charCodeAt(s)), Math.random() > 0.5 && (t = 'x' + t.toString(16)), (n += '&#' + t + ';')
+				;(t = e.charCodeAt(s)),
+					Math.random() > 0.5 && (t = 'x' + t.toString(16)),
+					(n += '&#' + t + ';')
 			}
 			return n
 		}),
@@ -459,7 +506,12 @@
 				r != null && r !== e && ((n = !0), (e = r))
 			}
 			return t
-				? '<pre><code class="' + this.options.langPrefix + s(t, !0) + '">' + (n ? e : s(e, !0)) + '\n</code></pre>\n'
+				? '<pre><code class="' +
+						this.options.langPrefix +
+						s(t, !0) +
+						'">' +
+						(n ? e : s(e, !0)) +
+						'\n</code></pre>\n'
 				: '<pre><code>' + (n ? e : s(e, !0)) + '\n</code></pre>'
 		}),
 		(n.prototype.blockquote = function (e) {
@@ -496,7 +548,13 @@
 			return '<p>' + e + '</p>\n'
 		}),
 		(n.prototype.table = function (e, t) {
-			return '<table>\n<thead>\n' + e + '</thead>\n<tbody>\n' + t + '</tbody>\n</table>\n'
+			return (
+				'<table>\n<thead>\n' +
+				e +
+				'</thead>\n<tbody>\n' +
+				t +
+				'</tbody>\n</table>\n'
+			)
 		}),
 		(n.prototype.tablerow = function (e) {
 			return '<tr>\n' + e + '</tr>\n'
@@ -504,7 +562,9 @@
 		(n.prototype.tablecell = function (e, t) {
 			var n = t.header ? 'th' : 'td'
 
-			var r = t.align ? '<' + n + ' style="text-align:' + t.align + '">' : '<' + n + '>'
+			var r = t.align
+				? '<' + n + ' style="text-align:' + t.align + '">'
+				: '<' + n + '>'
 			return r + e + '</' + n + '>\n'
 		}),
 		(n.prototype.strong = function (e) {
@@ -540,14 +600,17 @@
 		}),
 		(n.prototype.image = function (e, t, n) {
 			var r = '<img src="' + e + '" alt="' + n + '"'
-			return t && (r += ' title="' + t + '"'), (r += this.options.xhtml ? '/>' : '>')
+			return (
+				t && (r += ' title="' + t + '"'), (r += this.options.xhtml ? '/>' : '>')
+			)
 		}),
 		(r.parse = function (e, t, n) {
 			var s = new r(t, n)
 			return s.parse(e)
 		}),
 		(r.prototype.parse = function (e) {
-			;(this.inline = new t(e.links, this.options, this.renderer)), (this.tokens = e.reverse())
+			;(this.inline = new t(e.links, this.options, this.renderer)),
+				(this.tokens = e.reverse())
 			for (var n = ''; this.next(); ) n += this.tok()
 			return n
 		}),
@@ -570,9 +633,17 @@
 				case 'hr':
 					return this.renderer.hr()
 				case 'heading':
-					return this.renderer.heading(this.inline.output(this.token.text), this.token.depth, this.token.text)
+					return this.renderer.heading(
+						this.inline.output(this.token.text),
+						this.token.depth,
+						this.token.text
+					)
 				case 'code':
-					return this.renderer.code(this.token.text, this.token.lang, this.token.escaped)
+					return this.renderer.code(
+						this.token.text,
+						this.token.lang,
+						this.token.escaped
+					)
 				case 'table':
 					var e
 
@@ -589,12 +660,19 @@
 					var l = ''
 					for (n = '', e = 0; e < this.token.header.length; e++) {
 						;(r = { header: !0, align: this.token.align[e] }),
-							(n += this.renderer.tablecell(this.inline.output(this.token.header[e]), {
-								header: !0,
-								align: this.token.align[e],
-							}))
+							(n += this.renderer.tablecell(
+								this.inline.output(this.token.header[e]),
+								{
+									header: !0,
+									align: this.token.align[e],
+								}
+							))
 					}
-					for (i += this.renderer.tablerow(n), e = 0; e < this.token.cells.length; e++) {
+					for (
+						i += this.renderer.tablerow(n), e = 0;
+						e < this.token.cells.length;
+						e++
+					) {
 						for (t = this.token.cells[e], n = '', s = 0; s < t.length; s++) {
 							n += this.renderer.tablecell(this.inline.output(t[s]), {
 								header: !1,
@@ -610,7 +688,11 @@
 					}
 					return this.renderer.blockquote(l)
 				case 'list_start':
-					for (var l = '', o = this.token.ordered; this.next().type !== 'list_end'; ) {
+					for (
+						var l = '', o = this.token.ordered;
+						this.next().type !== 'list_end';
+
+					) {
 						l += this.tok()
 					}
 					return this.renderer.list(l, o)
@@ -625,7 +707,10 @@
 					}
 					return this.renderer.listitem(l)
 				case 'html':
-					var h = this.token.pre || this.options.pedantic ? this.token.text : this.inline.output(this.token.text)
+					var h =
+						this.token.pre || this.options.pedantic
+							? this.token.text
+							: this.inline.output(this.token.text)
 					return this.renderer.html(h)
 				case 'paragraph':
 					return this.renderer.paragraph(this.inline.output(this.token.text))

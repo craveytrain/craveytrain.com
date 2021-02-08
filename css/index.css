@@ -1,0 +1,264 @@
+/* Variables */
+:root {
+	--bg-color: white;
+	--secondary-bg-color: hsla(0, 0%, 0%, 0.05);
+	--text-color: hsl(0, 0%, 20%);
+	--secondary-text-color: hsl(0, 0%, 45%);
+	--link-color: var(--text-color);
+	--link-hover-color: hsl(189, 99%, 30%);
+	--title-family: 'Alfa Slab One', serif;
+	--title-size: 43px;
+	--title-weight: normal;
+	--color-trans-gray: hsla(0, 0%, 0%, 0.08);
+	--min-width: 320px;
+	--max-width: 1200px;
+	--text-vert-rhythm: 1.5rem;
+	--main-padding-horz: 25px;
+	--main-padding-vert: 1.5rem;
+	--body-bg: linear-gradient(
+		90deg,
+		hsla(329, 60%, 79%, 0.1) 60%,
+		hsla(189, 40%, 83%, 0.2) 87%
+	);
+}
+
+@media (min-width: 500px) {
+	:root {
+		--main-padding-horz: 50px;
+		--title-size: 64px;
+	}
+}
+
+/* Utils */
+
+/* Elements */
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+html {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-family: system-ui, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	text-rendering: optimizeLegibility;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+
+	/* hack for mix-blend-mode */
+	background: linear-gradient(
+		90deg,
+		hsla(329, 60%, 79%, 0.1) 40%,
+		hsla(189, 40%, 83%, 0.1) 60%
+	);
+	color: inherit;
+}
+
+@media (min-width: 750px) {
+	body {
+		background: linear-gradient(
+			90deg,
+			hsla(329, 60%, 79%, 0.1) 60%,
+			hsla(189, 40%, 83%, 0.1) 87%
+		);
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0;
+	margin-bottom: 1.5rem;
+}
+
+h1 {
+	font-family: var(--title-family);
+	font-size: var(--title-size);
+	font-weight: var(--title-weight);
+}
+
+p,
+ul,
+ol,
+dl {
+	margin: 0 0 1.5rem 0;
+	padding: 0;
+}
+
+ul ul {
+	margin: 0 0 0 1.5rem;
+}
+
+a {
+	color: var(--text-color);
+}
+
+a:hover {
+	color: var(--link-hover-color);
+}
+
+time {
+	color: var(--secondary-text-color);
+}
+
+/* Components */
+.container {
+	min-width: var(--min-width);
+	max-width: var(--max-width);
+	min-height: 100vh;
+	margin: auto;
+}
+
+main {
+	padding: var(--main-padding-vert) var(--main-padding-horz) 0;
+	margin-top: 2rem;
+}
+
+nav {
+	padding: var(--main-padding-vert) var(--main-padding-horz);
+
+	& ul {
+		display: flex;
+		list-style: none;
+		margin: 0;
+	}
+
+	& li {
+		display: flex;
+		padding-left: 20px;
+	}
+
+	/* stylelint-disable-next-line no-descending-specificity */
+	& a {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+		align-self: center;
+	}
+
+	& li:first-child {
+		padding: 0;
+		flex: 1 1 auto;
+	}
+}
+
+footer {
+	display: flex;
+	padding: 10px var(--main-padding-horz);
+	font-size: 14px;
+	border-top: 1px solid var(--color-trans-gray);
+
+	& ul {
+		display: flex;
+		list-style: none;
+	}
+
+	/* stylelint-disable-next-line no-descending-specificity */
+	& li {
+		margin-right: 10px;
+	}
+}
+
+.summary {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	background: var(--color-trans-gray);
+	margin-left: calc(-1 * var(--main-padding-horz));
+	margin-right: calc(-1 * var(--main-padding-horz));
+
+	& article {
+		flex: 1 1 250px;
+		margin: 30px 50px;
+	}
+
+	& h2 {
+		font-weight: 800;
+	}
+}
+
+.hero {
+	display: flex;
+	align-items: center;
+	padding-top: calc(40vw + var(--text-vert-rhythm));
+	margin-bottom: var(--text-vert-rhythm);
+	background-image: url('/img/illustration.png');
+	background-repeat: no-repeat;
+	background-size: 40vw;
+	background-position: top center;
+	font-size: 24px;
+	font-family: 'Nixie One', serif;
+	text-align: center;
+
+	& p {
+		margin: 0;
+	}
+
+	& span {
+		display: block;
+		margin: 0;
+		padding: 0;
+		font-family: var(--title-family);
+		font-size: var(--title-size);
+		font-weight: var(--title-weight);
+	}
+}
+
+@media (min-width: 750px) {
+	.hero {
+		min-height: calc(300px + var(--text-vert-rhythm));
+		padding-right: 325px;
+		padding-top: 0;
+		margin-bottom: 0;
+		background-position-x: right;
+		background-size: unset;
+		text-align: initial;
+	}
+}
+
+.postList {
+	/* stylelint-disable-next-line no-descending-specificity */
+	& li {
+		list-style: none;
+		margin-bottom: 1.5rem;
+	}
+
+	& h2 {
+		margin: 0;
+	}
+
+	& a {
+		text-decoration: none;
+	}
+}
+
+.tagList {
+	display: flex;
+	margin: 0;
+	list-style: none;
+
+	& a {
+		display: block;
+		background: var(--secondary-bg-color);
+		border: 2px solid transparent;
+		padding: 0.1rem 0.5rem;
+		margin-right: 0.5rem;
+		text-decoration: none;
+		border-radius: 2px;
+	}
+
+	& a:hover {
+		color: var(--text-color);
+		border-color: var(--link-hover-color);
+	}
+}

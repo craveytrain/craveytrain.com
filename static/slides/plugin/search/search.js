@@ -61,7 +61,10 @@ var RevealSearch = (function () {
 					var slidelen = matchingSlides.length
 					var alreadyAdded = false
 					for (var i = 0; i < slidelen; i++) {
-						if (matchingSlides[i].h === slideIndex.h && matchingSlides[i].v === slideIndex.v) {
+						if (
+							matchingSlides[i].h === slideIndex.h &&
+							matchingSlides[i].v === slideIndex.v
+						) {
 							alreadyAdded = true
 						}
 					}
@@ -70,7 +73,8 @@ var RevealSearch = (function () {
 					}
 
 					if (!wordColor[regs[0].toLowerCase()]) {
-						wordColor[regs[0].toLowerCase()] = colors[colorIdx++ % colors.length]
+						wordColor[regs[0].toLowerCase()] =
+							colors[colorIdx++ % colors.length]
 					}
 
 					var match = document.createElement(hiliteTag)
@@ -138,7 +142,10 @@ var RevealSearch = (function () {
 			currentMatchedIndex = 0
 		}
 		if (matchedSlides.length > currentMatchedIndex) {
-			Reveal.slide(matchedSlides[currentMatchedIndex].h, matchedSlides[currentMatchedIndex].v)
+			Reveal.slide(
+				matchedSlides[currentMatchedIndex].h,
+				matchedSlides[currentMatchedIndex].v
+			)
 			currentMatchedIndex++
 		}
 	}

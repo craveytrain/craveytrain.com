@@ -1,3 +1,5 @@
-node_modules
-static/slides
-__sapper__
+# Generated files
+_site
+
+# Legacy files
+slides

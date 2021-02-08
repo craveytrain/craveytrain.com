@@ -138,7 +138,9 @@
 		<div id="wrap-current-slide" class="slides">
 			<script>
 				document.write(
-					'<iframe width="1280" height="1024" id="current-slide" src="' + window.opener.location.href + '"></iframe>'
+					'<iframe width="1280" height="1024" id="current-slide" src="' +
+						window.opener.location.href +
+						'"></iframe>'
 				)
 			</script>
 		</div>
@@ -146,7 +148,9 @@
 		<div id="wrap-next-slide" class="slides">
 			<script>
 				document.write(
-					'<iframe width="640" height="512" id="next-slide" src="' + window.opener.location.href + '"></iframe>'
+					'<iframe width="640" height="512" id="next-slide" src="' +
+						window.opener.location.href +
+						'"></iframe>'
 				)
 			</script>
 			<span>UPCOMING:</span>
@@ -159,7 +163,8 @@
 			</div>
 			<div class="elapsed">
 				<h2>Elapsed</h2>
-				<span id="hours">00</span><span id="minutes">:00</span><span id="seconds">:00</span>
+				<span id="hours">00</span><span id="minutes">:00</span
+				><span id="seconds">:00</span>
 			</div>
 		</div>
 
@@ -170,7 +175,11 @@
 			window.addEventListener(
 				'load',
 				function () {
-					if (window.opener && window.opener.location && window.opener.location.href) {
+					if (
+						window.opener &&
+						window.opener.location &&
+						window.opener.location.href
+					) {
 						var notes = document.getElementById('notes'),
 							currentSlide = document.getElementById('current-slide'),
 							nextSlide = document.getElementById('next-slide')
@@ -182,7 +191,9 @@
 								// No need for updating the notes in case of fragment changes
 								if (data.notes !== undefined) {
 									if (data.markdown) {
-										notes.innerHTML = new Showdown.converter().makeHtml(data.notes)
+										notes.innerHTML = new Showdown.converter().makeHtml(
+											data.notes
+										)
 									} else {
 										notes.innerHTML = data.notes
 									}
@@ -195,8 +206,14 @@
 									currentSlide.contentWindow.Reveal.prevFragment()
 								} else {
 									// Update the note slides
-									currentSlide.contentWindow.Reveal.slide(data.indexh, data.indexv)
-									nextSlide.contentWindow.Reveal.slide(data.nextindexh, data.nextindexv)
+									currentSlide.contentWindow.Reveal.slide(
+										data.indexh,
+										data.indexv
+									)
+									nextSlide.contentWindow.Reveal.slide(
+										data.nextindexh,
+										data.nextindexv
+									)
 								}
 							},
 							false
@@ -232,9 +249,12 @@
 						}, 1000)
 
 						// Navigate the main window when the notes slide changes
-						currentSlide.contentWindow.Reveal.addEventListener('slidechanged', function (event) {
-							window.opener.Reveal.slide(event.indexh, event.indexv)
-						})
+						currentSlide.contentWindow.Reveal.addEventListener(
+							'slidechanged',
+							function (event) {
+								window.opener.Reveal.slide(event.indexh, event.indexv)
+							}
+						)
 					} else {
 						document.body.innerHTML =
 							'<p class="error">Unable to access <code>window.opener.location</code>.<br>Make sure the presentation is running on a web server.</p>'

@@ -31,7 +31,10 @@
 	var slidifyMarkdown = function (markdown, separator, vertical) {
 		separator = separator || '^\n---\n$'
 
-		var reSeparator = new RegExp(separator + (vertical ? '|' + vertical : ''), 'mg')
+		var reSeparator = new RegExp(
+			separator + (vertical ? '|' + vertical : ''),
+			'mg'
+		)
 
 		var reHorSeparator = new RegExp(separator)
 
@@ -75,7 +78,10 @@
 		}
 
 		// add the remaining slide
-		;(wasHorizontal ? sectionStack : sectionStack[sectionStack.length - 1]).push(markdown.substring(lastIndex))
+		;(wasHorizontal
+			? sectionStack
+			: sectionStack[sectionStack.length - 1]
+		).push(markdown.substring(lastIndex))
 
 		// flatten the hierarchical stack, and insert <section data-markdown> tags
 		for (var k = 0, klen = sectionStack.length; k < klen; k++) {
@@ -83,7 +89,9 @@
 				typeof sectionStack[k] === 'string'
 					? '<section data-markdown>' + twrap(sectionStack[k]) + '</section>'
 					: '<section><section data-markdown>' +
-					  sectionStack[k].map(twrap).join('</section><section data-markdown>') +
+					  sectionStack[k]
+							.map(twrap)
+							.join('</section><section data-markdown>') +
 					  '</section></section>'
 		}
 

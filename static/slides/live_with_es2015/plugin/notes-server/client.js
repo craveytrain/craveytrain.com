@@ -8,9 +8,14 @@
 
 	var socketId = Math.random().toString().slice(2)
 
-	console.log('View slide notes at ' + window.location.origin + '/notes/' + socketId)
+	console.log(
+		'View slide notes at ' + window.location.origin + '/notes/' + socketId
+	)
 
-	window.open(window.location.origin + '/notes/' + socketId, 'notes-' + socketId)
+	window.open(
+		window.location.origin + '/notes/' + socketId,
+		'notes-' + socketId
+	)
 
 	/**
 	 * Posts the current slide data to the notes window
@@ -35,7 +40,8 @@
 		// Look for notes defined in an aside element
 		if (notesElement) {
 			messageData.notes = notesElement.innerHTML
-			messageData.markdown = typeof notesElement.getAttribute('data-markdown') === 'string'
+			messageData.markdown =
+				typeof notesElement.getAttribute('data-markdown') === 'string'
 		}
 
 		socket.emit('statechanged', messageData)

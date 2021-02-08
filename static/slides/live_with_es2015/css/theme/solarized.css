@@ -4,6 +4,7 @@
  */
 @import url(../../lib/font/league-gothic/league-gothic.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:400, 700, 400italic, 700italic);
+
 /**
  * Solarized colors by Ethan Schoonover
  */
@@ -157,7 +158,7 @@ body {
 	padding: 5px;
 	font-style: italic;
 	background: rgba(255, 255, 255, 0.05);
-	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 .reveal blockquote p:first-child,
@@ -179,7 +180,7 @@ body {
 	font-family: monospace;
 	line-height: 1.2em;
 	word-wrap: break-word;
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .reveal code {
@@ -261,7 +262,7 @@ body {
 	border: none;
 }
 
-.reveal .roll span:after {
+.reveal .roll span::after {
 	color: #fff;
 	background: #1a6091;
 }
@@ -270,7 +271,7 @@ body {
  * IMAGES
  *********************************************/
 .reveal section img {
-	margin: 15px 0px;
+	margin: 15px 0;
 	background: rgba(255, 255, 255, 0.12);
 	border: 4px solid #657b83;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);

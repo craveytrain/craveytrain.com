@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta
+			name="description"
+			content="{{ metadata.description }}"
+		/>
+		<meta name="author" content="{{ metadata.author.name }}" />
+
+		<title>{{ title }}</title>
+
+		<link rel="author" href="/about/" title="About the author" />
+		<link rel="home" href="/" title="Home" />
+
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Nixie+One&display=swap"
+		/>
+
+		<style>
+      {% postcss %}
+				{% include "css/index.css" %}
+      {% endpostcss %}
+    </style>
+
+		{# <link rel="stylesheet" href="{{ '/css/index.css' | url }}" /> #}
+		<link rel="stylesheet" href="{{ '/css/prism-shades-of-purple.css' | url }}" />
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+		<link rel="manifest" href="/favicons/site.webmanifest" />
+		<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+		<link rel="shortcut icon" href="/favicons/favicon.ico" />
+		<meta name="msapplication-TileColor" content="#603cba" />
+		<meta name="msapplication-config" content="/favicons/browserconfig.xml" />
+		<meta name="theme-color" content="#ffffff" />
+
+		<link
+			rel="alternate"
+			type="application/atom+xml"
+			title="RSS feed for Craveytrain"
+			href="/feed.xml"
+		/>
+		<link
+			rel="alternate"
+			type="application/json"
+			title="JSON feed for Craveytrain"
+			href="/feed.json"
+		/>
+		{{ head | safe }}
+	</head>
+
+{% macro navItem(url, contents) %}
+	<li>
+		<a href="{{ url | url }}" rel="prefetch" {% if page.url == url %}aria-current="page"{% endif %}>
+			{{- contents -}}
+		</a>
+	</li>
+{% endmacro %}
+
+	<body>
+		<div class="container">
+			<nav>
+				<ul>
+					{% set logo = '/img/logo.svg' | svgContents | safe %}
+					{{- navItem("/", logo) -}}
+
+					{%- for entry in collections.nav | eleventyNavigation %}
+					{{- navItem(entry.url, entry.key) -}}
+					{%- endfor %}
+				</ul>
+			</nav>
+
+			<main>{{ content | safe }}</main>
+
+			<footer>
+				<ul>
+					{%- for entry in collections.foot | eleventyNavigation %}
+						{{- navItem(entry.url, entry.key) -}}
+					{%- endfor %}
+				</ul>
+			</footer>
+		</div>
+		{{- foot | safe -}}
+	</body>
+</html>

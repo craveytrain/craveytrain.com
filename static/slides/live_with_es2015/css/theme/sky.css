@@ -14,19 +14,39 @@
  *********************************************/
 body {
 	background: #add9e4;
-	background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+	background: -moz-radial-gradient(
+		center,
+		circle cover,
+		#f7fbfc 0%,
+		#add9e4 100%
+	);
 	background: -webkit-gradient(
 		radial,
 		center center,
-		0px,
+		0,
 		center center,
 		100%,
 		color-stop(0%, #f7fbfc),
 		color-stop(100%, #add9e4)
 	);
-	background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-	background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-	background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+	background: -webkit-radial-gradient(
+		center,
+		circle cover,
+		#f7fbfc 0%,
+		#add9e4 100%
+	);
+	background: -o-radial-gradient(
+		center,
+		circle cover,
+		#f7fbfc 0%,
+		#add9e4 100%
+	);
+	background: -ms-radial-gradient(
+		center,
+		circle cover,
+		#f7fbfc 0%,
+		#add9e4 100%
+	);
 	background: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
 	background-color: #f7fbfc;
 }
@@ -168,7 +188,7 @@ body {
 	padding: 5px;
 	font-style: italic;
 	background: rgba(255, 255, 255, 0.05);
-	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 .reveal blockquote p:first-child,
@@ -190,7 +210,7 @@ body {
 	font-family: monospace;
 	line-height: 1.2em;
 	word-wrap: break-word;
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .reveal code {
@@ -272,7 +292,7 @@ body {
 	border: none;
 }
 
-.reveal .roll span:after {
+.reveal .roll span::after {
 	color: #fff;
 	background: #264c66;
 }
@@ -281,7 +301,7 @@ body {
  * IMAGES
  *********************************************/
 .reveal section img {
-	margin: 15px 0px;
+	margin: 15px 0;
 	background: rgba(255, 255, 255, 0.12);
 	border: 4px solid #333;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);

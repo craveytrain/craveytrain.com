@@ -256,7 +256,10 @@ var Reveal = (function () {
 	 * Hides the address bar if we're on a mobile device.
 	 */
 	function hideAddressBar() {
-		if (/iphone|ipod|android/gi.test(navigator.userAgent) && !/crios/gi.test(navigator.userAgent)) {
+		if (
+			/iphone|ipod|android/gi.test(navigator.userAgent) &&
+			!/crios/gi.test(navigator.userAgent)
+		) {
 			// Events that should trigger the address bar to hide
 			window.addEventListener('load', removeAddressBar, false)
 			window.addEventListener('orientationchange', removeAddressBar, false)
@@ -288,7 +291,10 @@ var Reveal = (function () {
 
 				// Extension may contain callback functions
 				if (typeof s.callback === 'function') {
-					head.ready(s.src.match(/([\w\d_\-]*)\.?js$|[^\\\/]*$/i)[0], s.callback)
+					head.ready(
+						s.src.match(/([\w\d_\-]*)\.?js$|[^\\\/]*$/i)[0],
+						s.callback
+					)
 				}
 			}
 		}
@@ -356,11 +362,13 @@ var Reveal = (function () {
 		dom.wrapper.setAttribute('data-transition-speed', config.transitionSpeed)
 
 		if (dom.controls) {
-			dom.controls.style.display = config.controls && dom.controls ? 'block' : 'none'
+			dom.controls.style.display =
+				config.controls && dom.controls ? 'block' : 'none'
 		}
 
 		if (dom.progress) {
-			dom.progress.style.display = config.progress && dom.progress ? 'block' : 'none'
+			dom.progress.style.display =
+				config.progress && dom.progress ? 'block' : 'none'
 		}
 
 		if (config.rtl) {
@@ -379,7 +387,11 @@ var Reveal = (function () {
 			document.addEventListener('DOMMouseScroll', onDocumentMouseScroll, false) // FF
 			document.addEventListener('mousewheel', onDocumentMouseScroll, false)
 		} else {
-			document.removeEventListener('DOMMouseScroll', onDocumentMouseScroll, false) // FF
+			document.removeEventListener(
+				'DOMMouseScroll',
+				onDocumentMouseScroll,
+				false
+			) // FF
 			document.removeEventListener('mousewheel', onDocumentMouseScroll, false)
 		}
 
@@ -592,7 +604,9 @@ var Reveal = (function () {
 	 */
 	function enable3DLinks() {
 		if (supports3DTransforms && !('msPerspective' in document.body.style)) {
-			var anchors = document.querySelectorAll(SLIDES_SELECTOR + ' a:not(.image)')
+			var anchors = document.querySelectorAll(
+				SLIDES_SELECTOR + ' a:not(.image)'
+			)
 
 			for (var i = 0, len = anchors.length; i < len; i++) {
 				var anchor = anchors[i]
@@ -655,7 +669,10 @@ var Reveal = (function () {
 		})
 
 		a.sort(function (l, r) {
-			return l.getAttribute('data-fragment-index') - r.getAttribute('data-fragment-index')
+			return (
+				l.getAttribute('data-fragment-index') -
+				r.getAttribute('data-fragment-index')
+			)
 		})
 
 		return a
@@ -695,7 +712,10 @@ var Reveal = (function () {
 			dom.slides.style.height = slideHeight + 'px'
 
 			// Determine scale of content to fit within available space
-			scale = Math.min(availableWidth / slideWidth, availableHeight / slideHeight)
+			scale = Math.min(
+				availableWidth / slideWidth,
+				availableHeight / slideHeight
+			)
 
 			// Respect max/min scale settings
 			scale = Math.max(scale, config.minScale)
@@ -703,11 +723,15 @@ var Reveal = (function () {
 
 			// Prefer applying scale via zoom since Chrome blurs scaled content
 			// with nested transforms
-			if (typeof dom.slides.style.zoom !== 'undefined' && !navigator.userAgent.match(/(iphone|ipod|ipad|android)/gi)) {
+			if (
+				typeof dom.slides.style.zoom !== 'undefined' &&
+				!navigator.userAgent.match(/(iphone|ipod|ipad|android)/gi)
+			) {
 				dom.slides.style.zoom = scale
 			} else {
 				// Apply scale transform as a fallback
-				var transform = 'translate(-50%, -50%) scale(' + scale + ') translate(50%, 50%)'
+				var transform =
+					'translate(-50%, -50%) scale(' + scale + ') translate(50%, 50%)'
 
 				dom.slides.style.WebkitTransform = transform
 				dom.slides.style.MozTransform = transform
@@ -733,7 +757,8 @@ var Reveal = (function () {
 					if (slide.classList.contains('stack')) {
 						slide.style.top = 0
 					} else {
-						slide.style.top = Math.max(-(slide.offsetHeight / 2) - 20, -slideHeight / 2) + 'px'
+						slide.style.top =
+							Math.max(-(slide.offsetHeight / 2) - 20, -slideHeight / 2) + 'px'
 					}
 				} else {
 					slide.style.top = ''
@@ -764,7 +789,11 @@ var Reveal = (function () {
 	 * @param {HTMLElement} stack The vertical stack element
 	 */
 	function getPreviousVerticalIndex(stack) {
-		if (typeof stack === 'object' && typeof stack.setAttribute === 'function' && stack.classList.contains('stack')) {
+		if (
+			typeof stack === 'object' &&
+			typeof stack.setAttribute === 'function' &&
+			stack.classList.contains('stack')
+		) {
 			return parseInt(stack.getAttribute('data-previous-indexv') || 0, 10)
 		}
 
@@ -796,12 +825,15 @@ var Reveal = (function () {
 			// class apply first so that slides are measured accurately
 			// before we can position them
 			activateOverviewTimeout = setTimeout(function () {
-				var horizontalSlides = document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)
+				var horizontalSlides = document.querySelectorAll(
+					HORIZONTAL_SLIDES_SELECTOR
+				)
 
 				for (var i = 0, len1 = horizontalSlides.length; i < len1; i++) {
 					var hslide = horizontalSlides[i]
 
-					var htransform = 'translateZ(-2500px) translate(' + (i - indexh) * 105 + '%, 0%)'
+					var htransform =
+						'translateZ(-2500px) translate(' + (i - indexh) * 105 + '%, 0%)'
 
 					hslide.setAttribute('data-index-h', i)
 					hslide.style.display = 'block'
@@ -815,11 +847,13 @@ var Reveal = (function () {
 						var verticalSlides = hslide.querySelectorAll('section')
 
 						for (var j = 0, len2 = verticalSlides.length; j < len2; j++) {
-							var verticalIndex = i === indexh ? indexv : getPreviousVerticalIndex(hslide)
+							var verticalIndex =
+								i === indexh ? indexv : getPreviousVerticalIndex(hslide)
 
 							var vslide = verticalSlides[j]
 
-							var vtransform = 'translate(0%, ' + (j - verticalIndex) * 105 + '%)'
+							var vtransform =
+								'translate(0%, ' + (j - verticalIndex) * 105 + '%)'
 
 							vslide.setAttribute('data-index-h', i)
 							vslide.setAttribute('data-index-v', j)
@@ -1024,7 +1058,11 @@ var Reveal = (function () {
 
 		// If we were on a vertical stack, remember what vertical index
 		// it was on so we can resume at the same position when returning
-		if (previousSlide && previousSlide.parentNode && previousSlide.parentNode.classList.contains('stack')) {
+		if (
+			previousSlide &&
+			previousSlide.parentNode &&
+			previousSlide.parentNode.classList.contains('stack')
+		) {
 			setPreviousVerticalIndex(previousSlide.parentNode, indexv)
 		}
 
@@ -1039,8 +1077,14 @@ var Reveal = (function () {
 		var indexvBefore = indexv
 
 		// Activate and transition to the new slide
-		indexh = updateSlides(HORIZONTAL_SLIDES_SELECTOR, h === undefined ? indexh : h)
-		indexv = updateSlides(VERTICAL_SLIDES_SELECTOR, v === undefined ? indexv : v)
+		indexh = updateSlides(
+			HORIZONTAL_SLIDES_SELECTOR,
+			h === undefined ? indexh : h
+		)
+		indexv = updateSlides(
+			VERTICAL_SLIDES_SELECTOR,
+			v === undefined ? indexv : v
+		)
 
 		layout()
 
@@ -1079,7 +1123,9 @@ var Reveal = (function () {
 		// within it
 		var currentHorizontalSlide = horizontalSlides[indexh]
 
-		var currentVerticalSlides = currentHorizontalSlide.querySelectorAll('section')
+		var currentVerticalSlides = currentHorizontalSlide.querySelectorAll(
+			'section'
+		)
 
 		// Store references to the previous and current slides
 		currentSlide = currentVerticalSlides[indexv] || currentHorizontalSlide
@@ -1119,10 +1165,16 @@ var Reveal = (function () {
 
 			// Reset all slides upon navigate to home
 			// Issue: #285
-			if (document.querySelector(HOME_SLIDE_SELECTOR).classList.contains('present')) {
+			if (
+				document
+					.querySelector(HOME_SLIDE_SELECTOR)
+					.classList.contains('present')
+			) {
 				// Launch async task
 				setTimeout(function () {
-					var slides = toArray(document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR + '.stack'))
+					var slides = toArray(
+						document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR + '.stack')
+					)
 
 					var i
 					for (i in slides) {
@@ -1236,16 +1288,22 @@ var Reveal = (function () {
 	function updateProgress() {
 		// Update progress if enabled
 		if (config.progress && dom.progress) {
-			var horizontalSlides = toArray(document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR))
+			var horizontalSlides = toArray(
+				document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)
+			)
 
 			// The number of past and total slides
-			var totalCount = document.querySelectorAll(SLIDES_SELECTOR + ':not(.stack)').length
+			var totalCount = document.querySelectorAll(
+				SLIDES_SELECTOR + ':not(.stack)'
+			).length
 			var pastCount = 0
 
 			// Step through all slides and count the past ones
 			mainLoop: for (var i = 0; i < horizontalSlides.length; i++) {
 				var horizontalSlide = horizontalSlides[i]
-				var verticalSlides = toArray(horizontalSlide.querySelectorAll('section'))
+				var verticalSlides = toArray(
+					horizontalSlide.querySelectorAll('section')
+				)
 
 				for (var j = 0; j < verticalSlides.length; j++) {
 					// Stop as soon as we arrive at the present
@@ -1267,7 +1325,8 @@ var Reveal = (function () {
 				}
 			}
 
-			dom.progressbar.style.width = (pastCount / (totalCount - 1)) * window.innerWidth + 'px'
+			dom.progressbar.style.width =
+				(pastCount / (totalCount - 1)) * window.innerWidth + 'px'
 		}
 	}
 
@@ -1397,7 +1456,10 @@ var Reveal = (function () {
 				var url = '/'
 
 				// If the current slide has an ID, use that as a named link
-				if (currentSlide && typeof currentSlide.getAttribute('id') === 'string') {
+				if (
+					currentSlide &&
+					typeof currentSlide.getAttribute('id') === 'string'
+				) {
 					url = '/' + currentSlide.getAttribute('id')
 				} else {
 					// Otherwise use the /h/v index
@@ -1434,14 +1496,19 @@ var Reveal = (function () {
 			var slideh = isVertical ? slide.parentNode : slide
 
 			// Select all horizontal slides
-			var horizontalSlides = toArray(document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR))
+			var horizontalSlides = toArray(
+				document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)
+			)
 
 			// Now that we know which the horizontal slide is, get its index
 			h = Math.max(horizontalSlides.indexOf(slideh), 0)
 
 			// If this is a vertical slide, grab the vertical index
 			if (isVertical) {
-				v = Math.max(toArray(slide.parentNode.querySelectorAll('section')).indexOf(slide), 0)
+				v = Math.max(
+					toArray(slide.parentNode.querySelectorAll('section')).indexOf(slide),
+					0
+				)
 			}
 		}
 
@@ -1465,7 +1532,9 @@ var Reveal = (function () {
 		// Vertical slides:
 		if (document.querySelector(VERTICAL_SLIDES_SELECTOR + '.present')) {
 			var verticalFragments = sortFragments(
-				document.querySelectorAll(VERTICAL_SLIDES_SELECTOR + '.present .fragment:not(.visible)')
+				document.querySelectorAll(
+					VERTICAL_SLIDES_SELECTOR + '.present .fragment:not(.visible)'
+				)
 			)
 
 			if (verticalFragments.length) {
@@ -1478,7 +1547,9 @@ var Reveal = (function () {
 		} else {
 			// Horizontal slides:
 			var horizontalFragments = sortFragments(
-				document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR + '.present .fragment:not(.visible)')
+				document.querySelectorAll(
+					HORIZONTAL_SLIDES_SELECTOR + '.present .fragment:not(.visible)'
+				)
 			)
 
 			if (horizontalFragments.length) {
@@ -1503,11 +1574,15 @@ var Reveal = (function () {
 		// Vertical slides:
 		if (document.querySelector(VERTICAL_SLIDES_SELECTOR + '.present')) {
 			var verticalFragments = sortFragments(
-				document.querySelectorAll(VERTICAL_SLIDES_SELECTOR + '.present .fragment.visible')
+				document.querySelectorAll(
+					VERTICAL_SLIDES_SELECTOR + '.present .fragment.visible'
+				)
 			)
 
 			if (verticalFragments.length) {
-				verticalFragments[verticalFragments.length - 1].classList.remove('visible')
+				verticalFragments[verticalFragments.length - 1].classList.remove(
+					'visible'
+				)
 
 				// Notify subscribers of the change
 				dispatchEvent('fragmenthidden', {
@@ -1518,11 +1593,15 @@ var Reveal = (function () {
 		} else {
 			// Horizontal slides:
 			var horizontalFragments = sortFragments(
-				document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR + '.present .fragment.visible')
+				document.querySelectorAll(
+					HORIZONTAL_SLIDES_SELECTOR + '.present .fragment.visible'
+				)
 			)
 
 			if (horizontalFragments.length) {
-				horizontalFragments[horizontalFragments.length - 1].classList.remove('visible')
+				horizontalFragments[horizontalFragments.length - 1].classList.remove(
+					'visible'
+				)
 
 				// Notify subscribers of the change
 				dispatchEvent('fragmenthidden', {
@@ -1556,7 +1635,10 @@ var Reveal = (function () {
 
 	function navigateLeft() {
 		// Prioritize hiding fragments
-		if (availableRoutes().left && (isOverview() || previousFragment() === false)) {
+		if (
+			availableRoutes().left &&
+			(isOverview() || previousFragment() === false)
+		) {
 			slide(indexh - 1)
 		}
 	}
@@ -1570,7 +1652,10 @@ var Reveal = (function () {
 
 	function navigateUp() {
 		// Prioritize hiding fragments
-		if ((availableRoutes().up && isOverview()) || previousFragment() === false) {
+		if (
+			(availableRoutes().up && isOverview()) ||
+			previousFragment() === false
+		) {
 			slide(indexh, indexv - 1)
 		}
 	}
@@ -1595,10 +1680,13 @@ var Reveal = (function () {
 				navigateUp()
 			} else {
 				// Fetch the previous horizontal slide, if there is one
-				var previousSlide = document.querySelector(HORIZONTAL_SLIDES_SELECTOR + '.past:nth-child(' + indexh + ')')
+				var previousSlide = document.querySelector(
+					HORIZONTAL_SLIDES_SELECTOR + '.past:nth-child(' + indexh + ')'
+				)
 
 				if (previousSlide) {
-					indexv = previousSlide.querySelectorAll('section').length + 1 || undefined
+					indexv =
+						previousSlide.querySelectorAll('section').length + 1 || undefined
 					indexh--
 					slide(indexh, indexv)
 				}
@@ -1642,7 +1730,13 @@ var Reveal = (function () {
 
 		// Disregard the event if there's a focused element or a
 		// keyboard modifier key is present
-		if (hasFocus || (event.shiftKey && event.keyCode !== 32) || event.altKey || event.ctrlKey || event.metaKey) {
+		if (
+			hasFocus ||
+			(event.shiftKey && event.keyCode !== 32) ||
+			event.altKey ||
+			event.ctrlKey ||
+			event.metaKey
+		) {
 			return
 		}
 
@@ -1694,7 +1788,11 @@ var Reveal = (function () {
 				break
 			// space
 			case 32:
-				isOverview() ? deactivateOverview() : event.shiftKey ? navigatePrev() : navigateNext()
+				isOverview()
+					? deactivateOverview()
+					: event.shiftKey
+					? navigatePrev()
+					: navigateNext()
 				break
 			// return
 			case 13:
@@ -1765,7 +1863,11 @@ var Reveal = (function () {
 
 			// If the touch started off with two points and still has
 			// two active touches; test for the pinch gesture
-			if (event.touches.length === 2 && touch.startCount === 2 && config.overview) {
+			if (
+				event.touches.length === 2 &&
+				touch.startCount === 2 &&
+				config.overview
+			) {
 				// The current distance in pixels between the two touch points
 				var currentSpan = distanceBetween(
 					{
@@ -1800,7 +1902,10 @@ var Reveal = (function () {
 				if (deltaX > touch.threshold && Math.abs(deltaX) > Math.abs(deltaY)) {
 					touch.handled = true
 					navigateLeft()
-				} else if (deltaX < -touch.threshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+				} else if (
+					deltaX < -touch.threshold &&
+					Math.abs(deltaX) > Math.abs(deltaY)
+				) {
 					touch.handled = true
 					navigateRight()
 				} else if (deltaY > touch.threshold) {
@@ -1883,8 +1988,12 @@ var Reveal = (function () {
 	function onProgressClicked(event) {
 		event.preventDefault()
 
-		var slidesTotal = toArray(document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)).length
-		var slideIndex = Math.floor((event.clientX / dom.wrapper.offsetWidth) * slidesTotal)
+		var slidesTotal = toArray(
+			document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)
+		).length
+		var slideIndex = Math.floor(
+			(event.clientX / dom.wrapper.offsetWidth) * slidesTotal
+		)
 
 		slide(slideIndex)
 	}
@@ -2013,8 +2122,11 @@ var Reveal = (function () {
 
 		// Returns the slide at the specified index, y is optional
 		getSlide: function (x, y) {
-			var horizontalSlide = document.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)[x]
-			var verticalSlides = horizontalSlide && horizontalSlide.querySelectorAll('section')
+			var horizontalSlide = document.querySelectorAll(
+				HORIZONTAL_SLIDES_SELECTOR
+			)[x]
+			var verticalSlides =
+				horizontalSlide && horizontalSlide.querySelectorAll('section')
 
 			if (typeof y !== 'undefined') {
 				return verticalSlides ? verticalSlides[y] : undefined
@@ -2071,12 +2183,20 @@ var Reveal = (function () {
 		// Forward event binding to the reveal DOM element
 		addEventListener: function (type, listener, useCapture) {
 			if ('addEventListener' in window) {
-				;(dom.wrapper || document.querySelector('.reveal')).addEventListener(type, listener, useCapture)
+				;(dom.wrapper || document.querySelector('.reveal')).addEventListener(
+					type,
+					listener,
+					useCapture
+				)
 			}
 		},
 		removeEventListener: function (type, listener, useCapture) {
 			if ('addEventListener' in window) {
-				;(dom.wrapper || document.querySelector('.reveal')).removeEventListener(type, listener, useCapture)
+				;(dom.wrapper || document.querySelector('.reveal')).removeEventListener(
+					type,
+					listener,
+					useCapture
+				)
 			}
 		},
 	}

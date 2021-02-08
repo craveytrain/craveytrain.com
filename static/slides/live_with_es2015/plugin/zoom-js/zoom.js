@@ -2,26 +2,30 @@
 ;(function () {
 	var isEnabled = true
 
-	document.querySelector('.reveal .slides').addEventListener('mousedown', function (event) {
-		var modifier = (Reveal.getConfig().zoomKey ? Reveal.getConfig().zoomKey : 'alt') + 'Key'
+	document
+		.querySelector('.reveal .slides')
+		.addEventListener('mousedown', function (event) {
+			var modifier =
+				(Reveal.getConfig().zoomKey ? Reveal.getConfig().zoomKey : 'alt') +
+				'Key'
 
-		var zoomPadding = 20
-		var revealScale = Reveal.getScale()
+			var zoomPadding = 20
+			var revealScale = Reveal.getScale()
 
-		if (event[modifier] && isEnabled) {
-			event.preventDefault()
+			if (event[modifier] && isEnabled) {
+				event.preventDefault()
 
-			var bounds = event.target.getBoundingClientRect()
+				var bounds = event.target.getBoundingClientRect()
 
-			zoom.to({
-				x: bounds.left * revealScale - zoomPadding,
-				y: bounds.top * revealScale - zoomPadding,
-				width: bounds.width * revealScale + zoomPadding * 2,
-				height: bounds.height * revealScale + zoomPadding * 2,
-				pan: false,
-			})
-		}
-	})
+				zoom.to({
+					x: bounds.left * revealScale - zoomPadding,
+					y: bounds.top * revealScale - zoomPadding,
+					width: bounds.width * revealScale + zoomPadding * 2,
+					height: bounds.height * revealScale + zoomPadding * 2,
+					pan: false,
+				})
+			}
+		})
 
 	Reveal.addEventListener('overviewshown', function () {
 		isEnabled = false
@@ -114,7 +118,8 @@ var zoom = (function () {
 				// Scale
 				var origin = scrollOffset.x + 'px ' + scrollOffset.y + 'px'
 
-				var transform = 'translate(' + -rect.x + 'px,' + -rect.y + 'px) scale(' + scale + ')'
+				var transform =
+					'translate(' + -rect.x + 'px,' + -rect.y + 'px) scale(' + scale + ')'
 
 				document.body.style.transformOrigin = origin
 				document.body.style.OTransformOrigin = origin
@@ -174,18 +179,32 @@ var zoom = (function () {
 
 		// Up
 		if (mouseY < rangeY) {
-			window.scroll(scrollOffset.x, scrollOffset.y - (1 - mouseY / rangeY) * (14 / level))
+			window.scroll(
+				scrollOffset.x,
+				scrollOffset.y - (1 - mouseY / rangeY) * (14 / level)
+			)
 		} else if (mouseY > window.innerHeight - rangeY) {
 			// Down
-			window.scroll(scrollOffset.x, scrollOffset.y + (1 - (window.innerHeight - mouseY) / rangeY) * (14 / level))
+			window.scroll(
+				scrollOffset.x,
+				scrollOffset.y +
+					(1 - (window.innerHeight - mouseY) / rangeY) * (14 / level)
+			)
 		}
 
 		// Left
 		if (mouseX < rangeX) {
-			window.scroll(scrollOffset.x - (1 - mouseX / rangeX) * (14 / level), scrollOffset.y)
+			window.scroll(
+				scrollOffset.x - (1 - mouseX / rangeX) * (14 / level),
+				scrollOffset.y
+			)
 		} else if (mouseX > window.innerWidth - rangeX) {
 			// Right
-			window.scroll(scrollOffset.x + (1 - (window.innerWidth - mouseX) / rangeX) * (14 / level), scrollOffset.y)
+			window.scroll(
+				scrollOffset.x +
+					(1 - (window.innerWidth - mouseX) / rangeX) * (14 / level),
+				scrollOffset.y
+			)
 		}
 	}
 
@@ -230,7 +249,13 @@ var zoom = (function () {
 
 				// If width/height values are set, calculate scale from those values
 				if (options.width !== undefined && options.height !== undefined) {
-					options.scale = Math.max(Math.min(window.innerWidth / options.width, window.innerHeight / options.height), 1)
+					options.scale = Math.max(
+						Math.min(
+							window.innerWidth / options.width,
+							window.innerHeight / options.height
+						),
+						1
+					)
 				}
 
 				if (options.scale > 1) {

@@ -2,12 +2,14 @@
 ;(function () {
 	var isEnabled = true
 
-	document.querySelector('.reveal').addEventListener('mousedown', function (event) {
-		if (event.altKey && isEnabled) {
-			event.preventDefault()
-			zoom.to({ element: event.target, pan: false })
-		}
-	})
+	document
+		.querySelector('.reveal')
+		.addEventListener('mousedown', function (event) {
+			if (event.altKey && isEnabled) {
+				event.preventDefault()
+				zoom.to({ element: event.target, pan: false })
+			}
+		})
 
 	Reveal.addEventListener('overviewshown', function () {
 		isEnabled = false
@@ -90,11 +92,24 @@ var zoom = (function () {
 	 * @param {Number} elementOffsetY
 	 * @param {Number} scale
 	 */
-	function magnify(pageOffsetX, pageOffsetY, elementOffsetX, elementOffsetY, scale) {
+	function magnify(
+		pageOffsetX,
+		pageOffsetY,
+		elementOffsetX,
+		elementOffsetY,
+		scale
+	) {
 		if (supportsTransforms) {
 			var origin = pageOffsetX + 'px ' + pageOffsetY + 'px'
 
-			var transform = 'translate(' + -elementOffsetX + 'px,' + -elementOffsetY + 'px) scale(' + scale + ')'
+			var transform =
+				'translate(' +
+				-elementOffsetX +
+				'px,' +
+				-elementOffsetY +
+				'px) scale(' +
+				scale +
+				')'
 
 			document.body.style.transformOrigin = origin
 			document.body.style.OTransformOrigin = origin
@@ -119,7 +134,8 @@ var zoom = (function () {
 			} else {
 				// Apply scale
 				document.body.style.position = 'relative'
-				document.body.style.left = -(pageOffsetX + elementOffsetX) / scale + 'px'
+				document.body.style.left =
+					-(pageOffsetX + elementOffsetX) / scale + 'px'
 				document.body.style.top = -(pageOffsetY + elementOffsetY) / scale + 'px'
 				document.body.style.width = scale * 100 + '%'
 				document.body.style.height = scale * 100 + '%'
@@ -151,18 +167,32 @@ var zoom = (function () {
 
 		// Up
 		if (mouseY < rangeY) {
-			window.scroll(scrollOffset.x, scrollOffset.y - (1 - mouseY / rangeY) * (14 / level))
+			window.scroll(
+				scrollOffset.x,
+				scrollOffset.y - (1 - mouseY / rangeY) * (14 / level)
+			)
 		} else if (mouseY > window.innerHeight - rangeY) {
 			// Down
-			window.scroll(scrollOffset.x, scrollOffset.y + (1 - (window.innerHeight - mouseY) / rangeY) * (14 / level))
+			window.scroll(
+				scrollOffset.x,
+				scrollOffset.y +
+					(1 - (window.innerHeight - mouseY) / rangeY) * (14 / level)
+			)
 		}
 
 		// Left
 		if (mouseX < rangeX) {
-			window.scroll(scrollOffset.x - (1 - mouseX / rangeX) * (14 / level), scrollOffset.y)
+			window.scroll(
+				scrollOffset.x - (1 - mouseX / rangeX) * (14 / level),
+				scrollOffset.y
+			)
 		} else if (mouseX > window.innerWidth - rangeX) {
 			// Right
-			window.scroll(scrollOffset.x + (1 - (window.innerWidth - mouseX) / rangeX) * (14 / level), scrollOffset.y)
+			window.scroll(
+				scrollOffset.x +
+					(1 - (window.innerWidth - mouseX) / rangeX) * (14 / level),
+				scrollOffset.y
+			)
 		}
 	}
 
@@ -198,15 +228,23 @@ var zoom = (function () {
 					// Space around the zoomed in element to leave on screen
 					var padding = 20
 
-					options.width = options.element.getBoundingClientRect().width + padding * 2
-					options.height = options.element.getBoundingClientRect().height + padding * 2
+					options.width =
+						options.element.getBoundingClientRect().width + padding * 2
+					options.height =
+						options.element.getBoundingClientRect().height + padding * 2
 					options.x = options.element.getBoundingClientRect().left - padding
 					options.y = options.element.getBoundingClientRect().top - padding
 				}
 
 				// If width/height values are set, calculate scale from those values
 				if (options.width !== undefined && options.height !== undefined) {
-					options.scale = Math.max(Math.min(window.innerWidth / options.width, window.innerHeight / options.height), 1)
+					options.scale = Math.max(
+						Math.min(
+							window.innerWidth / options.width,
+							window.innerHeight / options.height
+						),
+						1
+					)
 				}
 
 				if (options.scale > 1) {
@@ -216,10 +254,17 @@ var zoom = (function () {
 					var scrollOffset = getScrollOffset()
 
 					if (options.element) {
-						scrollOffset.x -= (window.innerWidth - options.width * options.scale) / 2
+						scrollOffset.x -=
+							(window.innerWidth - options.width * options.scale) / 2
 					}
 
-					magnify(scrollOffset.x, scrollOffset.y, options.x, options.y, options.scale)
+					magnify(
+						scrollOffset.x,
+						scrollOffset.y,
+						options.x,
+						options.y,
+						options.scale
+					)
 
 					if (options.pan !== false) {
 						// Wait with engaging panning as it may conflict with the
@@ -244,7 +289,8 @@ var zoom = (function () {
 			var scrollOffset = getScrollOffset()
 
 			if (currentOptions && currentOptions.element) {
-				scrollOffset.x -= (window.innerWidth - currentOptions.width * currentOptions.scale) / 2
+				scrollOffset.x -=
+					(window.innerWidth - currentOptions.width * currentOptions.scale) / 2
 			}
 
 			magnify(scrollOffset.x, scrollOffset.y, 0, 0, 1)
