@@ -70,20 +70,16 @@ p {
 	position: static;
 	width: 100%;
 	height: auto;
-
 	left: auto;
 	top: auto;
 	margin: 0 !important;
 	padding: 0 !important;
-
 	overflow: visible;
 	display: block;
-
 	-webkit-perspective: none;
 	-moz-perspective: none;
 	-ms-perspective: none;
 	perspective: none;
-
 	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
 	-moz-perspective-origin: 50% 50%;
 	-ms-perspective-origin: 50% 50%;
@@ -92,24 +88,19 @@ p {
 
 .reveal .slides section {
 	page-break-after: always !important;
-
 	visibility: visible !important;
 	position: relative !important;
 	display: block !important;
 	position: relative !important;
-
 	margin: 0 !important;
 	padding: 0 !important;
 	box-sizing: border-box !important;
 	min-height: 1px;
-
 	opacity: 1 !important;
-
 	-webkit-transform-style: flat !important;
 	-moz-transform-style: flat !important;
 	-ms-transform-style: flat !important;
 	transform-style: flat !important;
-
 	-webkit-transform: none !important;
 	-moz-transform: none !important;
 	-ms-transform: none !important;

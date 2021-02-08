@@ -4,7 +4,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 
 */
 
-/*background color*/
+/* background color */
 .hljs {
 	display: block;
 	overflow-x: auto;
@@ -13,7 +13,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	-webkit-text-size-adjust: none;
 }
 
-/*selection color*/
+/* selection color */
 .hljs::selection,
 .hljs span::selection {
 	background: #373b41;
@@ -24,7 +24,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	background: #373b41;
 }
 
-/*foreground color*/
+/* foreground color */
 .hljs,
 .hljs-setting .hljs-value,
 .hljs-expression .hljs-variable,
@@ -36,7 +36,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	color: #c5c8c6;
 }
 
-/*color: fg_yellow*/
+/* color: fg_yellow */
 .hljs-title,
 .hljs-function .hljs-title,
 .hljs-keyword .hljs-common,
@@ -49,7 +49,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	color: #f0c674;
 }
 
-/*color: fg_comment*/
+/* color: fg_comment */
 .hljs-comment,
 .hljs-output .hljs-value,
 .hljs-pi,
@@ -58,7 +58,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	color: #707880;
 }
 
-/*color: fg_red*/
+/* color: fg_red */
 .hljs-number,
 .hljs-symbol,
 .hljs-literal,
@@ -69,10 +69,10 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 .hljs-hexcolor,
 .hljs-input .hljs-prompt,
 .hljs-char {
-	color: #cc6666;
+	color: #c66;
 }
 
-/*color: fg_green*/
+/* color: fg_green */
 .hljs-string,
 .hljs-special,
 .hljs-doctag,
@@ -85,7 +85,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	color: #b5bd68;
 }
 
-/*color: fg_purple*/
+/* color: fg_purple */
 .hljs-variable,
 .hljs-property,
 .hljs-envar,
@@ -100,7 +100,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	color: #b294bb;
 }
 
-/*color: fg_blue*/
+/* color: fg_blue */
 .hljs-statement,
 .hljs-label,
 .hljs-keyword,
@@ -118,7 +118,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	color: #81a2be;
 }
 
-/*color: fg_aqua*/
+/* color: fg_aqua */
 .hljs-pseudo,
 .hljs-exception,
 .hljs-annotation,
@@ -138,7 +138,7 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 	color: #8abeb7;
 }
 
-/*color: fg_orange*/
+/* color: fg_orange */
 .hljs-type,
 .hljs-typename,
 .hljs-inheritance .hljs-parent,

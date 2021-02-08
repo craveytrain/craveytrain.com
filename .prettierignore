@@ -1,5 +1,6 @@
-dist
+# Configs that get auto-generated
 package.json
 package-lock.json
 .vscode
-__sapper__
+# Generated files
+_site

@@ -4,14 +4,10 @@ module.exports = {
 		commonjs: true,
 		browser: true,
 		es6: true,
-		'cypress/globals': true,
 	},
-	plugins: ['cypress', 'svelte3', 'html'],
-	extends: ['eslint:recommended', 'prettier'],
-	overrides: [
-		{
-			files: ['**/*.svelte'],
-			processor: 'svelte3/svelte3',
-		},
+	plugins: ['html'],
+	extends: [
+		'eslint:recommended', // start off with a good base
+		'prettier', // make it look purty
 	],
 }

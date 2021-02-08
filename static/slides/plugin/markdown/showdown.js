@@ -93,7 +93,11 @@ var Showdown = {}
 		var c = c.replace(
 			/^[ ]{0,3}\[(.+)\]:[ \t]*\n?[ \t]*<?(\S+?)>?[ \t]*\n?[ \t]*(?:(\n*)["(](.+?)[")][ \t]*)?(?:\n+|\Z)/gm,
 			function (c, d, e, f, g) {
-				return (d = d.toLowerCase()), (a[d] = z(e)), f ? f + g : (g && (b[d] = g.replace(/"/g, '&quot;')), '')
+				return (
+					(d = d.toLowerCase()),
+					(a[d] = z(e)),
+					f ? f + g : (g && (b[d] = g.replace(/"/g, '&quot;')), '')
+				)
 			}
 		)
 		return c
@@ -101,9 +105,11 @@ var Showdown = {}
 
 	var f = function (a) {
 		a = a.replace(/\n/g, '\n\n')
-		var b = 'p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del'
+		var b =
+			'p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del'
 
-		var c = 'p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math'
+		var c =
+			'p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math'
 		return (
 			(a = a.replace(
 				/^(<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\b[^\r]*?\n<\/\2>[ \t]*(?=\n+))/gm,
@@ -115,7 +121,10 @@ var Showdown = {}
 			)),
 			(a = a.replace(/(\n[ ]{0,3}(<(hr)\b([^<>])*?\/?>)[ \t]*(?=\n{2,}))/g, g)),
 			(a = a.replace(/(\n\n[ ]{0,3}<!(--[^\r]*?--\s*)+>[ \t]*(?=\n{2,}))/g, g)),
-			(a = a.replace(/(?:\n\n)([ ]{0,3}(?:<([?%])[^\r]*?\2>)[ \t]*(?=\n{2,}))/g, g)),
+			(a = a.replace(
+				/(?:\n\n)([ ]{0,3}(?:<([?%])[^\r]*?\2>)[ \t]*(?=\n{2,}))/g,
+				g
+			)),
 			(a = a.replace(/\n\n/g, '\n')),
 			a
 		)
@@ -177,8 +186,14 @@ var Showdown = {}
 
 	var k = function (a) {
 		return (
-			(a = a.replace(/(\[((?:\[[^\]]*\]|[^\[\]])*)\][ ]?(?:\n[ ]*)?\[(.*?)\])()()()()/g, l)),
-			(a = a.replace(/(\[((?:\[[^\]]*\]|[^\[\]])*)\]\([ \t]*()<?(.*?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g, l)),
+			(a = a.replace(
+				/(\[((?:\[[^\]]*\]|[^\[\]])*)\][ ]?(?:\n[ ]*)?\[(.*?)\])()()()()/g,
+				l
+			)),
+			(a = a.replace(
+				/(\[((?:\[[^\]]*\]|[^\[\]])*)\]\([ \t]*()<?(.*?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g,
+				l
+			)),
 			(a = a.replace(/(\[([^\[\]]+)\])()()()()()/g, l)),
 			a
 		)
@@ -206,7 +221,10 @@ var Showdown = {}
 		n = G(n, '*_')
 		var p = '<a href="' + n + '"'
 		return (
-			o != '' && ((o = o.replace(/"/g, '&quot;')), (o = G(o, '*_')), (p += ' title="' + o + '"')),
+			o != '' &&
+				((o = o.replace(/"/g, '&quot;')),
+				(o = G(o, '*_')),
+				(p += ' title="' + o + '"')),
 			(p += '>' + l + '</a>'),
 			p
 		)
@@ -215,7 +233,10 @@ var Showdown = {}
 	var m = function (a) {
 		return (
 			(a = a.replace(/(!\[(.*?)\][ ]?(?:\n[ ]*)?\[(.*?)\])()()()()/g, n)),
-			(a = a.replace(/(!\[(.*?)\]\s?\([ \t]*()<?(\S+?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g, n)),
+			(a = a.replace(
+				/(!\[(.*?)\]\s?\([ \t]*()<?(\S+?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g,
+				n
+			)),
 			a
 		)
 	}
@@ -238,7 +259,13 @@ var Showdown = {}
 		}
 		;(l = l.replace(/"/g, '&quot;')), (n = G(n, '*_'))
 		var p = '<img src="' + n + '" alt="' + l + '"'
-		return (o = o.replace(/"/g, '&quot;')), (o = G(o, '*_')), (p += ' title="' + o + '"'), (p += ' />'), p
+		return (
+			(o = o.replace(/"/g, '&quot;')),
+			(o = G(o, '*_')),
+			(p += ' title="' + o + '"'),
+			(p += ' />'),
+			p
+		)
 	}
 
 	var o = function (a) {
@@ -273,7 +300,11 @@ var Showdown = {}
 						var e = c.search(/[*+-]/g) > -1 ? 'ul' : 'ol'
 						d = d.replace(/\n{2,}/g, '\n\n\n')
 						var f = p(d)
-						return (f = f.replace(/\s+$/, '')), (f = '<' + e + '>' + f + '</' + e + '>\n'), f
+						return (
+							(f = f.replace(/\s+$/, '')),
+							(f = '<' + e + '>' + f + '</' + e + '>\n'),
+							f
+						)
 				  }))
 				: ((b = /(\n\n|^\n?)(([ ]{0,3}([*+-]|\d+[.])[ \t]+)[^\r]+?(~0|\n{2,}(?=\S)(?![ \t]*(?:[*+-]|\d+[.])[ \t]+)))/g),
 				  (a = a.replace(b, function (a, b, c, d) {
@@ -306,7 +337,9 @@ var Showdown = {}
 
 					var j = c
 					return (
-						g || f.search(/\n{2,}/) > -1 ? (f = h(E(f))) : ((f = q(E(f))), (f = f.replace(/\n$/, '')), (f = i(f))),
+						g || f.search(/\n{2,}/) > -1
+							? (f = h(E(f)))
+							: ((f = q(E(f))), (f = f.replace(/\n$/, '')), (f = i(f))),
 						'<li>' + f + '</li>\n'
 					)
 				}
@@ -319,19 +352,22 @@ var Showdown = {}
 	var r = function (a) {
 		return (
 			(a += '~0'),
-			(a = a.replace(/(?:\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}[^ \t\n]|(?=~0))/g, function (a, b, c) {
-				var d = b
+			(a = a.replace(
+				/(?:\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}[^ \t\n]|(?=~0))/g,
+				function (a, b, c) {
+					var d = b
 
-				var e = c
-				return (
-					(d = v(E(d))),
-					(d = F(d)),
-					(d = d.replace(/^\n+/g, '')),
-					(d = d.replace(/\n+$/g, '')),
-					(d = '<pre><code>' + d + '\n</code></pre>'),
-					t(d) + e
-				)
-			})),
+					var e = c
+					return (
+						(d = v(E(d))),
+						(d = F(d)),
+						(d = d.replace(/^\n+/g, '')),
+						(d = d.replace(/\n+$/g, '')),
+						(d = '<pre><code>' + d + '\n</code></pre>'),
+						t(d) + e
+					)
+				}
+			)),
 			(a = a.replace(/~0/, '')),
 			a
 		)
@@ -359,17 +395,25 @@ var Showdown = {}
 	}
 
 	var t = function (a) {
-		return (a = a.replace(/(^\n+|\n+$)/g, '')), '\n\n~K' + (c.push(a) - 1) + 'K\n\n'
+		return (
+			(a = a.replace(/(^\n+|\n+$)/g, '')), '\n\n~K' + (c.push(a) - 1) + 'K\n\n'
+		)
 	}
 
 	var u = function (a) {
 		return (
-			(a = a.replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm, function (a, b, c, d, e) {
-				var f = d
-				return (
-					(f = f.replace(/^([ \t]*)/g, '')), (f = f.replace(/[ \t]*$/g, '')), (f = v(f)), b + '<code>' + f + '</code>'
-				)
-			})),
+			(a = a.replace(
+				/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm,
+				function (a, b, c, d, e) {
+					var f = d
+					return (
+						(f = f.replace(/^([ \t]*)/g, '')),
+						(f = f.replace(/[ \t]*$/g, '')),
+						(f = v(f)),
+						b + '<code>' + f + '</code>'
+					)
+				}
+			)),
 			a
 		)
 	}
@@ -386,7 +430,10 @@ var Showdown = {}
 
 	var w = function (a) {
 		return (
-			(a = a.replace(/(\*\*|__)(?=\S)([^\r]*?\S[*_]*)\1/g, '<strong>$2</strong>')),
+			(a = a.replace(
+				/(\*\*|__)(?=\S)([^\r]*?\S[*_]*)\1/g,
+				'<strong>$2</strong>'
+			)),
 			(a = a.replace(/(\*|_)(?=\S)([^\r]*?\S)\1/g, '<em>$2</em>')),
 			a
 		)
@@ -404,7 +451,9 @@ var Showdown = {}
 					(c = c.replace(/(^|\n)/g, '$1  ')),
 					(c = c.replace(/(\s*<pre>[^\r]+?<\/pre>)/gm, function (a, b) {
 						var c = b
-						return (c = c.replace(/^ {2}/gm, '~0')), (c = c.replace(/~0/g, '')), c
+						return (
+							(c = c.replace(/^ {2}/gm, '~0')), (c = c.replace(/~0/g, '')), c
+						)
 					})),
 					t('<blockquote>\n' + c + '\n</blockquote>')
 				)
@@ -424,7 +473,11 @@ var Showdown = {}
 			var g = b[f]
 			g.search(/~K(\d+)K/g) >= 0
 				? d.push(g)
-				: g.search(/\S/) >= 0 && ((g = i(g)), (g = g.replace(/^([ \t]*)/g, '<p>')), (g += '</p>'), d.push(g))
+				: g.search(/\S/) >= 0 &&
+				  ((g = i(g)),
+				  (g = g.replace(/^([ \t]*)/g, '<p>')),
+				  (g += '</p>'),
+				  d.push(g))
 		}
 		e = d.length
 		for (var f = 0; f < e; f++) {
@@ -438,20 +491,32 @@ var Showdown = {}
 
 	var z = function (a) {
 		return (
-			(a = a.replace(/&(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)/g, '&amp;')), (a = a.replace(/<(?![a-z\/?\$!])/gi, '&lt;')), a
+			(a = a.replace(/&(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)/g, '&amp;')),
+			(a = a.replace(/<(?![a-z\/?\$!])/gi, '&lt;')),
+			a
 		)
 	}
 
 	var A = function (a) {
-		return (a = a.replace(/\\(\\)/g, H)), (a = a.replace(/\\([`*_{}\[\]()>#+-.!])/g, H)), a
+		return (
+			(a = a.replace(/\\(\\)/g, H)),
+			(a = a.replace(/\\([`*_{}\[\]()>#+-.!])/g, H)),
+			a
+		)
 	}
 
 	var B = function (a) {
 		return (
-			(a = a.replace(/<((https?|ftp|dict):[^'">\s]+)>/gi, '<a href="$1">$1</a>')),
-			(a = a.replace(/<(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)>/gi, function (a, b) {
-				return C(D(b))
-			})),
+			(a = a.replace(
+				/<((https?|ftp|dict):[^'">\s]+)>/gi,
+				'<a href="$1">$1</a>'
+			)),
+			(a = a.replace(
+				/<(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)>/gi,
+				function (a, b) {
+					return C(D(b))
+				}
+			)),
 			a
 		)
 	}
@@ -501,7 +566,9 @@ var Showdown = {}
 	}
 
 	var E = function (a) {
-		return (a = a.replace(/^(\t|[ ]{1,4})/gm, '~0')), (a = a.replace(/~0/g, '')), a
+		return (
+			(a = a.replace(/^(\t|[ ]{1,4})/gm, '~0')), (a = a.replace(/~0/g, '')), a
+		)
 	}
 
 	var F = function (a) {

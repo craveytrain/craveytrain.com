@@ -110,7 +110,11 @@
 		var notesMatch = content.split(new RegExp(options.notesSeparator, 'mgi'))
 
 		if (notesMatch.length === 2) {
-			content = notesMatch[0] + '<aside class="notes" data-markdown>' + notesMatch[1].trim() + '</aside>'
+			content =
+				notesMatch[0] +
+				'<aside class="notes" data-markdown>' +
+				notesMatch[1].trim() +
+				'</aside>'
 		}
 
 		// prevent script end tags in the content from interfering
@@ -128,7 +132,8 @@
 		options = getSlidifyOptions(options)
 
 		var separatorRegex = new RegExp(
-			options.separator + (options.verticalSeparator ? '|' + options.verticalSeparator : ''),
+			options.separator +
+				(options.verticalSeparator ? '|' + options.verticalSeparator : ''),
 			'mg'
 		)
 
@@ -174,7 +179,10 @@
 		}
 
 		// add the remaining slide
-		;(wasHorizontal ? sectionStack : sectionStack[sectionStack.length - 1]).push(markdown.substring(lastIndex))
+		;(wasHorizontal
+			? sectionStack
+			: sectionStack[sectionStack.length - 1]
+		).push(markdown.substring(lastIndex))
 
 		var markdownSections = ''
 
@@ -185,7 +193,10 @@
 				markdownSections += '<section ' + options.attributes + '>'
 
 				sectionStack[i].forEach(function (child) {
-					markdownSections += '<section data-markdown>' + createMarkdownSlide(child, options) + '</section>'
+					markdownSections +=
+						'<section data-markdown>' +
+						createMarkdownSlide(child, options) +
+						'</section>'
 				})
 
 				markdownSections += '</section>'
@@ -233,7 +244,9 @@
 						if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) {
 							section.outerHTML = slidify(xhr.responseText, {
 								separator: section.getAttribute('data-separator'),
-								verticalSeparator: section.getAttribute('data-separator-vertical'),
+								verticalSeparator: section.getAttribute(
+									'data-separator-vertical'
+								),
 								notesSeparator: section.getAttribute('data-separator-notes'),
 								attributes: getForwardedAttributes(section),
 							})
@@ -296,7 +309,9 @@
 		var nodeValue = node.nodeValue
 		if ((matches = mardownClassesInElementsRegex.exec(nodeValue))) {
 			var classes = matches[1]
-			nodeValue = nodeValue.substring(0, matches.index) + nodeValue.substring(mardownClassesInElementsRegex.lastIndex)
+			nodeValue =
+				nodeValue.substring(0, matches.index) +
+				nodeValue.substring(mardownClassesInElementsRegex.lastIndex)
 			node.nodeValue = nodeValue
 			while ((matchesClass = mardownClassRegex.exec(classes))) {
 				elementTarget.setAttribute(matchesClass[1], matchesClass[2])
@@ -310,8 +325,18 @@
 	 * Add attributes to the parent element of a text node,
 	 * or the element of an attribute node.
 	 */
-	function addAttributes(section, element, previousElement, separatorElementAttributes, separatorSectionAttributes) {
-		if (element != null && element.childNodes != undefined && element.childNodes.length > 0) {
+	function addAttributes(
+		section,
+		element,
+		previousElement,
+		separatorElementAttributes,
+		separatorSectionAttributes
+	) {
+		if (
+			element != null &&
+			element.childNodes != undefined &&
+			element.childNodes.length > 0
+		) {
 			previousParentElement = element
 			for (var i = 0; i < element.childNodes.length; i++) {
 				childElement = element.childNodes[i]
@@ -319,7 +344,10 @@
 					j = i - 1
 					while (j >= 0) {
 						aPreviousChildElement = element.childNodes[j]
-						if (typeof aPreviousChildElement.setAttribute === 'function' && aPreviousChildElement.tagName != 'BR') {
+						if (
+							typeof aPreviousChildElement.setAttribute === 'function' &&
+							aPreviousChildElement.tagName != 'BR'
+						) {
 							previousParentElement = aPreviousChildElement
 							break
 						}
@@ -331,7 +359,10 @@
 					parentSection = childElement
 					previousParentElement = childElement
 				}
-				if (typeof childElement.setAttribute === 'function' || childElement.nodeType == Node.COMMENT_NODE) {
+				if (
+					typeof childElement.setAttribute === 'function' ||
+					childElement.nodeType == Node.COMMENT_NODE
+				) {
 					addAttributes(
 						parentSection,
 						childElement,
@@ -344,7 +375,13 @@
 		}
 
 		if (element.nodeType == Node.COMMENT_NODE) {
-			if (addAttributeInElement(element, previousElement, separatorElementAttributes) == false) {
+			if (
+				addAttributeInElement(
+					element,
+					previousElement,
+					separatorElementAttributes
+				) == false
+			) {
 				addAttributeInElement(element, section, separatorSectionAttributes)
 			}
 		}

@@ -1,6 +1,12 @@
 <html>
 	<body>
-		<iframe id="reveal" src="../../index.html" style="border: 0;" width="500" height="500"></iframe>
+		<iframe
+			id="reveal"
+			src="../../index.html"
+			style="border: 0"
+			width="500"
+			height="500"
+		></iframe>
 
 		<div>
 			<input id="back" type="button" value="go back" />
@@ -18,7 +24,10 @@
 				back.addEventListener(
 					'click',
 					function () {
-						reveal.postMessage(JSON.stringify({ method: 'prev', args: [] }), '*')
+						reveal.postMessage(
+							JSON.stringify({ method: 'prev', args: [] }),
+							'*'
+						)
 					},
 					false
 				)
@@ -26,7 +35,10 @@
 				ahead.addEventListener(
 					'click',
 					function () {
-						reveal.postMessage(JSON.stringify({ method: 'next', args: [] }), '*')
+						reveal.postMessage(
+							JSON.stringify({ method: 'next', args: [] }),
+							'*'
+						)
 					},
 					false
 				)
@@ -34,7 +46,10 @@
 				slideto.addEventListener(
 					'click',
 					function () {
-						reveal.postMessage(JSON.stringify({ method: 'slide', args: [2, 2] }), '*')
+						reveal.postMessage(
+							JSON.stringify({ method: 'slide', args: [2, 2] }),
+							'*'
+						)
 					},
 					false
 				)

@@ -16,21 +16,28 @@
 			// data-background not supported
 			if (section.getAttribute('data-background')) {
 				section.innerHTML =
-					'<p class="print-warning">Slide background not included in print support</p>' + section.innerHTML
+					'<p class="print-warning">Slide background not included in print support</p>' +
+					section.innerHTML
 				section.removeAttribute('data-background')
 			}
 			if (section.getAttribute('data-background-video')) {
 				section.innerHTML =
-					'<p class="print-warning">Video background not included in print support</p>' + section.innerHTML
+					'<p class="print-warning">Video background not included in print support</p>' +
+					section.innerHTML
 				section.removeAttribute('data-background-video')
 			}
 			if (section.getAttribute('data-background-iframe')) {
 				section.innerHTML =
-					'<p class="print-warning">Video background not included in print support</p>' + section.innerHTML
+					'<p class="print-warning">Video background not included in print support</p>' +
+					section.innerHTML
 				section.removeAttribute('data-background-iframe')
 			}
 
-			if (!section.querySelector('aside.notes') && prev && !prev.querySelector('aside.notes')) {
+			if (
+				!section.querySelector('aside.notes') &&
+				prev &&
+				!prev.querySelector('aside.notes')
+			) {
 				// Two consecutive unannotated? Merge!
 				prev.classList.add('merge-next')
 				section.classList.add('merge-prev')

@@ -32,7 +32,7 @@ Style with support for rainbow parens
 .javascript .hljs-title,
 .hljs-addition,
 .css .hljs-tag {
-	color: #cc99cc;
+	color: #c9c;
 }
 
 .hljs-number {
@@ -71,7 +71,7 @@ Style with support for rainbow parens
 .haskell .hljs-label,
 .hljs-id,
 .hljs-name {
-	color: #ffcc66;
+	color: #fc6;
 }
 
 .hljs-tag .hljs-title,

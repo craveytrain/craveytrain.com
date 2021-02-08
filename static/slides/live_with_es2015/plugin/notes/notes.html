@@ -154,12 +154,15 @@
 		<div id="upcoming-slide"><span class="label">UPCOMING:</span></div>
 		<div id="speaker-controls">
 			<div class="speaker-controls-time">
-				<h4 class="label">Time <span class="reset-button">Click to Reset</span></h4>
+				<h4 class="label">
+					Time <span class="reset-button">Click to Reset</span>
+				</h4>
 				<div class="clock">
 					<span class="clock-value">0:00 AM</span>
 				</div>
 				<div class="timer">
-					<span class="hours-value">00</span><span class="minutes-value">:00</span
+					<span class="hours-value">00</span
+					><span class="minutes-value">:00</span
 					><span class="seconds-value">:00</span>
 				</div>
 				<div class="clear"></div>
@@ -196,14 +199,23 @@
 					else if (data && data.namespace === 'reveal') {
 						if (/ready/.test(data.eventName)) {
 							// Send a message back to notify that the handshake is complete
-							window.opener.postMessage(JSON.stringify({ namespace: 'reveal-notes', type: 'connected' }), '*')
+							window.opener.postMessage(
+								JSON.stringify({
+									namespace: 'reveal-notes',
+									type: 'connected',
+								}),
+								'*'
+							)
 						} else if (
 							/slidechanged|fragmentshown|fragmenthidden|overviewshown|overviewhidden|paused|resumed/.test(
 								data.eventName
 							) &&
 							currentState !== JSON.stringify(data.state)
 						) {
-							window.opener.postMessage(JSON.stringify({ method: 'setState', args: [data.state] }), '*')
+							window.opener.postMessage(
+								JSON.stringify({ method: 'setState', args: [data.state] }),
+								'*'
+							)
 						}
 					}
 				})
@@ -245,9 +257,18 @@
 					}
 
 					// Update the note slides
-					currentSlide.contentWindow.postMessage(JSON.stringify({ method: 'setState', args: [data.state] }), '*')
-					upcomingSlide.contentWindow.postMessage(JSON.stringify({ method: 'setState', args: [data.state] }), '*')
-					upcomingSlide.contentWindow.postMessage(JSON.stringify({ method: 'next' }), '*')
+					currentSlide.contentWindow.postMessage(
+						JSON.stringify({ method: 'setState', args: [data.state] }),
+						'*'
+					)
+					upcomingSlide.contentWindow.postMessage(
+						JSON.stringify({ method: 'setState', args: [data.state] }),
+						'*'
+					)
+					upcomingSlide.contentWindow.postMessage(
+						JSON.stringify({ method: 'next' }),
+						'*'
+					)
 				}
 
 				// Limit to max one state update per X ms
@@ -260,7 +281,10 @@
 				 */
 				function setupKeyboard() {
 					document.addEventListener('keydown', function (event) {
-						currentSlide.contentWindow.postMessage(JSON.stringify({ method: 'triggerKey', args: [event.keyCode] }), '*')
+						currentSlide.contentWindow.postMessage(
+							JSON.stringify({ method: 'triggerKey', args: [event.keyCode] }),
+							'*'
+						)
 					})
 				}
 
@@ -278,7 +302,8 @@
 					].join('&')
 
 					var hash = '#/' + data.state.indexh + '/' + data.state.indexv
-					var currentURL = data.url + '?' + params + '&postMessageEvents=true' + hash
+					var currentURL =
+						data.url + '?' + params + '&postMessageEvents=true' + hash
 					var upcomingURL = data.url + '?' + params + '&controls=false' + hash
 
 					currentSlide = document.createElement('iframe')
@@ -326,7 +351,11 @@
 						minutes = Math.floor((diff / (1000 * 60)) % 60)
 						seconds = Math.floor((diff / 1000) % 60)
 
-						clockEl.innerHTML = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' })
+						clockEl.innerHTML = now.toLocaleTimeString('en-US', {
+							hour12: true,
+							hour: '2-digit',
+							minute: '2-digit',
+						})
 						hoursEl.innerHTML = zeroPadInteger(hours)
 						hoursEl.className = hours > 0 ? '' : 'mute'
 						minutesEl.innerHTML = ':' + zeroPadInteger(minutes)

@@ -59,6 +59,7 @@ body,
 }
 
 /* merge with next/prev slide */
+
 /* vertical stack * /
 .reveal section.merge-next {
   page-break-after: avoid !important;
@@ -74,7 +75,8 @@ body,
 	left: 145mm !important;
 	top: -100mm !important;
 }
-/**/
+
+/*  */
 
 /* remove background until positionning is fixed */
 .backgrounds,

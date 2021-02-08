@@ -1,5 +1,5 @@
 {
-	"printWidth": 120,
+	"printWidth": 80,
 	"tabWidth": 2,
 	"useTabs": true,
 	"semi": false,
@@ -7,6 +7,5 @@
 	"quoteProps": "as-needed",
 	"trailingComma": "es5",
 	"bracketSpacing": true,
-	"arrowParens": "avoid",
-	"plugins": ["prettier-plugin-svelte"]
+	"arrowParens": "avoid"
 }

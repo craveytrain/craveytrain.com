@@ -1,3 +1,2 @@
 [build]
-  publish = "__sapper__/export/"
-  command = "npm run export"
+  publish = "_site"

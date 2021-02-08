@@ -88,7 +88,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 }
 
 .vhdl .hljs-string {
-	color: #666666;
+	color: #666;
 }
 .vhdl .hljs-literal {
 	color: #a31515;

@@ -1,7 +1,10 @@
-.DS_Store
-/node_modules/
-/src/node_modules/@sapper/
-/cypress/screenshots/
-/__sapper__/
-.eslintcache
+# Tooling files
 .vscode
+.DS_Store
+
+# Dependencies
+node_modules
+
+# Generated files
+_site
+.eslintcache

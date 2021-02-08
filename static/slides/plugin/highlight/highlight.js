@@ -1,18 +1,23 @@
 // START CUSTOM REVEAL.JS INTEGRATION
-;[].slice.call(document.querySelectorAll('pre code')).forEach(function (element) {
-	element.addEventListener(
-		'focusout',
-		function (event) {
-			hljs.highlightBlock(event.currentTarget)
-		},
-		false
-	)
-})
+;[].slice
+	.call(document.querySelectorAll('pre code'))
+	.forEach(function (element) {
+		element.addEventListener(
+			'focusout',
+			function (event) {
+				hljs.highlightBlock(event.currentTarget)
+			},
+			false
+		)
+	})
 // END CUSTOM REVEAL.JS INTEGRATION
 
 var hljs = new (function () {
 	function l(o) {
-		return o.replace(/&/gm, '&amp;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;')
+		return o
+			.replace(/&/gm, '&amp;')
+			.replace(/</gm, '&lt;')
+			.replace(/>/gm, '&gt;')
 	}
 	function b(p) {
 		for (var o = p.firstChild; o; o = o.nextSibling) {
@@ -89,7 +94,12 @@ var hljs = new (function () {
 			function z(B) {
 				return ' ' + B.nodeName + '="' + l(B.value) + '"'
 			}
-			return '<' + A.nodeName + Array.prototype.map.call(A.attributes, z).join('') + '>'
+			return (
+				'<' +
+				A.nodeName +
+				Array.prototype.map.call(A.attributes, z).join('') +
+				'>'
+			)
 		}
 		while (x.length || v.length) {
 			var u = t().splice(0, 1)[0]
@@ -443,7 +453,8 @@ var hljs = new (function () {
 	this.IR = '[a-zA-Z][a-zA-Z0-9_]*'
 	this.UIR = '[a-zA-Z_][a-zA-Z0-9_]*'
 	this.NR = '\\b\\d+(\\.\\d+)?'
-	this.CNR = '(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)'
+	this.CNR =
+		'(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)'
 	this.BNR = '\\b(0b[01]+)'
 	this.RSR =
 		'!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~'
@@ -471,7 +482,8 @@ var hljs = new (function () {
 })()
 hljs.LANGUAGES.bash = (function (a) {
 	var g = 'true false'
-	var e = 'if then else elif fi for break continue while in do done echo exit return set declare'
+	var e =
+		'if then else elif fi for break continue while in do done echo exit return set declare'
 	var c = { cN: 'variable', b: '\\$[a-zA-Z0-9_#]+' }
 	var b = { cN: 'variable', b: '\\${([^}]|\\\\})+}' }
 	var h = { cN: 'string', b: '"', e: '"', i: '\\n', c: [a.BE, c, b], r: 0 }
@@ -519,7 +531,8 @@ hljs.LANGUAGES.cs = (function (a) {
 				cN: 'preprocessor',
 				b: '#',
 				e: '$',
-				k: 'if else elif endif define undef warning error line region endregion pragma checksum',
+				k:
+					'if else elif endif define undef warning error line region endregion pragma checksum',
 			},
 			{ cN: 'string', b: '@"', e: '"', c: [{ b: '""' }] },
 			a.ASM,
@@ -530,7 +543,8 @@ hljs.LANGUAGES.cs = (function (a) {
 })(hljs)
 hljs.LANGUAGES.ruby = (function (e) {
 	var a = '[a-zA-Z_][a-zA-Z0-9_]*(\\!|\\?)?'
-	var j = '[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?'
+	var j =
+		'[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?'
 	var g = {
 		keyword:
 			'and false then defined module in return redo if BEGIN retry end for true self when next until do begin unless END rescue nil else break undef not super class case require yield alias while ensure elsif or include',
@@ -587,14 +601,17 @@ hljs.LANGUAGES.ruby = (function (e) {
 			{ cN: 'symbol', b: a + ':', r: 0 },
 			{
 				cN: 'number',
-				b: '(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
+				b:
+					'(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
 				r: 0,
 			},
 			{ cN: 'number', b: '\\?\\w' },
 			{ cN: 'variable', b: '(\\$\\W)|((\\$|\\@\\@?)(\\w+))' },
 			{
 				b: '(' + e.RSR + ')\\s*',
-				c: k.concat([{ cN: 'regexp', b: '/', e: '/[a-z]*', i: '\\n', c: [e.BE, d] }]),
+				c: k.concat([
+					{ cN: 'regexp', b: '/', e: '/[a-z]*', i: '\\n', c: [e.BE, d] },
+				]),
 				r: 0,
 			},
 		])
@@ -986,7 +1003,8 @@ hljs.LANGUAGES.perl = (function (e) {
 	var b = { cN: 'variable', b: '\\$\\d' }
 	var i = {
 		cN: 'variable',
-		b: '[\\$\\%\\@\\*](\\^\\w\\b|#\\w+(\\:\\:\\w+)*|[^\\s\\w{]|{\\w+}|\\w+(\\:\\:\\w*)*)',
+		b:
+			'[\\$\\%\\@\\*](\\^\\w\\b|#\\w+(\\:\\:\\w+)*|[^\\s\\w{]|{\\w+}|\\w+(\\:\\:\\w*)*)',
 	}
 	var f = [e.BE, d, b, i]
 	var h = { b: '->', c: [{ b: e.IR }, { b: '{', e: '}' }] }
@@ -1011,7 +1029,8 @@ hljs.LANGUAGES.perl = (function (e) {
 		{ cN: 'string', b: '-?\\w+\\s*\\=\\>', r: 0 },
 		{
 			cN: 'number',
-			b: '(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
+			b:
+				'(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
 			r: 0,
 		},
 		{
