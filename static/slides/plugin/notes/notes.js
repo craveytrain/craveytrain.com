@@ -6,7 +6,11 @@ var RevealNotes = (function () {
 	function openNotes() {
 		var jsFileLocation = document.querySelector('script[src$="notes.js"]').src // this js file path
 		jsFileLocation = jsFileLocation.replace(/notes\.js(\?.*)?$/, '') // the js folder path
-		var notesPopup = window.open(jsFileLocation + 'notes.html', 'reveal.js - Notes', 'width=1120,height=850')
+		var notesPopup = window.open(
+			jsFileLocation + 'notes.html',
+			'reveal.js - Notes',
+			'width=1120,height=850'
+		)
 
 		// Fires when slide is changed
 		Reveal.addEventListener('slidechanged', function (event) {
@@ -46,7 +50,10 @@ var RevealNotes = (function () {
 
 				var nextindexv
 
-				if (slideElement.nextElementSibling && slideElement.parentNode.nodeName == 'SECTION') {
+				if (
+					slideElement.nextElementSibling &&
+					slideElement.parentNode.nodeName == 'SECTION'
+				) {
 					nextindexh = indexh
 					nextindexv = indexv + 1
 				} else {
@@ -60,7 +67,9 @@ var RevealNotes = (function () {
 					indexv: indexv,
 					nextindexh: nextindexh,
 					nextindexv: nextindexv,
-					markdown: notes ? typeof notes.getAttribute('data-markdown') === 'string' : false,
+					markdown: notes
+						? typeof notes.getAttribute('data-markdown') === 'string'
+						: false,
 				}
 			} else if (eventType === 'fragmentshown') {
 				messageData = {

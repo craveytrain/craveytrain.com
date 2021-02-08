@@ -15,7 +15,12 @@ var opts = {
 
 io.sockets.on('connection', function (socket) {
 	socket.on('slidechanged', function (slideData) {
-		if (typeof slideData.secret == 'undefined' || slideData.secret == null || slideData.secret === '') return
+		if (
+			typeof slideData.secret == 'undefined' ||
+			slideData.secret == null ||
+			slideData.secret === ''
+		)
+			return
 		if (createHash(slideData.secret) === slideData.socketId) {
 			slideData.secret = null
 			socket.broadcast.emit(slideData.socketId, slideData)
@@ -52,4 +57,12 @@ var brown = '\033[33m',
 	green = '\033[32m',
 	reset = '\033[0m'
 
-console.log(brown + 'reveal.js:' + reset + ' Multiplex running on port ' + green + opts.port + reset)
+console.log(
+	brown +
+		'reveal.js:' +
+		reset +
+		' Multiplex running on port ' +
+		green +
+		opts.port +
+		reset
+)

@@ -34,13 +34,16 @@ app.get('/', function (req, res) {
 })
 
 app.get('/notes/:socketId', function (req, res) {
-	fs.readFile(opts.baseDir + 'plugin/notes-server/notes.html', function (err, data) {
-		res.send(
-			Mustache.to_html(data.toString(), {
-				socketId: req.params.socketId,
-			})
-		)
-	})
+	fs.readFile(
+		opts.baseDir + 'plugin/notes-server/notes.html',
+		function (err, data) {
+			res.send(
+				Mustache.to_html(data.toString(), {
+					socketId: req.params.socketId,
+				})
+			)
+		}
+	)
 	// fs.createReadStream(opts.baseDir + 'notes-server/notes.html').pipe(res);
 })
 
@@ -56,4 +59,6 @@ var slidesLocation = 'http://localhost' + (opts.port ? ':' + opts.port : '')
 console.log(brown + 'reveal.js - Speaker Notes' + reset)
 console.log('1. Open the slides at ' + green + slidesLocation + reset)
 console.log('2. Click on the link your JS console to go to the notes page')
-console.log('3. Advance through your slides and your notes will advance automatically')
+console.log(
+	'3. Advance through your slides and your notes will advance automatically'
+)

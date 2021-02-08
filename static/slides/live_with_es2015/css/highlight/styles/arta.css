@@ -42,12 +42,12 @@ Author: pumbur <pumbur@pumbur.net>
 .ini .hljs-value,
 .clojure .hljs-attribute,
 .coffeescript .hljs-attribute {
-	color: #ffcc33;
+	color: #fc3;
 }
 
 .hljs-number,
 .hljs-addition {
-	color: #00cc66;
+	color: #0c6;
 }
 
 .hljs-built_in,
@@ -83,7 +83,7 @@ Author: pumbur <pumbur@pumbur.net>
 .tex .hljs-command,
 .hljs-request,
 .hljs-status {
-	color: #6644aa;
+	color: #64a;
 }
 
 .hljs-title,
@@ -108,7 +108,7 @@ Author: pumbur <pumbur@pumbur.net>
 .avrasm .hljs-label,
 .tex .hljs-formula,
 .tex .hljs-formula * {
-	color: #bb1166;
+	color: #b16;
 }
 
 .hljs-doctag,

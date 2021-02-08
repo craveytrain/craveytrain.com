@@ -36,7 +36,13 @@ if (outputFile.match(/\.pdf$/gi) === null) {
 	outputFile += '.pdf'
 }
 
-console.log('Printing PDF (Paper size: ' + page.paperSize.width + 'x' + page.paperSize.height + ')')
+console.log(
+	'Printing PDF (Paper size: ' +
+		page.paperSize.width +
+		'x' +
+		page.paperSize.height +
+		')'
+)
 
 page.open(inputFile, function (status) {
 	window.setTimeout(function () {

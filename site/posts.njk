@@ -1,0 +1,10 @@
+---
+title: Posts
+layout: page
+tags: nav
+eleventyNavigation:
+  key: posts
+  order: 0
+---
+{% set posts = collections.post | reverse %}
+{% include "post-list.njk" %}

@@ -13,7 +13,11 @@ var RevealNotes = (function () {
 	function openNotes() {
 		var jsFileLocation = document.querySelector('script[src$="notes.js"]').src // this js file path
 		jsFileLocation = jsFileLocation.replace(/notes\.js(\?.*)?$/, '') // the js folder path
-		var notesPopup = window.open(jsFileLocation + 'notes.html', 'reveal.js - Notes', 'width=1100,height=700')
+		var notesPopup = window.open(
+			jsFileLocation + 'notes.html',
+			'reveal.js - Notes',
+			'width=1100,height=700'
+		)
 
 		/**
 		 * Connect to the notes window through a postmessage handshake.
@@ -42,7 +46,11 @@ var RevealNotes = (function () {
 
 			window.addEventListener('message', function (event) {
 				var data = JSON.parse(event.data)
-				if (data && data.namespace === 'reveal-notes' && data.type === 'connected') {
+				if (
+					data &&
+					data.namespace === 'reveal-notes' &&
+					data.type === 'connected'
+				) {
 					clearInterval(connectInterval)
 					onConnected()
 				}
@@ -75,7 +83,8 @@ var RevealNotes = (function () {
 			// Look for notes defined in an aside element
 			if (notesElement) {
 				messageData.notes = notesElement.innerHTML
-				messageData.markdown = typeof notesElement.getAttribute('data-markdown') === 'string'
+				messageData.markdown =
+					typeof notesElement.getAttribute('data-markdown') === 'string'
 			}
 
 			notesPopup.postMessage(JSON.stringify(messageData), '*')
