@@ -19,7 +19,8 @@
 				"lint": "run-p lint:*",
 				"lint:js": "eslint --fix '**/*.js'",
 				"lint:css": "stylelint --fix '**/*.css'",
-				"upgrade-interactive": "npm-check -u"
+				"upgrade-interactive": "npm-check -u",
+				"postinstall": "husky install"
 		},
 		"husky": {
 				"hooks": {
@@ -46,28 +47,28 @@
 		},
 		"homepage": "https://github.com/craveytrain/craveytrain.com",
 		"devDependencies": {
-				"@11ty/eleventy": "^0.11.1",
+				"@11ty/eleventy": "^0.12.1",
 				"@11ty/eleventy-navigation": "^0.1.6",
-				"@11ty/eleventy-plugin-rss": "^1.1.0",
-				"@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
+				"@11ty/eleventy-plugin-rss": "^1.1.1",
+				"@11ty/eleventy-plugin-syntaxhighlight": "^3.1.0",
 				"browser-sync": "^2.26.13",
 				"eleventy-plugin-svg-contents": "^0.7.0",
-				"eslint": "^7.18.0",
-				"eslint-config-prettier": "^7.2.0",
-				"eslint-plugin-html": "^6.1.1",
-				"husky": "^4.3.8",
+				"eslint": "^7.22.0",
+				"eslint-config-prettier": "^8.1.0",
+				"eslint-plugin-html": "^6.1.2",
+				"husky": "^5.2.0",
 				"lint-staged": "^10.5.3",
 				"npm-check": "^5.9.2",
 				"npm-run-all": "^4.1.5",
-				"postcss": "^8.2.4",
+				"postcss": "^8.2.8",
 				"postcss-cli": "^8.3.1",
 				"postcss-csso": "^5.0.0",
 				"postcss-nesting": "^7.0.1",
 				"prettier": "^2.2.1",
-				"rimraf": "^2.7.1",
+				"rimraf": "^3.0.2",
 				"sirv-cli": "^1.0.10",
-				"stylelint": "^13.9.0",
+				"stylelint": "^13.12.0",
 				"stylelint-config-prettier": "^8.0.2",
-				"stylelint-config-standard": "^20.0.0"
+				"stylelint-config-standard": "^21.0.0"
 		}
 }
