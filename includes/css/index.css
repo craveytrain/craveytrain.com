@@ -1,3 +1,5 @@
+/* Type Scale: https://type-scale.com/?size=18&scale=1.250&text=A%20Visual%20Type%20Scale&font=Arvo&fontweight=700&bodyfont=Lato&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false */
+
 /* Variables */
 :root {
 	/* Type sizes */
@@ -75,8 +77,6 @@ body {
 	font-family: var(--base-typeface);
 	font-weight: 400;
 	line-height: var(--base-line-height);
-
-	/* hack for mix-blend-mode */
 	background: var(--body-bg);
 	color: inherit;
 }
@@ -217,6 +217,7 @@ footer li {
 .summary h2 {
 	font-weight: 700;
 	font-family: var(--base-typeface);
+	font-size: var(--h4-font-size);
 }
 
 .hero {
@@ -229,7 +230,8 @@ footer li {
 	background-size: 40vw;
 	background-position: top center;
 	font-size: 24px;
-	font-family: var(--title-typeface);
+	font-family: var(--base-typeface);
+	line-height: var(--title-line-height);
 	text-align: center;
 }
 .hero p {
@@ -242,6 +244,8 @@ footer li {
 	padding: 0;
 	font-size: var(--h1-font-size);
 	font-weight: 700;
+	font-family: var(--title-typeface);
+	line-height: var(--base-line-height);
 }
 
 @media (min-width: 750px) {
