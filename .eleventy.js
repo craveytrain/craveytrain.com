@@ -2,22 +2,9 @@ const svgContents = require('eleventy-plugin-svg-contents')
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation')
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
-const postcss = require('postcss')
-
-function contentTags(tags) {
-	return tags.filter(tag => {
-		switch (tag) {
-			// this list should match the `filter` list in tags.njk
-			case 'all':
-			case 'nav':
-			case 'foot':
-			case 'post':
-				return false
-		}
-
-		return true
-	})
-}
+const contentTags = require('./utils/content-tags')
+const optimizeCSS = require('./utils/optimize-css')
+const tagList = require('./utils/tag-list')
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/img': 'img' })
@@ -37,15 +24,6 @@ module.exports = function (eleventyConfig) {
 	// generate RSS
 	eleventyConfig.addPlugin(pluginRss)
 
-	// postcss to inline css
-	eleventyConfig.addPairedAsyncShortcode('postcss', async code =>
-		postcss([require('postcss-nesting'), require('postcss-csso')])
-			.process(code, { from: undefined })
-			.then(result => {
-				return result.css
-			})
-	)
-
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj => {
 		return dateObj.toLocaleDateString('en-US', {
@@ -61,23 +39,10 @@ module.exports = function (eleventyConfig) {
 	})
 
 	// generate tags
-	eleventyConfig.addCollection('tagList', function (collection) {
-		const tagSet = new Set()
-		collection.getAll().forEach(function (item) {
-			if ('tags' in item.data) {
-				const tags = contentTags(item.data.tags)
-
-				for (const tag of tags) {
-					tagSet.add(tag)
-				}
-			}
-		})
-
-		// returning an array in addCollection works in Eleventy 0.5.3
-		return [...tagSet].sort()
-	})
+	eleventyConfig.addCollection('tagList', tagList)
 
 	eleventyConfig.addFilter('contentTags', contentTags)
+	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
 
 	return {
 		dir: {

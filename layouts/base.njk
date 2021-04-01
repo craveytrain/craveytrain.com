@@ -19,16 +19,16 @@
 		<link rel="home" href="/" title="Home" />
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Lato&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Lato&display=swap" rel="stylesheet">
+
+		{% set css %}
+			{% include "css/index.css" %}
+			{% include "css/prism-shades-of-purple.css" %}
+		{% endset %}
 
 		<style>
-      {% postcss %}
-				{% include "css/index.css" %}
-      {% endpostcss %}
-    </style>
-
-		{# <link rel="stylesheet" href="{{ '/css/index.css' | url }}" /> #}
-		<link rel="stylesheet" href="{{ '/css/prism-shades-of-purple.css' | url }}" />
+			{{ css | safe }}
+		</style>
 
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
