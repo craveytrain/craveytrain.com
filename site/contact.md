@@ -11,4 +11,5 @@ Have something to say you would like me to hear? Feel free to drop me a line at 
 
 - [Github](http://github.com/craveytrain)
 - [Twitter](http://twitter.com/craveytrain)
+- <a rel="me" href="https://hachyderm.io/@craveytrain">Mastodon</a>
 - [LinkedIn](http://www.linkedin.com/in/craveytrain)
