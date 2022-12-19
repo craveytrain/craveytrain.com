@@ -1,19 +1,9 @@
----
-title: Craveytrain
-layout: base
----
 {% from "includes/nav-item.njk" import navItem %}
 
 <header>
 	{{ '/img/logo.svg' | svgContents | safe }}
 
-	<section class="hero">
-		<p>
-			<span>Hey y’all,</span>
-			my name is
-			<strong>Mike Cravey</strong>. I'm a father, husband, and geek in Lake Jackson, TX.
-		</p>
-	</section>
+	{% block hero %}{% endblock %}
 
 	<nav>
 		<ul>

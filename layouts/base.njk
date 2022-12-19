@@ -20,7 +20,7 @@
 		<link href="https://hachyderm.io/@craveytrain" rel="me">
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Lato&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
 		{% set css %}
 			{% include "css/index.css" %}
@@ -56,37 +56,21 @@
 		{{ head | safe }}
 	</head>
 
-{% macro navItem(url, contents) %}
-	<li>
-		<a href="{{ url | url }}" rel="prefetch" {% if page.url == url %}aria-current="page"{% endif %}>
-			{{- contents -}}
-		</a>
-	</li>
-{% endmacro %}
+	{% from "includes/nav-item.njk" import navItem %}
 
-	<body>
-		<div class="container">
-			<nav>
-				<ul>
-					{% set logo = '/img/logo.svg' | svgContents | safe %}
-					{{- navItem("/", logo) -}}
+	<body class="page-{{ page.fileSlug or 'home' }}">
+		{{ content | safe }}
 
-					{%- for entry in collections.nav | eleventyNavigation %}
-					{{- navItem(entry.url, entry.key) -}}
-					{%- endfor %}
+		<footer>
+			<p>©1999 - 2022 Mike Cravey</p>
+			<div class="feeds">
+				<h3>Feeds</h3>
+				<ul class="inlineList">
+						{%- for entry in collections.foot | eleventyNavigation %}
+							<li>{{- navItem(entry.url, entry.key) -}}</li>
+						{%- endfor %}
 				</ul>
-			</nav>
-
-			<main>{{ content | safe }}</main>
-
-			<footer>
-				<ul>
-					{%- for entry in collections.foot | eleventyNavigation %}
-						{{- navItem(entry.url, entry.key) -}}
-					{%- endfor %}
-				</ul>
-			</footer>
-		</div>
+			</div>
 		{{- foot | safe -}}
 	</body>
 </html>

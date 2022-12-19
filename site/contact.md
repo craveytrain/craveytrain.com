@@ -3,7 +3,7 @@ title: Contact
 layout: page
 tags: nav
 eleventyNavigation:
-  key: contact
+  key: Contact
   order: 2
 ---
 
