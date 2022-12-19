@@ -1,7 +1,25 @@
 ---
 layout: base
 ---
+{% from "includes/nav-item.njk" import navItem %}
 
-<h1>{{title}}</h1>
+<header>
+	{% set logo = '/img/logo.svg' | svgContents | safe %}
+	{{- navItem("/", logo) -}}
 
-<div class="content">{{ content | safe }}</div>
+	<nav>
+		<ul>
+			{%- for entry in collections.nav | eleventyNavigation %}
+				<li>
+					{{- navItem(entry.url, entry.key) -}}
+				</li>
+			{%- endfor %}
+		</ul>
+	</nav>
+</header>
+
+<main>
+	<h1>{{title}}</h1>
+
+	<div class="content">{{ content | safe }}</div>
+</main>
