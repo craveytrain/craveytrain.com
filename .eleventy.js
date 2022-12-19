@@ -15,6 +15,11 @@ module.exports = function (eleventyConfig) {
 	// merge it deep
 	eleventyConfig.setDataDeepMerge(true)
 
+	// enable logging
+	eleventyConfig.addFilter('log', value => {
+		console.log(value)
+	})
+
 	// handle svg contents
 	eleventyConfig.addPlugin(svgContents)
 	// filter and sort nav items

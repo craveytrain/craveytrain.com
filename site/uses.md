@@ -1,10 +1,6 @@
 ---
 title: Uses
 layout: page
-tags: foot
-eleventyNavigation:
-  key: Uses
-  order: 1
 ---
 
 Here's a current snapshot of the tools I use.
