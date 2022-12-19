@@ -1,2 +1,12 @@
 [build]
   publish = "_site"
+
+# enable Mastodon searches for craveytrain.com
+[[plugins]]
+package = "netlify-plugin-mastodon-alias"
+
+[plugins.inputs]
+    username = "craveytrain"
+    instance = "hachyderm.io"
+    # delete or comment the next line if you want "*@craveytrain.com" to work rather than just "mike@craveytrain.com"
+    # strictUsername = "mike"
