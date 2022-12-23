@@ -1,6 +1,6 @@
 /* Variables */
 :root {
-	--base-font-size: 1rem;
+	--base-font-size: 1rem; /* 16px */
 	--ratio: 1.2; /* Ratio for font scale */
 
 	/* Type sizes */
@@ -30,14 +30,23 @@
 
 	/* Layout */
 	--min-width: 320px;
-	--max-width: 1200px;
+	--max-width: 48rem;
+	--width: min(100%, var(--max-width));
 	--main-padding: 1rem;
+	--home-header-height: calc(100vh - 4.25rem);
 }
 
-@media (min-width: 500px) {
+/* increase font size when screen is wider */
+@media (min-width: 525px) {
 	:root {
 		--base-font-size: 1.125rem;
 		--ratio: 1.333;
+	}
+}
+
+@media (min-width: 800px) {
+	:root {
+		--home-header-height: 50vh;
 	}
 }
 
@@ -130,14 +139,24 @@ time {
 	color: var(--dove-gray);
 }
 
+.container {
+	margin: auto;
+	width: var(--width);
+	container-type: inline-size;
+}
+
 header {
+	padding: var(--main-padding);
+	background: var(--black);
+	color: var(--white);
+}
+
+header .container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 0.5rem;
-	padding: var(--main-padding);
-	background: var(--black);
-	color: var(--white);
+	height: 100%;
 }
 
 header a,
@@ -147,7 +166,7 @@ header a:hover {
 }
 
 .page-home header {
-	height: calc(100vh - 4.25rem);
+	height: var(--home-header-height);
 }
 
 header svg {
@@ -174,7 +193,8 @@ main {
 .hero span {
 	display: block;
 	margin: 4rem 0 2rem;
-	font-size: 20.9vw;
+	/* calculates the font size based on the width of the container and divided by the ratio of (width of span / font size at that width) */
+	font-size: calc(100cqi / 4.3);
 	font-weight: 900;
 	font-family: var(--title-typeface);
 }

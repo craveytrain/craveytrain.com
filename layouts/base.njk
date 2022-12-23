@@ -62,15 +62,18 @@
 		{{ content | safe }}
 
 		<footer>
-			<p>©1999 - 2022 Mike Cravey</p>
-			<div class="feeds">
-				<h3>Feeds</h3>
-				<ul class="inlineList">
-						{%- for entry in collections.foot | eleventyNavigation %}
-							<li>{{- navItem(entry.url, entry.key) -}}</li>
-						{%- endfor %}
-				</ul>
+			<div class="container">
+				<p>©1999 - 2022 Mike Cravey</p>
+				<div class="feeds">
+					<h3>Feeds</h3>
+					<ul class="inlineList">
+							{%- for entry in collections.foot | eleventyNavigation %}
+								<li>{{- navItem(entry.url, entry.key) -}}</li>
+							{%- endfor %}
+					</ul>
+				</div>
+				{{- foot | safe -}}
 			</div>
-		{{- foot | safe -}}
+		</footer>
 	</body>
 </html>
