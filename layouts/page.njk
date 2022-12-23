@@ -4,22 +4,26 @@ layout: base
 {% from "includes/nav-item.njk" import navItem %}
 
 <header>
-	{% set logo = '/img/logo.svg' | svgContents | safe %}
-	{{- navItem("/", logo) -}}
+	<div class="container">
+		{% set logo = '/img/logo.svg' | svgContents | safe %}
+		{{- navItem("/", logo) -}}
 
-	<nav>
-		<ul>
-			{%- for entry in collections.nav | eleventyNavigation %}
-				<li>
-					{{- navItem(entry.url, entry.key) -}}
-				</li>
-			{%- endfor %}
-		</ul>
-	</nav>
+		<nav>
+			<ul>
+				{%- for entry in collections.nav | eleventyNavigation %}
+					<li>
+						{{- navItem(entry.url, entry.key) -}}
+					</li>
+				{%- endfor %}
+			</ul>
+		</nav>
+	</div>
 </header>
 
 <main>
-	<h1>{{title}}</h1>
+	<div class="container">
+		<h1>{{title}}</h1>
 
-	<div class="content">{{ content | safe }}</div>
+		<div class="content">{{ content | safe }}</div>
+	</div>
 </main>
