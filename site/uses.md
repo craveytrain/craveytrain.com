@@ -15,10 +15,8 @@ Here's a current snapshot of the tools I use.
 
 - [VS Code](https://code.visualstudio.com) is my editor of choice after years of Atom and Sublime Text before that. Some of my fav extensions/themes are:
   - [Better Comments](https://github.com/aaron-bond/better-comments) highlights lines based on the type of comment.
-  - [Bracket Pair Colorizer 2](https://github.com/CoenraadS/Bracket-Pair-Colorizer-2) helps disambiguate the flying V of closing braces by coloring them to match their corresponding opening brackets.
   - [File Icons](https://github.com/file-icons/vscode) helps provide some visual recognition to file types.
   - [Import Cost](https://github.com/wix/import-cost) displays the estimated size of the imported packages.
-  - [Settings Sync](https://github.com/shanalikhan/code-settings-sync) syncs settings, extensions, themes and more across multiple computers.
   - [Shades of Purple](https://github.com/ahmadawais/shades-of-purple-vscode) puts my favorite color into daily practice.
   - [Wrap Console Log](https://github.com/midnightsyntax/vscode-wrap-console-log) wraps variables into console log, cause despite my desire to utilize debugging, I still reach for `console.log` first.
 - [Prettier](https://prettier.io/) handles all my formatting needs.

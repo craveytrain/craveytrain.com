@@ -1,14 +1,23 @@
 ---
 title: Colophon
-date: 2020-08-02
+date: 2022-12-22
 layout: page
 ---
 
 While this site has cycled it's tech stack a few times, it's always been built on the hard work of the open source community. While it's entirety is available on [github](http://github.com/craveytrain/craveytrain.com), I would like to recognize the tools I am using now, as well as others I have used through the years, to build this site.
 
-## Version 8 (current)
+## Version 9 (current)
 
-### 2020 - Current
+### 2022 - Current
+
+Turns out, as much I enjoy building apps with Svelte, it's just really hard to beat straight HTML and CSS for a website. So, I moved it to 11ty and I've tried to spend some time deprogramming some of my learned habits from building with frameworks. it's been a lot of fun.
+
+- [Eleventy (11ty)](https://www.11ty.dev) is the Static Site Generator (SSG)
+- Still hosted on [Netlify](https://www.netlify.com/)
+
+## Version 8
+
+### 2020 - 2022
 
 This release was about trying a new platform. I've heard lots of good things about Svelte, so I am giving it a try. Some of the tooling that isn't specific to this site has been moved over to the [uses](/uses) page.
 
