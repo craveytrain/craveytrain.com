@@ -19,6 +19,8 @@
 	/* Type face */
 	--base-typeface: 'Lato', -apple-system, system-ui, sans-serif;
 	--title-typeface: 'Outfit', sans-serif;
+	--monospace-typeface: 'Operator Mono', 'Fira Code', Consolas, Monaco,
+		'Andale Mono', 'Ubuntu Mono', monospace;
 
 	/* Colors */
 	--white: hsl(0, 0%, 100%);
@@ -253,4 +255,12 @@ footer p {
 	padding: 0;
 	list-style: none;
 	gap: 0.5em;
+}
+
+/* This should be moved to the code styles */
+:not(pre) > code {
+	padding: 0 0.5ch;
+	background: var(--mercury);
+	font-family: var(--monospace-typeface);
+	font-size: var(--small-font-size);
 }
