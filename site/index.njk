@@ -5,23 +5,25 @@ layout: base
 {% from "includes/nav-item.njk" import navItem %}
 
 <header>
-	{{ '/img/logo.svg' | svgContents | safe }}
+	<div class="container">
+		{{ '/img/logo.svg' | svgContents | safe }}
 
-	<section class="hero">
-		<p>
-			<span>Hey y’all,</span>
-			my name is
-			<strong>Mike Cravey</strong>. I'm a father, husband, and geek in TX.
-		</p>
-	</section>
+		<section class="hero">
+			<p>
+				<span>Hey y’all,</span>
+				my name is
+				<strong>Mike Cravey</strong>. I'm a father, husband, and geek in TX.
+			</p>
+		</section>
 
-	<nav>
-		<ul>
-			{%- for entry in collections.nav | eleventyNavigation %}
-				<li>
-					{{- navItem(entry.url, entry.key) -}}
-				</li>
-			{%- endfor %}
-		</ul>
-	</nav>
+		<nav>
+			<ul>
+				{%- for entry in collections.nav | eleventyNavigation %}
+					<li>
+						{{- navItem(entry.url, entry.key) -}}
+					</li>
+				{%- endfor %}
+			</ul>
+		</nav>
+	</div>
 </header>
