@@ -161,6 +161,10 @@ header .container {
 	height: 100%;
 }
 
+header h1 {
+	font-size: inherit;
+}
+
 header a,
 header a:hover {
 	text-decoration: none;
@@ -216,7 +220,7 @@ footer p {
 	margin-bottom: 1.5rem;
 }
 
-.postList .postTitle {
+.postTitle {
 	display: block;
 	font-size: var(--h5-font-size);
 	font-weight: 700;

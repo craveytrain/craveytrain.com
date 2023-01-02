@@ -1,0 +1,6 @@
+<a class="postTitle" href="{{ post.url | url }}">{{ post.data.title }}</a>
+<small>
+	<time class="timestamp" datetime="{{ post.date | htmlDateString }}">{{ post.date | prettyDate }}</time>
+	{%- set tags = post.data.tags | contentTags -%}
+	{% include "tag-list.njk" %}
+</small>
