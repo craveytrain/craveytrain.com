@@ -6,7 +6,7 @@ layout: base
 
 <header>
 	<div class="container">
-		{{ '/img/logo.svg' | svgContents | safe }}
+		<h1>{{ '/img/logo.svg' | svgContents | safe }}</h1>
 
 		<section class="hero">
 			<p>
@@ -27,3 +27,14 @@ layout: base
 		</nav>
 	</div>
 </header>
+
+<main>
+	<div class="container">
+		<h2>Latest Post</h2>
+
+		{% set post = collections.post | last %}
+		{{posts | log }}
+
+		{% include "post-link.njk" %}
+	</div>
+</main>
