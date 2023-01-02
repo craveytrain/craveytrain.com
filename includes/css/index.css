@@ -196,6 +196,12 @@ main {
 	padding: var(--main-padding);
 }
 
+.hero {
+	/* calculates the font size based on the width of the container and divided by the ratio of (width of span in px / font size at that width in px) */
+	/* don't let the font go lower than 1rem (16px) */
+	font-size: max(var(--base-font-size), calc(100cqi / 27.52));
+}
+
 .hero span {
 	display: block;
 	margin: 4rem 0 2rem;
@@ -203,6 +209,10 @@ main {
 	font-size: calc(100cqi / 4.3);
 	font-weight: 900;
 	font-family: var(--title-typeface);
+}
+
+.hero strong {
+	font-weight: 900;
 }
 
 footer {
