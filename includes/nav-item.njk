@@ -1,5 +1,0 @@
-{% macro navItem(url, contents) %}
-		<a href="{{ url | url }}" rel="prefetch" {% if page.url == url %}aria-current="page"{% endif %}>
-			{{- contents -}}
-		</a>
-{% endmacro %}

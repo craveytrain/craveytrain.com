@@ -1,0 +1,9 @@
+{%- if posts.length -%}
+	<ol class="postList">
+		{%- for post in posts -%}
+  		<li>
+				{% include "post-link" %}
+			</li>
+		{%- endfor -%}
+	</ol>
+{%- endif -%}
