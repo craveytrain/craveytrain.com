@@ -15,12 +15,7 @@ module.exports = function (eleventyConfig) {
 	// merge it deep
 	eleventyConfig.setDataDeepMerge(true)
 
-	// enable logging
-	eleventyConfig.addFilter('log', value => {
-		console.log(value)
-	})
-
-	// handle svg contents
+	// handle SVG contents
 	eleventyConfig.addPlugin(svgContents)
 	// filter and sort nav items
 	eleventyConfig.addPlugin(eleventyNavigationPlugin)
@@ -39,9 +34,7 @@ module.exports = function (eleventyConfig) {
 	})
 
 	// https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-	eleventyConfig.addFilter('htmlDateString', dateObj => {
-		return dateObj.toISOString()
-	})
+	eleventyConfig.addFilter('htmlDateString', dateObj => dateObj.toISOString())
 
 	// generate tags
 	eleventyConfig.addCollection('tagList', tagList)

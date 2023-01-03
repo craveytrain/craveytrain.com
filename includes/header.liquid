@@ -1,7 +1,5 @@
-{% from "includes/nav-item.njk" import navItem %}
-
 <header>
-	{{ '/img/logo.svg' | svgContents | safe }}
+	{{ '/img/logo.svg' | svgContents }}
 
 	{% block hero %}{% endblock %}
 
@@ -9,7 +7,7 @@
 		<ul>
 			{%- for entry in collections.nav | eleventyNavigation %}
 				<li>
-					{{- navItem(entry.url, entry.key) -}}
+					{% include 'nav-item', url: entry.url, contents: entry.key %}
 				</li>
 			{%- endfor %}
 		</ul>

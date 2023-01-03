@@ -2,11 +2,9 @@
 title: Craveytrain
 layout: base
 ---
-{% from "includes/nav-item.njk" import navItem %}
-
 <header>
 	<div class="container">
-		<h1>{{ '/img/logo.svg' | svgContents | safe }}</h1>
+		<h1>{{ '/img/logo.svg' | svgContents }}</h1>
 
 		<section class="hero">
 			<p>
@@ -16,11 +14,13 @@ layout: base
 			</p>
 		</section>
 
+		{% assign navPages = collections.nav | eleventyNavigation %}
+
 		<nav>
 			<ul>
-				{%- for entry in collections.nav | eleventyNavigation %}
+				{%- for entry in navPages %}
 					<li>
-						{{- navItem(entry.url, entry.key) -}}
+						{% include 'nav-item', url: entry.url, contents: entry.title %}
 					</li>
 				{%- endfor %}
 			</ul>
@@ -32,9 +32,7 @@ layout: base
 	<div class="container">
 		<h2>Latest Post</h2>
 
-		{% set post = collections.post | last %}
-		{{posts | log }}
-
-		{% include "post-link.njk" %}
+		{% assign post = collections.post | last %}
+		{% include "post-link" %}
 	</div>
 </main>
