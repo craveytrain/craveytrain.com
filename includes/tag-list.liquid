@@ -1,0 +1,9 @@
+{%- if tags.length -%}
+	<ul class="tagList">
+		{%- for tag in tags -%}
+  		<li>
+				<a href="/tags/{{ tag }}">#{{ tag }}</a>
+			</li>
+		{%- endfor -%}
+	</ul>
+{%- endif -%}

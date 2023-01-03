@@ -1,0 +1,29 @@
+---
+layout: base
+---
+<header>
+	<div class="container">
+		{% assign logo = '/img/logo.svg' | svgContents %}
+		{% include 'nav-item', url: "/", contents: logo %}
+
+		{% assign navPages = collections.nav | eleventyNavigation %}
+
+		<nav>
+			<ul>
+				{%- for entry in navPages %}
+					<li>
+						{% include 'nav-item', url: entry.url, contents: entry.title %}
+					</li>
+				{%- endfor %}
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<main>
+	<div class="container">
+		<h1>{{- title -}}</h1>
+
+		<div class="content">{{ content }}</div>
+	</div>
+</main>

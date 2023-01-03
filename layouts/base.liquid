@@ -22,13 +22,13 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 
-		{% set css %}
+		{% capture css %}
 			{% include "css/index.css" %}
 			{% include "css/prism-shades-of-purple.css" %}
-		{% endset %}
+		{% endcapture %}
 
 		<style>
-			{{ css | safe }}
+			{{ css }}
 		</style>
 
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
@@ -53,13 +53,19 @@
 			title="JSON feed for Craveytrain"
 			href="/feed.json"
 		/>
-		{{ head | safe }}
+		{{ head }}
 	</head>
 
-	{% from "includes/nav-item.njk" import navItem %}
+	{% liquid
+		assign pageSlug = page.fileSlug | slugify
 
-	<body class="page-{{ page.fileSlug or 'home' }}">
-		{{ content | safe }}
+		if pageSlug == ""
+			assign pageSlug = "home"
+		endif
+	%}
+
+	<body class="page-{{- pageSlug -}}">
+		{{ content }}
 
 		<footer>
 			<div class="container">
@@ -67,12 +73,13 @@
 				<div class="feeds">
 					<h3>Feeds</h3>
 					<ul class="inlineList">
-							{%- for entry in collections.foot | eleventyNavigation %}
-								<li>{{- navItem(entry.url, entry.key) -}}</li>
+							{% assign navPages = collections.foot | eleventyNavigation %}
+							{%- for entry in navPages %}
+								<li>{% include 'nav-item', url: entry.url, contents: entry.title %}</li>
 							{%- endfor %}
 					</ul>
 				</div>
-				{{- foot | safe -}}
+				{{- foot -}}
 			</div>
 		</footer>
 	</body>
