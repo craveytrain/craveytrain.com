@@ -48,7 +48,7 @@
 
 @media (min-width: 800px) {
 	:root {
-		--home-header-height: 50vh;
+		--home-header-height: auto;
 	}
 }
 
