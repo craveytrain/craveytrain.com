@@ -1,4 +1,5 @@
 {
-	"layout": "page",
-	"tags": ["post"]
+	"layout": "post",
+	"tags": ["post"],
+	"css": "prism-shades-of-purple.css"
 }

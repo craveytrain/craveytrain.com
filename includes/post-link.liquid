@@ -1,6 +1,9 @@
-<a class="postTitle" href="{{ post.url }}">{{ post.data.title }}</a>
-<small>
-	<time class="timestamp" datetime="{{ post.date | htmlDateString }}">{{ post.date | prettyDate }}</time>
-	{% assign tags = post.data.tags | contentTags %}
-	{% include "tag-list" %}
-</small>
+<article class="post-sample">
+	<h1 class="post-title h4"><a href="{{ post.url }}">{{ post.data.title }}</a></h1>
+	<small class="post-metadata">
+		<time class="timestamp" datetime="{{ post.date | htmlDateString }}">{{ post.date | prettyDate }}</time>
+		{% assign tags = post.data.tags | contentTags %}
+		{% include "tag-list" %}
+	</small>
+	{% excerpt post %}
+</article>

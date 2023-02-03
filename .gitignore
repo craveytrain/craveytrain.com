@@ -8,3 +8,4 @@ node_modules
 # Generated files
 _site
 .eslintcache
+_themes
