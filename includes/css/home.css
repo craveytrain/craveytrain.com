@@ -1,0 +1,44 @@
+header .headshot {
+	grid-area: headshot;
+}
+
+.hero {
+	grid-area: hero;
+	/* set context for container queries */
+	container-type: inline-size;
+}
+
+.hero p {
+	/* calculates the font size based on the width of the container and divided by the ratio of (width of span in px / font size at that width in px) */
+	/* 288px wide container / 25.5px max font size that would fit */
+	/* don't let the font go lower than 1rem (16px) */
+	/* mucked with number due to weird wrapping, assuming floating point issues */
+	font-size: max(var(--base-font-size), calc(100cqi / 11.4));
+}
+
+.welcome {
+	display: block;
+	/* calculates the font size based on the width of the container and divided by the ratio of (width of span / font size at that width) */
+	/* 288px wide container / 66.97px max font size that would fit */
+	font-size: calc(100cqi / 4.3);
+	font-family: var(--title-typeface);
+	font-weight: 900;
+}
+
+.hero strong {
+	font-weight: 900;
+}
+
+main section:not(:last-of-type) {
+	border-bottom: 10px solid var(--accent2);
+}
+
+main section:not(:first-of-type) {
+	margin-top: 1rem;
+}
+
+.contact-links {
+	list-style: none;
+	display: flex;
+	gap: 2rem;
+}

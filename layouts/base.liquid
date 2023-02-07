@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dracula-default">
 	<head>
 		<meta charset="utf-8" />
 		<meta
@@ -19,16 +19,19 @@
 		<link rel="home" href="/" title="Home" />
 		<link rel="me" href="https://hachyderm.io/@craveytrain">
 
+		<!-- TODO: does this preconnect need to be to fonts.googleapis.com? -->
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&display=swap" rel="stylesheet">
 
-		{% capture css %}
+		{% capture styles %}
 			{% include "css/index.css" %}
-			{% include "css/prism-shades-of-purple.css" %}
+			{% if css %}
+				{% include "css/{{css}}" %}
+			{% endif %}
 		{% endcapture %}
 
 		<style>
-			{{ css }}
+			{{ styles }}
 		</style>
 
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
@@ -68,19 +71,25 @@
 		{{ content }}
 
 		<footer>
-			<div class="container">
-				<p>©1999 - 2023 Mike Cravey</p>
+			<div class="footerLinks">
+				<ul>
+					{% assign footerLinks = collections.foot | eleventyNavigation %}
+					{%- for entry in footerLinks %}
+						<li>{% include 'nav-item', url: entry.url, contents: entry.title %}</li>
+					{%- endfor %}
+				</ul>
 				<div class="feeds">
-					<h3>Feeds</h3>
-					<ul class="inlineList">
-							{% assign navPages = collections.foot | eleventyNavigation %}
-							{%- for entry in navPages %}
-								<li>{% include 'nav-item', url: entry.url, contents: entry.title %}</li>
-							{%- endfor %}
+					<h3>{{ '/img/feed.svg' | svgContents }}</h3>
+					<ul>
+						{% assign feeds = collections.feed | eleventyNavigation %}
+						{%- for entry in feeds %}
+							<li>{% include 'nav-item', url: entry.url, contents: entry.title %}</li>
+						{%- endfor %}
 					</ul>
-				</div>
-				{{- foot -}}
+					</div>
 			</div>
+			<p>©1999 - 2023 Mike Cravey</p>
 		</footer>
+
 	</body>
 </html>

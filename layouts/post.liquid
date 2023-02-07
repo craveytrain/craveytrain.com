@@ -7,7 +7,9 @@ layout: base
 </header>
 
 <main data-theme="dracula-alt">
-	<h1>{{- title -}}</h1>
+	<h1 class="post-title">{{- title -}}</h1>
+
+	{% include "post-metadata" %}
 
 	<div class="content">{{ content }}</div>
 </main>
