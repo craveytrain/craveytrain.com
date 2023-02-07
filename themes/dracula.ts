@@ -34,7 +34,7 @@ const palette: Palette = {
 }
 
 export const dracula: Themes = {
-	default: {
+	dark: {
 		kind: Kinds.THEME,
 		bg: palette.narwhalGrey,
 		text: palette.morningSnow,
@@ -42,7 +42,7 @@ export const dracula: Themes = {
 		accent: palette.diva,
 		accent2: palette.placebo,
 	},
-	alt: {
+	light: {
 		kind: Kinds.THEME,
 		bg: palette.lotion,
 		text: palette.narwhalGrey,
