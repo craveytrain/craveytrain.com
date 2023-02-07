@@ -1,0 +1,5 @@
+<small class="post-metadata">
+	<time class="timestamp" datetime="{{ date | htmlDateString }}">{{ date | prettyDate }}</time>
+	{% assign tags = tags | contentTags %}
+	{% include "tag-list" %}
+</small>

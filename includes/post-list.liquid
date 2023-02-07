@@ -1,9 +1,7 @@
 {%- if posts.length -%}
-	<ol class="postList">
+	<section class="post-list">
 		{%- for post in posts -%}
-  		<li>
-				{% include "post-link" %}
-			</li>
+			{% include "post-link" %}
 		{%- endfor -%}
-	</ol>
+	</section>
 {%- endif -%}

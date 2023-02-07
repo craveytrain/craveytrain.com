@@ -1,38 +1,37 @@
 ---
 title: Craveytrain
 layout: base
+css: home.css
 ---
 <header>
-	<div class="container">
-		<h1>{{ '/img/logo.svg' | svgContents }}</h1>
+	<h1>{{ '/img/logo-text.svg' | svgContents }}</h1>
 
-		<section class="hero">
-			<p>
-				<span>Hey y’all,</span>
-				my name is
-				<strong>Mike Cravey</strong>. I'm a father, husband, and geek in TX.
-			</p>
-		</section>
+	<img class="headshot" src="/img/illustration.png" alt="Caricature of headshot of Mike Cravey." />
 
-		{% assign navPages = collections.nav | eleventyNavigation %}
-
-		<nav>
-			<ul>
-				{%- for entry in navPages %}
-					<li>
-						{% include 'nav-item', url: entry.url, contents: entry.title %}
-					</li>
-				{%- endfor %}
-			</ul>
-		</nav>
-	</div>
+	<section class="hero">
+		<p>
+			<span class="welcome">Hey y’all<span class="accent">,</span></span>
+			my name is
+			<strong>Mike Cravey</strong>. I'm a father, husband, teacher, and geek.
+		</p>
+	</section>
 </header>
 
-<main>
-	<div class="container">
-		<h2>Latest Post</h2>
+<main data-theme="dracula-alt">
+	<section>
+		{% assign about = collections.about | last %}
+		<h2 class="h3">{{ about.data.title }}</h2>
 
+		{% include "contact-links" %}
+
+		{{ about.content }}
+	</section>
+
+	<section>
+		<h2 class="h3"><a href="/posts">Posts</a></h2>
 		{% assign post = collections.post | last %}
-		{% include "post-link" %}
-	</div>
+		<h3 class="h5"><a href="{{post.url}}">{{post.data.title}}</a></h3>
+
+		{% excerpt post %}
+	</section>
 </main>

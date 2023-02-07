@@ -5,6 +5,7 @@ const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const contentTags = require('./utils/content-tags')
 const optimizeCSS = require('./utils/optimize-css')
 const tagList = require('./utils/tag-list')
+const excerpt = require('eleventy-plugin-excerpt')
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/img': 'img' })
@@ -23,6 +24,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(syntaxHighlight)
 	// generate RSS
 	eleventyConfig.addPlugin(pluginRss)
+	// add excerpt tag
+	eleventyConfig.addPlugin(excerpt)
 
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj => {

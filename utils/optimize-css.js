@@ -1,10 +1,12 @@
 const { PurgeCSS } = require('purgecss')
 const { minify } = require('csso')
+const generateThemes = require('./generate-themes.js')
 
 const pattern = new RegExp('(?<=<style>).*?(?=</style>)', 'sg')
 const purgeCSS = new PurgeCSS()
 
 async function optimizeCSS(content, outputPath) {
+	const themes = generateThemes(content)
 	// if not an html file, skip
 	if (!outputPath.endsWith('.html')) {
 		return content
@@ -20,7 +22,7 @@ async function optimizeCSS(content, outputPath) {
 	})
 
 	// minify css
-	const styles = purgedStyles.map(({ css }) => minify(css).css)
+	const styles = purgedStyles.map(({ css }) => minify(`${themes}${css}`).css)
 
 	// hack to loop through async generated contents
 	let i = 0

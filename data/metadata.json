@@ -7,6 +7,11 @@
 	"JSONfeedUrl": "https://craveytrain.com/feed.json",
 	"author": {
 		"name": "Mike Cravey",
-		"email": "mike@craveytrain.com"
+		"email": "mike@craveytrain.com",
+		"contacts": [
+			{ "name": "Github", "url": "http://github.com/craveytrain" },
+			{ "name": "Mastodon", "url": "https://hachyderm.io/@craveytrain" },
+			{ "name": "LinkedIn", "url": "http://www.linkedin.com/in/craveytrain" }
+		]
 	}
 }
