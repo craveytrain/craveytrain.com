@@ -1,0 +1,41 @@
+{
+  "lastFetched": "2023-02-09T05:37:04.624Z",
+  "webmentions": [
+    {
+      "type": "entry",
+      "author": {
+        "type": "card",
+        "name": "mordel",
+        "photo": "https://webmention.io/avatar/media.hachyderm.io/e7a6a7dfd19ce829291e3bfe14a521a7befa4f281d1b0fed4d667772bef8bfbf.jpg",
+        "url": "https://hachyderm.io/@mordel"
+      },
+      "url": "https://hachyderm.io/@craveytrain/109561331764516790#favorited-by-109512976749425152",
+      "published": "2023-02-09T01:07:12Z",
+      "wm-received": "2023-02-09T01:07:12Z",
+      "wm-id": 1618693,
+      "wm-source": "https://brid.gy/like/mastodon/@craveytrain@hachyderm.io/109561331764516790/109512976749425152",
+      "wm-target": "https://craveytrain.com/posts/verified-masto-link/",
+      "like-of": "https://craveytrain.com/posts/verified-masto-link/",
+      "wm-property": "like-of",
+      "wm-private": false
+    },
+    {
+      "type": "entry",
+      "author": {
+        "type": "card",
+        "name": "Warren",
+        "photo": "https://webmention.io/avatar/media.hachyderm.io/7fa0eebaa4ed8c896bbf906089200782d4b1bb75a3a9bb390625241d0de7d1b1.png",
+        "url": "https://hachyderm.io/@warren"
+      },
+      "url": "https://hachyderm.io/@craveytrain/109561331764516790#reblogged-by-109493101605630505",
+      "published": "2023-02-09T01:07:13Z",
+      "wm-received": "2023-02-09T01:07:13Z",
+      "wm-id": 1618694,
+      "wm-source": "https://brid.gy/repost/mastodon/@craveytrain@hachyderm.io/109561331764516790/109493101605630505",
+      "wm-target": "https://craveytrain.com/posts/verified-masto-link/",
+      "repost-of": "https://craveytrain.com/posts/verified-masto-link/",
+      "wm-property": "repost-of",
+      "wm-private": false
+    }
+  ]
+}

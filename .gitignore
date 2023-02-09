@@ -1,6 +1,7 @@
 # Tooling files
 .vscode
 .DS_Store
+.env
 
 # Dependencies
 node_modules
