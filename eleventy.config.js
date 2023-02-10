@@ -6,6 +6,8 @@ const contentTags = require('./utils/content-tags')
 const optimizeCSS = require('./utils/optimize-css')
 const tagList = require('./utils/tag-list')
 const excerpt = require('eleventy-plugin-excerpt')
+const filters = require('./utils/webmentions')
+const pluralize = require('./utils/pluralize.js')
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/img': 'img' })
@@ -28,21 +30,29 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(excerpt)
 
 	// pretty date
-	eleventyConfig.addFilter('prettyDate', dateObj => {
-		return dateObj.toLocaleDateString('en-US', {
-			month: 'short',
-			day: 'numeric',
-			year: 'numeric',
-		})
-	})
+	eleventyConfig.addFilter('prettyDate', dateObj => dateObj.toLocaleDateString('en-US', {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+	}))
 
 	// https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
 	eleventyConfig.addFilter('htmlDateString', dateObj => dateObj.toISOString())
+
+	Object.keys(filters).forEach(filterName => {
+		eleventyConfig.addFilter(filterName, filters[filterName])
+	})
+
+	eleventyConfig.addFilter('absoluteUrl', pluginRss.absoluteUrl)
+
+	eleventyConfig.addFilter('pluralize', pluralize)
+
 
 	// generate tags
 	eleventyConfig.addCollection('tagList', tagList)
 
 	eleventyConfig.addFilter('contentTags', contentTags)
+
 	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
 
 	return {

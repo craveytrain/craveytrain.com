@@ -1,0 +1,39 @@
+.feedback {
+	margin-top: 1rem;
+	border-top: 10px solid var(--accent2);
+	padding-top: 1rem;
+}
+
+.feedback-inline-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+.feedback-type-title {
+	flex: 0 0 13rem;
+	margin: 0;
+	white-space: nowrap;
+}
+
+.feedback-inline-block {
+	height: 56px;
+	width: 56px;
+	border-radius: 50%;
+	border: 4px solid var(--bg);
+	margin-left: -16px;
+	line-height: 1;
+	overflow: hidden;
+	box-sizing: content-box;
+}
+
+.feedback-inline-block:hover {
+	z-index: 1;
+}
+
+.avatar {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}

@@ -1,0 +1,9 @@
+{% for webmention in webmentions %}
+	<a class="feedback-inline-block" href="{{ webmention.url }}" target="_blank" rel="noopener noreferrer">
+
+	{% if webmention.author.photo %}
+	<img class="avatar" src="{{ webmention.author.photo }}" alt="{{ webmention.author.name }}" width="56" height="56" loading="lazy">
+	{% endif %}
+
+	</a>
+{% endfor %}
