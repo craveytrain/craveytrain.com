@@ -5,8 +5,5 @@
 		"strict": true,
 		"rootDir": "themes",
 		"outDir": "_themes"
-		// "esModuleInterop": true,
-		// "skipLibCheck": true,
-		// "forceConsistentCasingInFileNames": true
 	}
 }
