@@ -1,6 +1,9 @@
 name: Update Webmentions
 
 on:
+  push:
+    branches:
+    - main
   workflow_dispatch:
   schedule:
     # Runs at every 15th minute from 0 through 59
