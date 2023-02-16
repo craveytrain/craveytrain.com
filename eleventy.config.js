@@ -44,6 +44,8 @@ module.exports = function (eleventyConfig) {
 	})
 
 	eleventyConfig.addFilter('absoluteUrl', pluginRss.absoluteUrl)
+	eleventyConfig.addFilter('htmlToAbsoluteUrls', pluginRss.htmlToAbsoluteUrls)
+	eleventyConfig.addFilter('dateToRfc3339', pluginRss.dateToRfc3339)
 
 	eleventyConfig.addFilter('pluralize', pluralize)
 
