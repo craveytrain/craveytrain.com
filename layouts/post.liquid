@@ -2,7 +2,6 @@
 layout: base
 ---
 <header>
-	<!-- TODO: This should conditionally be a link if it's not the home page -->
 	<h1><a href="/">{{ '/img/logo-text.svg' | svgContents }}</a></h1>
 </header>
 
@@ -15,7 +14,7 @@ layout: base
 		{{ content }}
 
 		{% assign webmentionUrl = page.url | url | absoluteUrl: metadata.url %}
-		<!-- Filter the cached mentions to only include ones matching the post's url -->
+		{% comment %} Filter the cached mentions to only include ones matching the post's url {% endcomment %}
 		{% assign mentions = webmentions | getWebmentionsForUrl: webmentionUrl %}
 		{% assign mentionCount = mentions | size %}
 
@@ -24,7 +23,7 @@ layout: base
 				<h2>Feedback</h2>
 
 				<div class="feedback-inline-wrapper">
-					<!-- Set likes as mentions that are `like-of`  -->
+					{% comment %} Set likes as mentions that are `like-of` {% endcomment %}
 					{% assign likes = mentions | webmentionsByType: 'like-of' %}
 					{% assign likeCount = likes | size %}
 					{% if likeCount > 0 %}
@@ -34,7 +33,7 @@ layout: base
 				</div>
 
 				<div class="feedback-inline-wrapper">
-					<!-- Set reposts as mentions that are `repost-of`  -->
+					{% comment %} Set reposts as mentions that are `repost-of` {% endcomment %}
 					{% assign reposts = mentions | webmentionsByType: 'repost-of' %}
 					{% assign repostCount = reposts | size %}
 					{% if repostCount > 0 %}
@@ -45,7 +44,7 @@ layout: base
 				</div>
 
 				<div>
-					<!-- Set replies as mentions that are `in-reply-to`  -->
+					{% comment %} Set replies as mentions that are `in-reply-to` {% endcomment %}
 					{% assign replies = mentions | webmentionsByType: 'in-reply-to'  %}
 					{% assign replyCount = replies | size %}
 					{% if replyCount > 0 %}

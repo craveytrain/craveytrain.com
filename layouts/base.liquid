@@ -28,12 +28,10 @@
 			{% include "css/index.css" %}
 			{% if css %}
 				{% if css.first %}
-				{% comment %} if css is an array {% endcomment %}
 					{% for ss in css %}
 					{% include "css/{{ss}}" %}
 					{% endfor %}
 				{% else %}
-					{% comment %} else css is a string {% endcomment %}
 					{% include "css/{{css}}" %}
 				{% endif %}
 			{% endif %}

@@ -34,30 +34,16 @@
 
 	/* Layout */
 	--min-width: 320px;
-	--grid-template-areas: 'logo logo blank headshot' 'hero hero hero hero';
 
 	--max-width: 57.5rem;
 	--padding: clamp(1rem, 3vw, 2.5rem);
-	/* --width: min(100%, var(--max-width)); */
-	/* --main-padding: 1rem; */
-	/* --home-header-height: calc(100vh - 4.25rem); */
-
-	/* --logo-align: start; */
 }
 
-/* increase font size when screen is wider */
-/* @media (min-width: 525px) {
-	:root {
-		--base-font-size: 1.125rem;
-		--ratio: 1.333;
-	}
-} */
-
-@media (min-width: 35rem) {
+/* @media (min-width: 35rem) {
 	:root {
 		--grid-template-areas: 'blank blank blank logo' 'headshot hero hero hero';
 	}
-}
+} */
 
 *,
 *::before,
@@ -172,20 +158,16 @@ blockquote {
 }
 
 header {
-	display: grid;
 	margin: 0 auto;
+	padding-bottom: var(--padding);
 	max-width: var(--max-width);
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-areas: var(--grid-template-areas);
-	gap: var(--padding);
-	align-items: center;
 }
 
 header h1 {
-	grid-area: logo;
 	margin: 0;
 	font-size: 1rem;
 	line-height: 1;
+	text-align: end;
 }
 
 main {
