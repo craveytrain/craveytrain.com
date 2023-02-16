@@ -1,3 +1,30 @@
+/* Variables */
+:root {
+	--grid-template-areas: 'logo logo blank headshot' 'hero hero hero hero';
+	--logo-align: start;
+}
+
+@media (min-width: 35rem) {
+	:root {
+		--grid-template-areas: 'logo logo logo logo' 'headshot hero hero hero';
+		--logo-align: end;
+	}
+}
+
+header {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-areas: var(--grid-template-areas);
+	gap: var(--padding);
+	align-items: center;
+}
+
+header h1 {
+	grid-area: logo;
+	text-align: var(--logo-align);
+}
+
+
 header .headshot {
 	grid-area: headshot;
 }
