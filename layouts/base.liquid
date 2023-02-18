@@ -1,28 +1,28 @@
+{% capture pageTitle %}
+	{%- if title -%}
+		{{ title }} — craveytrain.com
+	{%- else -%}
+		Craveytrain
+	{%- endif -%}
+{% endcapture %}
+{% assign canonicalUrl = page.url | absoluteUrl: metadata.url %}
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dracula-dark">
 	<head>
 		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, shrink-to-fit=no"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		<meta
-			name="description"
-			content="{{ metadata.description }}"
-		/>
+		<meta name="description" content="{{ metadata.description }}" />
 		<meta name="author" content="{{ metadata.author.name }}" />
 
-		<title>{{ title }}</title>
+		<title>{{pageTitle}}</title>
 
 		<link rel="author" href="/about/" title="About the author" />
 		<link rel="home" href="/" title="Home" />
-		<link rel="me" href="https://hachyderm.io/@craveytrain">
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&display=swap" rel="stylesheet">
-		<link rel="webmention" href="https://webmention.io/craveytrain.com/webmention" />
-		<link rel="pingback" href="https://webmention.io/craveytrain.com/xmlrpc" />
 
 		{% capture styles %}
 			{% include "css/index.css" %}
@@ -41,6 +41,7 @@
 			{{ styles }}
 		</style>
 
+		<!-- Icons -->
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
@@ -51,18 +52,27 @@
 		<meta name="msapplication-config" content="/favicons/browserconfig.xml" />
 		<meta name="theme-color" content="#ffffff" />
 
-		<link
-			rel="alternate"
-			type="application/atom+xml"
-			title="RSS feed for Craveytrain"
-			href="/feed.xml"
-		/>
-		<link
-			rel="alternate"
-			type="application/json"
-			title="JSON feed for Craveytrain"
-			href="/feed.json"
-		/>
+		<!-- Social -->
+		<meta property="og:title" content="{{pageTitle}}">
+		<meta property="og:type" content="website">
+		<meta property="og:site_name" content="{{metadata.author.name}}">
+		<meta property="og:description" content="{{ metadata.description }}">
+		<meta property="og:image" content="{{metadata.url}}img/illustration.png">
+		<meta property="og:url" content="{{ canonicalUrl }}">
+
+
+		<!-- SEO/Feeds -->
+		<link rel="canonical" href="{{ canonicalUrl }}">
+		<link rel="alternate" type="application/atom+xml" title="RSS feed for Craveytrain" href="/feed.xml" />
+		<link rel="alternate" type="application/json" title="JSON feed for Craveytrain" href="/feed.json" />
+
+		<!-- IndieAuth -->
+		{% comment %} <link href="mailto:mike@craveytrain.com" rel="me"> {% endcomment %}
+		{% comment %} <link href="https://twitter.com/craveytrain" rel="me"> {% endcomment %}
+		<link href="https://github.com/craveytrain" rel="me">
+		<link href="https://hachyderm.io/@craveytrain" rel="me">
+		<link rel="webmention" href="https://webmention.io/craveytrain.com/webmention" />
+		<link rel="pingback" href="https://webmention.io/craveytrain.com/xmlrpc" />
 		{{ head }}
 	</head>
 
