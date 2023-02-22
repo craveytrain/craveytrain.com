@@ -3,7 +3,7 @@ name: Update Webmentions
 on:
   push:
     branches:
-    - main
+      - main
   workflow_dispatch:
   schedule:
     # Runs at every 15th minute from 0 through 59
@@ -37,6 +37,9 @@ jobs:
         env:
           WEBMENTION_IO_TOKEN: ${{ secrets.WEBMENTION_IO_TOKEN }}
         run: npm run webmention >> $GITHUB_STEP_SUMMARY
+
+      - name: Format webmentions
+        run: npm run format:webmention
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
