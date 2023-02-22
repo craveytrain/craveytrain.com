@@ -18,6 +18,7 @@
 				"build": "run-s build:themes build:site",
 				"debug": "DEBUG=* eleventy",
 				"format": "prettier --write .",
+				"format:webmention": "prettier --write ./data/webmentions.json",
 				"lint": "run-p lint:*",
 				"lint:js": "eslint --fix '**/*.js'",
 				"lint:css": "stylelint --fix '**/*.css'",

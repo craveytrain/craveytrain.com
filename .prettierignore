@@ -4,3 +4,7 @@ package-lock.json
 .vscode
 # Generated files
 _site
+_themes
+
+# Legacy files
+slides

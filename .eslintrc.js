@@ -3,7 +3,7 @@ module.exports = {
 	env: {
 		commonjs: true,
 		browser: true,
-		es6: true,
+		es2021: true,
 	},
 	plugins: ['html'],
 	extends: [
