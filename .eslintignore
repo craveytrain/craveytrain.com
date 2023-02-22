@@ -5,6 +5,7 @@ package-lock.json
 
 # Generated files
 _site
+_themes
 
 # Legacy flies
 slides

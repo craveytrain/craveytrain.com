@@ -4,20 +4,28 @@
 	--ratio: 1.25; /* Ratio for font scale */
 
 	/* Type sizes */
+
 	/* 1.25rem/20.00px */
 	--h6-font-size: var(--base-font-size);
+
 	/* 1.563rem/25.00px */
 	--h5-font-size: calc(var(--h6-font-size) * var(--ratio));
+
 	/* 1.563rem/25.00px */
 	--h4-font-size: calc(var(--h5-font-size) * var(--ratio));
+
 	/* 1.953rem/31.25px */
 	--h3-font-size: calc(var(--h4-font-size) * var(--ratio));
+
 	/* 2.441rem/39.06px */
 	--h2-font-size: calc(var(--h3-font-size) * var(--ratio));
+
 	/* 3.052rem/48.83px */
 	--h1-font-size: calc(var(--h2-font-size) * var(--ratio));
+
 	/* 0.8rem/12.80px */
 	--small-font-size: calc(var(--base-font-size) / var(--ratio));
+
 	/* 0.64rem/10.24px */
 	--very-small-font-size: calc(var(--small-font-size) / var(--ratio));
 
@@ -25,16 +33,16 @@
 	--line-height: 1.3;
 
 	/* Type face */
-	--base-typeface: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+	--base-typeface: system-ui, 'Segoe UI', roboto, helvetica, arial, sans-serif,
 		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 	--title-typeface: 'Outfit', sans-serif;
+
 	/* TODO: change this to web font of Mono Lisa */
-	--monospace-typeface: 'Operator Mono', 'Fira Code', Consolas, Monaco,
+	--monospace-typeface: 'Operator Mono', 'Fira Code', consolas, monaco,
 		'Andale Mono', 'Ubuntu Mono', monospace;
 
 	/* Layout */
 	--min-width: 320px;
-
 	--max-width: 57.5rem;
 	--padding: clamp(1rem, 3vw, 2.5rem);
 }
@@ -57,7 +65,7 @@ html {
 	font-family: var(--base-typeface);
 	font-weight: 400;
 	line-height: var(--line-height);
-	text-rendering: optimizeLegibility;
+	text-rendering: optimizelegibility;
 }
 
 body {
@@ -117,7 +125,7 @@ h6,
 }
 
 small,
-.text_small {
+.text-small {
 	font-size: var(--small-font-size);
 }
 
@@ -125,7 +133,7 @@ p,
 ul,
 ol,
 dl {
-	margin: 0 0 1rem 0;
+	margin: 0 0 1rem;
 	padding: 0;
 }
 
@@ -220,7 +228,7 @@ footer {
 	font-size: var(--small-font-size);
 }
 
-.footerLinks {
+.footer-links {
 	display: flex;
 	justify-content: space-between;
 }

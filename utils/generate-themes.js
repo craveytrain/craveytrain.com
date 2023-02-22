@@ -1,19 +1,7 @@
-function camelCaseify(strings) {
-	return strings
-		.map((string, i) => {
-			if (i > 0) {
-				return string.replace(/^[a-z]/, match => match.toUpperCase())
-			}
-
-			return string
-		})
-		.join('')
-}
-
 function serializeThemes(tree, path = []) {
 	return Object.entries(tree).reduce((acc, [name, theme]) => {
 		if (Object.hasOwn(theme, 'kind')) {
-			const { kind: _, ...themeData } = theme
+			const { kind, ...themeData } = theme // eslint-disable-line no-unused-vars
 			acc.push([[...path, name], themeData])
 		} else {
 			return serializeThemes(theme, [...path, name])
