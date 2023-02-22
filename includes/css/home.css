@@ -69,3 +69,7 @@ main section:not(:first-of-type) {
 	display: flex;
 	gap: 2rem;
 }
+
+.post-title {
+	font-size: var(--h5-font-size);
+}
