@@ -149,6 +149,8 @@ img {
 a {
 	color: var(--text);
 	text-decoration-color: var(--accent);
+	text-underline-offset: 0.1em;
+	text-decoration-thickness: 0.1em;
 }
 
 time {
