@@ -4,3 +4,14 @@ on:
   # publish blog using webhook
   repository_dispatch:
     types: [add-webmention]
+
+jobs:
+  webmentions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout the project
+        uses: actions/checkout@v3
