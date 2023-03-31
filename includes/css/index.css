@@ -30,7 +30,7 @@
 	--very-small-font-size: calc(var(--small-font-size) / var(--ratio));
 
 	/* Type line height */
-	--line-height: 1.3;
+	--line-height: 1.4;
 
 	/* Type face */
 	--base-typeface: system-ui, 'Segoe UI', roboto, helvetica, arial, sans-serif,
