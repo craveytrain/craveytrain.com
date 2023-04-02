@@ -5,10 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+  repository_dispatch:
+    types: [add-webmention]
   schedule:
-    # Runs at every 15th minute from 0 through 59
-    # https://crontab.guru/#0/15_*_*_*_*
-    - cron: '0/15 * * * *'
+    # https://crontab.guru/every-1-hour
+    - cron: '0 * * * *'
 
 concurrency:
   group: ${{ github.workflow }}
