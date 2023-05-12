@@ -11,16 +11,14 @@ function serializeThemes(tree, path = []) {
 	}, [])
 }
 
-function hslToCSS({ h, s, l, a }) {
+function lchToCSS({ l, c, h, a }) {
 	const alphaString = a ? ` / ${a}%` : ''
-	return `hsl(${h} ${s}% ${l}%${alphaString})`
+	return `oklch(${l}% ${c} ${h}${alphaString})`
 }
 
 function generateCSSVars([name, theme]) {
-	// const customProps = Object.keys(theme)
-	// console.log('vars', customProps)
 	const customPropsString = Object.entries(theme)
-		.map(([prop, value]) => `\t--${prop}: ${hslToCSS(value)};`)
+		.map(([prop, value]) => `\t--${prop}: ${lchToCSS(value)};`)
 		.join('\n')
 
 	return `[data-theme='${name.join(
