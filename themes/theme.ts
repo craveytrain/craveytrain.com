@@ -3,9 +3,9 @@ export enum Kinds {
 }
 
 export type Color = {
-	h: number
-	s: number
 	l: number
+	c: number
+	h: number
 	a?: number
 }
 

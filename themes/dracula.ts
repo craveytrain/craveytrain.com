@@ -2,34 +2,34 @@ import { Kinds, Palette, Themes } from './theme'
 
 const palette: Palette = {
 	narwhalGrey: {
-		h: 231,
-		s: 62,
-		l: 5,
+		l: 13.55,
+		c: 0.031,
+		h: 271.82,
 	},
 	morningSnow: {
-		h: 60,
-		s: 30,
-		l: 96,
+		l: 97.7,
+		c: 0.008,
+		h: 106.55,
 	},
 	diva: {
-		h: 265,
-		s: 89,
-		l: 78,
+		l: 74.68,
+		c: 0.146,
+		h: 302.21,
 	},
 	lotion: {
-		h: 60,
-		s: 30,
-		l: 98,
+		l: 98.85,
+		c: 0.004,
+		h: 106.47,
 	},
 	nightSky: {
-		h: 231,
-		s: 15,
-		l: 18,
+		l: 28.43,
+		c: 0.022,
+		h: 277.09,
 	},
 	placebo: {
+		l: 93.12,
+		c: 0,
 		h: 0,
-		s: 0,
-		l: 91,
 	},
 }
 
