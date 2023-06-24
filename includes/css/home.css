@@ -72,7 +72,7 @@ main section:not(:first-of-type) {
 .contact-links {
 	list-style: none;
 	display: flex;
-	gap: 2rem;
+	gap: 1rem;
 }
 
 .post-title {

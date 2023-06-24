@@ -78,7 +78,8 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 1.38rem;
+	margin: 0 0 1rem;
+	line-height: 1;
 }
 
 h1,
@@ -122,6 +123,15 @@ h6,
 	font-size: var(--h6-font-size);
 	font-family: var(--title-typeface);
 	font-weight: 400;
+}
+
+h1:has(a),
+h2:has(a),
+h3:has(a),
+h4:has(a),
+h5:has(a),
+h6:has(a) {
+	padding-block-end: 0.2em;
 }
 
 small,
