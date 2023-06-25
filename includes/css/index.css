@@ -45,6 +45,14 @@
 	--min-width: 320px;
 	--max-width: 57.5rem;
 	--padding: clamp(1rem, 3vw, 2.5rem);
+	--multi-column-grid: 'heading heading heading heading'
+		'content content content content';
+}
+
+@media (width >= 44rem) {
+	:root {
+		--multi-column-grid: 'heading content content content';
+	}
 }
 
 /* @media (min-width: 35rem) {
@@ -216,6 +224,10 @@ main :where(h1, h2, h3, h4, h5, h6) {
 	white-space: nowrap;
 }
 
+.post-sample {
+	margin-block-end: 2rem;
+}
+
 .tag-list {
 	display: flex;
 	gap: 0.5rem;
@@ -269,4 +281,19 @@ footer ul {
 	color: var(--bg);
 	font-family: var(--monospace-typeface);
 	font-size: var(--small-font-size);
+}
+
+.adaptable-columns {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-areas: var(--multi-column-grid);
+	gap: var(--padding);
+}
+
+.heading {
+	grid-area: heading;
+}
+
+.content {
+	grid-area: content;
 }

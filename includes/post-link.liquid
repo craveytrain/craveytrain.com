@@ -1,11 +1,15 @@
-<article class="post-sample h-entry">
-	<h1 class="post-title h4 p-name"><a class="u-url" href="{{ post.url }}">{{ post.data.title }}</a></h1>
-	<small class="post-metadata">
-		<time class="timestamp dt-published" datetime="{{ post.date | htmlDateString }}">{{ post.date | prettyDate }}</time>
+<article class="post-sample h-entry adaptable-columns">
+	<div class="content">
+		<h1 class="post-title h4 p-name"><a class="u-url" href="{{ post.url }}">{{ post.data.title }}</a></h1>
+		<small class="post-metadata">
+			<time class="timestamp dt-published" datetime="{{ post.date | htmlDateString }}">{{ post.date | prettyDate }}</time>
+		</small>
+		<div class="p-summary">
+			{% excerpt post %}
+		</div>
+	</div>
+	<small class="heading">
 		{% assign tags = post.data.tags | contentTags %}
 		{% include "tag-list" %}
 	</small>
-	<div class="p-summary">
-		{% excerpt post %}
-	</div>
 </article>
