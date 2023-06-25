@@ -17,18 +17,26 @@ css: home.css
 </header>
 
 <main data-theme="dracula-light">
-	<section>
-		{% assign about = collections.about | last %}
-		<h2 class="h3">{{ about.data.title }}</h2>
+	<section class="adaptable-columns">
+		<div class="heading">
+			{% assign about = collections.about | last %}
+			<h2 class="h3">{{ about.data.title }}</h2>
 
-		{% include "contact-links" %}
+			{% include "contact-links" %}
+		</div>
 
-		{{ about.content }}
+		<div class="content">
+			{{ about.content }}
+		</div>
 	</section>
 
-	<section>
-		<h2 class="h3"><a href="/posts">Posts</a></h2>
-		{% assign post = collections.post | last %}
-		{% include "post-link" %}
+	<section class="adaptable-columns">
+		<div class="heading">
+			<h2 class="h3"><a href="/posts">Posts</a></h2>
+		</div>
+		<div class="content">
+			{% assign post = collections.post | last %}
+			{% include "post-link" %}
+		</div>
 	</section>
 </main>
