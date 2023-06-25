@@ -1,8 +1,5 @@
 {
 	"layout": "post",
 	"tags": ["post"],
-	"css": [
-		"post.css",
-		"prism-shades-of-purple.css"
-	]
+	"css": ["post.css", "prism-shades-of-purple.css"]
 }
