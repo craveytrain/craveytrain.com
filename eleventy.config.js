@@ -30,11 +30,13 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(excerpt)
 
 	// pretty date
-	eleventyConfig.addFilter('prettyDate', dateObj => dateObj.toLocaleDateString('en-US', {
-		month: 'short',
-		day: 'numeric',
-		year: 'numeric',
-	}))
+	eleventyConfig.addFilter('prettyDate', dateObj =>
+		dateObj.toLocaleDateString('en-US', {
+			month: 'short',
+			day: 'numeric',
+			year: 'numeric',
+		})
+	)
 
 	// https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
 	eleventyConfig.addFilter('htmlDateString', dateObj => dateObj.toISOString())
@@ -48,7 +50,6 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('dateToRfc3339', pluginRss.dateToRfc3339)
 
 	eleventyConfig.addFilter('pluralize', pluralize)
-
 
 	// generate tags
 	eleventyConfig.addCollection('tagList', tagList)

@@ -5,6 +5,7 @@ tags:
   - web standards
   - webmentions
 ---
+
 All this talk about web standards and owning your own data inspired me to support webmentions on this blog. I'm not treading any new ground here, so I won't bother you with another post describing the process. Instead, I'd like to treat this more like a link farm, referencing those I learned from and where I chose to coincide with or deviate from. Maybe someone will find this useful when evaluating their own options.
 
 First off, I want to say, this would not have been even in my purview if not for the encouragement of [IndieWeb][indieweb] standard bearer [Tantek Çelik][tantek]. He originally put me on this idea of owning your own content years ago, when I would notice his Twitter posts had links back to his site, where a full copy of his message was stored. I was always impressed by this, even if I wasn't initially motivated by it. It wouldn't be until years later, spurred by the push of returning to web standards movement gaining so much momentum on Mastodon, that I decided to start making steps towards owning my own data.

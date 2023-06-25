@@ -1,85 +1,85 @@
 {
-		"name": "craveytrain.com",
-		"version": "9.0.0",
-		"description": "The personal site of Mike Cravey (@craveytrain).",
-		"homepage": "https://craveytrain.com",
-		"main": "index.js",
-		"scripts": {
-				"clean:themes": "rimraf _themes",
-				"clean:site": "rimraf  _site",
-				"clean": "run-p clean:*",
-				"watch:themes": "tsc -p tsconfig.json --watch",
-				"watch:site": "ELEVENTY_ENV=development eleventy --serve --quiet",
-				"dev": "NODE_ENV=dev npm-run-all clean:site build:themes -p watch:* -- --watch",
-				"prebuild:themes": "run-s clean:themes",
-				"build:themes": "tsc -p tsconfig.json",
-				"prebuild:site": "run-s clean:site",
-				"build:site": "ELEVENTY_ENV=production eleventy",
-				"build": "run-s build:themes build:site",
-				"debug": "DEBUG=* eleventy",
-				"format": "prettier --write .",
-				"format:webmention": "prettier --write ./data/webmentions.json",
-				"lint": "run-p lint:fix:*",
-				"lint:fix:js": "eslint --fix '**/*.js'",
-				"lint:fix:css": "stylelint --fix '**/*.css'",
-				"lint:ci": "run-p lint:ci:*",
-				"lint:ci:js": "eslint '**/*.js'",
-				"lint:ci:css": "stylelint '**/*.css'",
-				"webmention": "node ./scripts/update-webmention.js",
-				"upgrade-deps": "ncu -u",
-				"postinstall": "husky install"
-		},
-		"husky": {
-				"hooks": {
-						"pre-commit": "lint-staged"
-				}
-		},
-		"lint-staged": {
-				"*.js": "eslint --cache --fix",
-				"*.css": "stylelint --allow-empty-input",
-				"*.{css,html,js,json,md,yaml}": "prettier --write"
-		},
-		"repository": {
-				"type": "git",
-				"url": "git+https://github.com/craveytrain/craveytrain.com.git"
-		},
-		"keywords": [
-				"blog",
-				"craveytrain"
-		],
-		"author": "Mike Cravey <mike@craveytrain.com>",
-		"license": "MIT",
-		"bugs": {
-				"url": "https://github.com/craveytrain/craveytrain.com/issues"
-		},
-		"devDependencies": {
-				"@11ty/eleventy": "^2.0.0",
-				"@11ty/eleventy-navigation": "^0.3.5",
-				"@11ty/eleventy-plugin-rss": "^1.2.0",
-				"@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
-				"csso": "^5.0.5",
-				"dotenv": "^16.0.3",
-				"eleventy-plugin-excerpt": "^1.1.2",
-				"eleventy-plugin-svg-contents": "^0.7.0",
-				"eslint": "^8.34.0",
-				"eslint-config-prettier": "^8.6.0",
-				"eslint-plugin-html": "^7.1.0",
-				"husky": "^8.0.3",
-				"lint-staged": "^13.1.2",
-				"lodash": "^4.17.21",
-				"node-fetch": "^2.6.9",
-				"npm-check-updates": "^16.7.7",
-				"npm-run-all": "^4.1.5",
-				"plur": "^5.1.0",
-				"prettier": "^2.8.4",
-				"purgecss": "^5.0.0",
-				"rimraf": "^4.1.2",
-				"sanitize-html": "^2.10.0",
-				"stylelint": "^15.2.0",
-				"stylelint-config-standard": "^30.0.1",
-				"typescript": "^4.9.5"
-		},
-		"dependencies": {
-				"netlify-plugin-mastodon-alias": "^1.0.1"
+	"name": "craveytrain.com",
+	"version": "9.0.0",
+	"description": "The personal site of Mike Cravey (@craveytrain).",
+	"homepage": "https://craveytrain.com",
+	"main": "index.js",
+	"scripts": {
+		"clean:themes": "rimraf _themes",
+		"clean:site": "rimraf  _site",
+		"clean": "run-p clean:*",
+		"watch:themes": "tsc -p tsconfig.json --watch",
+		"watch:site": "ELEVENTY_ENV=development eleventy --serve --quiet",
+		"dev": "NODE_ENV=dev npm-run-all clean:site build:themes -p watch:* -- --watch",
+		"prebuild:themes": "run-s clean:themes",
+		"build:themes": "tsc -p tsconfig.json",
+		"prebuild:site": "run-s clean:site",
+		"build:site": "ELEVENTY_ENV=production eleventy",
+		"build": "run-s build:themes build:site",
+		"debug": "DEBUG=* eleventy",
+		"format": "prettier --write .",
+		"format:webmention": "prettier --write ./data/webmentions.json",
+		"lint": "run-p lint:fix:*",
+		"lint:fix:js": "eslint --fix '**/*.js'",
+		"lint:fix:css": "stylelint --fix '**/*.css'",
+		"lint:ci": "run-p lint:ci:*",
+		"lint:ci:js": "eslint '**/*.js'",
+		"lint:ci:css": "stylelint '**/*.css'",
+		"webmention": "node ./scripts/update-webmention.js",
+		"upgrade-deps": "ncu -u",
+		"postinstall": "husky install"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
 		}
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix",
+		"*.css": "stylelint --allow-empty-input",
+		"*.{css,html,js,json,md,yaml}": "prettier --write"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/craveytrain/craveytrain.com.git"
+	},
+	"keywords": [
+		"blog",
+		"craveytrain"
+	],
+	"author": "Mike Cravey <mike@craveytrain.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/craveytrain/craveytrain.com/issues"
+	},
+	"devDependencies": {
+		"@11ty/eleventy": "^2.0.0",
+		"@11ty/eleventy-navigation": "^0.3.5",
+		"@11ty/eleventy-plugin-rss": "^1.2.0",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
+		"csso": "^5.0.5",
+		"dotenv": "^16.0.3",
+		"eleventy-plugin-excerpt": "^1.1.2",
+		"eleventy-plugin-svg-contents": "^0.7.0",
+		"eslint": "^8.34.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-html": "^7.1.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.1.2",
+		"lodash": "^4.17.21",
+		"node-fetch": "^2.6.9",
+		"npm-check-updates": "^16.7.7",
+		"npm-run-all": "^4.1.5",
+		"plur": "^5.1.0",
+		"prettier": "^2.8.4",
+		"purgecss": "^5.0.0",
+		"rimraf": "^4.1.2",
+		"sanitize-html": "^2.10.0",
+		"stylelint": "^15.2.0",
+		"stylelint-config-standard": "^30.0.1",
+		"typescript": "^4.9.5"
+	},
+	"dependencies": {
+		"netlify-plugin-mastodon-alias": "^1.0.1"
+	}
 }
