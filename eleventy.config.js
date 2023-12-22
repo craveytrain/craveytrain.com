@@ -1,15 +1,15 @@
-const svgContents = require('eleventy-plugin-svg-contents')
-const eleventyNavigationPlugin = require('@11ty/eleventy-navigation')
-const pluginRss = require('@11ty/eleventy-plugin-rss')
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
-const contentTags = require('./utils/content-tags')
-const optimizeCSS = require('./utils/optimize-css')
-const tagList = require('./utils/tag-list')
-const excerpt = require('eleventy-plugin-excerpt')
-const filters = require('./utils/webmentions')
-const pluralize = require('./utils/pluralize.js')
+import svgContents from 'eleventy-plugin-svg-contents'
+import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
+import pluginRss from '@11ty/eleventy-plugin-rss'
+import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
+import contentTags from './utils/content-tags.js'
+import optimizeCSS from './utils/optimize-css.js'
+import tagList from './utils/tag-list.js'
+import excerpt from 'eleventy-plugin-excerpt'
+import { getWebmentionsForUrl, webmentionsByType } from './utils/webmentions.js'
+import pluralize from './utils/pluralize.js'
 
-module.exports = function (eleventyConfig) {
+export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/img': 'img' })
 	eleventyConfig.addPassthroughCopy({ 'static/favicons': 'favicons' })
 	eleventyConfig.addPassthroughCopy({ 'static/cv': 'cv' })
@@ -41,9 +41,8 @@ module.exports = function (eleventyConfig) {
 	// https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
 	eleventyConfig.addFilter('htmlDateString', dateObj => dateObj.toISOString())
 
-	Object.keys(filters).forEach(filterName => {
-		eleventyConfig.addFilter(filterName, filters[filterName])
-	})
+	eleventyConfig.addFilter('getWebmentionsForUrl', getWebmentionsForUrl)
+	eleventyConfig.addFilter('webmentionsByType', webmentionsByType)
 
 	eleventyConfig.addFilter('absoluteUrl', pluginRss.absoluteUrl)
 	eleventyConfig.addFilter('htmlToAbsoluteUrls', pluginRss.htmlToAbsoluteUrls)

@@ -16,7 +16,7 @@ Sounds too simple, I know. And in truth, that is slightly oversimplified, but gi
 Since I know that's a little light on the implementation details, lemme throw together a quick code example. For the purpose of this example, we are using jQuery, but apply what ever JS method makes you happy.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />

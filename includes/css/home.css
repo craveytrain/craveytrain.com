@@ -8,14 +8,14 @@
 	--contact-links-diplay: flex;
 }
 
-@media (min-width: 35rem) {
+@media (width >= 35rem) {
 	:root {
 		--hero-grid-areas: 'logo logo logo logo' 'headshot hero hero hero';
 		--logo-align: end;
 	}
 }
 
-@media (min-width: 44rem) {
+@media (width >= 44rem) {
 	:root {
 		--hero-padding: var(--padding);
 		--multi-column-grid: 'heading content content content';

@@ -14,7 +14,7 @@ I really like [Gist](https://gist.github.com/), a lot. They are full on git repo
 I've made several gists since I have become a member and expect that I will be making more now that I have gotten this down. The main complaint I have with gists is that to embed them in your blog you have to include a script tag that does a document.write. Aside from my misgivings about document.write, this poses a performance and user experience issue. Consider on a blog post with multiple snippets of code, the page stops loading until the scripts are downloaded and executed. Nevermind anything they may clobber during the process. And finally, I end up with a stylesheet in the DOM for each included gist that are all the exact same. So, I did:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />

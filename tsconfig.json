@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "ESNEXT",
-		"module": "commonjs",
+		"module": "nodenext",
 		"strict": true,
 		"rootDir": "themes",
 		"outDir": "_themes"

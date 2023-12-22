@@ -1,4 +1,4 @@
-import { Kinds, Palette, Themes } from './theme'
+import { Kinds, Palette, Themes } from './theme.js'
 
 const palette: Palette = {
 	narwhalGrey: {

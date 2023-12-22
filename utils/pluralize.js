@@ -1,4 +1,4 @@
-module.exports = function pluralize(str, count, pluralOverride) {
+export default function pluralize(str, count, pluralOverride) {
 	// if count is singular, return singular form
 	if (count === 1) {
 		return str

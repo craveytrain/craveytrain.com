@@ -1,7 +1,6 @@
-const { env } = require('process')
-const fetch = require('node-fetch')
+import { env } from 'process'
 
-const handler = async function (event) {
+export async function handler(event) {
 	let secret
 	try {
 		const { secret: _secret } = JSON.parse(event.body)
@@ -34,5 +33,3 @@ const handler = async function (event) {
 		return { statusCode: 500, body: error.message }
 	}
 }
-
-module.exports = { handler }
