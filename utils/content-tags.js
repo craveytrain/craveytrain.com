@@ -1,4 +1,4 @@
-module.exports = function contentTags(tags) {
+export default function contentTags(tags) {
 	return tags.filter(tag => {
 		switch (tag) {
 			// this list should match the `filter` list in tags
