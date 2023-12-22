@@ -1,6 +1,6 @@
-const contentTags = require('./content-tags')
+import contentTags from './content-tags.js'
 
-module.exports = function (collection) {
+export default function (collection) {
 	const tagSet = new Set()
 	collection.getAll().forEach(function (item) {
 		if ('tags' in item.data) {

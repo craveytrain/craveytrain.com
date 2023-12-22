@@ -1,10 +1,10 @@
 // https://github.com/nhoizey/nicolas-hoizey.com/blob/main/src/_utils/cache.js
 
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
 
 // save in cache file
-const writeToCache = (data, file) => {
+export const writeToCache = (data, file) => {
 	const dir = path.dirname(file)
 	const fileContent = JSON.stringify(data, null, 2)
 	// create cache folder if it doesn't exist already
@@ -18,7 +18,7 @@ const writeToCache = (data, file) => {
 }
 
 // get cache contents from json file
-const readFromCache = file => {
+export const readFromCache = file => {
 	if (fs.existsSync(file)) {
 		const cacheFile = fs.readFileSync(file)
 		return JSON.parse(cacheFile)
@@ -26,9 +26,4 @@ const readFromCache = file => {
 
 	// no cache found.
 	return false
-}
-
-module.exports = {
-	writeToCache,
-	readFromCache,
 }

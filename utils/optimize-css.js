@@ -1,12 +1,12 @@
-const { PurgeCSS } = require('purgecss')
-const { minify } = require('csso')
-const generateThemes = require('./generate-themes.js')
+import { PurgeCSS } from 'purgecss'
+import { minify } from 'csso'
+import generateThemes from './generate-themes.js'
 
 const pattern = new RegExp('(?<=<style>).*?(?=</style>)', 'sg')
 const purgeCSS = new PurgeCSS()
 
-async function optimizeCSS(content, outputPath) {
-	const themes = generateThemes(content)
+export default async function optimizeCSS(content, outputPath) {
+	const themes = await generateThemes(content)
 	// if not an html file, skip
 	if (!outputPath.endsWith('.html')) {
 		return content
@@ -29,5 +29,3 @@ async function optimizeCSS(content, outputPath) {
 	// replace old css with new css
 	return content.replaceAll(pattern, () => styles[i++])
 }
-
-module.exports = optimizeCSS

@@ -28,13 +28,11 @@ function generateCSSVars([name, theme]) {
 
 let themes = []
 let themeString = ''
-function generateThemes() {
+export default async function generateThemes() {
 	if (!themes.length) {
-		themes = serializeThemes(require('../_themes'))
+		themes = serializeThemes(await import('../_themes/index.js'))
 		themeString = themes.map(generateCSSVars).join('\n')
 	}
 
 	return themeString
 }
-
-module.exports = generateThemes

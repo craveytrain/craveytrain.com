@@ -1,1 +1,1 @@
-export * from './dracula'
+export * from './dracula.js'

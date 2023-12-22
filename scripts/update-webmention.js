@@ -1,14 +1,21 @@
 // https://sia.codes/posts/webmentions-eleventy-in-depth/
 
-const { env } = require('process')
-const fetch = require('node-fetch')
-const unionBy = require('lodash/unionBy')
-const sanitizeHTML = require('sanitize-html')
-const domain = new URL(require('../package.json').homepage).hostname
-const { writeToCache, readFromCache } = require('../utils/cache')
+import { env } from 'process'
+import unionBy from 'lodash/unionBy.js'
+import sanitizeHTML from 'sanitize-html'
+import { writeToCache, readFromCache } from '../utils/cache.js'
+const domain = new URL(
+	(
+		await import('../package.json', {
+			assert: {
+				type: 'json',
+			},
+		})
+	).default.homepage
+).hostname
 
 // Load .env variables with dotenv
-require('dotenv').config()
+import 'dotenv/config.js'
 
 // Define Cache Location and API Endpoint
 const WEBMENTION_URL = 'https://webmention.io/api'
