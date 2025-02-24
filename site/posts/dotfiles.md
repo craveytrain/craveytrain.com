@@ -4,7 +4,7 @@ date: 2011-04-27
 tags:
   - bash
   - prompt
-  - os x
+  - macOS
 ---
 
 I've been helping some of the guys at work get acclimated to macs and with that, helping them customize their bash prompt. With much thanks due to [mschout](https://github.com/mschout), I have finally got mine setup more or less how I like it (until I change it again).
