@@ -6,7 +6,7 @@ layout: page
 {% for tag in collections.tagList %}
 	<li>
   	<a href="/tags/{{ tag | slugify }}">{{ tag }}</a>
-		({{- collections[tag].length -}})
+		({{ collections[tag].length }})
 	</li>
 {% endfor %}
 </ul>

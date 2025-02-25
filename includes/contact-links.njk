@@ -1,6 +1,6 @@
 <ul class="contact-links">
-	{%- for contact in metadata.author.contacts -%}
-		{%  assign className = contact.name | downcase %}
+	{% for contact in metadata.author.contacts %}
+		{% set className = contact.name | lower %}
 		<li class="{{ className }}"><a rel="me" href="{{ contact.url }}">{{ contact.name }}</a></li>
-	{%-endfor -%}
+	{% endfor %}
 </ul>

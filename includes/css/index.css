@@ -33,13 +33,15 @@
 	--line-height: 1.4;
 
 	/* Type face */
-	--base-typeface: system-ui, 'Segoe UI', roboto, helvetica, arial, sans-serif,
+	--base-typeface:
+		system-ui, 'Segoe UI', roboto, helvetica, arial, sans-serif,
 		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 	--title-typeface: 'Outfit', sans-serif;
 
 	/* TODO: change this to web font of Mono Lisa */
-	--monospace-typeface: 'Operator Mono', 'Fira Code', consolas, monaco,
-		'Andale Mono', 'Ubuntu Mono', monospace;
+	--monospace-typeface:
+		'Operator Mono', 'Fira Code', consolas, monaco, 'Andale Mono',
+		'Ubuntu Mono', monospace;
 
 	/* Layout */
 	--min-width: 320px;

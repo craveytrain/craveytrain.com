@@ -2,10 +2,7 @@
 	<h1 class="post-title h4 p-name"><a class="u-url" href="{{ post.url }}">{{ post.data.title }}</a></h1>
 	<small class="post-metadata">
 		<time class="timestamp dt-published" datetime="{{ post.date | htmlDateString }}">{{ post.date | prettyDate }}</time>
-		{% assign tags = post.data.tags | contentTags %}
-		{% include "tag-list" %}
+		{% set tags = post.data.tags | contentTags %}
+		{% include "tag-list.njk" %}
 	</small>
-	<div class="p-summary">
-		{% excerpt post %}
-	</div>
 </article>

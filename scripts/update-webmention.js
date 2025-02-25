@@ -4,15 +4,8 @@ import { env } from 'process'
 import unionBy from 'lodash/unionBy.js'
 import sanitizeHTML from 'sanitize-html'
 import { writeToCache, readFromCache } from '../utils/cache.js'
-const domain = new URL(
-	(
-		await import('../package.json', {
-			assert: {
-				type: 'json',
-			},
-		})
-	).default.homepage
-).hostname
+import packageJson from '../package.json' with { type: 'json' }
+const domain = new URL(packageJson.homepage).hostname
 
 // Load .env variables with dotenv
 import 'dotenv/config.js'
@@ -74,10 +67,7 @@ function cleanWebmentions(webmentions) {
 					'pre',
 					'br',
 				],
-				allowedAttributes: {
-					a: ['href', 'rel'],
-					img: ['src', 'alt'],
-				},
+				allowedAttributes: { a: ['href', 'rel'], img: ['src', 'alt'] },
 				allowedIframeHostnames: [],
 			})
 			content.html = html

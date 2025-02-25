@@ -14,6 +14,7 @@ export default async function optimizeCSS(content, outputPath) {
 
 	// pull all instances of style tags
 	const styleTagsContents = [...content.matchAll(pattern)]
+
 	// purge unused styles from css
 	const purgedStyles = await purgeCSS.purge({
 		// remove css from files so it doesn't falsely trigger matches

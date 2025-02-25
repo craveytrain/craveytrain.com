@@ -5,7 +5,7 @@ export async function handler(event) {
 	try {
 		const { secret: _secret } = JSON.parse(event.body)
 		secret = _secret
-	} catch (error) {
+	} catch {
 		return { statusCode: 400 }
 	}
 
@@ -18,9 +18,7 @@ export async function handler(event) {
 			'https://api.github.com/repos/craveytrain/craveytrain.com/dispatches',
 			{
 				method: 'POST',
-				headers: {
-					Authorization: `token ${env.GITHUB_WEBMENTION_TOKEN}`,
-				},
+				headers: { Authorization: `token ${env.GITHUB_WEBMENTION_TOKEN}` },
 				body: '{ "event_type": "add-webmention" }',
 			}
 		).then(response => response.text())
