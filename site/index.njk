@@ -3,7 +3,7 @@ layout: base
 css: home.css
 ---
 <header>
-	<h1>{{ '/img/logo-text.svg' | svgContents }}</h1>
+	<h1>{{ '/img/logo-text.svg' | svgContents | safe }}</h1>
 
 	<img class="headshot" src="/img/illustration.png" alt="Caricature of headshot of Mike Cravey." />
 
@@ -19,14 +19,14 @@ css: home.css
 <main data-theme="dracula-light">
 	<section class="adaptable-columns">
 		<div class="heading">
-			{% assign about = collections.about | last %}
+			{% set about = collections.about | last %}
 			<h2 class="h3">{{ about.data.title }}</h2>
 
-			{% include "contact-links" %}
+			{% include "contact-links.njk" %}
 		</div>
 
 		<div class="content">
-			{{ about.content }}
+			{{ about.content | safe }}
 		</div>
 	</section>
 
@@ -35,8 +35,8 @@ css: home.css
 			<h2 class="h3"><a href="/posts">Posts</a></h2>
 		</div>
 		<div class="content">
-			{% assign post = collections.post | last %}
-			{% include "post-link" %}
+			{% set post = collections.post | last %}
+			{% include "post-link.njk" %}
 		</div>
 	</section>
 </main>

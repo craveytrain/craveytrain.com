@@ -6,5 +6,5 @@ eleventyNavigation:
   key: Posts
   order: 0
 ---
-{% assign posts = collections.post | reverse %}
-{% include "post-list" %}
+{% set posts = collections.post | reverse %}
+{% include "post-list.njk" %}

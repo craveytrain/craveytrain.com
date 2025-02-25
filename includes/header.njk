@@ -1,0 +1,15 @@
+<header>
+	{{ '/img/logo.svg' | svgContents }}
+
+	{% block hero %}{% endblock %}
+
+	<nav>
+		<ul>
+			{% for entry in collections.nav | eleventyNavigation %}
+				<li>
+					{% include 'nav-item.njk', url: entry.url, contents: entry.key %}
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
+</header>

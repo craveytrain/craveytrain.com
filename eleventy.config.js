@@ -1,15 +1,48 @@
+import fs from 'fs/promises'
 import svgContents from 'eleventy-plugin-svg-contents'
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
-import pluginRss from '@11ty/eleventy-plugin-rss'
+import { feedPlugin } from '@11ty/eleventy-plugin-rss'
 import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
 import contentTags from './utils/content-tags.js'
 import optimizeCSS from './utils/optimize-css.js'
 import tagList from './utils/tag-list.js'
-import excerpt from 'eleventy-plugin-excerpt'
 import { getWebmentionsForUrl, webmentionsByType } from './utils/webmentions.js'
 import pluralize from './utils/pluralize.js'
 
+const metadata = await fs
+	.readFile('./data/metadata.json', 'utf8')
+	.then(contents => JSON.parse(contents))
+
+const feedDetails = {
+	collection: {
+		name: 'post', // iterate over `collections.posts`
+		limit: 0, // 0 means no limit
+	},
+	metadata: {
+		language: 'en',
+		title: metadata.title,
+		subtitle: metadata.description,
+		base: metadata.url,
+		author: {
+			name: metadata.author.name,
+			email: '', // Optional
+		},
+	},
+}
+
 export default async function (eleventyConfig) {
+	// Order matters, put this at the top of your configuration file.
+	eleventyConfig.setInputDirectory('site')
+
+	// This is relative to your input directory!
+	eleventyConfig.setIncludesDirectory('../includes')
+
+	// This is relative to your input directory!
+	eleventyConfig.setLayoutsDirectory('../layouts')
+
+	// This is relative to your input directory!
+	eleventyConfig.setDataDirectory('../data')
+
 	eleventyConfig.addPassthroughCopy({ 'static/img': 'img' })
 	eleventyConfig.addPassthroughCopy({ 'static/favicons': 'favicons' })
 	eleventyConfig.addPassthroughCopy({ 'static/cv': 'cv' })
@@ -24,29 +57,25 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPlugin(eleventyNavigationPlugin)
 	// syntax highlighting
 	eleventyConfig.addPlugin(syntaxHighlight)
-	// generate RSS
-	eleventyConfig.addPlugin(pluginRss)
-	// add excerpt tag
-	eleventyConfig.addPlugin(excerpt)
 
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj =>
-		dateObj.toLocaleDateString('en-US', {
-			month: 'short',
-			day: 'numeric',
-			year: 'numeric',
-		})
+		dateObj
+			? dateObj.toLocaleDateString('en-US', {
+					month: 'short',
+					day: 'numeric',
+					year: 'numeric',
+				})
+			: dateObj
 	)
 
 	// https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-	eleventyConfig.addFilter('htmlDateString', dateObj => dateObj.toISOString())
+	eleventyConfig.addFilter('htmlDateString', dateObj =>
+		dateObj ? dateObj.toISOString() : dateObj
+	)
 
 	eleventyConfig.addFilter('getWebmentionsForUrl', getWebmentionsForUrl)
 	eleventyConfig.addFilter('webmentionsByType', webmentionsByType)
-
-	eleventyConfig.addFilter('absoluteUrl', pluginRss.absoluteUrl)
-	eleventyConfig.addFilter('htmlToAbsoluteUrls', pluginRss.htmlToAbsoluteUrls)
-	eleventyConfig.addFilter('dateToRfc3339', pluginRss.dateToRfc3339)
 
 	eleventyConfig.addFilter('pluralize', pluralize)
 
@@ -57,13 +86,15 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
 
-	return {
-		dir: {
-			data: '../data',
-			// set src dir to `site`
-			input: 'site',
-			includes: '../includes',
-			layouts: '../layouts',
-		},
-	}
+	eleventyConfig.addPlugin(feedPlugin, {
+		...feedDetails,
+		type: 'rss', // or "rss", "json"
+		outputPath: '/feed.xml',
+	})
+
+	eleventyConfig.addPlugin(feedPlugin, {
+		...feedDetails,
+		type: 'json', // or "rss", "json"
+		outputPath: '/feed.json',
+	})
 }
