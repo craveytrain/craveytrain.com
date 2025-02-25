@@ -27,7 +27,8 @@
 		"lint:ci:css": "stylelint '**/*.css'",
 		"webmention": "node ./scripts/update-webmention.js",
 		"upgrade-deps": "ncu -u",
-		"postinstall": "husky install"
+		"postinstall": "husky install",
+		"prepare": "husky"
 	},
 	"husky": {
 		"hooks": {
