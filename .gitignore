@@ -13,3 +13,8 @@ _themes
 
 # Local Netlify folder
 .netlify
+
+# Claude Code local files
+.claude/*.local.json
+.claude/*.local.md
+.claude/agents/*.local/
