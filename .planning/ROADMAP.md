@@ -16,12 +16,13 @@ This roadmap delivers three content features to craveytrain.com: a now page syst
 
 **Dependencies:** None (first phase, uses existing layouts)
 
-**Plans:** 2 plans
+**Plans:** 3 plans
 
 Plans:
 
 - [x] 01-01-PLAN.md - Foundation and content (now directory, layout, first now page with navigation)
 - [x] 01-02-PLAN.md - Archive system (archive listing, previous/next navigation)
+- [ ] 01-03-PLAN.md - Gap closure (fix nav location, nav styling, title escaping)
 
 **Requirements:**
 
@@ -41,7 +42,7 @@ Plans:
 4. User navigates between now page versions using previous/next links
 5. User clicks nownownow.com link and learns about the now page movement
 
-**Status:** Complete (2026-02-07)
+**Status:** UAT in progress (gap closure pending)
 
 ---
 
@@ -93,7 +94,7 @@ Plans:
 
 | Phase                      | Status   | Requirements              | Completion |
 | -------------------------- | -------- | ------------------------- | ---------- |
-| 1 - Now Page System        | Complete | NOW-01 through NOW-07 (7) | 100%       |
+| 1 - Now Page System        | UAT Gaps | NOW-01 through NOW-07 (7) | 90%        |
 | 2 - Colophon Consolidation | Pending  | COL-01 through COL-05 (5) | 0%         |
 | 3 - Uses Navigation        | Pending  | USE-01 (1)                | 0%         |
 
@@ -102,8 +103,9 @@ Plans:
 ## Next Steps
 
 1. ~~Execute Phase 1 plans~~ (Complete)
-2. Verify Phase 1 success criteria (optional)
-3. Plan Phase 2: `/gsd:plan-phase 2`
+2. Execute gap closure plan: `/gsd:execute-phase 1`
+3. Re-verify Phase 1 success criteria
+4. Plan Phase 2: `/gsd:plan-phase 2`
 
 ## Notes
 
