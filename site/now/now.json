@@ -1,0 +1,7 @@
+{
+	"layout": "now",
+	"override:tags": ["now"],
+	"eleventyComputed": {
+		"permalink": "/now/{{ page.date | date: '%Y-%m-%d' }}.html"
+	}
+}
