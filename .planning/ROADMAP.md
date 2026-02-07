@@ -20,8 +20,8 @@ This roadmap delivers three content features to craveytrain.com: a now page syst
 
 Plans:
 
-- [ ] 01-01-PLAN.md - Foundation and content (now directory, layout, first now page with navigation)
-- [ ] 01-02-PLAN.md - Archive system (archive listing, previous/next navigation)
+- [x] 01-01-PLAN.md - Foundation and content (now directory, layout, first now page with navigation)
+- [x] 01-02-PLAN.md - Archive system (archive listing, previous/next navigation)
 
 **Requirements:**
 
@@ -41,7 +41,7 @@ Plans:
 4. User navigates between now page versions using previous/next links
 5. User clicks nownownow.com link and learns about the now page movement
 
-**Status:** Planned
+**Status:** Complete (2026-02-07)
 
 ---
 
@@ -91,19 +91,19 @@ Plans:
 
 ## Progress
 
-| Phase                      | Status  | Requirements              | Completion |
-| -------------------------- | ------- | ------------------------- | ---------- |
-| 1 - Now Page System        | Planned | NOW-01 through NOW-07 (7) | 0%         |
-| 2 - Colophon Consolidation | Pending | COL-01 through COL-05 (5) | 0%         |
-| 3 - Uses Navigation        | Pending | USE-01 (1)                | 0%         |
+| Phase                      | Status   | Requirements              | Completion |
+| -------------------------- | -------- | ------------------------- | ---------- |
+| 1 - Now Page System        | Complete | NOW-01 through NOW-07 (7) | 100%       |
+| 2 - Colophon Consolidation | Pending  | COL-01 through COL-05 (5) | 0%         |
+| 3 - Uses Navigation        | Pending  | USE-01 (1)                | 0%         |
 
-**Overall:** 0/13 requirements complete (0%)
+**Overall:** 7/13 requirements complete (54%)
 
 ## Next Steps
 
-1. Execute Phase 1 plans: `/gsd:execute-phase 1`
-2. Verify Phase 1 success criteria
-3. Proceed to Phase 2
+1. ~~Execute Phase 1 plans~~ (Complete)
+2. Verify Phase 1 success criteria (optional)
+3. Plan Phase 2: `/gsd:plan-phase 2`
 
 ## Notes
 
@@ -116,4 +116,4 @@ Plans:
 ---
 
 _Roadmap created: 2026-02-06_
-_Last updated: 2026-02-06_
+_Last updated: 2026-02-07_

@@ -1,7 +1,7 @@
 # Project State: craveytrain.com Content Restructure
 
 **Last Updated:** 2026-02-07
-**Status:** Phase 1 In Progress
+**Status:** Phase 1 Complete
 
 ## Project Reference
 
@@ -18,24 +18,25 @@
 ## Current Position
 
 **Current Phase:** Phase 1 - Now Page System
-**Current Plan:** Plan 01 complete, Plan 02 pending
-**Status:** In progress
+**Current Plan:** 2 of 2 complete
+**Status:** Phase complete
+**Last activity:** 2026-02-07 - Completed 01-02-PLAN.md
 
 ```
-Progress: [##........] 20%
+Progress: [####......] 40%
 ```
 
 **Phase Completion:**
 
-- Phase 1: Now Page System - 1/3 plans complete (foundation done)
+- Phase 1: Now Page System - 2/2 plans complete (NOW-01 through NOW-07 done)
 - Phase 2: Colophon Consolidation - 0% (0/5 requirements)
 - Phase 3: Uses Navigation - 0% (0/1 requirement)
 
 ## Performance Metrics
 
-**Velocity:** 5 min/plan (1 plan measured)
+**Velocity:** 3.5 min/plan (2 plans measured)
 **Blockers:** None
-**Last Action:** Completed 01-01-PLAN.md (Now Page Foundation) on 2026-02-07
+**Last Action:** Completed 01-02-PLAN.md (Archive System) on 2026-02-07
 
 ## Accumulated Context
 
@@ -51,9 +52,10 @@ Progress: [##........] 20%
 ### Active TODOs
 
 - [x] Create execution plan for Phase 1 (Now Page System)
-- [ ] Execute Plan 02 (Archive System)
-- [ ] Execute Plan 03 (Pagination/Navigation) if exists
+- [x] Execute Plan 01 (Now Page Foundation)
+- [x] Execute Plan 02 (Archive System)
 - [ ] Verify Phase 1 success criteria before Phase 2
+- [ ] Plan Phase 2 (Colophon Consolidation)
 
 ### Known Blockers
 
@@ -79,40 +81,42 @@ None currently identified.
 - Directory data for now page tag defaults
 - Nunjucks templates with existing layouts
 
-**Patterns Established (01-01):**
+**Patterns Established (01-01, 01-02):**
 
 - Now pages use explicit date in frontmatter
 - override:tags prevents data cascade merging
 - Navigation uses set variables before include
+- Use `| reverse` filter (not `.reverse()` method) to avoid collection mutation
+- getPreviousCollectionItem/getNextCollectionItem for sequential navigation
 
 ## Session Continuity
 
 **For next session:**
 
-Execute Plan 02 for Phase 1 (Archive System). Plan 01 established the now page foundation - Plan 02 adds dated archive URLs and archive listing page.
+Phase 1 (Now Page System) complete. Ready to plan and execute Phase 2 (Colophon Consolidation).
 
 **Context to preserve:**
 
-- Now page working at `/now/`
-- Navigation visible with Now as first item
-- Directory data pattern established in site/now/now.json
+- Now page system fully functional
+- Archive listing at `/now/archive/`
+- Previous/next navigation between now pages
+- Directory data pattern with override:tags for collection management
 - Layout chain: now.njk -> page.njk -> base.njk
 
 **What's working:**
 
-- Now page renders with date byline
-- Navigation includes Now link
-- Five focus area sections visible
-- nownownow.com link in intro
+- Now page at `/now/` with date byline
+- Archive listing shows all now pages reverse chronologically
+- Previous/next navigation with rel attributes
+- Test archive entry at `/now/2026-01-15/`
 
 **What needs attention:**
 
-- Plan 02 needs to add dated archive URLs
-- Plan 02 needs to add archive listing page
-- Test that multiple now pages in the directory create separate archive entries
+- Verify Phase 1 success criteria (optional before Phase 2)
+- Plan Phase 2 for colophon consolidation
 
 ---
 
 _State initialized: 2026-02-06_
 _Last updated: 2026-02-07_
-_Completed: 01-01-PLAN.md (Now Page Foundation)_
+_Completed: 01-02-PLAN.md (Archive System)_
