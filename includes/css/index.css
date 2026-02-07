@@ -272,3 +272,14 @@ footer ul {
 	font-family: var(--monospace-typeface);
 	font-size: var(--small-font-size);
 }
+
+/* Now page navigation */
+.now-nav ul {
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+}
+
+.now-nav li:only-child:last-child {
+	margin-left: auto;
+}
