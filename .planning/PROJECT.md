@@ -1,12 +1,12 @@
-# craveytrain.com Redesign
+# craveytrain.com Content Restructure
 
 ## What This Is
 
-A personal website redesign applying the "Warm Editorial" design direction to craveytrain.com. The project restructures content (now pages, colophon, uses) and applies new templates featuring Fraunces + Inter typography, cream/terracotta palette, and a 200px/1fr editorial grid layout.
+Content restructuring for craveytrain.com: adding a now page system with archives, consolidating colophon blog posts into a single page, and adding the existing uses page to navigation. This is preparatory work before a future visual redesign.
 
 ## Core Value
 
-The site should look professional and updated while maintaining warmth and readability — a polished editorial feel that showcases writing and personal presence.
+Establish the content structure and page types that will be styled in a future redesign — now pages, consolidated colophon, and uses page in nav.
 
 ## Requirements
 
@@ -15,65 +15,63 @@ The site should look professional and updated while maintaining warmth and reada
 - ✓ Eleventy static site generator — existing
 - ✓ Blog posts with tags — existing
 - ✓ Colophon content (9 versions) — existing as blog posts
+- ✓ Uses page — existing at `/uses/`
 
 ### Active
 
-- [ ] Now page system with auto-latest index, dated archives, and archive listing
-- [ ] Colophon as single stacked page (year gutter, version titles, all 9 versions consolidated)
-- [ ] Uses page (simple single article)
-- [ ] Warm Editorial redesign applied to all page types
-- [ ] Homepage with hero, about, recent writing sections
-- [ ] Posts listing with tag filtering (JS-based)
-- [ ] Single post template with sidebar metadata
-- [ ] Responsive design (768px breakpoint)
+- [ ] Now page with current date and focus areas
+- [ ] Now page auto-latest at `/now/index.html`
+- [ ] Now page dated archives at `/now/<date>.html`
+- [ ] Now page archive listing at `/now/archive/`
+- [ ] Colophon consolidated into single stacked page from 9 blog posts
+- [ ] Uses page added to site navigation
 
-### Out of Scope
+### Out of Scope (Future Redesign Project)
 
-- Dark mode — not in current design, could add later
-- Server-side tag filtering — client-side JS sufficient for site size
-- Previous/next post navigation — intentionally removed in new design
-- Now page location tracking — design shows date only, no location
+- Warm Editorial visual design — separate project
+- New templates (homepage, now, posts, single post) — separate project
+- Mobile-first CSS rewrite — separate project
+- Year-in-gutter layout for colophon — design work, separate project
+- Typography changes (Fraunces/Inter) — separate project
+- Tag filtering redesign — separate project
 
 ## Context
 
 **Existing assets:**
 
-- 4 HTML template prototypes in `/redesign/` folder (homepage, now, posts, single post)
-- Design handoff document (`craveytrain-design-handoff.md`) with full specs
+- Uses page at `site/uses.md` — exists, just not in nav
+- 9 colophon blog posts — need consolidation
+- Codebase mapped in `.planning/codebase/`
+
+**Future redesign assets (not used in this project):**
+
+- 4 HTML template prototypes in `/redesign/` folder
+- Mobile hero options (`hero-mobile-options.html`)
+- Design handoff document (`craveytrain-design-handoff.md`)
 - New hero image (`IMG_7332.jpeg`)
-- Codebase already mapped in `.planning/codebase/`
-
-**Known issues:**
-
-- Homepage hero doesn't respond to mobile breakpoints as desired (still being refined)
-- Colophon currently assembled from blog posts — needs consolidation
-- No existing now page infrastructure
 
 **Content structure decisions:**
 
 - Now pages: create new file per update, build process auto-generates latest at `/now/index.html` and archives at `/now/<date>.html`
-- Colophon: single page with all versions stacked, year in left gutter, version as section title
-- Uses: simple single article using post template
-- Archive listings: styled like posts listing page
-
-**Build order assumption:** Content/structure changes first, then apply redesign templates.
+- Colophon: single page with all 9 versions stacked (use existing site styles for now)
+- Uses: already exists, just add to navigation
+- Archive listing: simple list with dates and links
 
 ## Constraints
 
 - **Tech stack**: Eleventy (11ty) — existing, no change
-- **Design**: Warm Editorial direction per handoff document — templates are source of truth
-- **Typography**: Fraunces (display) + Inter (body) via Google Fonts
-- **Layout**: 200px/1fr editorial grid, 1100px max-width, 768px responsive breakpoint
+- **Styling**: Use existing site styles (visual redesign is separate project)
+- **No breaking changes**: Existing blog posts and URLs continue to work
 
 ## Key Decisions
 
-| Decision                     | Rationale                                                              | Outcome   |
-| ---------------------------- | ---------------------------------------------------------------------- | --------- |
-| Single stacked colophon page | Updates every couple years, short entries — archive machinery overkill | — Pending |
-| Content first, then redesign | Easier to restructure content before applying new templates            | — Pending |
-| Client-side tag filtering    | Site size is small, JS approach from templates works well              | — Pending |
-| Year in colophon gutter      | Mirrors now page pattern, provides visual timeline                     | — Pending |
+| Decision                       | Rationale                                                    | Outcome   |
+| ------------------------------ | ------------------------------------------------------------ | --------- |
+| Content before design          | Restructure pages first, apply visual design later           | — Pending |
+| Single stacked colophon page   | Updates rarely, short entries — archive machinery overkill   | — Pending |
+| Separate content from redesign | Keeps projects focused, easier to complete and verify        | — Pending |
+| Use existing styles for now    | Visual design is a separate effort with its own requirements | — Pending |
 
 ---
 
-_Last updated: 2026-02-06 after initialization_
+_Last updated: 2026-02-06 after scope refinement_
