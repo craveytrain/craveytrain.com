@@ -3,16 +3,6 @@ layout: base
 ---
 <header>
     <h1><a href="/">{{ '/img/logo-text.svg' | svgContents | safe }}</a></h1>
-
-    <nav>
-        <ul>
-            {% for entry in collections.nav | eleventyNavigation %}
-                {% set url = entry.url %}
-                {% set contents = entry.key %}
-                <li>{% include 'nav-item.njk' %}</li>
-            {% endfor %}
-        </ul>
-    </nav>
 </header>
 
 <main data-theme="dracula-light">

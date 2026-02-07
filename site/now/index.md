@@ -1,7 +1,7 @@
 ---
 title: What I'm Doing Now
 date: 2026-02-06
-tags: nav
+tags: foot
 eleventyNavigation:
   key: Now
   order: 0
