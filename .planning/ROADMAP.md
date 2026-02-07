@@ -16,6 +16,13 @@ This roadmap delivers three content features to craveytrain.com: a now page syst
 
 **Dependencies:** None (first phase, uses existing layouts)
 
+**Plans:** 2 plans
+
+Plans:
+
+- [ ] 01-01-PLAN.md - Foundation and content (now directory, layout, first now page with navigation)
+- [ ] 01-02-PLAN.md - Archive system (archive listing, previous/next navigation)
+
 **Requirements:**
 
 - NOW-01: Now page displays its last-updated date from frontmatter
@@ -34,7 +41,7 @@ This roadmap delivers three content features to craveytrain.com: a now page syst
 4. User navigates between now page versions using previous/next links
 5. User clicks nownownow.com link and learns about the now page movement
 
-**Status:** Pending
+**Status:** Planned
 
 ---
 
@@ -86,7 +93,7 @@ This roadmap delivers three content features to craveytrain.com: a now page syst
 
 | Phase                      | Status  | Requirements              | Completion |
 | -------------------------- | ------- | ------------------------- | ---------- |
-| 1 - Now Page System        | Pending | NOW-01 through NOW-07 (7) | 0%         |
+| 1 - Now Page System        | Planned | NOW-01 through NOW-07 (7) | 0%         |
 | 2 - Colophon Consolidation | Pending | COL-01 through COL-05 (5) | 0%         |
 | 3 - Uses Navigation        | Pending | USE-01 (1)                | 0%         |
 
@@ -94,10 +101,9 @@ This roadmap delivers three content features to craveytrain.com: a now page syst
 
 ## Next Steps
 
-1. Run `/gsd:plan-phase 1` to create execution plan for Now Page System
-2. Execute Phase 1 plans to completion
-3. Verify Phase 1 success criteria
-4. Proceed to Phase 2
+1. Execute Phase 1 plans: `/gsd:execute-phase 1`
+2. Verify Phase 1 success criteria
+3. Proceed to Phase 2
 
 ## Notes
 
