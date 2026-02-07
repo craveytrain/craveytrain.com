@@ -4,3 +4,7 @@ layout: page
 <p class="byline">As of {{ date | prettyDate }}</p>
 
 {{ content | safe }}
+
+{% include 'now-nav.njk' %}
+
+<p><a href="/now/archive/">View previous updates</a></p>
