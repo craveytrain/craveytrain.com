@@ -58,29 +58,29 @@ Deferred to separate redesign project. Tracked but not in current roadmap.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status  |
-| ----------- | ----- | ------- |
-| NOW-01      | TBD   | Pending |
-| NOW-02      | TBD   | Pending |
-| NOW-03      | TBD   | Pending |
-| NOW-04      | TBD   | Pending |
-| NOW-05      | TBD   | Pending |
-| NOW-06      | TBD   | Pending |
-| NOW-07      | TBD   | Pending |
-| COL-01      | TBD   | Pending |
-| COL-02      | TBD   | Pending |
-| COL-03      | TBD   | Pending |
-| COL-04      | TBD   | Pending |
-| COL-05      | TBD   | Pending |
-| USE-01      | TBD   | Pending |
+| Requirement | Phase   | Status  |
+| ----------- | ------- | ------- |
+| NOW-01      | Phase 1 | Pending |
+| NOW-02      | Phase 1 | Pending |
+| NOW-03      | Phase 1 | Pending |
+| NOW-04      | Phase 1 | Pending |
+| NOW-05      | Phase 1 | Pending |
+| NOW-06      | Phase 1 | Pending |
+| NOW-07      | Phase 1 | Pending |
+| COL-01      | Phase 2 | Pending |
+| COL-02      | Phase 2 | Pending |
+| COL-03      | Phase 2 | Pending |
+| COL-04      | Phase 2 | Pending |
+| COL-05      | Phase 2 | Pending |
+| USE-01      | Phase 3 | Pending |
 
 **Coverage:**
 
 - v1 requirements: 13 total
-- Mapped to phases: 0
-- Unmapped: 13 ⚠️
+- Mapped to phases: 13
+- Unmapped: 0 ✓
 
 ---
 
 _Requirements defined: 2026-02-06_
-_Last updated: 2026-02-06 after initial definition_
+_Last updated: 2026-02-06 after roadmap creation_
