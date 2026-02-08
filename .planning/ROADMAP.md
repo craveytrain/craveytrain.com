@@ -42,7 +42,7 @@ Plans:
 4. User navigates between now page versions using previous/next links
 5. User clicks nownownow.com link and learns about the now page movement
 
-**Status:** Complete ✓
+**Status:** Complete
 
 ---
 
@@ -52,19 +52,25 @@ Plans:
 
 **Dependencies:** None (independent feature, uses existing layouts)
 
+**Plans:** 1 plan
+
+Plans:
+
+- [ ] 02-01-PLAN.md - Move colophon files to dedicated directory, add version anchors
+
 **Requirements:**
 
 - COL-01: Colophon exists as single page at `/colophon/`
 - COL-02: All 9 existing colophon blog posts consolidated into single page
 - COL-03: Versions stacked in reverse chronological order (newest first)
 - COL-04: Each version has visible date/version identifier
-- COL-05: Redirects from old colophon blog post URLs to new page
+- COL-05: Redirects from old colophon blog post URLs to new page (SKIPPED per user decision)
 
 **Success Criteria:**
 
 1. User visits `/colophon/` and sees all 9 site versions stacked on single page
 2. User scrolls through versions and sees clear date/version identifiers for each
-3. User follows old colophon blog post link and gets redirected to consolidated page
+3. ~~User follows old colophon blog post link and gets redirected to consolidated page~~ (Skipped - old URLs will 404)
 4. User sees newest colophon version at top of page, oldest at bottom
 
 **Status:** Pending
@@ -105,7 +111,8 @@ Plans:
 1. ~~Execute Phase 1 plans~~ (Complete)
 2. ~~Execute gap closure plan~~ (Complete)
 3. ~~Re-verify Phase 1 success criteria~~ (10/10 verified)
-4. Plan Phase 2: `/gsd:plan-phase 2`
+4. ~~Plan Phase 2~~ (Complete)
+5. Execute Phase 2: `/gsd:execute-phase 2`
 
 ## Notes
 
@@ -115,7 +122,9 @@ Plans:
 
 **Coverage:** All 13 v1 requirements mapped to phases. No orphans.
 
+**COL-05 Decision:** User explicitly stated they are not concerned about old colophon post URLs breaking. Redirects skipped.
+
 ---
 
 _Roadmap created: 2026-02-06_
-_Last updated: 2026-02-06_
+_Last updated: 2026-02-08_
