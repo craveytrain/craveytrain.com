@@ -18,3 +18,11 @@ _themes
 .claude/*.local.json
 .claude/*.local.md
 .claude/agents/*.local/
+
+# GSD planning - keep high-level, exclude details
+.planning/STATE.md
+.planning/config.json
+.planning/codebase/
+.planning/research/
+.planning/debug/
+.planning/phases/
