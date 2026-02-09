@@ -9,21 +9,21 @@ Requirements for this project. Each maps to roadmap phases.
 
 ### Now Page
 
-- [ ] **NOW-01**: Now page displays its last-updated date from frontmatter
-- [ ] **NOW-02**: Now page has 3-5 focus area sections (e.g., Work, Learning, Life)
-- [ ] **NOW-03**: Now page includes link to nownownow.com explanation
-- [ ] **NOW-04**: Latest now content appears at `/now/` (auto-generated index)
-- [ ] **NOW-05**: Each now update gets dated archive at `/now/<date>.html`
-- [ ] **NOW-06**: Archive listing exists at `/now/archive/` with all dated versions
-- [ ] **NOW-07**: Now pages link to previous version for navigation
+- [x] **NOW-01**: Now page displays its last-updated date from frontmatter
+- [x] **NOW-02**: Now page has 3-5 focus area sections (e.g., Work, Learning, Life)
+- [x] **NOW-03**: Now page includes link to nownownow.com explanation
+- [x] **NOW-04**: Latest now content appears at `/now/` (auto-generated index)
+- [x] **NOW-05**: Each now update gets dated archive at `/now/<date>.html`
+- [x] **NOW-06**: Archive listing exists at `/now/archive/` with all dated versions
+- [x] **NOW-07**: Now pages link to previous version for navigation
 
 ### Colophon
 
-- [ ] **COL-01**: Colophon exists as single page at `/colophon/`
-- [ ] **COL-02**: All 9 existing colophon blog posts consolidated into single page
-- [ ] **COL-03**: Versions stacked in reverse chronological order (newest first)
-- [ ] **COL-04**: Each version has visible date/version identifier
-- [ ] **COL-05**: Redirects from old colophon blog post URLs to new page
+- [x] **COL-01**: Colophon exists as single page at `/colophon/`
+- [x] **COL-02**: All 9 existing colophon blog posts consolidated into single page
+- [x] **COL-03**: Versions stacked in reverse chronological order (newest first)
+- [x] **COL-04**: Each version has visible date/version identifier
+- [~] **COL-05**: Redirects from old colophon blog post URLs to new page (SKIPPED per user decision)
 
 ### Uses
 
@@ -58,21 +58,21 @@ Deferred to separate redesign project. Tracked but not in current roadmap.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase   | Status  |
-| ----------- | ------- | ------- |
-| NOW-01      | Phase 1 | Pending |
-| NOW-02      | Phase 1 | Pending |
-| NOW-03      | Phase 1 | Pending |
-| NOW-04      | Phase 1 | Pending |
-| NOW-05      | Phase 1 | Pending |
-| NOW-06      | Phase 1 | Pending |
-| NOW-07      | Phase 1 | Pending |
-| COL-01      | Phase 2 | Pending |
-| COL-02      | Phase 2 | Pending |
-| COL-03      | Phase 2 | Pending |
-| COL-04      | Phase 2 | Pending |
-| COL-05      | Phase 2 | Pending |
-| USE-01      | Phase 3 | Pending |
+| Requirement | Phase   | Status   |
+| ----------- | ------- | -------- |
+| NOW-01      | Phase 1 | Complete |
+| NOW-02      | Phase 1 | Complete |
+| NOW-03      | Phase 1 | Complete |
+| NOW-04      | Phase 1 | Complete |
+| NOW-05      | Phase 1 | Complete |
+| NOW-06      | Phase 1 | Complete |
+| NOW-07      | Phase 1 | Complete |
+| COL-01      | Phase 2 | Complete |
+| COL-02      | Phase 2 | Complete |
+| COL-03      | Phase 2 | Complete |
+| COL-04      | Phase 2 | Complete |
+| COL-05      | Phase 2 | Skipped  |
+| USE-01      | Phase 3 | Pending  |
 
 **Coverage:**
 
@@ -83,4 +83,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 ---
 
 _Requirements defined: 2026-02-06_
-_Last updated: 2026-02-06 after roadmap creation_
+_Last updated: 2026-02-09 after Phase 2 completion_
