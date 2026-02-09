@@ -1,7 +1,7 @@
 # Project State: craveytrain.com Content Restructure
 
 **Last Updated:** 2026-02-09
-**Status:** Phase 2 Complete
+**Status:** All Phases Complete - Project Delivered
 
 ## Project Reference
 
@@ -17,26 +17,26 @@
 
 ## Current Position
 
-**Current Phase:** Phase 2 Complete, ready for Phase 3
-**Current Plan:** 1 of 1 complete
-**Status:** Phase verified (5/5 must-haves)
-**Last activity:** 2026-02-09 - Phase 2 verified and complete
+**Current Phase:** All 3 phases complete
+**Current Plan:** Project delivered
+**Status:** All must-haves verified and shipped
+**Last activity:** 2026-02-09 - Completed 03-01-PLAN.md (Uses Navigation)
 
 ```
-Progress: [#########.] 92%
+Progress: [##########] 100%
 ```
 
 **Phase Completion:**
 
 - Phase 1: Now Page System - 3/3 plans complete (foundation, archive, gap closure)
 - Phase 2: Colophon Consolidation - 1/1 plans complete (file organization)
-- Phase 3: Uses Navigation - 0/1 requirement
+- Phase 3: Uses Navigation - 1/1 plan complete (footer navigation)
 
 ## Performance Metrics
 
-**Velocity:** 2.5 min/plan (4 plans measured)
+**Velocity:** 2.0 min/plan (5 plans measured)
 **Blockers:** None
-**Last Action:** Completed 02-01-PLAN.md (Colophon Consolidation) on 2026-02-09
+**Last Action:** Completed 03-01-PLAN.md (Uses Navigation) on 2026-02-09
 
 ## Accumulated Context
 
@@ -52,6 +52,7 @@ Progress: [#########.] 92%
 | 2026-02-07 | Safe filter for title double-escape  | Set block + pageTitle caused double HTML entity escaping      | Added \| safe to title in pageTitle set block                             |
 | 2026-02-09 | override:tags for colophon directory | Reused Phase 1 pattern for collection isolation               | Colophon files removed from posts collection, remain in colophon only     |
 | 2026-02-09 | Slugified title for version anchors  | Simple and reliable approach for section navigation           | Enables direct linking to specific colophon versions                      |
+| 2026-02-09 | Uses page order 1 in footer nav      | Places Uses after Now (order 0) in footer navigation          | Establishes sensible navigation ordering for content discovery            |
 
 ### Active TODOs
 
@@ -62,7 +63,8 @@ Progress: [#########.] 92%
 - [x] Execute Plan 03 (Gap Closure)
 - [x] Verify Phase 1 (10/10 verified)
 - [x] Execute Plan 02-01 (Colophon Consolidation)
-- [ ] Plan Phase 3 (Uses Navigation)
+- [x] Execute Plan 03-01 (Uses Navigation)
+- [x] Project complete - all must-haves delivered
 
 ### Known Blockers
 
@@ -88,7 +90,7 @@ None currently identified.
 - Directory data for now page tag defaults
 - Nunjucks templates with existing layouts
 
-**Patterns Established (01-01, 01-02, 01-03, 02-01):**
+**Patterns Established (01-01, 01-02, 01-03, 02-01, 03-01):**
 
 - Now pages use explicit date in frontmatter
 - override:tags prevents data cascade merging
@@ -96,6 +98,7 @@ None currently identified.
 - Use `| reverse` filter (not `.reverse()` method) to avoid collection mutation
 - getPreviousCollectionItem/getNextCollectionItem for sequential navigation
 - Footer navigation uses 'foot' tag collection (not 'nav')
+- eleventyNavigation.order controls footer link sequencing (Now=0, Uses=1)
 - Flexbox for horizontal navigation layouts with :only-child:last-child for single-item alignment
 - Safe filter prevents double HTML escaping in set blocks
 - Directory data pattern: colophon.json matches directory name exactly
@@ -105,7 +108,13 @@ None currently identified.
 
 **For next session:**
 
-Phase 2 (Colophon Consolidation) complete. All 9 colophon versions moved to dedicated directory, removed from blog listing, with anchor links for direct navigation. Ready to plan and execute Phase 3 (Uses Navigation).
+Project complete! All three phases delivered:
+
+- Phase 1: Now page system with archive and sequential navigation
+- Phase 2: Consolidated colophon with version history and anchor links
+- Phase 3: Uses page in footer navigation
+
+All 13 original must-haves verified and shipped.
 
 **Context to preserve:**
 
@@ -128,13 +137,15 @@ Phase 2 (Colophon Consolidation) complete. All 9 colophon versions moved to dedi
 - Colophon page at `/colophon/` with all 9 versions stacked (newest first)
 - Direct version linking via anchors (e.g., `/colophon/#colophon-v5`)
 - Colophon entries no longer appear in blog post listing
+- Uses link appears in footer navigation after Now link
 
-**What needs attention:**
+**Project Complete:**
 
-- Plan Phase 3 for uses page navigation
+All content restructure features shipped. Future work: visual redesign (separate project).
 
 ---
 
 _State initialized: 2026-02-06_
 _Last updated: 2026-02-09_
-_Completed: 02-01-PLAN.md (Colophon Consolidation)_
+_Completed: 03-01-PLAN.md (Uses Navigation)_
+_Project delivered: 2026-02-09_
