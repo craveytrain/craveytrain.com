@@ -18,6 +18,8 @@ Requirements for the Warm Editorial visual redesign. Each maps to roadmap phases
 - [ ] **DSYS-07**: Horizontal dividers span full content width
 - [ ] **DSYS-08**: Body links use accent color with soft underline, darker on hover
 - [ ] **DSYS-09**: CSS is mobile-first with min-width media query at 768px
+- [ ] **DSYS-10**: Interactive elements have visible focus states for keyboard navigation
+- [ ] **DSYS-11**: Skip link allows keyboard users to bypass navigation
 
 ### Homepage
 
@@ -43,6 +45,10 @@ Requirements for the Warm Editorial visual redesign. Each maps to roadmap phases
 - [ ] **SNGL-03**: Code blocks use warm syntax highlighting palette covering all common Prism.js tokens (keywords, functions, tags, operators, etc. — not just the 6 CSS/JS-focused colors in design handoff)
 - [ ] **SNGL-04**: Headings use clamp() for responsive sizing
 - [ ] **SNGL-05**: Sidebar tags link to static tag pages
+- [ ] **SNGL-06**: Blockquotes display with accent border-left and italic styling
+- [ ] **SNGL-07**: Inline code displays with subtle background and border-radius
+- [ ] **SNGL-08**: Lists (ul/ol) display with proper spacing and markers
+- [ ] **SNGL-09**: Images in posts display responsively with appropriate margins
 
 ### Tag Pages
 
@@ -99,52 +105,58 @@ Explicitly excluded from v9.2. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status  |
-| ----------- | ----- | ------- |
-| DSYS-01     | —     | Pending |
-| DSYS-02     | —     | Pending |
-| DSYS-03     | —     | Pending |
-| DSYS-04     | —     | Pending |
-| DSYS-05     | —     | Pending |
-| DSYS-06     | —     | Pending |
-| DSYS-07     | —     | Pending |
-| DSYS-08     | —     | Pending |
-| DSYS-09     | —     | Pending |
-| HOME-01     | —     | Pending |
-| HOME-02     | —     | Pending |
-| HOME-03     | —     | Pending |
-| HOME-04     | —     | Pending |
-| HOME-05     | —     | Pending |
-| HOME-06     | —     | Pending |
-| LIST-01     | —     | Pending |
-| LIST-02     | —     | Pending |
-| LIST-03     | —     | Pending |
-| LIST-04     | —     | Pending |
-| LIST-05     | —     | Pending |
-| SNGL-01     | —     | Pending |
-| SNGL-02     | —     | Pending |
-| SNGL-03     | —     | Pending |
-| SNGL-04     | —     | Pending |
-| SNGL-05     | —     | Pending |
-| TAGS-01     | —     | Pending |
-| TAGS-02     | —     | Pending |
-| PAGE-01     | —     | Pending |
-| PAGE-02     | —     | Pending |
-| PAGE-03     | —     | Pending |
-| PAGE-04     | —     | Pending |
-| RESP-01     | —     | Pending |
-| RESP-02     | —     | Pending |
-| RESP-03     | —     | Pending |
-| RESP-04     | —     | Pending |
-| RESP-05     | —     | Pending |
+| Requirement | Phase   | Status  |
+| ----------- | ------- | ------- |
+| DSYS-01     | Phase 4 | Pending |
+| DSYS-02     | Phase 4 | Pending |
+| DSYS-03     | Phase 4 | Pending |
+| DSYS-04     | Phase 4 | Pending |
+| DSYS-05     | Phase 4 | Pending |
+| DSYS-06     | Phase 4 | Pending |
+| DSYS-07     | Phase 4 | Pending |
+| DSYS-08     | Phase 4 | Pending |
+| DSYS-09     | Phase 4 | Pending |
+| DSYS-10     | Phase 4 | Pending |
+| DSYS-11     | Phase 4 | Pending |
+| HOME-01     | Phase 5 | Pending |
+| HOME-02     | Phase 5 | Pending |
+| HOME-03     | Phase 5 | Pending |
+| HOME-04     | Phase 5 | Pending |
+| HOME-05     | Phase 5 | Pending |
+| HOME-06     | Phase 5 | Pending |
+| LIST-01     | Phase 6 | Pending |
+| LIST-02     | Phase 6 | Pending |
+| LIST-03     | Phase 6 | Pending |
+| LIST-04     | Phase 6 | Pending |
+| LIST-05     | Phase 6 | Pending |
+| SNGL-01     | Phase 6 | Pending |
+| SNGL-02     | Phase 6 | Pending |
+| SNGL-03     | Phase 6 | Pending |
+| SNGL-04     | Phase 6 | Pending |
+| SNGL-05     | Phase 6 | Pending |
+| SNGL-06     | Phase 6 | Pending |
+| SNGL-07     | Phase 6 | Pending |
+| SNGL-08     | Phase 6 | Pending |
+| SNGL-09     | Phase 6 | Pending |
+| TAGS-01     | Phase 6 | Pending |
+| TAGS-02     | Phase 6 | Pending |
+| PAGE-01     | Phase 7 | Pending |
+| PAGE-02     | Phase 7 | Pending |
+| PAGE-03     | Phase 7 | Pending |
+| PAGE-04     | Phase 7 | Pending |
+| RESP-01     | Phase 8 | Pending |
+| RESP-02     | Phase 8 | Pending |
+| RESP-03     | Phase 8 | Pending |
+| RESP-04     | Phase 8 | Pending |
+| RESP-05     | Phase 8 | Pending |
 
 **Coverage:**
 
-- v9.2 requirements: 36 total
-- Mapped to phases: 0
-- Unmapped: 36
+- v9.2 requirements: 42 total
+- Mapped to phases: 42
+- Unmapped: 0
 
 ---
 
 _Requirements defined: 2026-02-09_
-_Last updated: 2026-02-09 after initial definition_
+_Last updated: 2026-02-09 after roadmap creation_
