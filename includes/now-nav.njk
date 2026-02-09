@@ -1,0 +1,15 @@
+{% set previousNow = collections.now | getPreviousCollectionItem(page) %}
+{% set nextNow = collections.now | getNextCollectionItem(page) %}
+
+{% if previousNow or nextNow %}
+<nav class="now-nav" aria-label="Now page navigation">
+    <ul>
+        {% if previousNow %}
+        <li><a href="{{ previousNow.url }}" rel="prev">Previous</a></li>
+        {% endif %}
+        {% if nextNow %}
+        <li><a href="{{ nextNow.url }}" rel="next">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
