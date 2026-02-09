@@ -21,16 +21,22 @@ A personal website that shares what I'm working on now, documents site evolution
 
 ### Active
 
-(None currently — use `/gsd:new-milestone` to define next milestone)
+- [ ] Warm Editorial design system applied to all pages
+- [ ] Homepage with hero, about, and recent writing sections
+- [ ] Now page with section-grid layout
+- [ ] Posts listing grouped by year
+- [ ] Single post page with sidebar metadata
+- [ ] Colophon page with section-grid layout
+- [ ] Uses page with section-grid layout
+- [ ] Static tag pages at `/tags/{tag}/`
+- [ ] Mobile responsive at 768px breakpoint
+- [ ] Typography system (Fraunces/Inter)
 
-### Out of Scope (Future Redesign Project)
+### Out of Scope (v9.2)
 
-- Warm Editorial visual design — separate project
-- New templates (homepage, now, posts, single post) — separate project
-- Mobile-first CSS rewrite — separate project
-- Year-in-gutter layout for colophon — design work, separate project
-- Typography changes (Fraunces/Inter) — separate project
-- Tag filtering redesign — separate project
+- Client-side tag filtering JS — defer to future enhancement
+- Now page archive prev/next styling — defer if needed
+- Dark mode — not in design prototypes
 
 ## Context
 
@@ -49,10 +55,11 @@ A personal website that shares what I'm working on now, documents site evolution
 - Now pages in `site/now/`
 - Codebase analysis in `.planning/codebase/`
 
-**Future redesign assets (not used yet):**
+**Design assets (v9.2 source):**
 
 - 4 HTML template prototypes in `/redesign/` folder
 - Design handoff document (`craveytrain-design-handoff.md`)
+- Mobile hero options — Option C (avatar inline) selected
 
 ## Constraints
 
@@ -61,15 +68,29 @@ A personal website that shares what I'm working on now, documents site evolution
 
 ## Key Decisions
 
-| Decision                       | Rationale                                                     | Outcome |
-| ------------------------------ | ------------------------------------------------------------- | ------- |
-| Content before design          | Restructure pages first, apply visual design later            | Good    |
-| Single stacked colophon page   | Updates rarely, short entries — archive machinery overkill    | Good    |
-| Separate content from redesign | Keeps projects focused, easier to complete and verify         | Good    |
-| Footer nav via 'foot' tag      | Site architecture uses footer-only navigation                 | Good    |
-| override:tags for collections  | Prevents data cascade tag merging, clean collection isolation | Good    |
-| Skip colophon URL redirects    | User decided old blog post URLs can 404                       | Good    |
+| Decision                        | Rationale                                                     | Outcome |
+| ------------------------------- | ------------------------------------------------------------- | ------- |
+| Content before design           | Restructure pages first, apply visual design later            | Good    |
+| Single stacked colophon page    | Updates rarely, short entries — archive machinery overkill    | Good    |
+| Separate content from redesign  | Keeps projects focused, easier to complete and verify         | Good    |
+| Footer nav via 'foot' tag       | Site architecture uses footer-only navigation                 | Good    |
+| override:tags for collections   | Prevents data cascade tag merging, clean collection isolation | Good    |
+| Skip colophon URL redirects     | User decided old blog post URLs can 404                       | Good    |
+| Static tag pages over JS filter | Simplifies v9.2 scope, JS filter is future enhancement        | —       |
+| Mobile hero Option C            | Avatar inline, text-forward, compact layout                   | —       |
+
+## Current Milestone: v9.2 Visual Refresh
+
+**Goal:** Apply Warm Editorial design system to all pages using prototypes in `/redesign/`.
+
+**Target features:**
+
+- New visual identity with terracotta accent and cream backgrounds
+- Fraunces/Inter typography system
+- 200px/1fr editorial grid layout across all pages
+- Mobile-first responsive design (768px breakpoint)
+- Static tag pages replacing inline tag chips
 
 ---
 
-_Last updated: 2026-02-09 after v9.1 milestone_
+_Last updated: 2026-02-09 after v9.2 milestone start_
