@@ -83,6 +83,12 @@ Plans:
 
 **Dependencies:** None (uses page already exists, just needs nav link)
 
+**Plans:** 1 plan
+
+Plans:
+
+- [ ] 03-01-PLAN.md - Add uses page to footer navigation
+
 **Requirements:**
 
 - USE-01: Uses page accessible in site navigation
@@ -92,7 +98,7 @@ Plans:
 1. User sees "Uses" link in site navigation from any page
 2. User clicks "Uses" link and views uses page with current tools/setup
 
-**Status:** Pending
+**Status:** Planned
 
 ---
 
@@ -113,7 +119,8 @@ Plans:
 3. ~~Re-verify Phase 1 success criteria~~ (10/10 verified)
 4. ~~Plan Phase 2~~ (Complete)
 5. ~~Execute Phase 2~~ (Complete - 5/5 verified)
-6. Plan Phase 3: `/gsd:discuss-phase 3`
+6. ~~Plan Phase 3~~ (Complete)
+7. Execute Phase 3: `/gsd:execute-phase 3`
 
 ## Notes
 
@@ -128,4 +135,4 @@ Plans:
 ---
 
 _Roadmap created: 2026-02-06_
-_Last updated: 2026-02-08_
+_Last updated: 2026-02-09_
