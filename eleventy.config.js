@@ -47,6 +47,8 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/favicons': 'favicons' })
 	eleventyConfig.addPassthroughCopy({ 'static/cv': 'cv' })
 	eleventyConfig.addPassthroughCopy({ 'static/slides': 'slides' })
+	eleventyConfig.addPassthroughCopy({ 'static/fonts': 'fonts' })
+	eleventyConfig.addPassthroughCopy({ 'static/css': 'css' })
 
 	// merge it deep
 	eleventyConfig.setDataDeepMerge(true)

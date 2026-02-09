@@ -24,6 +24,8 @@ Transform craveytrain.com from current styling to the Warm Editorial design syst
 **Goal**: Establish the Warm Editorial design system foundation that all page layouts depend on
 **Depends on**: v9.1 shipped (Phase 3 complete)
 **Requirements**: DSYS-01, DSYS-02, DSYS-03, DSYS-04, DSYS-05, DSYS-06, DSYS-07, DSYS-08, DSYS-09, DSYS-10, DSYS-11
+**Plans**: 3 plans
+
 **Success Criteria** (what must be TRUE):
 
 1. Site displays Warm Editorial color palette (cream background, warm grays, terra cotta accent)
@@ -33,12 +35,12 @@ Transform craveytrain.com from current styling to the Warm Editorial design syst
 5. Footer displays dark background with copyright and Colophon/RSS links
 6. Interactive elements show visible focus states when navigating with keyboard
 7. Skip link allows bypassing navigation to main content
-   **Plans**: TBD
 
 Plans:
 
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md - Fonts, design tokens, complete foundation CSS
+- [ ] 04-02-PLAN.md - Nunjucks partials and base.njk integration
+- [ ] 04-03-PLAN.md - Visual and accessibility verification
 
 ### Phase 5: Homepage
 
@@ -121,7 +123,7 @@ Plans:
 
 | Phase                  | Plans Complete | Status      | Completed |
 | ---------------------- | -------------- | ----------- | --------- |
-| 4. Foundation          | 0/TBD          | Not started | -         |
+| 4. Foundation          | 0/3            | Planned     | -         |
 | 5. Homepage            | 0/TBD          | Not started | -         |
 | 6. Posts System        | 0/TBD          | Not started | -         |
 | 7. Content Pages       | 0/TBD          | Not started | -         |
@@ -131,3 +133,4 @@ Plans:
 
 _Roadmap created: 2026-02-09_
 _Milestone: v9.2 Visual Refresh_
+_Phase 4 planned: 2026-02-09_
