@@ -11,7 +11,7 @@ Transform craveytrain.com from current styling to the Warm Editorial design syst
 
 ## Phases
 
-- [ ] **Phase 4: Foundation** - Design tokens, fonts, base CSS, shared components
+- [x] **Phase 4: Foundation** - Design tokens, fonts, base CSS, shared components ✓
 - [ ] **Phase 5: Homepage** - Hero section, about, recent posts
 - [ ] **Phase 6: Posts System** - Listing, single post, tag pages, syntax highlighting
 - [ ] **Phase 7: Content Pages** - Now, Colophon, Uses pages with section-grid
@@ -38,9 +38,9 @@ Transform craveytrain.com from current styling to the Warm Editorial design syst
 
 Plans:
 
-- [ ] 04-01-PLAN.md - Fonts, design tokens, complete foundation CSS
-- [ ] 04-02-PLAN.md - Nunjucks partials and base.njk integration
-- [ ] 04-03-PLAN.md - Visual and accessibility verification
+- [x] 04-01-PLAN.md - Fonts, design tokens, complete foundation CSS ✓
+- [x] 04-02-PLAN.md - Nunjucks partials and base.njk integration ✓
+- [x] 04-03-PLAN.md - Visual and accessibility verification ✓
 
 ### Phase 5: Homepage
 
@@ -121,13 +121,13 @@ Plans:
 
 **Execution Order:** Phases 4 through 8 in sequence
 
-| Phase                  | Plans Complete | Status      | Completed |
-| ---------------------- | -------------- | ----------- | --------- |
-| 4. Foundation          | 0/3            | Planned     | -         |
-| 5. Homepage            | 0/TBD          | Not started | -         |
-| 6. Posts System        | 0/TBD          | Not started | -         |
-| 7. Content Pages       | 0/TBD          | Not started | -         |
-| 8. Responsive & Polish | 0/TBD          | Not started | -         |
+| Phase                  | Plans Complete | Status      | Completed  |
+| ---------------------- | -------------- | ----------- | ---------- |
+| 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
+| 5. Homepage            | 0/TBD          | Not started | -          |
+| 6. Posts System        | 0/TBD          | Not started | -          |
+| 7. Content Pages       | 0/TBD          | Not started | -          |
+| 8. Responsive & Polish | 0/TBD          | Not started | -          |
 
 ---
 

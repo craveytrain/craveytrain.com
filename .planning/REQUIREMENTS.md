@@ -9,17 +9,17 @@ Requirements for the Warm Editorial visual redesign. Each maps to roadmap phases
 
 ### Design System
 
-- [ ] **DSYS-01**: Site uses Warm Editorial color palette with CSS custom properties (9 core colors + expanded syntax highlighting palette)
-- [ ] **DSYS-02**: Site uses self-hosted Fraunces + Inter fonts (WOFF2, Latin subset)
-- [ ] **DSYS-03**: Site uses 200px/1fr section grid layout pattern
-- [ ] **DSYS-04**: Accent bar displays at top of viewport and tints Safari chrome
-- [ ] **DSYS-05**: Header displays logo left, nav right, with hover states
-- [ ] **DSYS-06**: Footer displays dark background with copyright and Colophon/RSS links
-- [ ] **DSYS-07**: Horizontal dividers span full content width
-- [ ] **DSYS-08**: Body links use accent color with soft underline, darker on hover
-- [ ] **DSYS-09**: CSS is mobile-first with min-width media query at 768px
-- [ ] **DSYS-10**: Interactive elements have visible focus states for keyboard navigation
-- [ ] **DSYS-11**: Skip link allows keyboard users to bypass navigation
+- [x] **DSYS-01**: Site uses Warm Editorial color palette with CSS custom properties (9 core colors + expanded syntax highlighting palette)
+- [x] **DSYS-02**: Site uses self-hosted Fraunces + Inter fonts (WOFF2, Latin subset)
+- [x] **DSYS-03**: Site uses 200px/1fr section grid layout pattern
+- [x] **DSYS-04**: Accent bar displays at top of viewport and tints Safari chrome
+- [x] **DSYS-05**: Header displays logo left, nav right, with hover states
+- [x] **DSYS-06**: Footer displays dark background with copyright and Colophon/RSS links
+- [x] **DSYS-07**: Horizontal dividers span full content width
+- [x] **DSYS-08**: Body links use accent color with soft underline, darker on hover
+- [x] **DSYS-09**: CSS is mobile-first with min-width media query at 768px
+- [x] **DSYS-10**: Interactive elements have visible focus states for keyboard navigation
+- [x] **DSYS-11**: Skip link allows keyboard users to bypass navigation
 
 ### Homepage
 
@@ -105,50 +105,50 @@ Explicitly excluded from v9.2. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase   | Status  |
-| ----------- | ------- | ------- |
-| DSYS-01     | Phase 4 | Pending |
-| DSYS-02     | Phase 4 | Pending |
-| DSYS-03     | Phase 4 | Pending |
-| DSYS-04     | Phase 4 | Pending |
-| DSYS-05     | Phase 4 | Pending |
-| DSYS-06     | Phase 4 | Pending |
-| DSYS-07     | Phase 4 | Pending |
-| DSYS-08     | Phase 4 | Pending |
-| DSYS-09     | Phase 4 | Pending |
-| DSYS-10     | Phase 4 | Pending |
-| DSYS-11     | Phase 4 | Pending |
-| HOME-01     | Phase 5 | Pending |
-| HOME-02     | Phase 5 | Pending |
-| HOME-03     | Phase 5 | Pending |
-| HOME-04     | Phase 5 | Pending |
-| HOME-05     | Phase 5 | Pending |
-| HOME-06     | Phase 5 | Pending |
-| LIST-01     | Phase 6 | Pending |
-| LIST-02     | Phase 6 | Pending |
-| LIST-03     | Phase 6 | Pending |
-| LIST-04     | Phase 6 | Pending |
-| LIST-05     | Phase 6 | Pending |
-| SNGL-01     | Phase 6 | Pending |
-| SNGL-02     | Phase 6 | Pending |
-| SNGL-03     | Phase 6 | Pending |
-| SNGL-04     | Phase 6 | Pending |
-| SNGL-05     | Phase 6 | Pending |
-| SNGL-06     | Phase 6 | Pending |
-| SNGL-07     | Phase 6 | Pending |
-| SNGL-08     | Phase 6 | Pending |
-| SNGL-09     | Phase 6 | Pending |
-| TAGS-01     | Phase 6 | Pending |
-| TAGS-02     | Phase 6 | Pending |
-| PAGE-01     | Phase 7 | Pending |
-| PAGE-02     | Phase 7 | Pending |
-| PAGE-03     | Phase 7 | Pending |
-| PAGE-04     | Phase 7 | Pending |
-| RESP-01     | Phase 8 | Pending |
-| RESP-02     | Phase 8 | Pending |
-| RESP-03     | Phase 8 | Pending |
-| RESP-04     | Phase 8 | Pending |
-| RESP-05     | Phase 8 | Pending |
+| Requirement | Phase   | Status   |
+| ----------- | ------- | -------- |
+| DSYS-01     | Phase 4 | Complete |
+| DSYS-02     | Phase 4 | Complete |
+| DSYS-03     | Phase 4 | Complete |
+| DSYS-04     | Phase 4 | Complete |
+| DSYS-05     | Phase 4 | Complete |
+| DSYS-06     | Phase 4 | Complete |
+| DSYS-07     | Phase 4 | Complete |
+| DSYS-08     | Phase 4 | Complete |
+| DSYS-09     | Phase 4 | Complete |
+| DSYS-10     | Phase 4 | Complete |
+| DSYS-11     | Phase 4 | Complete |
+| HOME-01     | Phase 5 | Pending  |
+| HOME-02     | Phase 5 | Pending  |
+| HOME-03     | Phase 5 | Pending  |
+| HOME-04     | Phase 5 | Pending  |
+| HOME-05     | Phase 5 | Pending  |
+| HOME-06     | Phase 5 | Pending  |
+| LIST-01     | Phase 6 | Pending  |
+| LIST-02     | Phase 6 | Pending  |
+| LIST-03     | Phase 6 | Pending  |
+| LIST-04     | Phase 6 | Pending  |
+| LIST-05     | Phase 6 | Pending  |
+| SNGL-01     | Phase 6 | Pending  |
+| SNGL-02     | Phase 6 | Pending  |
+| SNGL-03     | Phase 6 | Pending  |
+| SNGL-04     | Phase 6 | Pending  |
+| SNGL-05     | Phase 6 | Pending  |
+| SNGL-06     | Phase 6 | Pending  |
+| SNGL-07     | Phase 6 | Pending  |
+| SNGL-08     | Phase 6 | Pending  |
+| SNGL-09     | Phase 6 | Pending  |
+| TAGS-01     | Phase 6 | Pending  |
+| TAGS-02     | Phase 6 | Pending  |
+| PAGE-01     | Phase 7 | Pending  |
+| PAGE-02     | Phase 7 | Pending  |
+| PAGE-03     | Phase 7 | Pending  |
+| PAGE-04     | Phase 7 | Pending  |
+| RESP-01     | Phase 8 | Pending  |
+| RESP-02     | Phase 8 | Pending  |
+| RESP-03     | Phase 8 | Pending  |
+| RESP-04     | Phase 8 | Pending  |
+| RESP-05     | Phase 8 | Pending  |
 
 **Coverage:**
 
