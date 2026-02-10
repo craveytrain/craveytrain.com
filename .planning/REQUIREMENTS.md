@@ -64,11 +64,11 @@ Requirements for the Warm Editorial visual redesign. Each maps to roadmap phases
 
 ### Responsive
 
-- [ ] **RESP-01**: Section grid collapses to single column below 768px
-- [ ] **RESP-02**: Header nav stacks or adjusts for mobile
-- [ ] **RESP-03**: Homepage hero reorders (portrait above text on mobile)
-- [ ] **RESP-04**: Post items stack vertically on mobile
-- [ ] **RESP-05**: Single post sidebar moves above article on mobile
+- [x] **RESP-01**: Section grid collapses to single column below 768px
+- [x] **RESP-02**: Header nav stacks or adjusts for mobile
+- [x] **RESP-03**: Homepage hero reorders (portrait above text on mobile)
+- [x] **RESP-04**: Post items stack vertically on mobile
+- [x] **RESP-05**: Single post sidebar moves above article on mobile
 
 ## Future Requirements (v9.3+)
 
@@ -144,11 +144,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PAGE-02     | Phase 7 | Complete |
 | PAGE-03     | Phase 7 | Complete |
 | PAGE-04     | Phase 7 | Complete |
-| RESP-01     | Phase 8 | Pending  |
-| RESP-02     | Phase 8 | Pending  |
-| RESP-03     | Phase 8 | Pending  |
-| RESP-04     | Phase 8 | Pending  |
-| RESP-05     | Phase 8 | Pending  |
+| RESP-01     | Phase 8 | Complete |
+| RESP-02     | Phase 8 | Complete |
+| RESP-03     | Phase 8 | Complete |
+| RESP-04     | Phase 8 | Complete |
+| RESP-05     | Phase 8 | Complete |
 
 **Coverage:**
 
@@ -159,4 +159,5 @@ Which phases cover which requirements. Updated during roadmap creation.
 ---
 
 _Requirements defined: 2026-02-09_
-_Last updated: 2026-02-10 after Phase 7 completion_
+_Last updated: 2026-02-10 after Phase 8 completion_
+_v9.2 Visual Refresh complete: 42/42 requirements_
