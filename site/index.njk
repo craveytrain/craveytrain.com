@@ -13,12 +13,38 @@ css: home.css
     </div>
   </div>
   <div class="hero-portrait">
-    <img src="/img/portrait.jpg" alt="Mike Cravey">
+    <picture>
+      <source
+        type="image/avif"
+        srcset="/img/hero/portrait-1x.avif 1x, /img/hero/portrait-2x.avif 2x">
+      <source
+        type="image/webp"
+        srcset="/img/hero/portrait-1x.webp 1x, /img/hero/portrait-2x.webp 2x">
+      <img
+        src="/img/hero/portrait-1x.jpg"
+        srcset="/img/hero/portrait-1x.jpg 1x, /img/hero/portrait-2x.jpg 2x"
+        alt="Mike Cravey"
+        width="280"
+        height="340">
+    </picture>
   </div>
   {# Mobile Option C layout (shown via CSS) #}
   <div class="hero-top">
     <div class="hero-avatar">
-      <img src="/img/portrait.jpg" alt="Mike Cravey">
+      <picture>
+        <source
+          type="image/avif"
+          srcset="/img/hero/avatar-1x.avif 1x, /img/hero/avatar-2x.avif 2x">
+        <source
+          type="image/webp"
+          srcset="/img/hero/avatar-1x.webp 1x, /img/hero/avatar-2x.webp 2x">
+        <img
+          src="/img/hero/avatar-1x.jpg"
+          srcset="/img/hero/avatar-1x.jpg 1x, /img/hero/avatar-2x.jpg 2x"
+          alt="Mike Cravey"
+          width="72"
+          height="72">
+      </picture>
     </div>
     <div>
       <div class="hero-name">Hey y'all<span class="accent">,</span><br>I'm Mike Cravey.</div>
