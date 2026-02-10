@@ -13,7 +13,7 @@ Transform craveytrain.com from current styling to the Warm Editorial design syst
 
 - [x] **Phase 4: Foundation** - Design tokens, fonts, base CSS, shared components ✓
 - [x] **Phase 5: Homepage** - Hero section, about, recent posts ✓
-- [ ] **Phase 6: Posts System** - Listing, single post, tag pages, syntax highlighting
+- [x] **Phase 6: Posts System** - Listing, single post, tag pages, syntax highlighting ✓
 - [ ] **Phase 7: Content Pages** - Now, Colophon, Uses pages with section-grid
 - [ ] **Phase 8: Responsive & Polish** - Mobile breakpoint, layout adjustments, final testing
 
@@ -82,10 +82,10 @@ Plans:
 
 Plans:
 
-- [x] 06-01-PLAN.md - Posts listing CSS and year-grouped template
-- [x] 06-02-PLAN.md - Single post CSS with prose and syntax highlighting
-- [x] 06-03-PLAN.md - Template integration and tag page updates
-- [ ] 06-04-PLAN.md - Visual and interaction verification
+- [x] 06-01-PLAN.md - Posts listing CSS and year-grouped template ✓
+- [x] 06-02-PLAN.md - Single post CSS with prose and syntax highlighting ✓
+- [x] 06-03-PLAN.md - Template integration and tag page updates ✓
+- [x] 06-04-PLAN.md - Visual and interaction verification ✓
 
 ### Phase 7: Content Pages
 
@@ -130,7 +130,7 @@ Plans:
 | ---------------------- | -------------- | ----------- | ---------- |
 | 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
 | 5. Homepage            | 3/3            | Complete ✓  | 2026-02-09 |
-| 6. Posts System        | 3/4            | In progress | -          |
+| 6. Posts System        | 4/4            | Complete ✓  | 2026-02-10 |
 | 7. Content Pages       | 0/TBD          | Not started | -          |
 | 8. Responsive & Polish | 0/TBD          | Not started | -          |
 
@@ -141,3 +141,4 @@ _Milestone: v9.2 Visual Refresh_
 _Phase 4 planned: 2026-02-09_
 _Phase 5 planned: 2026-02-09_
 _Phase 6 planned: 2026-02-10_
+_Phase 6 completed: 2026-02-10_

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mobile Hero Options — Craveytrain</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			:root {
+				--bg: #f6f6f6;
+				--ink: #1a1a1a;
+				--ink-mid: #404040;
+				--ink-light: #71717a;
+				--ink-faint: #a0a0a0;
+				--accent: #c44b5c;
+				--accent-border: rgba(196, 75, 92, 0.2);
+				--rule: #d8d8d8;
+				--rule-dark: #1a1a1a;
+				--font-display: 'Fraunces', Georgia, serif;
+				--font-body: 'Inter', -apple-system, sans-serif;
+			}
+
+			body {
+				font-family: var(--font-body);
+				background: #e8e8e8;
+				color: var(--ink);
+				line-height: 1.6;
+				-webkit-font-smoothing: antialiased;
+				padding: 2rem;
+			}
+
+			/* ─── Page Title ─── */
+			.page-title {
+				text-align: center;
+				margin-bottom: 2.5rem;
+			}
+
+			.page-title h1 {
+				font-family: var(--font-display);
+				font-size: 1.5rem;
+				font-weight: 800;
+				margin-bottom: 0.5rem;
+			}
+
+			.page-title p {
+				font-size: 0.9rem;
+				color: var(--ink-light);
+			}
+
+			/* ─── Options Grid ─── */
+			.options {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+				gap: 2rem;
+				max-width: 1600px;
+				margin: 0 auto;
+			}
+
+			/* ─── Phone Frame ─── */
+			.option {
+				background: white;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+			}
+
+			.option-label {
+				background: var(--ink);
+				color: white;
+				padding: 12px 20px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.option-label h2 {
+				font-family: var(--font-body);
+				font-size: 0.78rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+			}
+
+			.option-label span {
+				font-size: 0.7rem;
+				color: #888;
+			}
+
+			.option-content {
+				padding: 1.25rem;
+				background: var(--bg);
+				max-width: 390px;
+			}
+
+			/* ═══ Shared Hero Elements ═══ */
+			.hero-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: 1.25rem;
+			}
+
+			.hero-logo {
+				font-family: var(--font-display);
+				font-size: 1.1rem;
+				font-weight: 800;
+				color: var(--ink);
+				letter-spacing: -0.02em;
+			}
+
+			.hero-nav {
+				display: flex;
+				gap: 0.9rem;
+			}
+
+			.hero-nav span {
+				font-size: 0.8rem;
+				color: var(--ink-light);
+			}
+
+			.hero-rule {
+				border: none;
+				border-top: 3px solid var(--ink);
+				margin-bottom: 1.5rem;
+			}
+
+			.hero-h1 {
+				font-family: var(--font-display);
+				font-size: 2rem;
+				font-weight: 800;
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+				color: var(--ink);
+				margin-bottom: 1rem;
+			}
+
+			.hero-h1 .accent {
+				color: var(--accent);
+			}
+
+			.hero-p {
+				font-size: 0.95rem;
+				color: var(--ink-light);
+				line-height: 1.65;
+				margin-bottom: 1rem;
+			}
+
+			.hero-links {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+
+			.hero-links span {
+				font-size: 0.82rem;
+				font-weight: 500;
+				color: var(--accent);
+			}
+
+			.hero-img {
+				width: 100%;
+				display: block;
+				object-fit: cover;
+				object-position: center top;
+			}
+
+			.hero-img-frame {
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero-img-frame::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+				pointer-events: none;
+			}
+
+			/* ═══════════════════════════════
+     OPTION A: Full-width photo on top
+     ═══════════════════════════════ */
+			.hero-a .hero-img {
+				aspect-ratio: 16/9;
+				margin-bottom: 1.5rem;
+				filter: grayscale(30%) contrast(1.05);
+			}
+
+			/* ═══════════════════════════════
+     OPTION B: Side-by-side maintained
+     ═══════════════════════════════ */
+			.hero-b .hero-grid {
+				display: grid;
+				grid-template-columns: 1fr 140px;
+				gap: 1.25rem;
+				align-items: start;
+			}
+
+			.hero-b .hero-img {
+				aspect-ratio: 3/4;
+				filter: grayscale(30%) contrast(1.05);
+			}
+
+			.hero-b .hero-h1 {
+				font-size: 1.7rem;
+			}
+
+			/* ═══════════════════════════════
+     OPTION C: Avatar + name, text below
+     ═══════════════════════════════ */
+			.hero-c .hero-top {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 1.25rem;
+			}
+
+			.hero-c .hero-avatar {
+				width: 72px;
+				height: 72px;
+				border-radius: 50%;
+				overflow: hidden;
+				flex-shrink: 0;
+			}
+
+			.hero-c .hero-avatar img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center top;
+				filter: grayscale(30%) contrast(1.05);
+			}
+
+			.hero-c .hero-name {
+				font-family: var(--font-display);
+				font-size: 1.5rem;
+				font-weight: 800;
+				line-height: 1.15;
+				letter-spacing: -0.02em;
+			}
+
+			.hero-c .hero-name .accent {
+				color: var(--accent);
+			}
+
+			.hero-c .hero-tagline {
+				font-size: 0.85rem;
+				color: var(--ink-light);
+				margin-top: 0.25rem;
+			}
+
+			/* ═══════════════════════════════
+     OPTION D: Overlapping / offset photo
+     ═══════════════════════════════ */
+			.hero-d .hero-img-offset {
+				position: relative;
+				margin-bottom: 1.25rem;
+			}
+
+			.hero-d .hero-img-offset .hero-img-frame {
+				width: 55%;
+				margin-left: auto;
+			}
+
+			.hero-d .hero-img-offset .hero-img {
+				aspect-ratio: 3/4;
+				filter: grayscale(30%) contrast(1.05);
+			}
+
+			.hero-d .hero-overlay-text {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 65%;
+				background: var(--bg);
+				padding: 1rem 1rem 0 0;
+			}
+
+			.hero-d .hero-overlay-text .hero-h1 {
+				font-size: 1.8rem;
+				margin-bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page-title">
+			<h1>Mobile Hero Options</h1>
+			<p>
+				Each option shown at ~390px (iPhone width). Same content, different
+				layouts.
+			</p>
+		</div>
+
+		<div class="options">
+			<!-- ═══ OPTION A: Full-width photo on top ═══ -->
+			<div class="option">
+				<div class="option-label">
+					<h2>Option A — Full-Width Photo</h2>
+					<span>Editorial / Magazine</span>
+				</div>
+				<div class="option-content hero-a">
+					<div class="hero-header">
+						<span class="hero-logo">craveytrain</span>
+						<div class="hero-nav">
+							<span>Now</span> <span>Posts</span> <span>Uses</span>
+						</div>
+					</div>
+					<hr class="hero-rule" />
+					<div class="hero-img-frame">
+						<img src="IMG_7332.jpeg" alt="Mike Cravey" class="hero-img" />
+					</div>
+					<div style="margin-top: 1.5rem">
+						<h1 class="hero-h1">
+							Hey y'all<span class="accent">,</span><br />I'm Mike Cravey.
+						</h1>
+						<p class="hero-p">
+							Father, husband, teacher, and geek. A UX Engineer based in Lake
+							Jackson, TX — tinkering with the web since&nbsp;1999.
+						</p>
+						<p class="hero-p">
+							I care about building things that are fast, accessible, and
+							crafted with intention. This site is my corner of the web, built
+							with Eleventy and a love for plain HTML&nbsp;&amp;&nbsp;CSS.
+						</p>
+						<div class="hero-links">
+							<span>GitHub &rarr;</span>
+							<span>Mastodon &rarr;</span>
+							<span>LinkedIn &rarr;</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ═══ OPTION B: Side-by-side maintained ═══ -->
+			<div class="option">
+				<div class="option-label">
+					<h2>Option B — Side-by-Side</h2>
+					<span>Keeps desktop ratio</span>
+				</div>
+				<div class="option-content hero-b">
+					<div class="hero-header">
+						<span class="hero-logo">craveytrain</span>
+						<div class="hero-nav">
+							<span>Now</span> <span>Posts</span> <span>Uses</span>
+						</div>
+					</div>
+					<hr class="hero-rule" />
+					<div class="hero-grid">
+						<div>
+							<h1 class="hero-h1">
+								Hey y'all<span class="accent">,</span><br />I'm Mike Cravey.
+							</h1>
+							<p class="hero-p">
+								Father, husband, teacher, and geek. A UX Engineer based in Lake
+								Jackson, TX — tinkering with the web since&nbsp;1999.
+							</p>
+							<div class="hero-links">
+								<span>GitHub &rarr;</span>
+								<span>Mastodon &rarr;</span>
+								<span>LinkedIn &rarr;</span>
+							</div>
+						</div>
+						<div class="hero-img-frame">
+							<img src="IMG_7332.jpeg" alt="Mike Cravey" class="hero-img" />
+						</div>
+					</div>
+					<p class="hero-p" style="margin-top: 1.25rem">
+						I care about building things that are fast, accessible, and crafted
+						with intention. This site is my corner of the web, built with
+						Eleventy and a love for plain HTML&nbsp;&amp;&nbsp;CSS.
+					</p>
+				</div>
+			</div>
+
+			<!-- ═══ OPTION C: Avatar + name row ═══ -->
+			<div class="option">
+				<div class="option-label">
+					<h2>Option C — Avatar Inline</h2>
+					<span>Text-forward / Compact</span>
+				</div>
+				<div class="option-content hero-c">
+					<div class="hero-header">
+						<span class="hero-logo">craveytrain</span>
+						<div class="hero-nav">
+							<span>Now</span> <span>Posts</span> <span>Uses</span>
+						</div>
+					</div>
+					<hr class="hero-rule" />
+					<div class="hero-top">
+						<div class="hero-avatar">
+							<img src="IMG_7332.jpeg" alt="Mike Cravey" />
+						</div>
+						<div>
+							<div class="hero-name">
+								Hey y'all<span class="accent">,</span><br />I'm Mike Cravey.
+							</div>
+							<div class="hero-tagline">
+								UX Engineer &middot; Lake Jackson, TX
+							</div>
+						</div>
+					</div>
+					<p class="hero-p">
+						Father, husband, teacher, and geek — tinkering with the web
+						since&nbsp;1999.
+					</p>
+					<p class="hero-p">
+						I care about building things that are fast, accessible, and crafted
+						with intention. This site is my corner of the web, built with
+						Eleventy and a love for plain HTML&nbsp;&amp;&nbsp;CSS.
+					</p>
+					<div class="hero-links">
+						<span>GitHub &rarr;</span>
+						<span>Mastodon &rarr;</span>
+						<span>LinkedIn &rarr;</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- ═══ OPTION D: Overlapping / offset ═══ -->
+			<div class="option">
+				<div class="option-label">
+					<h2>Option D — Offset Overlap</h2>
+					<span>Editorial / Dynamic</span>
+				</div>
+				<div class="option-content hero-d">
+					<div class="hero-header">
+						<span class="hero-logo">craveytrain</span>
+						<div class="hero-nav">
+							<span>Now</span> <span>Posts</span> <span>Uses</span>
+						</div>
+					</div>
+					<hr class="hero-rule" />
+					<div class="hero-img-offset">
+						<div class="hero-img-frame">
+							<img src="IMG_7332.jpeg" alt="Mike Cravey" class="hero-img" />
+						</div>
+						<div class="hero-overlay-text">
+							<h1 class="hero-h1">
+								Hey y'all<span class="accent">,</span><br />I'm Mike Cravey.
+							</h1>
+						</div>
+					</div>
+					<p class="hero-p">
+						Father, husband, teacher, and geek. A UX Engineer based in Lake
+						Jackson, TX — tinkering with the web since&nbsp;1999.
+					</p>
+					<p class="hero-p">
+						I care about building things that are fast, accessible, and crafted
+						with intention. This site is my corner of the web, built with
+						Eleventy and a love for plain HTML&nbsp;&amp;&nbsp;CSS.
+					</p>
+					<div class="hero-links">
+						<span>GitHub &rarr;</span>
+						<span>Mastodon &rarr;</span>
+						<span>LinkedIn &rarr;</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

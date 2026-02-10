@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Now — What I'm Doing Now</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;600;800&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			:root {
+				--warm-bg: #faf6f1;
+				--warm-bg-deep: #f0e8dd;
+				--ink: #2c2420;
+				--ink-light: #6b5d52;
+				--accent: #b44d2d;
+				--accent-hover: #943d22;
+				--accent-soft: #e8c4b0;
+				--border: #ddd2c5;
+				--white: #ffffff;
+				--font-display: 'Fraunces', Georgia, serif;
+				--font-body: 'Inter', -apple-system, sans-serif;
+			}
+
+			html,
+			body {
+				background-color: var(--warm-bg);
+				color: var(--ink);
+				font-family:
+					'Inter',
+					-apple-system,
+					BlinkMacSystemFont,
+					'Segoe UI',
+					sans-serif;
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+			/* Accent bar */
+			.accent-bar {
+				height: 0.5rem;
+				background: var(--accent);
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+
+			/* Header */
+			header {
+				margin-top: 0.5rem;
+				padding: 2rem 2rem 0;
+				max-width: 1100px;
+				margin-left: auto;
+				margin-right: auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.logo {
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+				color: var(--ink);
+				text-decoration: none;
+			}
+
+			nav {
+				display: flex;
+				gap: 2rem;
+			}
+
+			nav a {
+				font-size: 0.9rem;
+				font-weight: 500;
+				color: var(--ink-light);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			nav a:hover {
+				color: var(--accent);
+			}
+
+			nav a[aria-current='page'] {
+				color: var(--accent);
+			}
+
+			/* Main content */
+			main {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+
+			.page-header {
+				margin-bottom: 3rem;
+			}
+
+			h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2rem, 4vw, 2.5rem);
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				color: var(--ink);
+				margin-bottom: 1rem;
+			}
+
+			.subtitle {
+				font-size: 1.05rem;
+				color: var(--ink-light);
+				margin-bottom: 0.75rem;
+				line-height: 1.6;
+			}
+
+			.subtitle a {
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1.5px solid var(--accent-soft);
+				transition: border-color 0.2s;
+			}
+
+			.subtitle a:hover {
+				border-bottom-color: var(--accent);
+			}
+
+			.updated {
+				font-family: var(--font-display);
+				font-size: 0.9rem;
+				color: var(--ink-light);
+				font-style: italic;
+			}
+
+			/* Divider */
+			hr {
+				border: none;
+				height: 1px;
+				background-color: var(--border);
+				max-width: 1100px;
+				margin: 3rem auto;
+				padding: 0 2rem;
+			}
+
+			/* Section grid */
+			.sections {
+				display: grid;
+				grid-template-columns: 200px 1fr;
+				gap: 3rem;
+				margin-bottom: 4rem;
+			}
+
+			.section-label {
+				font-family: var(--font-display);
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: var(--accent);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+			}
+
+			.section-content h2 {
+				font-family: var(--font-display);
+				font-size: 1.2rem;
+				font-weight: 600;
+				color: var(--ink);
+				margin-bottom: 1rem;
+			}
+
+			.section-content p {
+				font-size: 1.05rem;
+				color: var(--ink);
+				line-height: 1.75;
+				margin-bottom: 1rem;
+				max-width: 640px;
+			}
+
+			.section-content p:last-child {
+				margin-bottom: 0;
+			}
+
+			.section-content ul {
+				font-size: 1.05rem;
+				color: var(--ink);
+				line-height: 1.75;
+				margin-left: 1.5rem;
+				margin-bottom: 1rem;
+				max-width: 640px;
+			}
+
+			.section-content li {
+				margin-bottom: 0.5rem;
+			}
+
+			.section-content a {
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1.5px solid var(--accent-soft);
+				transition: border-color 0.2s;
+			}
+
+			.section-content a:hover {
+				border-bottom-color: var(--accent);
+			}
+
+			code {
+				font-family: 'SFMono-Regular', 'Consolas', monospace;
+				font-size: 0.88em;
+				background-color: rgba(0, 0, 0, 0.05);
+				padding: 0.15em 0.4em;
+				border-radius: 3px;
+			}
+
+			/* Archive link */
+			.archive-link {
+				text-align: right;
+				margin-bottom: 4rem;
+			}
+
+			.archive-link a {
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1.5px solid var(--accent-soft);
+				transition: border-color 0.2s;
+				font-weight: 500;
+				font-size: 0.95rem;
+			}
+
+			.archive-link a:hover {
+				border-bottom-color: var(--accent);
+			}
+
+			/* Footer */
+			footer {
+				background: var(--ink);
+				color: var(--warm-bg-deep);
+				padding: 3rem 2rem;
+			}
+
+			.footer-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			.footer-inner .copyright {
+				font-size: 0.85rem;
+				opacity: 0.6;
+			}
+
+			.footer-nav {
+				display: flex;
+				gap: 1.5rem;
+			}
+
+			.footer-nav a {
+				font-size: 0.85rem;
+				color: var(--warm-bg-deep);
+				text-decoration: none;
+				opacity: 0.6;
+				transition: opacity 0.2s;
+			}
+
+			.footer-nav a:hover {
+				opacity: 1;
+			}
+
+			/* Responsive */
+			@media (max-width: 768px) {
+				header {
+					padding: 1.5rem;
+					flex-direction: column;
+					gap: 1.5rem;
+				}
+
+				nav {
+					width: 100%;
+					justify-content: center;
+				}
+
+				main {
+					padding: 1.5rem;
+				}
+
+				.sections {
+					grid-template-columns: 1fr;
+					gap: 2rem;
+				}
+
+				.footer-inner {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="accent-bar" aria-hidden="true"></div>
+		<header>
+			<a href="/" class="logo">craveytrain</a>
+			<nav>
+				<a href="/now" aria-current="page">Now</a>
+				<a href="/posts">Posts</a>
+				<a href="/uses">Uses</a>
+			</nav>
+		</header>
+
+		<main>
+			<div class="page-header">
+				<h1>What I'm Doing Now</h1>
+				<p class="subtitle">
+					This is a <a href="https://nownownow.com/about">now page</a>. If you
+					have your own site, you should make one too.
+				</p>
+				<p class="updated">Last updated February 6, 2026</p>
+			</div>
+
+			<hr />
+
+			<!-- Work Section -->
+			<div class="sections">
+				<div class="section-label">Work</div>
+				<div class="section-content">
+					<h2>UX Engineering</h2>
+					<p>
+						I'm looking for my next opportunity—something that bridges design
+						and engineering, where I can contribute across the full spectrum of
+						making things on the web.
+					</p>
+					<p>
+						If you're building something thoughtful and need that perspective,
+						<a href="mailto:hello@example.com">let's talk</a>.
+					</p>
+				</div>
+			</div>
+
+			<hr />
+
+			<!-- Building Section -->
+			<div class="sections">
+				<div class="section-label">Building</div>
+				<div class="section-content">
+					<h2>This Site, Always</h2>
+					<p>
+						This site is built with <code>Eleventy</code>, and I use it to
+						deprogramm framework habits and keep myself close to the web
+						platform itself. I'm exploring modern layout techniques with
+						<code>CSS container queries</code> and the
+						<code>:has()</code> selector, plus experimenting with the
+						<code>LCH</code> color model for more intentional palette choices.
+					</p>
+				</div>
+			</div>
+
+			<hr />
+
+			<!-- Learning Section -->
+			<div class="sections">
+				<div class="section-label">Learning</div>
+				<div class="section-content">
+					<h2>Going Deeper on the Platform</h2>
+					<p>I'm focused on understanding:</p>
+					<ul>
+						<li>
+							Web components and how they enable reusable, interoperable
+							patterns
+						</li>
+						<li>Modern CSS layout beyond Flexbox and Grid</li>
+						<li>
+							Accessibility beyond ARIA—semantic HTML, focus management, and
+							inclusive design patterns
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<hr />
+
+			<!-- Reading Section -->
+			<div class="sections">
+				<div class="section-label">Reading</div>
+				<div class="section-content">
+					<h2>On the Nightstand</h2>
+					<p>
+						A mix of technical and design thinking: <em>The Web's Grain</em>,
+						<em>Responsive Web Design</em>, and currently revisiting some web
+						history and the principles that shaped early design patterns. Also
+						reading <em>A Pattern Language</em> for how systems thinking applies
+						to physical and digital spaces.
+					</p>
+				</div>
+			</div>
+
+			<hr />
+
+			<!-- Life Section -->
+			<div class="sections">
+				<div class="section-label">Life</div>
+				<div class="section-content">
+					<h2>Family & Home</h2>
+					<p>
+						Based in Lake Jackson, Texas with family. Dad life means I'm
+						learning to parent with intention, finding small moments of clarity
+						between the chaos, and remembering that presence is the gift.
+					</p>
+				</div>
+			</div>
+
+			<hr />
+
+			<div class="archive-link">
+				<a href="/now-archive">Previously →</a>
+			</div>
+		</main>
+
+		<footer>
+			<div class="footer-inner">
+				<span class="copyright">&copy; 1999–2025 Mike Cravey</span>
+				<div class="footer-nav">
+					<a href="#">Colophon</a>
+					<a href="#">RSS</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

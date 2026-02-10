@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Craveytrain — Concept 1: Warm &amp; Editorial</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			:root {
+				--warm-bg: #faf6f1;
+				--warm-bg-deep: #f0e8dd;
+				--ink: #2c2420;
+				--ink-light: #6b5d52;
+				--accent: #b44d2d;
+				--accent-hover: #943d22;
+				--accent-soft: #e8c4b0;
+				--purple: #6b4c8a;
+				--purple-soft: #d4c5e2;
+				--border: #ddd2c5;
+				--white: #ffffff;
+				--font-display: 'Fraunces', Georgia, serif;
+				--font-body: 'Inter', -apple-system, sans-serif;
+			}
+
+			html {
+				font-size: 16px;
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: var(--font-body);
+				background: var(--warm-bg);
+				color: var(--ink);
+				line-height: 1.65;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			/* ─── Accent Bar (Safari chrome) ─── */
+			.accent-bar {
+				height: 0.5rem;
+				background: var(--accent);
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+
+			/* ─── Header ─── */
+			header {
+				margin-top: 0.5rem;
+				padding: 2rem 2rem 0;
+				max-width: 1100px;
+				margin-left: auto;
+				margin-right: auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.logo {
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: var(--ink);
+				text-decoration: none;
+				letter-spacing: -0.02em;
+			}
+
+			nav {
+				display: flex;
+				gap: 2rem;
+			}
+
+			nav a {
+				font-size: 0.9rem;
+				font-weight: 500;
+				color: var(--ink-light);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			nav a:hover {
+				color: var(--accent);
+			}
+
+			/* ─── Hero ─── */
+			.hero {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 6rem 2rem 5rem;
+				display: grid;
+				grid-template-columns: 1fr 320px;
+				gap: 4rem;
+				align-items: center;
+			}
+
+			.hero-text h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2.5rem, 5vw, 4rem);
+				font-weight: 800;
+				line-height: 1.1;
+				color: var(--ink);
+				margin-bottom: 1.5rem;
+				letter-spacing: -0.03em;
+			}
+
+			.hero-text h1 .accent {
+				color: var(--accent);
+			}
+
+			.hero-text p {
+				font-size: 1.15rem;
+				color: var(--ink-light);
+				max-width: 520px;
+				line-height: 1.7;
+				margin-bottom: 2rem;
+			}
+
+			.hero-links {
+				display: flex;
+				gap: 1.5rem;
+				flex-wrap: wrap;
+			}
+
+			.hero-links a {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.9rem;
+				font-weight: 500;
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1.5px solid var(--accent-soft);
+				padding-bottom: 2px;
+				transition: border-color 0.2s;
+			}
+
+			.hero-links a:hover {
+				border-color: var(--accent);
+			}
+
+			.hero-portrait {
+				width: 280px;
+				height: 340px;
+				border-radius: 200px 200px 24px 24px;
+				overflow: hidden;
+				border: 3px solid var(--border);
+				margin-left: auto;
+			}
+
+			.hero-portrait img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center top;
+				filter: grayscale(30%) contrast(1.05);
+				transition: filter 0.4s;
+			}
+
+			.hero-portrait:hover img {
+				filter: grayscale(0%) contrast(1);
+			}
+
+			/* ─── Divider ─── */
+			.divider {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 2rem;
+			}
+
+			.divider hr {
+				border: none;
+				border-top: 1px solid var(--border);
+			}
+
+			/* ─── About Section ─── */
+			.about {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 4rem 2rem;
+				display: grid;
+				grid-template-columns: 200px 1fr;
+				gap: 3rem;
+			}
+
+			.about-label {
+				font-family: var(--font-display);
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: var(--accent);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				padding-top: 0.3rem;
+			}
+
+			.about-content p {
+				font-size: 1.05rem;
+				color: var(--ink);
+				line-height: 1.75;
+				margin-bottom: 1rem;
+				max-width: 640px;
+			}
+
+			.about-content a {
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1.5px solid var(--accent-soft);
+				padding-bottom: 1px;
+				transition: border-color 0.2s;
+			}
+
+			.about-content a:hover {
+				border-color: var(--accent);
+			}
+
+			/* ─── Posts Section ─── */
+			.posts {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 4rem 2rem 6rem;
+				display: grid;
+				grid-template-columns: 200px 1fr;
+				gap: 3rem;
+			}
+
+			.posts-label {
+				font-family: var(--font-display);
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: var(--accent);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				padding-top: 0.3rem;
+			}
+
+			.post-list {
+				display: flex;
+				flex-direction: column;
+				gap: 2.5rem;
+			}
+
+			.post-item {
+				display: grid;
+				grid-template-columns: 120px 1fr;
+				gap: 1.5rem;
+				align-items: start;
+			}
+
+			.post-date {
+				font-size: 0.85rem;
+				color: var(--ink-light);
+				padding-top: 0.35rem;
+				font-variant-numeric: tabular-nums;
+			}
+
+			.post-item h3 {
+				font-family: var(--font-display);
+				font-size: 1.3rem;
+				font-weight: 600;
+				line-height: 1.3;
+				margin-bottom: 0.4rem;
+			}
+
+			.post-item h3 a {
+				color: var(--ink);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			.post-item h3 a:hover {
+				color: var(--accent);
+			}
+
+			.post-item .excerpt {
+				font-size: 0.95rem;
+				color: var(--ink-light);
+				line-height: 1.6;
+			}
+
+			.post-tags {
+				display: flex;
+				gap: 0.5rem;
+				margin-top: 0.6rem;
+				flex-wrap: wrap;
+			}
+
+			.post-tags span {
+				font-size: 0.75rem;
+				font-weight: 500;
+				padding: 3px 10px;
+				background: var(--warm-bg-deep);
+				color: var(--ink-light);
+				border-radius: 20px;
+				border: 1px solid var(--border);
+				transition:
+					background 0.2s,
+					border-color 0.2s,
+					color 0.2s;
+				cursor: pointer;
+			}
+
+			.post-tags span:hover {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: var(--white);
+			}
+
+			.view-all {
+				display: inline-block;
+				margin-top: 2rem;
+				font-size: 0.9rem;
+				font-weight: 500;
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1.5px solid var(--accent-soft);
+				padding-bottom: 2px;
+				transition: border-color 0.2s;
+			}
+
+			.view-all:hover {
+				border-color: var(--accent);
+			}
+
+			/* ─── Footer ─── */
+			footer {
+				background: var(--ink);
+				color: var(--warm-bg-deep);
+				padding: 3rem 2rem;
+			}
+
+			.footer-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			.footer-inner .copyright {
+				font-size: 0.85rem;
+				opacity: 0.6;
+			}
+
+			.footer-nav {
+				display: flex;
+				gap: 1.5rem;
+			}
+
+			.footer-nav a {
+				font-size: 0.85rem;
+				color: var(--warm-bg-deep);
+				text-decoration: none;
+				opacity: 0.6;
+				transition: opacity 0.2s;
+			}
+
+			.footer-nav a:hover {
+				opacity: 1;
+			}
+
+			/* ─── Responsive ─── */
+			@media (max-width: 768px) {
+				.hero {
+					grid-template-columns: 1fr;
+					padding: 4rem 1.5rem 3rem;
+					gap: 2rem;
+					text-align: center;
+				}
+				.hero-text p {
+					max-width: none;
+				}
+				.hero-portrait {
+					width: 200px;
+					height: 240px;
+					margin: 0 auto;
+					order: -1;
+				}
+				.hero-links {
+					justify-content: center;
+				}
+				.about,
+				.posts {
+					grid-template-columns: 1fr;
+					gap: 1rem;
+					padding: 3rem 1.5rem;
+				}
+				.post-item {
+					grid-template-columns: 1fr;
+					gap: 0.3rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="accent-bar" aria-hidden="true"></div>
+
+		<header>
+			<a href="#" class="logo">craveytrain</a>
+			<nav>
+				<a href="#">Now</a>
+				<a href="#">Posts</a>
+				<a href="#">Uses</a>
+			</nav>
+		</header>
+
+		<section class="hero">
+			<div class="hero-text">
+				<h1>Hey y'all<span class="accent">,</span><br />I'm Mike Cravey.</h1>
+				<p>
+					Father, husband, teacher, and geek. A UX Engineer who believes the web
+					should be fast, accessible, and built with care.
+				</p>
+				<div class="hero-links">
+					<a href="#">GitHub &rarr;</a>
+					<a href="#">Mastodon &rarr;</a>
+					<a href="#">LinkedIn &rarr;</a>
+				</div>
+			</div>
+			<div class="hero-portrait">
+				<img src="IMG_7332.jpeg" alt="Mike Cravey" />
+			</div>
+		</section>
+
+		<div class="divider"><hr /></div>
+
+		<section class="about">
+			<div class="about-label">About</div>
+			<div class="about-content">
+				<p>
+					I'm a UX Engineer based in Lake Jackson, TX. I spend my days thinking
+					about the intersection of design and engineering — building interfaces
+					that are both beautiful and performant.
+				</p>
+				<p>
+					You can see what I'm up to <a href="#">now</a>, read more about how
+					this site is made on the <a href="#">colophon</a>, or see what tools I
+					use on the <a href="#">uses</a> page.
+				</p>
+			</div>
+		</section>
+
+		<div class="divider"><hr /></div>
+
+		<section class="posts">
+			<div class="posts-label">Recent Writing</div>
+			<div class="post-list">
+				<div class="post-item">
+					<div class="post-date">Jan 2025</div>
+					<div>
+						<h3><a href="#">Colophon v9</a></h3>
+						<p class="excerpt">
+							On moving back to Eleventy and rediscovering the joy of plain HTML
+							and CSS after years of framework-hopping.
+						</p>
+						<div class="post-tags">
+							<span>about</span>
+							<span>web</span>
+							<span>eleventy</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="post-item">
+					<div class="post-date">Aug 2024</div>
+					<div>
+						<h3><a href="#">Deprogramming Framework Habits</a></h3>
+						<p class="excerpt">
+							Unlearning patterns from React and Svelte to write simpler, more
+							resilient web pages.
+						</p>
+						<div class="post-tags">
+							<span>web</span>
+							<span>css</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="post-item">
+					<div class="post-date">Mar 2024</div>
+					<div>
+						<h3><a href="#">Container Queries Changed Everything</a></h3>
+						<p class="excerpt">
+							How container queries transformed the way I think about responsive
+							component design.
+						</p>
+						<div class="post-tags">
+							<span>css</span>
+							<span>web</span>
+						</div>
+					</div>
+				</div>
+
+				<a href="#" class="view-all">View all posts &rarr;</a>
+			</div>
+		</section>
+
+		<footer>
+			<div class="footer-inner">
+				<span class="copyright">&copy; 1999–2025 Mike Cravey</span>
+				<div class="footer-nav">
+					<a href="#">Colophon</a>
+					<a href="#">RSS</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

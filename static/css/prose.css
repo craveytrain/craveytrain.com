@@ -31,7 +31,12 @@
 }
 
 .post-sidebar {
-	padding-top: 0.3rem;
+	padding-top: 0.25rem;
+}
+
+/* Align first content element with sidebar */
+.post-content > :first-child {
+	margin-top: 0;
 }
 
 .sidebar-section {
@@ -72,6 +77,8 @@
 	font-size: 1.1rem;
 	line-height: 1.8;
 	color: var(--ink);
+	-webkit-font-smoothing: auto;
+	-moz-osx-font-smoothing: auto;
 }
 
 /* ─── 4. Prose Typography with clamp() ─── */
@@ -173,8 +180,8 @@
 	padding: 1.25rem;
 	overflow-x: auto;
 	font-family: var(--font-code);
-	font-size: 0.95rem;
-	font-weight: 500;
+	font-size: 1rem;
+	font-weight: 600;
 	line-height: 1.5;
 	margin-block: 2rem;
 	color: var(--ink);
@@ -299,7 +306,7 @@
 	}
 
 	.post-content pre {
-		font-size: 0.9rem;
+		font-size: 0.95rem;
 		padding: 1rem;
 		border-radius: 4px;
 	}

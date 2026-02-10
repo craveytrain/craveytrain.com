@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Posts — Craveytrain</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			:root {
+				--warm-bg: #faf6f1;
+				--warm-bg-deep: #f0e8dd;
+				--ink: #2c2420;
+				--ink-light: #6b5d52;
+				--accent: #b44d2d;
+				--accent-hover: #943d22;
+				--accent-soft: #e8c4b0;
+				--purple: #6b4c8a;
+				--purple-soft: #d4c5e2;
+				--border: #ddd2c5;
+				--white: #ffffff;
+				--font-display: 'Fraunces', Georgia, serif;
+				--font-body: 'Inter', -apple-system, sans-serif;
+			}
+
+			html {
+				font-size: 16px;
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: var(--font-body);
+				background: var(--warm-bg);
+				color: var(--ink);
+				line-height: 1.65;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			/* ─── Accent Bar (Safari chrome) ─── */
+			.accent-bar {
+				height: 0.5rem;
+				background: var(--accent);
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+
+			/* ─── Header ─── */
+			header {
+				margin-top: 0.5rem;
+				padding: 2rem 2rem 0;
+				max-width: 1100px;
+				margin-left: auto;
+				margin-right: auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.logo {
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: var(--ink);
+				text-decoration: none;
+				letter-spacing: -0.02em;
+			}
+
+			nav {
+				display: flex;
+				gap: 2rem;
+			}
+
+			nav a {
+				font-size: 0.9rem;
+				font-weight: 500;
+				color: var(--ink-light);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			nav a:hover {
+				color: var(--accent);
+			}
+			nav a[aria-current='page'] {
+				color: var(--accent);
+			}
+
+			/* ─── Page Header ─── */
+			.page-header {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 3rem 2rem 0;
+			}
+
+			.page-header h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2rem, 4vw, 2.5rem);
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				color: var(--ink);
+				margin-bottom: 0.25rem;
+			}
+
+			.page-header .posts-count {
+				font-size: 0.95rem;
+				color: var(--ink-light);
+			}
+
+			/* ─── Divider ─── */
+			.divider {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 2rem;
+			}
+
+			.divider hr {
+				border: none;
+				border-top: 1px solid var(--border);
+			}
+
+			/* ─── Section Grid (shared pattern) ─── */
+			.section-grid {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				display: grid;
+				grid-template-columns: 200px 1fr;
+				gap: 3rem;
+			}
+
+			.section-label {
+				font-family: var(--font-display);
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: var(--accent);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				padding-top: 0.3rem;
+			}
+
+			/* ─── Tags Section ─── */
+			.tags-section {
+				padding-top: 2.5rem;
+				padding-bottom: 2.5rem;
+			}
+
+			.tag-bar {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				align-items: center;
+			}
+
+			.tag-more {
+				font-family: var(--font-body);
+				font-size: 0.75rem;
+				font-weight: 500;
+				padding: 4px 12px;
+				background: none;
+				color: var(--accent);
+				border-radius: 20px;
+				border: 1px dashed var(--accent-soft);
+				cursor: pointer;
+				transition:
+					background 0.2s,
+					border-color 0.2s,
+					color 0.2s;
+			}
+
+			.tag-more:hover {
+				background: var(--accent);
+				border-color: var(--accent);
+				border-style: solid;
+				color: var(--white);
+			}
+
+			.tag-cloud {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				max-height: 0;
+				overflow: hidden;
+				opacity: 0;
+				transition:
+					max-height 0.3s ease,
+					opacity 0.2s ease,
+					margin 0.3s ease;
+				margin-top: 0;
+			}
+
+			.tag-cloud.open {
+				max-height: 500px;
+				opacity: 1;
+				margin-top: 0.5rem;
+			}
+
+			.tag-filter {
+				font-family: var(--font-body);
+				font-size: 0.75rem;
+				font-weight: 500;
+				padding: 4px 12px;
+				background: var(--warm-bg-deep);
+				color: var(--ink-light);
+				border-radius: 20px;
+				border: 1px solid var(--border);
+				text-decoration: none;
+				transition:
+					background 0.2s,
+					border-color 0.2s,
+					color 0.2s;
+				cursor: pointer;
+			}
+
+			.tag-filter:hover {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: var(--white);
+			}
+
+			.tag-filter.active {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: var(--white);
+			}
+
+			/* Filtering states */
+			.post-item.hidden {
+				display: none;
+			}
+
+			.year-section.hidden {
+				display: none;
+			}
+
+			.year-section.hidden + .divider,
+			.divider.hidden {
+				display: none;
+			}
+
+			.post-item-tag.matched {
+				color: var(--accent);
+				opacity: 1;
+				font-weight: 600;
+			}
+
+			/* ─── Year Sections ─── */
+			.year-section {
+				padding-top: 2.5rem;
+				padding-bottom: 1rem;
+			}
+
+			.year-section + .year-section {
+				padding-top: 2rem;
+			}
+
+			.year-articles {
+				display: flex;
+				flex-direction: column;
+			}
+
+			/* ─── Post Items ─── */
+			.post-item {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				padding: 0.75rem 0;
+				border-bottom: 1px solid var(--border);
+				transition: border-color 0.2s;
+				gap: 1rem;
+			}
+
+			.post-item:first-child {
+				padding-top: 0;
+			}
+
+			.post-item:has(.post-item-title:hover) {
+				border-color: var(--accent);
+			}
+
+			.post-item-main {
+				display: flex;
+				align-items: baseline;
+				gap: 0.75rem;
+				min-width: 0;
+				flex: 1;
+			}
+
+			.post-item-title {
+				font-family: var(--font-display);
+				font-size: 1.15rem;
+				font-weight: 600;
+				color: var(--ink);
+				text-decoration: none;
+				transition: color 0.2s;
+				line-height: 1.3;
+			}
+
+			.post-item-title:hover {
+				color: var(--accent);
+			}
+
+			/* Display-only inline tags */
+			.post-item-tags {
+				display: flex;
+				gap: 0.5rem;
+				flex-shrink: 0;
+				align-items: baseline;
+			}
+
+			.post-item-tag {
+				font-size: 0.7rem;
+				color: var(--ink-light);
+				opacity: 0.7;
+				white-space: nowrap;
+			}
+
+			.post-item-tag + .post-item-tag::before {
+				content: '·';
+				margin-right: 0.5rem;
+			}
+
+			.post-item-date {
+				font-size: 0.8rem;
+				color: var(--ink-light);
+				font-variant-numeric: tabular-nums;
+				white-space: nowrap;
+				flex-shrink: 0;
+			}
+
+			/* ─── Footer ─── */
+			footer {
+				background: var(--ink);
+				color: var(--warm-bg-deep);
+				padding: 3rem 2rem;
+				margin-top: 3rem;
+			}
+
+			.footer-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			.footer-inner .copyright {
+				font-size: 0.85rem;
+				opacity: 0.6;
+			}
+
+			.footer-nav {
+				display: flex;
+				gap: 1.5rem;
+			}
+
+			.footer-nav a {
+				font-size: 0.85rem;
+				color: var(--warm-bg-deep);
+				text-decoration: none;
+				opacity: 0.6;
+				transition: opacity 0.2s;
+			}
+
+			.footer-nav a:hover {
+				opacity: 1;
+			}
+
+			/* ─── Responsive ─── */
+			@media (max-width: 768px) {
+				header {
+					padding: 1.5rem 1.5rem 0;
+				}
+
+				.page-header {
+					padding: 2rem 1.5rem 0;
+				}
+
+				.divider {
+					padding: 0 1.5rem;
+				}
+
+				.section-grid {
+					grid-template-columns: 1fr;
+					gap: 1rem;
+					padding: 0 1.5rem;
+				}
+
+				.post-item {
+					flex-direction: column;
+					gap: 0.25rem;
+				}
+
+				.post-item-main {
+					flex-direction: column;
+					gap: 0.25rem;
+				}
+
+				.post-item-tags {
+					margin-top: 0.15rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="accent-bar" aria-hidden="true"></div>
+
+		<header>
+			<a href="#" class="logo">craveytrain</a>
+			<nav>
+				<a href="#">Now</a>
+				<a href="#" aria-current="page">Posts</a>
+				<a href="#">Uses</a>
+			</nav>
+		</header>
+
+		<div class="page-header">
+			<h1>Posts</h1>
+			<p class="posts-count">12 posts</p>
+		</div>
+
+		<div class="divider" style="margin-top: 2rem; margin-bottom: 0"><hr /></div>
+
+		<!-- Tags -->
+		<div class="section-grid tags-section">
+			<div class="section-label">Tags</div>
+			<div>
+				<div class="tag-bar">
+					<a href="#" class="tag-filter active">All</a>
+					<a href="#" class="tag-filter">psa</a>
+					<a href="#" class="tag-filter">colophon</a>
+					<a href="#" class="tag-filter">javascript</a>
+					<a href="#" class="tag-filter">html</a>
+					<a href="#" class="tag-filter">jquery</a>
+					<a href="#" class="tag-filter">glgui</a>
+					<button class="tag-more" id="tagMore">+44 more</button>
+				</div>
+				<div class="tag-cloud" id="tagCloud">
+					<a href="#" class="tag-filter">about</a>
+					<a href="#" class="tag-filter">accessibility</a>
+					<a href="#" class="tag-filter">anecdotal</a>
+					<a href="#" class="tag-filter">austin</a>
+					<a href="#" class="tag-filter">austinjs</a>
+					<a href="#" class="tag-filter">bash</a>
+					<a href="#" class="tag-filter">bidet</a>
+					<a href="#" class="tag-filter">cors</a>
+					<a href="#" class="tag-filter">couchdb</a>
+					<a href="#" class="tag-filter">css</a>
+					<a href="#" class="tag-filter">css3</a>
+					<a href="#" class="tag-filter">design</a>
+					<a href="#" class="tag-filter">express</a>
+					<a href="#" class="tag-filter">font stack</a>
+					<a href="#" class="tag-filter">forms</a>
+					<a href="#" class="tag-filter">gist</a>
+					<a href="#" class="tag-filter">git</a>
+					<a href="#" class="tag-filter">git-svn</a>
+					<a href="#" class="tag-filter">github</a>
+					<a href="#" class="tag-filter">honeymoon</a>
+					<a href="#" class="tag-filter">humor</a>
+					<a href="#" class="tag-filter">interview</a>
+					<a href="#" class="tag-filter">jade</a>
+					<a href="#" class="tag-filter">labels</a>
+					<a href="#" class="tag-filter">macOS</a>
+					<a href="#" class="tag-filter">markdown</a>
+					<a href="#" class="tag-filter">mastodon</a>
+					<a href="#" class="tag-filter">media queries</a>
+					<a href="#" class="tag-filter">meetup</a>
+					<a href="#" class="tag-filter">metro</a>
+					<a href="#" class="tag-filter">modal</a>
+					<a href="#" class="tag-filter">node</a>
+					<a href="#" class="tag-filter">nodejs</a>
+					<a href="#" class="tag-filter">oauth</a>
+					<a href="#" class="tag-filter">octopress</a>
+					<a href="#" class="tag-filter">prompt</a>
+					<a href="#" class="tag-filter">prototype</a>
+					<a href="#" class="tag-filter">rail</a>
+					<a href="#" class="tag-filter">scripty2</a>
+					<a href="#" class="tag-filter">tutorial</a>
+					<a href="#" class="tag-filter">twitter</a>
+					<a href="#" class="tag-filter">web standards</a>
+					<a href="#" class="tag-filter">webmentions</a>
+					<a href="#" class="tag-filter">xhr</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="divider"><hr /></div>
+
+		<!-- 2025 -->
+		<div class="section-grid year-section">
+			<div class="section-label">2025</div>
+			<div class="year-articles">
+				<article class="post-item" data-tags="eleventy,design">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title">Colophon v9</a>
+						<div class="post-item-tags">
+							<span class="post-item-tag">Eleventy</span>
+							<span class="post-item-tag">Design</span>
+						</div>
+					</div>
+					<time class="post-item-date">Jan 20</time>
+				</article>
+			</div>
+		</div>
+
+		<div class="divider"><hr /></div>
+
+		<!-- 2024 -->
+		<div class="section-grid year-section">
+			<div class="section-label">2024</div>
+			<div class="year-articles">
+				<article class="post-item" data-tags="web platform">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title"
+							>Deprogramming Framework Habits</a
+						>
+						<div class="post-item-tags">
+							<span class="post-item-tag">Web Platform</span>
+						</div>
+					</div>
+					<time class="post-item-date">Aug 5</time>
+				</article>
+				<article class="post-item" data-tags="css,web platform,design">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title"
+							>Container Queries Changed Everything</a
+						>
+						<div class="post-item-tags">
+							<span class="post-item-tag">CSS</span>
+							<span class="post-item-tag">Web Platform</span>
+							<span class="post-item-tag">Design</span>
+						</div>
+					</div>
+					<time class="post-item-date">Mar 14</time>
+				</article>
+				<article class="post-item" data-tags="accessibility,css,design">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title"
+							>Accessible Color Contrast Is a Spectrum</a
+						>
+						<div class="post-item-tags">
+							<span class="post-item-tag">Accessibility</span>
+							<span class="post-item-tag">CSS</span>
+							<span class="post-item-tag">Design</span>
+						</div>
+					</div>
+					<time class="post-item-date">Jan 22</time>
+				</article>
+			</div>
+		</div>
+
+		<div class="divider"><hr /></div>
+
+		<!-- 2023 -->
+		<div class="section-grid year-section">
+			<div class="section-label">2023</div>
+			<div class="year-articles">
+				<article class="post-item" data-tags="eleventy,tooling">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title">Why I Switched to Eleventy</a>
+						<div class="post-item-tags">
+							<span class="post-item-tag">Eleventy</span>
+							<span class="post-item-tag">Tooling</span>
+						</div>
+					</div>
+					<time class="post-item-date">Oct 8</time>
+				</article>
+				<article class="post-item" data-tags="css">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title"
+							>The Cascade Is Not Your Enemy</a
+						>
+						<div class="post-item-tags">
+							<span class="post-item-tag">CSS</span>
+						</div>
+					</div>
+					<time class="post-item-date">Jun 15</time>
+				</article>
+				<article class="post-item" data-tags="accessibility,css">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title"
+							>Building a Skip-Link That Actually Works</a
+						>
+						<div class="post-item-tags">
+							<span class="post-item-tag">Accessibility</span>
+							<span class="post-item-tag">CSS</span>
+						</div>
+					</div>
+					<time class="post-item-date">Mar 2</time>
+				</article>
+			</div>
+		</div>
+
+		<div class="divider"><hr /></div>
+
+		<!-- 2022 -->
+		<div class="section-grid year-section">
+			<div class="section-label">2022</div>
+			<div class="year-articles">
+				<article class="post-item" data-tags="web platform">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title">HTML Is a Living Language</a>
+						<div class="post-item-tags">
+							<span class="post-item-tag">Web Platform</span>
+						</div>
+					</div>
+					<time class="post-item-date">Nov 19</time>
+				</article>
+				<article class="post-item" data-tags="css,design">
+					<div class="post-item-main">
+						<a href="#" class="post-item-title">My Plain-CSS Design System</a>
+						<div class="post-item-tags">
+							<span class="post-item-tag">CSS</span>
+							<span class="post-item-tag">Design</span>
+						</div>
+					</div>
+					<time class="post-item-date">Jul 30</time>
+				</article>
+			</div>
+		</div>
+
+		<footer>
+			<div class="footer-inner">
+				<span class="copyright">&copy; 1999–2025 Mike Cravey</span>
+				<div class="footer-nav">
+					<a href="#">Colophon</a>
+					<a href="#">RSS</a>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			const moreBtn = document.getElementById('tagMore')
+			const cloud = document.getElementById('tagCloud')
+			const allFilters = document.querySelectorAll('.tag-filter')
+			const posts = document.querySelectorAll('.post-item')
+			const yearSections = document.querySelectorAll('.year-section')
+			const dividers = document.querySelectorAll('.divider')
+
+			// Toggle expanded tag cloud
+			moreBtn.addEventListener('click', () => {
+				const open = cloud.classList.toggle('open')
+				moreBtn.textContent = open ? 'Show less' : '+44 more'
+			})
+
+			// Filter posts by tag
+			allFilters.forEach(filter => {
+				filter.addEventListener('click', e => {
+					e.preventDefault()
+					const tag = filter.textContent.trim().toLowerCase()
+
+					// Update active state across both bar and cloud
+					allFilters.forEach(f => f.classList.remove('active'))
+					filter.classList.add('active')
+
+					if (tag === 'all') {
+						// Show everything
+						posts.forEach(p => p.classList.remove('hidden'))
+						document
+							.querySelectorAll('.post-item-tag')
+							.forEach(t => t.classList.remove('matched'))
+					} else {
+						// Filter posts
+						posts.forEach(post => {
+							const postTags = (post.dataset.tags || '')
+								.toLowerCase()
+								.split(',')
+							const matches = postTags.some(t => t.trim() === tag)
+							post.classList.toggle('hidden', !matches)
+
+							// Highlight matching inline tags
+							post.querySelectorAll('.post-item-tag').forEach(t => {
+								t.classList.toggle(
+									'matched',
+									t.textContent.trim().toLowerCase() === tag
+								)
+							})
+						})
+					}
+
+					// Hide empty year sections
+					yearSections.forEach(section => {
+						const visiblePosts = section.querySelectorAll(
+							'.post-item:not(.hidden)'
+						)
+						section.classList.toggle('hidden', visiblePosts.length === 0)
+					})
+
+					// Hide dividers next to hidden year sections
+					dividers.forEach(div => {
+						const next = div.nextElementSibling
+						if (
+							next &&
+							next.classList.contains('year-section') &&
+							next.classList.contains('hidden')
+						) {
+							div.classList.add('hidden')
+						} else {
+							div.classList.remove('hidden')
+						}
+					})
+				})
+			})
+		</script>
+	</body>
+</html>
