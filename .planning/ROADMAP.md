@@ -92,17 +92,19 @@ Plans:
 **Goal**: Deliver Now, Colophon, and Uses pages with section-grid layout
 **Depends on**: Phase 4
 **Requirements**: PAGE-01, PAGE-02, PAGE-03, PAGE-04
+**Plans**: 2 plans
+
 **Success Criteria** (what must be TRUE):
 
 1. Now page displays Work/Building/Learning/Reading/Life sections with 200px/1fr grid
 2. Colophon page displays in section-grid layout
 3. Uses page displays in section-grid layout
 4. Now page archive link displays at bottom
-   **Plans**: TBD
 
 Plans:
 
-- [ ] 07-01: TBD
+- [ ] 07-01-PLAN.md - Now page with section-grid layout and archive link
+- [ ] 07-02-PLAN.md - Colophon and Uses pages with section-grid layout
 
 ### Phase 8: Responsive & Polish
 
@@ -131,7 +133,7 @@ Plans:
 | 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
 | 5. Homepage            | 3/3            | Complete ✓  | 2026-02-09 |
 | 6. Posts System        | 4/4            | Complete ✓  | 2026-02-10 |
-| 7. Content Pages       | 0/TBD          | Not started | -          |
+| 7. Content Pages       | 0/2            | Not started | -          |
 | 8. Responsive & Polish | 0/TBD          | Not started | -          |
 
 ---
@@ -142,3 +144,4 @@ _Phase 4 planned: 2026-02-09_
 _Phase 5 planned: 2026-02-09_
 _Phase 6 planned: 2026-02-10_
 _Phase 6 completed: 2026-02-10_
+_Phase 7 planned: 2026-02-10_
