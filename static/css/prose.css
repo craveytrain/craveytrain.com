@@ -48,11 +48,15 @@
 	align-self: flex-start;
 }
 
+/* ─── 2. Post Content ─── */
 .post-content {
 	max-width: var(--prose-max-width);
+	font-family: var(--font-body);
+	font-size: 1.05rem;
+	line-height: 1.75;
+	color: var(--ink);
 }
 
-/* ─── 2. Post Title ─── */
 .post-content .post-title {
 	font-family: var(--font-display);
 	font-size: clamp(2rem, 4vw + 1rem, 2.75rem);
@@ -64,12 +68,6 @@
 }
 
 /* ─── 3. Prose Typography with clamp() ─── */
-.post-content {
-	font-family: var(--font-body);
-	font-size: 1.05rem;
-	line-height: 1.75;
-	color: var(--ink);
-}
 
 .post-content h2 {
 	font-family: var(--font-display);
@@ -313,8 +311,7 @@ pre.line-numbers .line-numbers-rows > span::before {
 	}
 
 	.post-sidebar .sidebar-tags {
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-flow: row wrap;
 	}
 
 	.post-content .post-title {
