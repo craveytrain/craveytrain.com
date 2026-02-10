@@ -23,44 +23,44 @@ Requirements for the Warm Editorial visual redesign. Each maps to roadmap phases
 
 ### Homepage
 
-- [ ] **HOME-01**: Hero section displays arch-framed portrait and greeting text
-- [ ] **HOME-02**: Hero portrait transitions from grayscale to full color on hover
-- [ ] **HOME-03**: About section displays prose with links to Now/Colophon/Uses
-- [ ] **HOME-04**: Recent posts section displays latest posts with date/title/excerpt/tags
-- [ ] **HOME-05**: Tag chips on homepage posts are interactive (hover fills accent)
-- [ ] **HOME-06**: Mobile hero uses Option C layout (avatar inline, text-forward)
+- [x] **HOME-01**: Hero section displays arch-framed portrait and greeting text
+- [x] **HOME-02**: Hero portrait transitions from grayscale to full color on hover
+- [x] **HOME-03**: About section displays prose with links to Now/Colophon/Uses
+- [x] **HOME-04**: Recent posts section displays latest posts with date/title/excerpt/tags
+- [x] **HOME-05**: Tag chips on homepage posts are interactive (hover fills accent)
+- [x] **HOME-06**: Mobile hero uses Option C layout (avatar inline, text-forward)
 
 ### Posts Listing
 
-- [ ] **LIST-01**: Posts listing groups posts by year with year as section label
-- [ ] **LIST-02**: Post items display title + inline tags left, date right
-- [ ] **LIST-03**: Post item border transitions to accent on title hover (`:has()`)
-- [ ] **LIST-04**: Dates use tabular nums for alignment
-- [ ] **LIST-05**: Tag chips link to static tag pages at /tags/{tag}/
+- [x] **LIST-01**: Posts listing groups posts by year with year as section label
+- [x] **LIST-02**: Post items display title + inline tags left, date right
+- [x] **LIST-03**: Post item border transitions to accent on title hover (`:has()`)
+- [x] **LIST-04**: Dates use tabular nums for alignment
+- [x] **LIST-05**: Tag chips link to static tag pages at /tags/{tag}/
 
 ### Single Post
 
-- [ ] **SNGL-01**: Single post displays sidebar metadata (date, read time, tags) in 200px column
-- [ ] **SNGL-02**: Article body displays in content column with 640px max-width
-- [ ] **SNGL-03**: Code blocks use warm syntax highlighting palette covering all common Prism.js tokens (keywords, functions, tags, operators, etc. — not just the 6 CSS/JS-focused colors in design handoff)
-- [ ] **SNGL-04**: Headings use clamp() for responsive sizing
-- [ ] **SNGL-05**: Sidebar tags link to static tag pages
-- [ ] **SNGL-06**: Blockquotes display with accent border-left and italic styling
-- [ ] **SNGL-07**: Inline code displays with subtle background and border-radius
-- [ ] **SNGL-08**: Lists (ul/ol) display with proper spacing and markers
-- [ ] **SNGL-09**: Images in posts display responsively with appropriate margins
+- [x] **SNGL-01**: Single post displays sidebar metadata (date, read time, tags) in 200px column
+- [x] **SNGL-02**: Article body displays in content column with 640px max-width
+- [x] **SNGL-03**: Code blocks use warm syntax highlighting palette covering all common Prism.js tokens (keywords, functions, tags, operators, etc. — not just the 6 CSS/JS-focused colors in design handoff)
+- [x] **SNGL-04**: Headings use clamp() for responsive sizing
+- [x] **SNGL-05**: Sidebar tags link to static tag pages
+- [x] **SNGL-06**: Blockquotes display with accent border-left and italic styling
+- [x] **SNGL-07**: Inline code displays with subtle background and border-radius
+- [x] **SNGL-08**: Lists (ul/ol) display with proper spacing and markers
+- [x] **SNGL-09**: Images in posts display responsively with appropriate margins
 
 ### Tag Pages
 
-- [ ] **TAGS-01**: Static tag pages at /tags/{tag}/ use Warm Editorial styling
-- [ ] **TAGS-02**: Tag pages display filtered posts with same year-grouped layout
+- [x] **TAGS-01**: Static tag pages at /tags/{tag}/ use Warm Editorial styling
+- [x] **TAGS-02**: Tag pages display filtered posts with same year-grouped layout
 
 ### Content Pages
 
-- [ ] **PAGE-01**: Now page uses section-grid layout with Work/Building/Learning/Reading/Life sections
-- [ ] **PAGE-02**: Colophon page uses section-grid layout
-- [ ] **PAGE-03**: Uses page uses section-grid layout
-- [ ] **PAGE-04**: Now page archive link displays at bottom
+- [x] **PAGE-01**: Now page uses section-grid layout with Work/Building/Learning/Reading/Life sections
+- [x] **PAGE-02**: Colophon page uses section-grid layout
+- [x] **PAGE-03**: Uses page uses section-grid layout
+- [x] **PAGE-04**: Now page archive link displays at bottom
 
 ### Responsive
 
@@ -118,32 +118,32 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DSYS-09     | Phase 4 | Complete |
 | DSYS-10     | Phase 4 | Complete |
 | DSYS-11     | Phase 4 | Complete |
-| HOME-01     | Phase 5 | Pending  |
-| HOME-02     | Phase 5 | Pending  |
-| HOME-03     | Phase 5 | Pending  |
-| HOME-04     | Phase 5 | Pending  |
-| HOME-05     | Phase 5 | Pending  |
-| HOME-06     | Phase 5 | Pending  |
-| LIST-01     | Phase 6 | Pending  |
-| LIST-02     | Phase 6 | Pending  |
-| LIST-03     | Phase 6 | Pending  |
-| LIST-04     | Phase 6 | Pending  |
-| LIST-05     | Phase 6 | Pending  |
-| SNGL-01     | Phase 6 | Pending  |
-| SNGL-02     | Phase 6 | Pending  |
-| SNGL-03     | Phase 6 | Pending  |
-| SNGL-04     | Phase 6 | Pending  |
-| SNGL-05     | Phase 6 | Pending  |
-| SNGL-06     | Phase 6 | Pending  |
-| SNGL-07     | Phase 6 | Pending  |
-| SNGL-08     | Phase 6 | Pending  |
-| SNGL-09     | Phase 6 | Pending  |
-| TAGS-01     | Phase 6 | Pending  |
-| TAGS-02     | Phase 6 | Pending  |
-| PAGE-01     | Phase 7 | Pending  |
-| PAGE-02     | Phase 7 | Pending  |
-| PAGE-03     | Phase 7 | Pending  |
-| PAGE-04     | Phase 7 | Pending  |
+| HOME-01     | Phase 5 | Complete |
+| HOME-02     | Phase 5 | Complete |
+| HOME-03     | Phase 5 | Complete |
+| HOME-04     | Phase 5 | Complete |
+| HOME-05     | Phase 5 | Complete |
+| HOME-06     | Phase 5 | Complete |
+| LIST-01     | Phase 6 | Complete |
+| LIST-02     | Phase 6 | Complete |
+| LIST-03     | Phase 6 | Complete |
+| LIST-04     | Phase 6 | Complete |
+| LIST-05     | Phase 6 | Complete |
+| SNGL-01     | Phase 6 | Complete |
+| SNGL-02     | Phase 6 | Complete |
+| SNGL-03     | Phase 6 | Complete |
+| SNGL-04     | Phase 6 | Complete |
+| SNGL-05     | Phase 6 | Complete |
+| SNGL-06     | Phase 6 | Complete |
+| SNGL-07     | Phase 6 | Complete |
+| SNGL-08     | Phase 6 | Complete |
+| SNGL-09     | Phase 6 | Complete |
+| TAGS-01     | Phase 6 | Complete |
+| TAGS-02     | Phase 6 | Complete |
+| PAGE-01     | Phase 7 | Complete |
+| PAGE-02     | Phase 7 | Complete |
+| PAGE-03     | Phase 7 | Complete |
+| PAGE-04     | Phase 7 | Complete |
 | RESP-01     | Phase 8 | Pending  |
 | RESP-02     | Phase 8 | Pending  |
 | RESP-03     | Phase 8 | Pending  |
@@ -159,4 +159,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 ---
 
 _Requirements defined: 2026-02-09_
-_Last updated: 2026-02-09 after roadmap creation_
+_Last updated: 2026-02-10 after Phase 7 completion_
