@@ -76,6 +76,16 @@ export default async function (eleventyConfig) {
 		dateObj ? dateObj.toISOString() : dateObj
 	)
 
+	// month and year only (e.g., "Jan 2025")
+	eleventyConfig.addFilter('monthYear', dateObj =>
+		dateObj
+			? dateObj.toLocaleDateString('en-US', {
+					month: 'short',
+					year: 'numeric',
+				})
+			: dateObj
+	)
+
 	eleventyConfig.addFilter('getWebmentionsForUrl', getWebmentionsForUrl)
 	eleventyConfig.addFilter('webmentionsByType', webmentionsByType)
 

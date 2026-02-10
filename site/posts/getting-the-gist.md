@@ -1,6 +1,7 @@
 ---
 title: Getting the gist
 date: 2010-12-10
+description: A jQuery plugin to embed GitHub Gists without the document.write performance hit — loading code snippets after the page renders.
 tags:
   - gist
   - git

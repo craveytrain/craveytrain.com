@@ -1,6 +1,7 @@
 ---
 title: Bidet
 date: 2006-12-06
+description: My first encounter with a bidet on our honeymoon — a cautionary tale about gravity, water pressure, and the importance of reading directions.
 tags:
   - anecdotal
   - bidet

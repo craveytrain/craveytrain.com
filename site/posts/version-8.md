@@ -1,6 +1,7 @@
 ---
 title: Version 8
 date: 2019-09-09
+description: Rebuilding the site with Svelte and Sapper, adding a Uses page, and treating this space less like a blog and more like a personal corner of the web.
 ---
 
 After a long hiatus, I have finally gotten around to rebuilding on the site. The colophon has been updated but I figured I'd spend a bit of time explaining the why.

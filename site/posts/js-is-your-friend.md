@@ -1,6 +1,7 @@
 ---
 title: JS is your friend
 date: 2011-08-23
+description: Slides from my Austin JavaScript presentation on the basics of JavaScript and jQuery.
 tags:
   - javascript
   - austinjs

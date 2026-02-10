@@ -1,6 +1,7 @@
 ---
 title: Relaunching with nodejs
 date: 2011-04-19
+description: Rolling my own blog with Node.js, Express, Jade, and CouchDB — because I wanted full control over my URLs and a playground for tinkering.
 tags:
   - psa
   - nodejs

@@ -22,7 +22,7 @@ css: home.css
     </div>
     <div>
       <div class="hero-name">Hey y'all<span class="accent">,</span><br>I'm Mike Cravey.</div>
-      <div class="hero-tagline">UX Engineer &middot; Lake Jackson, TX</div>
+      <div class="hero-tagline">UX Engineer</div>
     </div>
   </div>
 </section>
@@ -45,7 +45,7 @@ css: home.css
     {%- set recentPosts = collections.post | reverse | head(3) %}
     {%- for post in recentPosts %}
     <div class="post-item">
-      <div class="post-date">{{ post.date | prettyDate }}</div>
+      <div class="post-date">{{ post.date | monthYear }}</div>
       <div>
         <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
         {%- if post.data.description %}

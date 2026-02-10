@@ -1,6 +1,7 @@
 ---
 title: Austin metro init
 date: 2010-11-22
+description: Building a mobile-friendly Austin transit app with geolocation and pub/sub — because Cap Metro's site deserved better.
 tags:
   - javascript
   - metro

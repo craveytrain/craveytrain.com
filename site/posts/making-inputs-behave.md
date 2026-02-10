@@ -1,6 +1,7 @@
 ---
 title: Making inputs behave
 date: 2010-07-26
+description: Using box-sizing border-box to make form inputs behave like proper block elements — full width with padding that just works.
 tags:
   - css
   - css3

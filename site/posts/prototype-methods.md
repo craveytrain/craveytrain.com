@@ -1,6 +1,7 @@
 ---
 title: Prototype methods
 date: 2010-12-03
+description: Two JavaScript prototype methods for the GLGUI Toolbox — Date formatting and a String.pluralize that handles the quirks of English.
 tags:
   - glgui
   - javascript
