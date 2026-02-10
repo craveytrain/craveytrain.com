@@ -86,6 +86,15 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addFilter('contentTags', contentTags)
 
+	// head filter - get first N items from array
+	eleventyConfig.addFilter('head', (array, n) => {
+		if (!Array.isArray(array) || array.length === 0) return []
+		if (n < 0) {
+			return array.slice(n)
+		}
+		return array.slice(0, n)
+	})
+
 	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
 
 	eleventyConfig.addPlugin(feedPlugin, {
