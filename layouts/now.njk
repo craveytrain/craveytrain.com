@@ -1,12 +1,37 @@
 ---
-layout: page
+layout: base
+css: content-pages.css
 ---
-<p class="byline">As of {{ date | prettyDate }}</p>
+{%- set nowEntries = collections.now -%}
+{%- set latestNow = nowEntries[nowEntries.length - 1] -%}
+<div class="page-header section-grid now-header">
+  <div class="section-label">&nbsp;</div>
+  <div>
+    <h1 class="page-title">{{ title }}</h1>
+    <p class="subtitle">
+      This is a <a href="https://nownownow.com/about">now page</a>. If you have your own site, you should make one too.
+    </p>
+    <p class="updated">Last updated {{ latestNow.date | prettyDate }}</p>
+  </div>
+</div>
 
-<p>This is a <a href="https://nownownow.com/about">now page</a>. If you have your own site, you should make one too.</p>
+<div class="divider"><hr></div>
 
-{{ content | safe }}
+{% set sections = latestNow.content | splitBySections %}
+{% for section in sections %}
+<div class="section-grid">
+  <div class="section-label">{{ section.label }}</div>
+  <div class="section-content">
+    {{ section.content | safe }}
+  </div>
+</div>
+{% if not loop.last %}
+<div class="divider"><hr></div>
+{% endif %}
+{% endfor %}
 
-{% include 'now-nav.njk' %}
+<div class="divider"><hr></div>
 
-<p><a href="/now/archive/">View previous updates</a></p>
+<div class="archive-link">
+  <a href="/now/archive/">Previously &rarr;</a>
+</div>
