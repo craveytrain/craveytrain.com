@@ -82,8 +82,8 @@ Plans:
 
 Plans:
 
-- [ ] 06-01-PLAN.md - Posts listing CSS and year-grouped template
-- [ ] 06-02-PLAN.md - Single post CSS with prose and syntax highlighting
+- [x] 06-01-PLAN.md - Posts listing CSS and year-grouped template
+- [x] 06-02-PLAN.md - Single post CSS with prose and syntax highlighting
 - [ ] 06-03-PLAN.md - Template integration and tag page updates
 - [ ] 06-04-PLAN.md - Visual and interaction verification
 
@@ -130,7 +130,7 @@ Plans:
 | ---------------------- | -------------- | ----------- | ---------- |
 | 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
 | 5. Homepage            | 3/3            | Complete ✓  | 2026-02-09 |
-| 6. Posts System        | 0/4            | Planned     | -          |
+| 6. Posts System        | 2/4            | In progress | -          |
 | 7. Content Pages       | 0/TBD          | Not started | -          |
 | 8. Responsive & Polish | 0/TBD          | Not started | -          |
 
