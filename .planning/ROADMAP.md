@@ -67,23 +67,25 @@ Plans:
 **Goal**: Deliver posts listing page, single post layout, and static tag pages
 **Depends on**: Phase 4
 **Requirements**: LIST-01, LIST-02, LIST-03, LIST-04, LIST-05, SNGL-01, SNGL-02, SNGL-03, SNGL-04, SNGL-05, SNGL-06, SNGL-07, SNGL-08, SNGL-09, TAGS-01, TAGS-02
+**Plans**: 4 plans
+
 **Success Criteria** (what must be TRUE):
 
 1. Posts listing groups posts by year with year as section label
 2. Post items display title + tags left, date right, with hover border transition
-3. Single post displays sidebar metadata (date, read time, tags) in 200px column
+3. Single post displays sidebar metadata (date, tags) in 200px column
 4. Article body displays in content column with 640px max-width
 5. Code blocks use warm syntax highlighting palette
 6. Tag pages at /tags/{tag}/ display filtered posts with same year-grouped layout
 7. Blockquotes display with accent border-left and italic styling
 8. Inline code, lists, and images display with proper prose styling
-   **Plans**: TBD
 
 Plans:
 
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
-- [ ] 06-03: TBD
+- [ ] 06-01-PLAN.md - Posts listing CSS and year-grouped template
+- [ ] 06-02-PLAN.md - Single post CSS with prose and syntax highlighting
+- [ ] 06-03-PLAN.md - Template integration and tag page updates
+- [ ] 06-04-PLAN.md - Visual and interaction verification
 
 ### Phase 7: Content Pages
 
@@ -128,7 +130,7 @@ Plans:
 | ---------------------- | -------------- | ----------- | ---------- |
 | 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
 | 5. Homepage            | 3/3            | Complete ✓  | 2026-02-09 |
-| 6. Posts System        | 0/TBD          | Not started | -          |
+| 6. Posts System        | 0/4            | Planned     | -          |
 | 7. Content Pages       | 0/TBD          | Not started | -          |
 | 8. Responsive & Polish | 0/TBD          | Not started | -          |
 
@@ -138,3 +140,4 @@ _Roadmap created: 2026-02-09_
 _Milestone: v9.2 Visual Refresh_
 _Phase 4 planned: 2026-02-09_
 _Phase 5 planned: 2026-02-09_
+_Phase 6 planned: 2026-02-10_

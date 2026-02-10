@@ -58,7 +58,14 @@ export default async function (eleventyConfig) {
 	// filter and sort nav items
 	eleventyConfig.addPlugin(eleventyNavigationPlugin)
 	// syntax highlighting
-	eleventyConfig.addPlugin(syntaxHighlight)
+	eleventyConfig.addPlugin(syntaxHighlight, {
+		preAttributes: {
+			class: 'line-numbers',
+			'data-language': function ({ language }) {
+				return language || 'text'
+			},
+		},
+	})
 
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj =>
