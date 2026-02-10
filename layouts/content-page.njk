@@ -17,7 +17,7 @@ css: content-pages.css
 {% set sections = content | splitBySections %}
 {% for section in sections %}
 <div class="section-grid">
-  <div class="section-label">{{ section.label }}</div>
+  <div class="section-label">{{ section.label | safe }}</div>
   <div class="section-content">
     {{ section.content | safe }}
   </div>
