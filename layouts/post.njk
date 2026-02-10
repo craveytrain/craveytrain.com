@@ -1,63 +1,76 @@
 ---
 layout: base
+css: prose.css
 ---
-<header>
-    <h1><a href="/">{{ '/img/logo-text.svg' | svgContents | safe }}</a></h1>
-</header>
 
-<main data-theme="dracula-light">
-    <article class="h-entry">
-        <h1 class="post-title p-name">{{ title }}</h1>
+<article class="post-layout h-entry">
+  <aside class="post-sidebar">
+    <div class="sidebar-section">
+      <time class="post-date dt-published" datetime="{{ date | htmlDateString }}">
+        {{ date | prettyDate }}
+      </time>
+    </div>
 
-        {% include "post-metadata.njk" %}
+    {% set contentTags = tags | contentTags %}
+    {% if contentTags.length > 0 %}
+    <div class="sidebar-section">
+      <div class="sidebar-label">Tagged</div>
+      <div class="sidebar-tags">
+        {% for tag in contentTags %}
+          <a href="/tags/{{ tag | slugify }}/" class="tag-chip">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </aside>
 
-        <div class="e-content">
-            {{ content | safe }}
-        </div>
+  <div class="post-content e-content">
+    <h1 class="post-title p-name">{{ title }}</h1>
+    {{ content | safe }}
+  </div>
+</article>
 
-        {# {% set webmentionUrl = page.url | url | absoluteUrl(metadata.url) %} #}
-        {% set webmentionUrl = page.url | url %}
-        {# Filter the cached mentions to only include ones matching the post's url #}
-        {% set mentions = webmentions | getWebmentionsForUrl(webmentionUrl) %}
-        {% set mentionCount = mentions.length %}
+{# Webmentions feedback section (preserve existing functionality) #}
+{% set webmentionUrl = page.url | url %}
+{% set mentions = webmentions | getWebmentionsForUrl(webmentionUrl) %}
+{% set mentionCount = mentions.length %}
 
-        {% if mentionCount > 0 %}
-            <section class="feedback">
-                <h2>Feedback</h2>
+{% if mentionCount > 0 %}
+<section class="feedback section-grid">
+  <div class="section-label">Feedback</div>
+  <div class="feedback-content">
+    {# Likes #}
+    {% set likes = mentions | webmentionsByType('like-of') %}
+    {% set likeCount = likes.length %}
+    {% if likeCount > 0 %}
+    <div class="feedback-section">
+      <h3 class="feedback-type-title">{{ likeCount }} {{ "Like" | pluralize(likeCount) }}</h3>
+      {% set webmentions = likes %}
+      {% include "webmentions.njk" %}
+    </div>
+    {% endif %}
 
-                <div class="feedback-inline-wrapper">
-                    {# Set likes as mentions that are `like-of` #}
-                    {% set likes = mentions | webmentionsByType('like-of') %}
-                    {% set likeCount = likes.length %}
-                    {% if likeCount > 0 %}
-                        <h3 class="feedback-type-title">{{ likeCount }} {{ "Like" | pluralize(likeCount) }}</h3>
-                        {% set webmentions = likes %}
-                        {% include "webmentions.njk" %}
-                    {% endif %}
-                </div>
+    {# Reposts #}
+    {% set reposts = mentions | webmentionsByType('repost-of') %}
+    {% set repostCount = reposts.length %}
+    {% if repostCount > 0 %}
+    <div class="feedback-section">
+      <h3 class="feedback-type-title">{{ repostCount }} {{ "Repost" | pluralize(repostCount) }}</h3>
+      {% set webmentions = reposts %}
+      {% include "webmentions.njk" %}
+    </div>
+    {% endif %}
 
-                <div class="feedback-inline-wrapper">
-                    {# Set reposts as mentions that are `repost-of` #}
-                    {% set reposts = mentions | webmentionsByType('repost-of') %}
-                    {% set repostCount = reposts.length %}
-                    {% if repostCount > 0 %}
-                        <h3 class="feedback-type-title">{{ repostCount }} {{ "Repost" | pluralize(repostCount) }}</h3>
-                        {% set webmentions = reposts  %}
-                        {% include "webmentions.njk" %}
-                    {% endif %}
-                </div>
-
-                <div>
-                    {# Set replies as mentions that are `in-reply-to` #}
-                    {% set replies = mentions | webmentionsByType('in-reply-to') %}
-                    {% set replyCount = replies.length %}
-                    {% if replyCount > 0 %}
-                        <h3>{{ replyCount }} {{ "Reply" | pluralize(replyCount, "Replies") }}</h3>
-                        {% set replies = replies  %}
-                        {% include "replies.njk" %}
-                    {% endif %}
-                </div>
-            </section>
-        {% endif %}
-    </article>
-</main>
+    {# Replies #}
+    {% set replies = mentions | webmentionsByType('in-reply-to') %}
+    {% set replyCount = replies.length %}
+    {% if replyCount > 0 %}
+    <div class="feedback-section">
+      <h3 class="feedback-type-title">{{ replyCount }} {{ "Reply" | pluralize(replyCount, "Replies") }}</h3>
+      {% set replies = replies %}
+      {% include "replies.njk" %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
