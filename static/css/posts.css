@@ -1,0 +1,102 @@
+/* ============================================
+   POSTS LISTING CSS - Year-grouped layout
+   ============================================ */
+
+/* ─── 1. Year Group (section-grid pattern) ─── */
+.year-group {
+	padding-block: 4rem;
+}
+
+.year-label {
+	font-family: var(--font-display);
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--accent);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	padding-top: 0.3rem;
+}
+
+/* ─── 2. Posts List Container ─── */
+.posts-for-year {
+	display: flex;
+	flex-direction: column;
+}
+
+/* ─── 3. Post Item ─── */
+.post-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding-block: 1.5rem;
+	border-bottom: 1px solid var(--border);
+	transition: border-color 0.2s;
+}
+
+/* ─── 4. Post Item Hover (:has() selector) ─── */
+.post-item:has(.post-title a:hover) {
+	border-color: var(--accent);
+}
+
+/* ─── 5. Post Title ─── */
+.post-title {
+	font-family: var(--font-display);
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.3;
+	margin: 0;
+}
+
+.post-title a {
+	color: var(--ink);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.post-title a:hover {
+	color: var(--accent);
+}
+
+/* ─── 6. Post Meta Left (title + tags container) ─── */
+.post-meta-left {
+	display: flex;
+	align-items: baseline;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.post-tags-inline {
+	font-size: 0.85rem;
+	color: var(--ink-light);
+	font-style: italic;
+}
+
+/* ─── 7. Post Date ─── */
+.post-date {
+	font-size: 0.85rem;
+	color: var(--ink-light);
+	font-variant-numeric: tabular-nums;
+	flex-shrink: 0;
+}
+
+/* ─── 8. Mobile Responsive (width < 768px) ─── */
+@media (width < 768px) {
+	.year-group {
+		padding-block: 2rem;
+	}
+
+	.post-item {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.post-meta-left {
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.post-date {
+		order: -1;
+	}
+}
