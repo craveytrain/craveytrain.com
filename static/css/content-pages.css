@@ -86,3 +86,10 @@
 .now-header {
 	margin-bottom: 2rem;
 }
+
+/* Mobile responsive (width < 768px) */
+@media (width < 768px) {
+	.archive-link {
+		padding: 0 1.5rem;
+	}
+}

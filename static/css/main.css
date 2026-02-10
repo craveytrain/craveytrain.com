@@ -381,6 +381,10 @@ footer {
 		padding: 2rem 1.5rem 0;
 	}
 
+	nav {
+		gap: 1rem;
+	}
+
 	.divider {
 		padding: 0 1.5rem;
 	}

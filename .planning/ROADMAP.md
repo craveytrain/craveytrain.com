@@ -111,6 +111,8 @@ Plans:
 **Goal**: Ensure all layouts work on mobile (below 768px) and verify final quality
 **Depends on**: Phase 5, Phase 6, Phase 7
 **Requirements**: RESP-01, RESP-02, RESP-03, RESP-04, RESP-05
+**Plans**: 1 plan
+
 **Success Criteria** (what must be TRUE):
 
 1. Section grid collapses to single column below 768px
@@ -118,11 +120,10 @@ Plans:
 3. Homepage hero reorders with portrait above text on mobile
 4. Post items stack vertically on mobile
 5. Single post sidebar moves above article on mobile
-   **Plans**: TBD
 
 Plans:
 
-- [ ] 08-01: TBD
+- [ ] 08-01-PLAN.md - Mobile responsive adjustments and verification
 
 ## Progress
 
@@ -134,7 +135,7 @@ Plans:
 | 5. Homepage            | 3/3            | Complete ✓  | 2026-02-09 |
 | 6. Posts System        | 4/4            | Complete ✓  | 2026-02-10 |
 | 7. Content Pages       | 2/2            | Complete ✓  | 2026-02-10 |
-| 8. Responsive & Polish | 0/TBD          | Not started | -          |
+| 8. Responsive & Polish | 0/1            | Not started | -          |
 
 ---
 
@@ -146,3 +147,4 @@ _Phase 6 planned: 2026-02-10_
 _Phase 6 completed: 2026-02-10_
 _Phase 7 planned: 2026-02-10_
 _Phase 7 completed: 2026-02-10_
+_Phase 8 planned: 2026-02-10_
