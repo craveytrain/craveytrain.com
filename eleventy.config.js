@@ -112,6 +112,25 @@ export default async function (eleventyConfig) {
 		return array.slice(0, n)
 	})
 
+	// splitBySections filter - parse HTML content by H2 tags
+	eleventyConfig.addFilter('splitBySections', function (content) {
+		// Split HTML content by H2 tags, return array of {label, content}
+		const sections = []
+		const h2Regex = /<h2[^>]*>(.*?)<\/h2>/gi
+		const parts = content.split(h2Regex)
+
+		// parts[0] is content before first H2 (usually empty)
+		// parts[1] is first H2 text, parts[2] is content after first H2
+		// parts[3] is second H2 text, parts[4] is content after second H2, etc.
+		for (let i = 1; i < parts.length; i += 2) {
+			const label = parts[i].trim()
+			const sectionContent = parts[i + 1] || ''
+			sections.push({ label, content: sectionContent.trim() })
+		}
+
+		return sections
+	})
+
 	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
 
 	eleventyConfig.addPlugin(feedPlugin, {

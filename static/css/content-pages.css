@@ -1,0 +1,88 @@
+/* Content Pages - Now, Colophon, Uses */
+
+/* Page header subtitle */
+.subtitle {
+	font-size: 1.05rem;
+	color: var(--ink-light);
+	margin-bottom: 0.75rem;
+	line-height: 1.6;
+}
+
+/* Updated date in Fraunces italic */
+.updated {
+	font-family: var(--font-display);
+	font-size: 0.9rem;
+	color: var(--ink-light);
+	font-style: italic;
+}
+
+/* Section content typography */
+.section-content h2 {
+	font-family: var(--font-display);
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: var(--ink);
+	margin-bottom: 1rem;
+}
+
+.section-content p {
+	font-size: 1.05rem;
+	color: var(--ink);
+	line-height: 1.75;
+	margin-bottom: 1rem;
+	max-width: var(--prose-max-width);
+}
+
+.section-content p:last-child {
+	margin-bottom: 0;
+}
+
+.section-content ul {
+	font-size: 1.05rem;
+	color: var(--ink);
+	line-height: 1.75;
+	margin-left: 1.5rem;
+	margin-bottom: 1rem;
+	max-width: var(--prose-max-width);
+}
+
+.section-content li {
+	margin-bottom: 0.5rem;
+}
+
+.section-content code {
+	font-family: var(--font-code);
+	font-size: 0.88em;
+	background-color: rgb(0 0 0 / 5%);
+	padding: 0.15em 0.4em;
+	border-radius: 3px;
+}
+
+/* Archive link - right aligned */
+.archive-link {
+	text-align: right;
+	margin-top: 2rem;
+	margin-bottom: 4rem;
+	max-width: var(--max-width);
+	margin-inline: auto;
+	padding: 0 var(--page-padding);
+}
+
+.archive-link a {
+	color: var(--accent);
+	text-decoration: none;
+	border-bottom: 1.5px solid var(--accent-soft);
+	padding-bottom: 2px;
+	font-weight: 500;
+	font-size: 0.95rem;
+	transition: border-color 0.2s;
+}
+
+.archive-link a:hover {
+	border-bottom-color: var(--accent);
+}
+
+/* Now page header spacing */
+.now-header {
+	margin-bottom: 2rem;
+}
