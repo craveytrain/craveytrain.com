@@ -1,10 +1,11 @@
 ---
 title: Posts
 layout: page
+css: posts.css
 tags: foot
 eleventyNavigation:
   key: Posts
   order: 0
 ---
 {% set posts = collections.post | reverse %}
-{% include "post-list.njk" %}
+{% include "post-list-grouped.njk" %}
