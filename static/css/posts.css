@@ -100,3 +100,12 @@
 		order: -1;
 	}
 }
+
+/* ─── Tag Page Footer ─── */
+.tag-page-footer {
+	max-width: var(--max-width);
+	margin: 3rem auto 0;
+	padding: 0 var(--page-padding);
+	font-size: 0.9rem;
+	color: var(--ink-light);
+}
