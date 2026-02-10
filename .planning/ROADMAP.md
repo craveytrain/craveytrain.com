@@ -58,7 +58,7 @@ Plans:
 
 Plans:
 
-- [ ] 05-01-PLAN.md - Homepage CSS with hero, about, posts sections
+- [x] 05-01-PLAN.md - Homepage CSS with hero, about, posts sections ✓
 - [ ] 05-02-PLAN.md - Homepage template with data wiring
 - [ ] 05-03-PLAN.md - Visual and interaction verification
 
@@ -127,7 +127,7 @@ Plans:
 | Phase                  | Plans Complete | Status      | Completed  |
 | ---------------------- | -------------- | ----------- | ---------- |
 | 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
-| 5. Homepage            | 0/3            | Planned     | -          |
+| 5. Homepage            | 1/3            | In progress | -          |
 | 6. Posts System        | 0/TBD          | Not started | -          |
 | 7. Content Pages       | 0/TBD          | Not started | -          |
 | 8. Responsive & Polish | 0/TBD          | Not started | -          |
