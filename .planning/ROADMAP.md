@@ -12,7 +12,7 @@ Transform craveytrain.com from current styling to the Warm Editorial design syst
 ## Phases
 
 - [x] **Phase 4: Foundation** - Design tokens, fonts, base CSS, shared components ✓
-- [ ] **Phase 5: Homepage** - Hero section, about, recent posts
+- [x] **Phase 5: Homepage** - Hero section, about, recent posts ✓
 - [ ] **Phase 6: Posts System** - Listing, single post, tag pages, syntax highlighting
 - [ ] **Phase 7: Content Pages** - Now, Colophon, Uses pages with section-grid
 - [ ] **Phase 8: Responsive & Polish** - Mobile breakpoint, layout adjustments, final testing
@@ -60,7 +60,7 @@ Plans:
 
 - [x] 05-01-PLAN.md - Homepage CSS with hero, about, posts sections ✓
 - [x] 05-02-PLAN.md - Homepage template with data wiring ✓
-- [ ] 05-03-PLAN.md - Visual and interaction verification
+- [x] 05-03-PLAN.md - Visual and interaction verification ✓
 
 ### Phase 6: Posts System
 
@@ -127,7 +127,7 @@ Plans:
 | Phase                  | Plans Complete | Status      | Completed  |
 | ---------------------- | -------------- | ----------- | ---------- |
 | 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
-| 5. Homepage            | 2/3            | In progress | -          |
+| 5. Homepage            | 3/3            | Complete ✓  | 2026-02-09 |
 | 6. Posts System        | 0/TBD          | Not started | -          |
 | 7. Content Pages       | 0/TBD          | Not started | -          |
 | 8. Responsive & Polish | 0/TBD          | Not started | -          |
