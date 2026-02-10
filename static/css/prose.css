@@ -158,66 +158,27 @@
 
 /* ─── 9. Code Blocks with Syntax Highlighting (SNGL-03) ─── */
 
-/* Code block container */
-pre[class*='language-'] {
+/* Code block container - target pre in post-content */
+.post-content pre {
 	background: var(--warm-bg-deep);
 	border: 1px solid var(--border);
-	border-radius: 8px;
-	padding: 1.5rem;
-	padding-left: 3.5rem;
+	border-radius: 6px;
+	padding: 1.25rem;
 	overflow-x: auto;
 	font-family: var(--font-code);
-	font-size: 0.9rem;
-	line-height: 1.6;
-	position: relative;
+	font-size: 0.88rem;
+	line-height: 1.5;
 	margin-block: 2rem;
-}
-
-code[class*='language-'] {
-	font-family: var(--font-code);
 	color: var(--ink);
 }
 
-/* Language label in corner */
-pre[class*='language-']::before {
-	content: attr(data-language);
-	position: absolute;
-	top: 0.5rem;
-	right: 0.75rem;
-	font-size: 0.7rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: var(--ink-light);
-	opacity: 0.5;
-	font-family: var(--font-body);
-}
-
-/* Line numbers */
-pre.line-numbers .line-numbers-rows {
-	position: absolute;
-	top: 1.5rem;
-	left: 0;
-	width: 3rem;
-	border-right: 1px solid var(--border);
-	pointer-events: none;
-	user-select: none;
-	counter-reset: linenumber;
-}
-
-pre.line-numbers .line-numbers-rows > span {
-	display: block;
-	counter-increment: linenumber;
-	line-height: 1.6;
-}
-
-pre.line-numbers .line-numbers-rows > span::before {
-	content: counter(linenumber);
-	color: var(--syntax-comment);
-	font-size: 0.85em;
-	text-align: right;
-	display: block;
-	padding-right: 0.75rem;
+.post-content pre code {
+	font-family: var(--font-code);
+	color: var(--ink);
+	background: transparent;
+	padding: 0;
+	border: none;
+	border-radius: 0;
 }
 
 /* ─── 10. Syntax Highlighting Tokens - Warm Editorial Palette ─── */
@@ -318,15 +279,9 @@ pre.line-numbers .line-numbers-rows > span::before {
 		margin-bottom: 1.5rem;
 	}
 
-	pre[class*='language-'] {
+	.post-content pre {
 		font-size: 0.85rem;
 		padding: 1rem;
-		padding-left: 3rem;
 		border-radius: 4px;
-	}
-
-	pre.line-numbers .line-numbers-rows {
-		top: 1rem;
-		width: 2.5rem;
 	}
 }
