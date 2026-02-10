@@ -79,7 +79,12 @@
 	flex-shrink: 0;
 }
 
-/* ─── 8. Mobile Responsive (width < 768px) ─── */
+/* ─── 8. View All Footer Spacing ─── */
+.section-grid:has(.view-all) {
+	padding-bottom: 4rem;
+}
+
+/* ─── 9. Mobile Responsive (width < 768px) ─── */
 @media (width < 768px) {
 	.year-group {
 		padding-block: 2rem;
