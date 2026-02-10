@@ -3,18 +3,35 @@
    Warm Editorial Design System
    ============================================ */
 
-/* ─── 1. Post Layout (sidebar + content) ─── */
+/* ─── 1. Post Header (title above divider) ─── */
+.post-header {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 3rem var(--page-padding) 2rem;
+}
+
+.post-header .post-title {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 5vw, 2.8rem);
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	line-height: 1.15;
+	color: var(--ink);
+	margin: 0;
+}
+
+/* ─── 2. Post Layout (sidebar + content) ─── */
 .post-layout {
 	display: grid;
 	grid-template-columns: var(--gutter-width) 1fr;
 	gap: var(--content-gap);
 	max-width: var(--max-width);
 	margin: 0 auto;
-	padding: 4rem var(--page-padding);
+	padding: 2.5rem var(--page-padding) 2rem;
 }
 
 .post-sidebar {
-	/* No sticky per context decision */
+	padding-top: 0.3rem;
 }
 
 .sidebar-section {
@@ -23,12 +40,12 @@
 
 .sidebar-label {
 	font-family: var(--font-display);
-	font-size: 0.75rem;
+	font-size: 0.85rem;
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-	color: var(--ink-light);
-	margin-bottom: 0.75rem;
+	color: var(--accent);
+	margin-bottom: 0.5rem;
 }
 
 .post-sidebar .post-date {
@@ -48,26 +65,16 @@
 	align-self: flex-start;
 }
 
-/* ─── 2. Post Content ─── */
+/* ─── 3. Post Content ─── */
 .post-content {
 	max-width: var(--prose-max-width);
 	font-family: var(--font-body);
-	font-size: 1.05rem;
-	line-height: 1.75;
+	font-size: 1.1rem;
+	line-height: 1.8;
 	color: var(--ink);
 }
 
-.post-content .post-title {
-	font-family: var(--font-display);
-	font-size: clamp(2rem, 4vw + 1rem, 2.75rem);
-	font-weight: 800;
-	line-height: 1.15;
-	letter-spacing: -0.02em;
-	margin-bottom: 2rem;
-	color: var(--ink);
-}
-
-/* ─── 3. Prose Typography with clamp() ─── */
+/* ─── 4. Prose Typography with clamp() ─── */
 
 .post-content h2 {
 	font-family: var(--font-display);
@@ -166,7 +173,8 @@
 	padding: 1.25rem;
 	overflow-x: auto;
 	font-family: var(--font-code);
-	font-size: 0.88rem;
+	font-size: 0.95rem;
+	font-weight: 500;
 	line-height: 1.5;
 	margin-block: 2rem;
 	color: var(--ink);
@@ -174,11 +182,17 @@
 
 .post-content pre code {
 	font-family: var(--font-code);
+	font-weight: inherit;
 	color: var(--ink);
 	background: transparent;
 	padding: 0;
 	border: none;
 	border-radius: 0;
+}
+
+/* Ensure all tokens inherit weight unless specified */
+.post-content pre .token {
+	font-weight: 400;
 }
 
 /* ─── 10. Syntax Highlighting Tokens - Warm Editorial Palette ─── */
@@ -253,15 +267,24 @@
 
 /* ─── 11. Mobile Responsive (RESP-05) ─── */
 @media (width < 768px) {
+	.post-header {
+		padding: 2rem 1.5rem;
+	}
+
+	.post-header .post-title {
+		font-size: clamp(1.75rem, 4vw, 2.3rem);
+	}
+
 	.post-layout {
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
-		padding: 2rem var(--page-padding);
+		padding: 1.5rem;
 	}
 
 	.post-sidebar {
 		display: flex;
 		gap: 2rem;
+		padding-top: 0;
 		padding-bottom: 1.5rem;
 		border-bottom: 1px solid var(--border);
 		margin-bottom: 1rem;
@@ -275,12 +298,8 @@
 		flex-flow: row wrap;
 	}
 
-	.post-content .post-title {
-		margin-bottom: 1.5rem;
-	}
-
 	.post-content pre {
-		font-size: 0.85rem;
+		font-size: 0.9rem;
 		padding: 1rem;
 		border-radius: 4px;
 	}
