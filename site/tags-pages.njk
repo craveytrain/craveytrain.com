@@ -20,4 +20,7 @@ permalink: /tags/{{ tag | slugify }}/
 {% set posts = collections[tag] | reverse %}
 {% include "post-list-grouped.njk" %}
 
-<p class="tag-page-footer">See <a href="/tags/">all tags</a>.</p>
+<div class="section-grid">
+  <div class="section-label">&nbsp;</div>
+  <a href="/tags/" class="view-all">View all tags &rarr;</a>
+</div>
