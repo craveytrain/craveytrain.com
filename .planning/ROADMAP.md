@@ -47,17 +47,20 @@ Plans:
 **Goal**: Deliver the homepage with hero section, about text, and recent posts
 **Depends on**: Phase 4
 **Requirements**: HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, HOME-06
+**Plans**: 3 plans
+
 **Success Criteria** (what must be TRUE):
 
 1. Hero displays arch-framed portrait with greeting text
 2. Portrait transitions from grayscale to color on hover
 3. About section displays prose with links to Now/Colophon/Uses
 4. Recent posts section displays latest posts with date, title, excerpt, and interactive tag chips
-   **Plans**: TBD
 
 Plans:
 
-- [ ] 05-01: TBD
+- [ ] 05-01-PLAN.md - Homepage CSS with hero, about, posts sections
+- [ ] 05-02-PLAN.md - Homepage template with data wiring
+- [ ] 05-03-PLAN.md - Visual and interaction verification
 
 ### Phase 6: Posts System
 
@@ -124,7 +127,7 @@ Plans:
 | Phase                  | Plans Complete | Status      | Completed  |
 | ---------------------- | -------------- | ----------- | ---------- |
 | 4. Foundation          | 3/3            | Complete ✓  | 2026-02-09 |
-| 5. Homepage            | 0/TBD          | Not started | -          |
+| 5. Homepage            | 0/3            | Planned     | -          |
 | 6. Posts System        | 0/TBD          | Not started | -          |
 | 7. Content Pages       | 0/TBD          | Not started | -          |
 | 8. Responsive & Polish | 0/TBD          | Not started | -          |
@@ -134,3 +137,4 @@ Plans:
 _Roadmap created: 2026-02-09_
 _Milestone: v9.2 Visual Refresh_
 _Phase 4 planned: 2026-02-09_
+_Phase 5 planned: 2026-02-09_
