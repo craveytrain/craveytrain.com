@@ -96,16 +96,7 @@
 	margin-block: 0.75rem;
 }
 
-/* ─── 5. Inline Code (SNGL-07) ─── */
-.post-content :not(pre) > code {
-	background: var(--warm-bg-deep);
-	border: 1px solid var(--border);
-	border-radius: 4px;
-	padding: 0.15em 0.4em;
-	font-family: var(--font-code);
-	font-size: 0.9em;
-	color: var(--accent-hover);
-}
+/* Inline code now uses tag-level styles from main.css */
 
 /* Lists now use tag-level styles from main.css */
 

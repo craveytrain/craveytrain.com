@@ -50,13 +50,7 @@
 	margin-bottom: 0.5rem;
 }
 
-.section-content code {
-	font-family: var(--font-code);
-	font-size: 0.88em;
-	background-color: rgb(0 0 0 / 5%);
-	padding: 0.15em 0.4em;
-	border-radius: 3px;
-}
+/* Inline code now uses tag-level styles from main.css */
 
 /* Archive link - right aligned */
 .archive-link {
