@@ -7,15 +7,7 @@
 	padding-block: 4rem;
 }
 
-.year-label {
-	font-family: var(--font-display);
-	font-size: 0.85rem;
-	font-weight: 600;
-	color: var(--accent);
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	padding-top: 0.3rem;
-}
+/* .year-label removed - use .section-label from main.css */
 
 /* ─── 2. Posts List Container ─── */
 .posts-for-year {

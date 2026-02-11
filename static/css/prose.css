@@ -43,18 +43,10 @@
 	margin-bottom: 2rem;
 }
 
-.sidebar-label {
-	font-family: var(--font-display);
-	font-size: 0.85rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	color: var(--accent);
-	margin-bottom: 0.5rem;
-}
+/* .sidebar-label removed - use .section-label from main.css */
 
 .post-sidebar .post-date {
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	color: var(--ink-light);
 	font-variant-numeric: tabular-nums;
 }
