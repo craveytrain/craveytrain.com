@@ -3,7 +3,7 @@ layout: base
 css: content-pages.css
 ---
 <div class="page-header section-grid">
-  <div class="section-label">&nbsp;</div>
+  <div class="section-label"></div>
   <div>
     <h1 class="page-title">{{ title }}</h1>
     {% if subtitle %}
@@ -12,7 +12,7 @@ css: content-pages.css
   </div>
 </div>
 
-<div class="divider"><hr></div>
+{% include "partials/divider.njk" %}
 
 {% set sections = content | splitBySections %}
 {% for section in sections %}
@@ -23,6 +23,6 @@ css: content-pages.css
   </div>
 </div>
 {% if not loop.last %}
-<div class="divider"><hr></div>
+{% include "partials/divider.njk" %}
 {% endif %}
 {% endfor %}
