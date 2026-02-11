@@ -21,7 +21,7 @@ css: prose.css
       {% set contentTags = tags | contentTags %}
       {% if contentTags.length > 0 %}
       <div class="sidebar-section">
-        <div class="sidebar-label">Tagged</div>
+        <div class="section-label">Tagged</div>
         <div class="sidebar-tags">
           {% for tag in contentTags %}
             <a href="/tags/{{ tag | slugify }}/" class="tag-chip">{{ tag }}</a>

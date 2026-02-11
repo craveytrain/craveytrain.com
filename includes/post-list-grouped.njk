@@ -1,7 +1,7 @@
 {%- if posts.length -%}
 {% for year, yearPosts in posts | groupby("data.year") | dictsort | reverse %}
   <section class="section-grid year-group">
-    <div class="section-label year-label">{{ year }}</div>
+    <div class="section-label">{{ year }}</div>
     <div class="posts-for-year">
       {% for post in yearPosts | reverse %}
         <article class="post-item">
