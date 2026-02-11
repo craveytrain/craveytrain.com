@@ -30,11 +30,12 @@ This milestone establishes a clean, maintainable CSS architecture. We normalize 
 3. Headings (h2, h3, h4) share base styles without class-specific overrides
 4. All `.post-date` elements use single consistent size
 5. Label styling uses one class (`.section-label`) with no redundant variants
-   **Plans**: TBD
+
+**Plans:** 1 plan
 
 Plans:
 
-- [ ] 09-01: Normalize tag styles and consolidate labels
+- [ ] 09-01-PLAN.md - Normalize tag styles and consolidate labels
 
 ### Phase 10: CSS Componentization
 
@@ -91,7 +92,7 @@ Plans:
 
 | Phase                    | Plans Complete | Status      | Completed |
 | ------------------------ | -------------- | ----------- | --------- |
-| 9. CSS Normalization     | 0/1            | Not started | -         |
+| 9. CSS Normalization     | 0/1            | Planned     | -         |
 | 10. CSS Componentization | 0/1            | Not started | -         |
 | 11. Dead Code Removal    | 0/1            | Not started | -         |
 | 12. Code Quality         | 0/1            | Not started | -         |
