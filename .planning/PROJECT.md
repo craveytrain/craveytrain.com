@@ -36,7 +36,10 @@ A personal website that shares what I'm working on now, documents site evolution
 
 ### Active
 
-(None — planning next milestone)
+- [ ] CSS normalization — push styles to tag selectors as site defaults
+- [ ] CSS componentization — create reusable class patterns
+- [ ] Dead code removal — themes, unused static files, old markup
+- [ ] Code quality — lean and readable
 
 ### Out of Scope
 
