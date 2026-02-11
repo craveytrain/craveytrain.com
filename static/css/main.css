@@ -80,24 +80,24 @@ h6 {
 
 /* ─── 3. :root Design Tokens ─── */
 :root {
-	/* Colors - Core Palette */
-	--warm-bg: #faf6f1;
-	--warm-bg-deep: #f0e8dd;
-	--ink: #2c2420;
-	--ink-light: #6b5d52;
-	--accent: #b44d2d;
-	--accent-hover: #943d22;
-	--accent-soft: #e8c4b0;
-	--border: #ddd2c5;
-	--white: #fff;
+	/* Colors - Core Palette (OKLCH) */
+	--warm-bg: oklch(97% 0.01 80deg);
+	--warm-bg-deep: oklch(93% 0.02 70deg);
+	--ink: oklch(25% 0.02 55deg);
+	--ink-light: oklch(48% 0.03 55deg);
+	--accent: oklch(55% 0.18 40deg);
+	--accent-hover: oklch(48% 0.17 40deg);
+	--accent-soft: oklch(84% 0.05 55deg);
+	--border: oklch(87% 0.02 70deg);
+	--white: oklch(100% 0 0deg);
 
-	/* Colors - Syntax Highlighting */
-	--syntax-property: #b44d2d;
-	--syntax-value: #6b4c8a;
-	--syntax-at-rule: #5b7a3a;
-	--syntax-selector: #2c2420;
-	--syntax-comment: #9b8e82;
-	--syntax-punctuation: #9b8e82;
+	/* Colors - Syntax Highlighting (OKLCH) */
+	--syntax-property: oklch(55% 0.18 40deg);
+	--syntax-value: oklch(45% 0.12 305deg);
+	--syntax-at-rule: oklch(52% 0.12 130deg);
+	--syntax-selector: oklch(25% 0.02 55deg);
+	--syntax-comment: oklch(64% 0.03 60deg);
+	--syntax-punctuation: oklch(64% 0.03 60deg);
 
 	/* Typography - font names lowercase per stylelint */
 	--font-display: fraunces, georgia, serif;
