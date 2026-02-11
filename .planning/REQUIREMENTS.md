@@ -46,31 +46,31 @@
 
 | Requirement | Phase | Status  |
 | ----------- | ----- | ------- |
-| DEAD-01     | TBD   | Pending |
-| DEAD-02     | TBD   | Pending |
-| DEAD-03     | TBD   | Pending |
-| DEAD-04     | TBD   | Pending |
-| DEAD-05     | TBD   | Pending |
-| NORM-01     | TBD   | Pending |
-| NORM-02     | TBD   | Pending |
-| NORM-03     | TBD   | Pending |
-| NORM-04     | TBD   | Pending |
-| NORM-05     | TBD   | Pending |
-| COMP-01     | TBD   | Pending |
-| COMP-02     | TBD   | Pending |
-| COMP-03     | TBD   | Pending |
-| QUAL-01     | TBD   | Pending |
-| QUAL-02     | TBD   | Pending |
-| QUAL-03     | TBD   | Pending |
-| QUAL-04     | TBD   | Pending |
+| NORM-01     | 9     | Pending |
+| NORM-02     | 9     | Pending |
+| NORM-03     | 9     | Pending |
+| NORM-04     | 9     | Pending |
+| NORM-05     | 9     | Pending |
+| COMP-01     | 10    | Pending |
+| COMP-02     | 10    | Pending |
+| COMP-03     | 10    | Pending |
+| DEAD-01     | 11    | Pending |
+| DEAD-02     | 11    | Pending |
+| DEAD-03     | 11    | Pending |
+| DEAD-04     | 11    | Pending |
+| DEAD-05     | 11    | Pending |
+| QUAL-01     | 12    | Pending |
+| QUAL-02     | 12    | Pending |
+| QUAL-03     | 12    | Pending |
+| QUAL-04     | 12    | Pending |
 
 **Coverage:**
 
 - v9.3 requirements: 17 total
-- Mapped to phases: 0
-- Unmapped: 17
+- Mapped to phases: 17
+- Unmapped: 0
 
 ---
 
 _Requirements defined: 2026-02-11_
-_Last updated: 2026-02-11 after initial definition_
+_Last updated: 2026-02-11 - Traceability updated with phase mappings_

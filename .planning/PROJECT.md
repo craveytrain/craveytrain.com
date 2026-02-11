@@ -8,6 +8,17 @@ Personal website for Mike Cravey with blog posts, now page system with archives,
 
 A personal website that shares what I'm working on now, documents site evolution history, and showcases the tools I use.
 
+## Principles
+
+Guiding principles for all work on this project:
+
+1. **Small as possible** — Minimize code footprint. Every line should earn its place.
+2. **No unnecessary code** — If it's not used, delete it. No "just in case" retention.
+3. **Style the defaults** — Tag selectors first. HTML elements should look right without classes.
+4. **Components on top** — Classes exist for variations and compositions, not base styling.
+
+These principles apply to CSS, markup, and configuration. When in doubt, remove.
+
 ## Requirements
 
 ### Validated
@@ -107,4 +118,4 @@ A personal website that shares what I'm working on now, documents site evolution
 
 ---
 
-_Last updated: 2026-02-10 after v9.2 milestone complete_
+_Last updated: 2026-02-11 after v9.3 principles established_
