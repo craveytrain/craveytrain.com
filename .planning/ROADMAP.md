@@ -66,11 +66,13 @@ Plans:
 3. `redesign/` prototype directory no longer exists
 4. Theme generation system removed (`_themes/`, `generate-themes.js`, optimize-css calls)
 5. CSS custom properties live directly in main.css (no generated theme files)
-   **Plans**: TBD
+
+**Plans:** 2 plans
 
 Plans:
 
-- [ ] 11-01: Delete dead directories and inline theme variables
+- [ ] 11-01-PLAN.md - Remove theme generation from build pipeline, inline CSS variables
+- [ ] 11-02-PLAN.md - Delete dead directories and files, remove TypeScript dependency
 
 ### Phase 12: Code Quality
 
@@ -96,7 +98,7 @@ Plans:
 | ------------------------ | -------------- | ----------- | ---------- |
 | 9. CSS Normalization     | 1/1            | ✓ Complete  | 2026-02-11 |
 | 10. CSS Componentization | 1/1            | ✓ Complete  | 2026-02-11 |
-| 11. Dead Code Removal    | 0/1            | Not started | -          |
+| 11. Dead Code Removal    | 0/2            | Not started | -          |
 | 12. Code Quality         | 0/1            | Not started | -          |
 
 ---
