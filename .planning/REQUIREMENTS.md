@@ -7,11 +7,11 @@
 
 ### Dead Code Removal
 
-- [ ] **DEAD-01**: Delete `themes/` TypeScript directory (unused duplicate of `_themes/`)
-- [ ] **DEAD-02**: Delete `includes/css/` old CSS files (home.css, post.css, index.css, prism-shades-of-purple.css)
-- [ ] **DEAD-03**: Delete `redesign/` directory (design prototypes, v9.2 shipped)
-- [ ] **DEAD-04**: Remove theme generation system (`_themes/`, `generate-themes.js`, optimize-css theme calls)
-- [ ] **DEAD-05**: Inline CSS custom properties directly in main.css (replace generated theme vars)
+- [x] **DEAD-01**: Delete `themes/` TypeScript directory (unused duplicate of `_themes/`)
+- [x] **DEAD-02**: Delete `includes/css/` old CSS files (home.css, post.css, index.css, prism-shades-of-purple.css)
+- [x] **DEAD-03**: Delete `redesign/` directory (design prototypes, v9.2 shipped)
+- [x] **DEAD-04**: Remove theme generation system (`_themes/`, `generate-themes.js`, optimize-css theme calls)
+- [x] **DEAD-05**: Inline CSS custom properties directly in main.css (replace generated theme vars)
 
 ### CSS Normalization
 
@@ -54,11 +54,11 @@
 | COMP-01     | 10    | Complete |
 | COMP-02     | 10    | Complete |
 | COMP-03     | 10    | Complete |
-| DEAD-01     | 11    | Pending  |
-| DEAD-02     | 11    | Pending  |
-| DEAD-03     | 11    | Pending  |
-| DEAD-04     | 11    | Pending  |
-| DEAD-05     | 11    | Pending  |
+| DEAD-01     | 11    | Complete |
+| DEAD-02     | 11    | Complete |
+| DEAD-03     | 11    | Complete |
+| DEAD-04     | 11    | Complete |
+| DEAD-05     | 11    | Complete |
 | QUAL-01     | 12    | Pending  |
 | QUAL-02     | 12    | Pending  |
 | QUAL-03     | 12    | Pending  |

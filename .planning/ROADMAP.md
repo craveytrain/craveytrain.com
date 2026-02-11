@@ -13,7 +13,7 @@ This milestone establishes a clean, maintainable CSS architecture. We normalize 
 
 - [x] **Phase 9: CSS Normalization** - Establish tag-based defaults for consistent baseline
 - [x] **Phase 10: CSS Componentization** - Extract reusable patterns into named components
-- [ ] **Phase 11: Dead Code Removal** - Delete unused themes, directories, and generated files
+- [x] **Phase 11: Dead Code Removal** - Delete unused themes, directories, and generated files
 - [ ] **Phase 12: Code Quality** - Fix template hacks and extract repeated patterns
 
 ## Phase Details
@@ -71,8 +71,8 @@ Plans:
 
 Plans:
 
-- [ ] 11-01-PLAN.md - Remove theme generation from build pipeline, inline CSS variables
-- [ ] 11-02-PLAN.md - Delete dead directories and files, remove TypeScript dependency
+- [x] 11-01-PLAN.md - Remove theme generation from build pipeline, inline CSS variables
+- [x] 11-02-PLAN.md - Delete dead directories and files, remove TypeScript dependency
 
 ### Phase 12: Code Quality
 
@@ -98,7 +98,7 @@ Plans:
 | ------------------------ | -------------- | ----------- | ---------- |
 | 9. CSS Normalization     | 1/1            | ✓ Complete  | 2026-02-11 |
 | 10. CSS Componentization | 1/1            | ✓ Complete  | 2026-02-11 |
-| 11. Dead Code Removal    | 0/2            | Not started | -          |
+| 11. Dead Code Removal    | 2/2            | ✓ Complete  | 2026-02-11 |
 | 12. Code Quality         | 0/1            | Not started | -          |
 
 ---
