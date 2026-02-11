@@ -7,14 +7,14 @@ This milestone establishes a clean, maintainable CSS architecture. We normalize 
 ## Milestones
 
 - [x] **v9.2 Visual Refresh** - Phases 4-8 (shipped 2026-02-10)
-- [ ] **v9.3 Cleanup & Polish** - Phases 9-12 (in progress)
+- [x] **v9.3 Cleanup & Polish** - Phases 9-12 (shipped 2026-02-11)
 
 ## Phases
 
 - [x] **Phase 9: CSS Normalization** - Establish tag-based defaults for consistent baseline
 - [x] **Phase 10: CSS Componentization** - Extract reusable patterns into named components
 - [x] **Phase 11: Dead Code Removal** - Delete unused themes, directories, and generated files
-- [ ] **Phase 12: Code Quality** - Fix template hacks and extract repeated patterns
+- [x] **Phase 12: Code Quality** - Fix template hacks and extract repeated patterns
 
 ## Phase Details
 
@@ -92,17 +92,17 @@ Plans:
 
 Plans:
 
-- [ ] 12-01-PLAN.md - Template cleanup: remove &nbsp; hacks, adopt divider partial, extract feedback partial
-- [ ] 12-02-PLAN.md - CSS modernization: delete .link-underline, convert colors to OKLCH
+- [x] 12-01-PLAN.md - Template cleanup: remove &nbsp; hacks, adopt divider partial, extract feedback partial
+- [x] 12-02-PLAN.md - CSS modernization: delete .link-underline, convert colors to OKLCH
 
 ## Progress
 
-| Phase                    | Plans Complete | Status      | Completed  |
-| ------------------------ | -------------- | ----------- | ---------- |
-| 9. CSS Normalization     | 1/1            | ✓ Complete  | 2026-02-11 |
-| 10. CSS Componentization | 1/1            | ✓ Complete  | 2026-02-11 |
-| 11. Dead Code Removal    | 2/2            | ✓ Complete  | 2026-02-11 |
-| 12. Code Quality         | 0/2            | Not started | -          |
+| Phase                    | Plans Complete | Status     | Completed  |
+| ------------------------ | -------------- | ---------- | ---------- |
+| 9. CSS Normalization     | 1/1            | ✓ Complete | 2026-02-11 |
+| 10. CSS Componentization | 1/1            | ✓ Complete | 2026-02-11 |
+| 11. Dead Code Removal    | 2/2            | ✓ Complete | 2026-02-11 |
+| 12. Code Quality         | 2/2            | ✓ Complete | 2026-02-11 |
 
 ---
 

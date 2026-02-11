@@ -29,10 +29,10 @@
 
 ### Code Quality
 
-- [ ] **QUAL-01**: Remove `&nbsp;` layout hacks in content-page.njk and now.njk (use CSS gap)
-- [ ] **QUAL-02**: Use `partials/divider.njk` consistently (replace inline `<div class="divider"><hr></div>`)
-- [ ] **QUAL-03**: Delete commented-out code in `includes/replies.njk`
-- [ ] **QUAL-04**: Extract likes/reposts/replies pattern in post.njk to macro (reduce repetition)
+- [x] **QUAL-01**: Remove `&nbsp;` layout hacks in content-page.njk and now.njk (use CSS gap)
+- [x] **QUAL-02**: Use `partials/divider.njk` consistently (replace inline `<div class="divider"><hr></div>`)
+- [x] **QUAL-03**: Delete commented-out code in `includes/replies.njk`
+- [x] **QUAL-04**: Extract likes/reposts/replies pattern in post.njk to partial (reduce repetition)
 
 ## Out of Scope
 
@@ -59,10 +59,10 @@
 | DEAD-03     | 11    | Complete |
 | DEAD-04     | 11    | Complete |
 | DEAD-05     | 11    | Complete |
-| QUAL-01     | 12    | Pending  |
-| QUAL-02     | 12    | Pending  |
-| QUAL-03     | 12    | Pending  |
-| QUAL-04     | 12    | Pending  |
+| QUAL-01     | 12    | Complete |
+| QUAL-02     | 12    | Complete |
+| QUAL-03     | 12    | Complete |
+| QUAL-04     | 12    | Complete |
 
 **Coverage:**
 
