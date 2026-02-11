@@ -15,11 +15,11 @@
 
 ### CSS Normalization
 
-- [ ] **NORM-01**: Normalize `blockquote` styles to tag selector (move from `.post-content blockquote`)
-- [ ] **NORM-02**: Normalize `ul`, `ol`, `li` styles to tag selectors (move from `.post-content`)
-- [ ] **NORM-03**: Normalize `h2`, `h3`, `h4` base styles to tag selectors (consolidate from multiple files)
-- [ ] **NORM-04**: Standardize `.post-date` sizing (reconcile 0.85rem vs 0.9rem)
-- [ ] **NORM-05**: Consolidate `.section-label`, `.year-label`, `.sidebar-label` into single class
+- [x] **NORM-01**: Normalize `blockquote` styles to tag selector (move from `.post-content blockquote`)
+- [x] **NORM-02**: Normalize `ul`, `ol`, `li` styles to tag selectors (move from `.post-content`)
+- [x] **NORM-03**: Normalize `h2`, `h3`, `h4` base styles to tag selectors (consolidate from multiple files)
+- [x] **NORM-04**: Standardize `.post-date` sizing (reconcile 0.85rem vs 0.9rem)
+- [x] **NORM-05**: Consolidate `.section-label`, `.year-label`, `.sidebar-label` into single class
 
 ### CSS Componentization
 
@@ -44,25 +44,25 @@
 
 ## Traceability
 
-| Requirement | Phase | Status  |
-| ----------- | ----- | ------- |
-| NORM-01     | 9     | Pending |
-| NORM-02     | 9     | Pending |
-| NORM-03     | 9     | Pending |
-| NORM-04     | 9     | Pending |
-| NORM-05     | 9     | Pending |
-| COMP-01     | 10    | Pending |
-| COMP-02     | 10    | Pending |
-| COMP-03     | 10    | Pending |
-| DEAD-01     | 11    | Pending |
-| DEAD-02     | 11    | Pending |
-| DEAD-03     | 11    | Pending |
-| DEAD-04     | 11    | Pending |
-| DEAD-05     | 11    | Pending |
-| QUAL-01     | 12    | Pending |
-| QUAL-02     | 12    | Pending |
-| QUAL-03     | 12    | Pending |
-| QUAL-04     | 12    | Pending |
+| Requirement | Phase | Status   |
+| ----------- | ----- | -------- |
+| NORM-01     | 9     | Complete |
+| NORM-02     | 9     | Complete |
+| NORM-03     | 9     | Complete |
+| NORM-04     | 9     | Complete |
+| NORM-05     | 9     | Complete |
+| COMP-01     | 10    | Pending  |
+| COMP-02     | 10    | Pending  |
+| COMP-03     | 10    | Pending  |
+| DEAD-01     | 11    | Pending  |
+| DEAD-02     | 11    | Pending  |
+| DEAD-03     | 11    | Pending  |
+| DEAD-04     | 11    | Pending  |
+| DEAD-05     | 11    | Pending  |
+| QUAL-01     | 12    | Pending  |
+| QUAL-02     | 12    | Pending  |
+| QUAL-03     | 12    | Pending  |
+| QUAL-04     | 12    | Pending  |
 
 **Coverage:**
 
