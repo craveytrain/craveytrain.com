@@ -23,9 +23,9 @@
 
 ### CSS Componentization
 
-- [ ] **COMP-01**: Create `.link-underline` component (consolidate hero-links, view-all, archive-link patterns)
-- [ ] **COMP-02**: Create `.container` utility (extract repeated max-width + margin auto pattern)
-- [ ] **COMP-03**: Consolidate inline code styling (`.post-content code` and `.section-content code`)
+- [x] **COMP-01**: Create `.link-underline` component (consolidate hero-links, view-all, archive-link patterns)
+- [x] **COMP-02**: Document container pattern decision (keep semantic classes, no utility extraction)
+- [x] **COMP-03**: Consolidate inline code styling (`.post-content code` and `.section-content code`)
 
 ### Code Quality
 
@@ -51,9 +51,9 @@
 | NORM-03     | 9     | Complete |
 | NORM-04     | 9     | Complete |
 | NORM-05     | 9     | Complete |
-| COMP-01     | 10    | Pending  |
-| COMP-02     | 10    | Pending  |
-| COMP-03     | 10    | Pending  |
+| COMP-01     | 10    | Complete |
+| COMP-02     | 10    | Complete |
+| COMP-03     | 10    | Complete |
 | DEAD-01     | 11    | Pending  |
 | DEAD-02     | 11    | Pending  |
 | DEAD-03     | 11    | Pending  |
