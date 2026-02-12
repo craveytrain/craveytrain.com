@@ -1,6 +1,7 @@
 ---
 title: OAuth
 date: 2011-05-24
+description: Building Twitter OAuth into my Node.js blog for comments — with Markdown support and a realtime preview.
 tags:
   - oauth
   - nodejs

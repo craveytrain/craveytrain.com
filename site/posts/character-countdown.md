@@ -1,6 +1,7 @@
 ---
 title: Character countdown
 date: 2010-12-06
+description: A jQuery widget for Twitter-style character countdowns — my first real adventure with the widget factory.
 tags:
   - glgui
   - javascript

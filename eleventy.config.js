@@ -47,6 +47,8 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/favicons': 'favicons' })
 	eleventyConfig.addPassthroughCopy({ 'static/cv': 'cv' })
 	eleventyConfig.addPassthroughCopy({ 'static/slides': 'slides' })
+	eleventyConfig.addPassthroughCopy({ 'static/fonts': 'fonts' })
+	eleventyConfig.addPassthroughCopy({ 'static/css': 'css' })
 
 	// merge it deep
 	eleventyConfig.setDataDeepMerge(true)
@@ -56,7 +58,14 @@ export default async function (eleventyConfig) {
 	// filter and sort nav items
 	eleventyConfig.addPlugin(eleventyNavigationPlugin)
 	// syntax highlighting
-	eleventyConfig.addPlugin(syntaxHighlight)
+	eleventyConfig.addPlugin(syntaxHighlight, {
+		preAttributes: {
+			class: 'line-numbers',
+			'data-language': function ({ language }) {
+				return language || 'text'
+			},
+		},
+	})
 
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj =>
@@ -74,6 +83,16 @@ export default async function (eleventyConfig) {
 		dateObj ? dateObj.toISOString() : dateObj
 	)
 
+	// month and year only (e.g., "Jan 2025")
+	eleventyConfig.addFilter('monthYear', dateObj =>
+		dateObj
+			? dateObj.toLocaleDateString('en-US', {
+					month: 'short',
+					year: 'numeric',
+				})
+			: dateObj
+	)
+
 	eleventyConfig.addFilter('getWebmentionsForUrl', getWebmentionsForUrl)
 	eleventyConfig.addFilter('webmentionsByType', webmentionsByType)
 
@@ -83,6 +102,34 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addCollection('tagList', tagList)
 
 	eleventyConfig.addFilter('contentTags', contentTags)
+
+	// head filter - get first N items from array
+	eleventyConfig.addFilter('head', (array, n) => {
+		if (!Array.isArray(array) || array.length === 0) return []
+		if (n < 0) {
+			return array.slice(n)
+		}
+		return array.slice(0, n)
+	})
+
+	// splitBySections filter - parse HTML content by H2 tags
+	eleventyConfig.addFilter('splitBySections', function (content) {
+		// Split HTML content by H2 tags, return array of {label, content}
+		const sections = []
+		const h2Regex = /<h2[^>]*>(.*?)<\/h2>/gi
+		const parts = content.split(h2Regex)
+
+		// parts[0] is content before first H2 (usually empty)
+		// parts[1] is first H2 text, parts[2] is content after first H2
+		// parts[3] is second H2 text, parts[4] is content after second H2, etc.
+		for (let i = 1; i < parts.length; i += 2) {
+			const label = parts[i].trim()
+			const sectionContent = parts[i + 1] || ''
+			sections.push({ label, content: sectionContent.trim() })
+		}
+
+		return sections
+	})
 
 	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
 

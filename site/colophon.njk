@@ -1,22 +1,31 @@
 ---
 title: Colophon
-date: 2022-12-22
-layout: page
+layout: base
+css: content-pages.css
 tags: foot
 eleventyNavigation:
   key: Colophon
   order: 2
 ---
+<div class="page-header section-grid">
+  <div class="section-label"></div>
+  <div>
+    <h1 class="page-title">{{ title }}</h1>
+    <p class="subtitle">While this site has cycled its tech stack a few times, it's always been built on the hard work of the open source community. Here's how it's evolved.</p>
+  </div>
+</div>
 
-<p>While this site has cycled it's tech stack a few times, it's always been built on the hard work of the open source community. While it's entirety is available on [github](http://github.com/craveytrain/craveytrain.com), I would like to recognize the tools I am using now, as well as others I have used through the years, to build this site.<p>
+{% include "partials/divider.njk" %}
 
 {% set posts = collections['colophon'] | reverse %}
 {%- for post in posts -%}
-	<article class="h-entry" id="{{ post.data.title | slugify }}">
-			<h1 class="post-title p-name">{{ post.title }}</h1>
-
-			<div class="e-content">
-					{{ post.content | safe }}
-			</div>
-	</article>
+<div class="section-grid" id="{{ post.data.title | slugify }}">
+  <div class="section-label">{{ post.data.title | replace("Colophon ", "") }}</div>
+  <div class="section-content">
+    {{ post.content | safe }}
+  </div>
+</div>
+{% if not loop.last %}
+{% include "partials/divider.njk" %}
+{% endif %}
 {%- endfor -%}

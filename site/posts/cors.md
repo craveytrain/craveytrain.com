@@ -1,6 +1,7 @@
 ---
 title: CORS
 date: 2011-06-17
+description: Implementing cross-origin requests with a JSONP fallback using jQuery's ajaxPrefilter for browsers that don't support CORS.
 tags:
   - javascript
   - xhr

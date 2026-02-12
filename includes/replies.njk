@@ -4,8 +4,6 @@
 			{% if reply.author %}
 				{% if reply.author.photo %}
 				<img src="{{ reply.author.photo }}" alt="{{ reply.author.name }}" width="56" height="56" loading="lazy" />
-				{% comment %} {% else %}
-				<img src="{{ '/img/avatar.svg' | url }}" alt="" width="48" height="48"> {% endcomment %}
 				{% endif %}
 				<span>
 					<a class="h-card u-url" {% if reply.url %}href="{{ reply.url }}" {% endif %} target="_blank" rel="noopener noreferrer"><strong class="p-name">{{ reply.author.name }}</strong></a>

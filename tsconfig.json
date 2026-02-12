@@ -1,9 +1,0 @@
-{
-	"compilerOptions": {
-		"target": "ESNEXT",
-		"module": "nodenext",
-		"strict": true,
-		"rootDir": "themes",
-		"outDir": "_themes"
-	}
-}

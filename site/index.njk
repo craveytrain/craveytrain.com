@@ -2,41 +2,91 @@
 layout: base
 css: home.css
 ---
-<header>
-	<h1>{{ '/img/logo-text.svg' | svgContents | safe }}</h1>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Hey y'all<span class="accent">,</span><br>I'm Mike Cravey.</h1>
+    <p>Father, husband, teacher, and geek. A UX Engineer who believes the web should be fast, accessible, and built with care.</p>
+    <div class="hero-links">
+      {%- for contact in metadata.author.contacts %}
+      <a href="{{ contact.url }}">{{ contact.name }} &rarr;</a>
+      {%- endfor %}
+    </div>
+  </div>
+  <div class="hero-portrait">
+    <picture>
+      <source
+        type="image/avif"
+        srcset="/img/hero/portrait-1x.avif 1x, /img/hero/portrait-2x.avif 2x">
+      <source
+        type="image/webp"
+        srcset="/img/hero/portrait-1x.webp 1x, /img/hero/portrait-2x.webp 2x">
+      <img
+        src="/img/hero/portrait-1x.jpg"
+        srcset="/img/hero/portrait-1x.jpg 1x, /img/hero/portrait-2x.jpg 2x"
+        alt="Mike Cravey"
+        width="280"
+        height="340">
+    </picture>
+  </div>
+  {# Mobile Option C layout (shown via CSS) #}
+  <div class="hero-top">
+    <div class="hero-avatar">
+      <picture>
+        <source
+          type="image/avif"
+          srcset="/img/hero/avatar-1x.avif 1x, /img/hero/avatar-2x.avif 2x">
+        <source
+          type="image/webp"
+          srcset="/img/hero/avatar-1x.webp 1x, /img/hero/avatar-2x.webp 2x">
+        <img
+          src="/img/hero/avatar-1x.jpg"
+          srcset="/img/hero/avatar-1x.jpg 1x, /img/hero/avatar-2x.jpg 2x"
+          alt="Mike Cravey"
+          width="72"
+          height="72">
+      </picture>
+    </div>
+    <div>
+      <div class="hero-name">Hey y'all<span class="accent">,</span><br>I'm Mike Cravey.</div>
+      <div class="hero-tagline">UX Engineer</div>
+    </div>
+  </div>
+</section>
 
-	<img class="headshot" src="/img/illustration.png" alt="Caricature of headshot of Mike Cravey." />
+{% include "partials/divider.njk" %}
 
-	<section class="hero">
-		<p>
-			<span class="welcome">Hey y’all<span class="accent">,</span></span>
-			my name is
-			<strong>Mike Cravey</strong>. I'm a father, husband, teacher, and geek.
-		</p>
-	</section>
-</header>
+<section class="section-grid about">
+  <div class="section-label">About</div>
+  <div class="about-content">
+    <p>I'm a UX Engineer based in Lake Jackson, TX. I spend my days thinking about the intersection of design and engineering — building interfaces that are both beautiful and performant.</p>
+    <p>You can see what I'm up to <a href="/now/">now</a>, read more about how this site is made on the <a href="/colophon/">colophon</a>, or see what tools I use on the <a href="/uses/">uses</a> page.</p>
+  </div>
+</section>
 
-<main data-theme="dracula-light">
-	<section class="adaptable-columns">
-		<div class="heading">
-			{% set about = collections.about | last %}
-			<h2 class="h3">{{ about.data.title }}</h2>
+{% include "partials/divider.njk" %}
 
-			{% include "contact-links.njk" %}
-		</div>
-
-		<div class="content">
-			{{ about.content | safe }}
-		</div>
-	</section>
-
-	<section class="adaptable-columns">
-		<div class="heading">
-			<h2 class="h3"><a href="/posts">Posts</a></h2>
-		</div>
-		<div class="content">
-			{% set post = collections.post | last %}
-			{% include "post-link.njk" %}
-		</div>
-	</section>
-</main>
+<section class="section-grid posts">
+  <div class="section-label">Latest Posts</div>
+  <div class="post-list">
+    {%- set recentPosts = collections.post | reverse | head(3) %}
+    {%- for post in recentPosts %}
+    <div class="post-item">
+      <div class="post-date">{{ post.date | monthYear }}</div>
+      <div>
+        <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        {%- if post.data.description %}
+        <p class="post-excerpt">{{ post.data.description }}</p>
+        {%- endif %}
+        {%- if post.data.tags %}
+        <div class="post-tags">
+          {%- for tag in post.data.tags | contentTags %}
+          <a href="/tags/{{ tag | slugify }}/" class="tag-chip">{{ tag }}</a>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </div>
+    </div>
+    {%- endfor %}
+    <a href="/posts/" class="view-all">View all posts &rarr;</a>
+  </div>
+</section>

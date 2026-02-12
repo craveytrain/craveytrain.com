@@ -1,6 +1,6 @@
 ---
 title: What I'm Doing Now
-layout: page
+layout: now
 tags: foot
 eleventyNavigation:
   key: Now
@@ -8,20 +8,3 @@ eleventyNavigation:
 permalink: /now/
 override:tags: [foot]
 ---
-{% set nowEntries = collections.now %}
-{% set latestNow = nowEntries[nowEntries.length - 1] %}
-{% set previousNow = nowEntries[nowEntries.length - 2] if nowEntries.length > 1 else null %}
-
-<p class="byline">As of {{ latestNow.date | prettyDate }}</p>
-
-{{ latestNow.content | safe }}
-
-{% if previousNow %}
-<nav class="now-nav" aria-label="Now page navigation">
-    <ul>
-        <li><a href="{{ previousNow.url }}" rel="prev">Previous</a></li>
-    </ul>
-</nav>
-{% endif %}
-
-<p><a href="/now/archive/">View previous updates</a></p>

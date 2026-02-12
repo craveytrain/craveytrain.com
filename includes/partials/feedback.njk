@@ -1,0 +1,32 @@
+{# Likes #}
+{% set likes = mentions | webmentionsByType('like-of') %}
+{% set likeCount = likes.length %}
+{% if likeCount > 0 %}
+<div class="feedback-section">
+  <h3 class="feedback-type-title">{{ likeCount }} {{ "Like" | pluralize(likeCount) }}</h3>
+  {% set webmentions = likes %}
+  {% include "webmentions.njk" %}
+</div>
+{% endif %}
+
+{# Reposts #}
+{% set reposts = mentions | webmentionsByType('repost-of') %}
+{% set repostCount = reposts.length %}
+{% if repostCount > 0 %}
+<div class="feedback-section">
+  <h3 class="feedback-type-title">{{ repostCount }} {{ "Repost" | pluralize(repostCount) }}</h3>
+  {% set webmentions = reposts %}
+  {% include "webmentions.njk" %}
+</div>
+{% endif %}
+
+{# Replies #}
+{% set replies = mentions | webmentionsByType('in-reply-to') %}
+{% set replyCount = replies.length %}
+{% if replyCount > 0 %}
+<div class="feedback-section">
+  <h3 class="feedback-type-title">{{ replyCount }} {{ "Reply" | pluralize(replyCount, "Replies") }}</h3>
+  {% set replies = replies %}
+  {% include "replies.njk" %}
+</div>
+{% endif %}

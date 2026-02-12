@@ -1,6 +1,7 @@
 ---
 title: Accessible inline form labels
 date: 2009-06-17
+description: A semantic approach to inline form labels — overlaying the actual label element instead of using placeholder text in the input value.
 tags:
   - accessibility
   - css

@@ -1,6 +1,7 @@
 ---
 title: Learning rails
 date: 2010-12-30
+description: Using Rails as a gateway to learn Ruby — because I need to relate new languages to something I know, like building web apps.
 tags:
   - psa
 ---

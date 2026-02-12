@@ -1,6 +1,7 @@
 ---
 title: How i interview
 date: 2012-12-16
+description: A conversational approach to technical interviews — finding great teammates without the power plays and academic exercises.
 tags:
   - interview
 ---

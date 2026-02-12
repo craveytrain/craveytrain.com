@@ -1,6 +1,7 @@
 ---
 title: DB gone
 date: 2011-06-17
+description: A cautionary tale about upgrading CouchDB without backing up first. Sorry about your comments.
 tags:
   - psa
   - couchdb

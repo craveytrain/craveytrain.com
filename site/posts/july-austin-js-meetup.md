@@ -1,6 +1,7 @@
 ---
 title: July austin JS meetup
 date: 2010-07-21
+description: Recap of the Austin JavaScript meetup — Node.js live coding gone wrong and an impressive scripty2 demo on CSS transitions.
 tags:
   - austin
   - javascript
