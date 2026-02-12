@@ -1,6 +1,7 @@
 ---
 title: Styling the stove
 date: 2010-01-22
+description: Blow drying a wet stovetop to stop the ignitors from firing — thank you, internet.
 tags:
   - anecdotal
 ---

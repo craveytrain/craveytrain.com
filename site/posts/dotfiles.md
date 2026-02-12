@@ -1,6 +1,7 @@
 ---
 title: Dotfiles
 date: 2011-04-27
+description: A walkthrough of my bash configuration — git branch in the prompt, completion scripts, and the little things that make the terminal feel like home.
 tags:
   - bash
   - prompt

@@ -1,6 +1,7 @@
 ---
 title: Back to wordpress
 date: 2010-11-30
+description: Tumblr was simple, but I wanted more flexibility. Back to WordPress it is.
 tags:
   - psa
 ---

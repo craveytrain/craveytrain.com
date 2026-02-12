@@ -1,5 +1,62 @@
 # Project Milestones: craveytrain.com
 
+## v9.3 Cleanup & Polish (Shipped: 2026-02-11)
+
+**Delivered:** Clean, maintainable CSS architecture with tag-based defaults, reusable components, dead code removal, and template quality improvements.
+
+**Phases completed:** 9-12 (6 plans total)
+
+**Key accomplishments:**
+
+- CSS normalization: tag-level styles (blockquote, lists, headings) in main.css; consolidated 3 label classes into single `.section-label`
+- CSS componentization: extracted link-underline and inline code patterns; documented container pattern decision
+- Build simplification: removed TypeScript theme generation, simplified npm scripts from 12 to 4
+- Dead code removal: deleted 18 unused files (~2.2MB) including themes/, includes/css/, redesign/
+- Template quality: removed `&nbsp;` hacks, adopted divider partial, extracted feedback partial
+- Color modernization: converted all 15 CSS colors from hex to OKLCH
+
+**Stats:**
+
+- 35 files changed
+- +354 / -4,656 lines (net -4,302 — cleanup milestone!)
+- 4 phases, 6 plans, 23 commits
+- 1 day from start to ship
+
+**Git range:** `feat(09-01)` → `docs(12)`
+
+**What's next:** TBD — next milestone planning
+
+---
+
+## v9.2 Visual Refresh (Shipped: 2026-02-10)
+
+**Delivered:** Complete visual redesign with Warm Editorial design system — terracotta accent, cream backgrounds, Fraunces/Inter typography, 200px/1fr editorial grid, and mobile-first responsive design.
+
+**Phases completed:** 4-8 (13 plans total)
+
+**Key accomplishments:**
+
+- Warm Editorial design system with 9 core colors, self-hosted fonts (Fraunces headings, Inter body), and CSS custom properties
+- Homepage with arch-framed portrait hero (grayscale-to-color hover), about section, and recent posts with interactive tag chips
+- Posts system with year-grouped listing, single post sidebar layout, warm syntax highlighting palette
+- Static tag pages at `/tags/{tag}/` replacing inline tag links
+- Content pages (Now, Colophon, Uses) with 200px/1fr section-grid layout
+- Mobile responsive at 768px breakpoint, verified down to 320px minimum viewport
+- Accessibility: skip link, visible focus states, keyboard navigation
+
+**Stats:**
+
+- 79 files created/modified
+- 5,426 lines added (CSS, Nunjucks, JavaScript)
+- 5 phases, 13 plans, ~40 tasks
+- 2 days from start to ship
+
+**Git range:** `feat(04-01)` → `feat(08-01)`
+
+**What's next:** Future enhancements (dark mode, tag filtering, view transitions)
+
+---
+
 ## v9.1 Content Restructure (Shipped: 2026-02-09)
 
 **Delivered:** Content restructure with now pages, consolidated colophon history, and uses page in navigation — preparing foundation for future visual redesign.

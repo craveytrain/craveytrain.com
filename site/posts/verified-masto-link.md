@@ -1,6 +1,7 @@
 ---
 title: Verified Mastodon Link
 date: 2022-12-22
+description: How to verify your Mastodon profile link without cluttering your page — using a link tag in the head instead of a visible anchor.
 tags:
   - mastodon
   - html

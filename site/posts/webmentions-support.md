@@ -1,6 +1,7 @@
 ---
 title: Webmentions Support
 date: 2023-02-16
+description: Adding webmention support to my Eleventy blog, inspired by the IndieWeb movement and the push to own your own content.
 tags:
   - web standards
   - webmentions

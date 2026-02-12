@@ -1,18 +1,17 @@
 ---
 title: Uses
-layout: page
+layout: content-page
 tags: foot
 eleventyNavigation:
   key: Uses
   order: 1
+subtitle: "Here's a current snapshot of the tools I use."
 ---
-
-Here's a current snapshot of the tools I use.
 
 ## Terminal
 
 - One of my favorite projects, I am constantly tinkering with my [Dotfiles](https://github.com/craveytrain/dotfiles).
-- While I've tried Hyper a few times, and love the idea of it, I continue to use [iTerm](https://www.iterm2.com) for it's stability and speed.
+- While I've tried Hyper a few times, and love the idea of it, I continue to use [iTerm](https://www.iterm2.com) for its stability and speed.
 - I use [Dank Mono](https://dank.sh) for my terminal as well.
 
 ## Editor

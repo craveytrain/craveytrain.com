@@ -1,0 +1,257 @@
+/* ============================================
+   PROSE.CSS - Single Post Styling
+   Warm Editorial Design System
+   ============================================ */
+
+/* ─── 1. Post Header (title above divider) ─── */
+.post-header {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 3rem var(--page-padding) 2rem;
+}
+
+.post-header .post-title {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 5vw, 2.8rem);
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	line-height: 1.15;
+	color: var(--ink);
+	margin: 0;
+}
+
+/* ─── 2. Post Layout (sidebar + content) ─── */
+.post-layout {
+	display: grid;
+	grid-template-columns: var(--gutter-width) 1fr;
+	gap: var(--content-gap);
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 2.5rem var(--page-padding) 2rem;
+}
+
+.post-sidebar {
+	padding-top: 0.25rem;
+}
+
+/* Align first content element with sidebar */
+.post-content > :first-child {
+	margin-top: 0;
+}
+
+.sidebar-section {
+	margin-bottom: 2rem;
+}
+
+/* .sidebar-label removed - use .section-label from main.css */
+
+.post-sidebar .post-date {
+	font-size: 0.85rem;
+	color: var(--ink-light);
+	font-variant-numeric: tabular-nums;
+}
+
+.post-sidebar .sidebar-tags {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+/* Reuse tag-chip from home.css, ensure available */
+.post-sidebar .tag-chip {
+	align-self: flex-start;
+}
+
+/* ─── 3. Post Content ─── */
+.post-content {
+	max-width: var(--prose-max-width);
+	font-family: var(--font-body);
+	font-size: 1.1rem;
+	line-height: 1.8;
+	color: var(--ink);
+	-webkit-font-smoothing: auto;
+	-moz-osx-font-smoothing: auto;
+}
+
+/* ─── 4. Prose Typography - Margin Overrides ─── */
+
+.post-content h2 {
+	margin-block: 2.5rem 1rem;
+}
+
+.post-content h3 {
+	margin-block: 2rem 0.75rem;
+}
+
+.post-content h4 {
+	margin-block: 1.5rem 0.5rem;
+}
+
+.post-content p {
+	margin-block: 1.25rem;
+}
+
+/* ─── 4. Blockquotes - Prose Spacing Override ─── */
+.post-content blockquote p {
+	margin-block: 0.75rem;
+}
+
+/* Inline code now uses tag-level styles from main.css */
+
+/* Lists now use tag-level styles from main.css */
+
+/* ─── 7. Images (SNGL-09) ─── */
+.post-content img {
+	margin-block: 2rem;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+}
+
+/* ─── 8. Horizontal Rules ─── */
+.post-content hr {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin-block: 2.5rem;
+}
+
+/* ─── 9. Code Blocks with Syntax Highlighting (SNGL-03) ─── */
+
+/* Code block container - target pre in post-content */
+.post-content pre {
+	background: var(--warm-bg-deep);
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	padding: 1.25rem;
+	overflow-x: auto;
+	font-family: var(--font-code);
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5;
+	margin-block: 2rem;
+	color: var(--ink);
+}
+
+.post-content pre code {
+	font-family: var(--font-code);
+	font-weight: inherit;
+	color: var(--ink);
+	background: transparent;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+}
+
+/* Ensure all tokens inherit weight unless specified */
+.post-content pre .token {
+	font-weight: 400;
+}
+
+/* ─── 10. Syntax Highlighting Tokens - Warm Editorial Palette ─── */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: var(--syntax-comment);
+	font-style: italic;
+}
+
+.token.punctuation {
+	color: var(--syntax-punctuation);
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: var(--syntax-property);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: var(--syntax-at-rule);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: var(--syntax-selector);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: var(--syntax-value);
+}
+
+.token.function,
+.token.class-name {
+	color: var(--accent);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: var(--accent-hover);
+}
+
+.token.important,
+.token.bold {
+	font-weight: 600;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+/* ─── 11. Mobile Responsive (RESP-05) ─── */
+@media (width < 768px) {
+	.post-header {
+		padding: 2rem 1.5rem;
+	}
+
+	.post-header .post-title {
+		font-size: clamp(1.75rem, 4vw, 2.3rem);
+	}
+
+	.post-layout {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		padding: 1.5rem;
+	}
+
+	.post-sidebar {
+		display: flex;
+		gap: 2rem;
+		padding-top: 0;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--border);
+		margin-bottom: 1rem;
+	}
+
+	.sidebar-section {
+		margin-bottom: 0;
+	}
+
+	.post-sidebar .sidebar-tags {
+		flex-flow: row wrap;
+	}
+
+	.post-content pre {
+		font-size: 0.95rem;
+		padding: 1rem;
+		border-radius: 4px;
+	}
+}

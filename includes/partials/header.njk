@@ -1,0 +1,8 @@
+<header>
+  <a href="/" class="logo">craveytrain</a>
+  <nav>
+    <a href="/now/"{% if page.url == "/now/" %} aria-current="page"{% endif %}>Now</a>
+    <a href="/posts/"{% if page.url == "/posts/" %} aria-current="page"{% endif %}>Posts</a>
+    <a href="/uses/"{% if page.url == "/uses/" %} aria-current="page"{% endif %}>Uses</a>
+  </nav>
+</header>

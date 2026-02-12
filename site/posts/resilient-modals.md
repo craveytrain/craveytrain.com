@@ -1,6 +1,7 @@
 ---
 title: Resilient modals
 date: 2010-11-16
+description: Making modals work without JavaScript — link to the modal's ID and let CSS handle the no-JS fallback.
 tags:
   - accessibility
   - modal

@@ -1,6 +1,7 @@
 ---
 title: Moving to octopress
 date: 2012-05-07
+description: Switching from my custom Node blog to Octopress — embracing static site generation, SASS, and the joy of hacking on a hacker's blog tool.
 tags:
   - psa
   - octopress

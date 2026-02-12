@@ -6,55 +6,45 @@
     {% endif %}
 {% endset %}
 
-{# {% set canonicalUrl = page.url | absoluteUrl(metadata.url) %} #}
 {% set canonicalUrl = page.url %}
 
 <!DOCTYPE html>
-<html lang="en" data-theme="dracula-dark">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="{{ metadata.description }}" />
-    <meta name="author" content="{{ metadata.author.name }}" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="{{ metadata.description }}">
+    <meta name="author" content="{{ metadata.author.name }}">
 
     <title>{{ pageTitle }}</title>
 
-    <link rel="author" href="/about/" title="About the author" />
-    <link rel="home" href="/" title="Home" />
+    {# Safari chrome tinting #}
+    <meta name="theme-color" content="#B44D2D">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&display=swap" rel="stylesheet">
+    {# Preload critical fonts #}
+    <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/fraunces-variable.woff2" as="font" type="font/woff2" crossorigin>
 
-    {% set styles %}
-        {% include "css/index.css" %}
-        {% if css %}
-            {% if css is iterable and css is not string %}
-                {% for ss in css %}
-                    {% include "css/" ~ ss %}
-                {% endfor %}
-            {% else %}
-                {% include "css/" ~ css %}
-            {% endif %}
-        {% endif %}
-    {% endset %}
+    {# Main stylesheet #}
+    <link rel="stylesheet" href="/css/main.css">
+    {% if css %}
+    <link rel="stylesheet" href="/css/{{ css }}">
+    {% endif %}
 
-    <style>
-        {{ styles | safe }}
-    </style>
+    <link rel="author" href="/about/" title="About the author">
+    <link rel="home" href="/" title="Home">
 
-    <!-- Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
-    <link rel="manifest" href="/favicons/site.webmanifest" />
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#ffffff" />
-    <link rel="shortcut icon" href="/favicons/favicon.ico" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
-    <meta name="theme-color" content="#ffffff" />
+    {# Icons #}
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#B44D2D">
+    <link rel="shortcut icon" href="/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#B44D2D">
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 
-    <!-- Social -->
+    {# Social #}
     <meta property="og:title" content="{{ pageTitle }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ metadata.author.name }}">
@@ -62,18 +52,17 @@
     <meta property="og:image" content="{{ metadata.url }}img/illustration.png">
     <meta property="og:url" content="{{ canonicalUrl }}">
 
-    <!-- SEO/Feeds -->
+    {# SEO/Feeds #}
     <link rel="canonical" href="{{ canonicalUrl }}">
-    <link rel="alternate" type="application/atom+xml" title="RSS feed for Craveytrain" href="/feed.xml" />
-    <link rel="alternate" type="application/json" title="JSON feed for Craveytrain" href="/feed.json" />
+    <link rel="alternate" type="application/atom+xml" title="RSS feed for Craveytrain" href="/feed.xml">
+    <link rel="alternate" type="application/json" title="JSON feed for Craveytrain" href="/feed.json">
 
-    <!-- IndieAuth -->
-    {# <link href="mailto:mike@craveytrain.com" rel="me"> #}
-    {# <link href="https://twitter.com/craveytrain" rel="me"> #}
+    {# IndieAuth #}
     <link href="https://github.com/craveytrain" rel="me">
     <link href="https://hachyderm.io/@craveytrain" rel="me">
-    <link rel="webmention" href="https://webmention.io/craveytrain.com/webmention" />
-    <link rel="pingback" href="https://webmention.io/craveytrain.com/xmlrpc" />
+    <link rel="webmention" href="https://webmention.io/craveytrain.com/webmention">
+    <link rel="pingback" href="https://webmention.io/craveytrain.com/xmlrpc">
+
     {{ head }}
 </head>
 
@@ -83,31 +72,38 @@
 {% endif %}
 
 <body class="page-{{ pageSlug }}">
-    {{ content | safe }}
+    {# Skip link must be first for accessibility #}
+    {% include "partials/skip-link.njk" %}
 
-    <footer>
-        <div class="footer-links">
-            <ul>
-                {% set footerLinks = collections.foot | eleventyNavigation %}
-                {% for entry in footerLinks %}
-                    {% set url = entry.url %}
-                    {% set contents = entry.title %}
-                    <li>{% include 'nav-item.njk' %}</li>
-                {% endfor %}
-            </ul>
-            <div class="feeds">
-                <h3>{{ '/img/feed.svg' | svgContents | safe }}</h3>
-                <ul>
-                    {% set feeds = collections.feed | eleventyNavigation %}
-                    {% for entry in feeds %}
-                      {% set url = entry.url %}
-                      {% set contents = entry.title %}
-                      <li>{% include 'nav-item.njk' %}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <p>©1999 - 2025 Mike Cravey</p>
-    </footer>
+    {# Accent bar for Safari chrome tinting #}
+    {% include "partials/accent-bar.njk" %}
+
+    {# Site header #}
+    {% include "partials/header.njk" %}
+
+    {# Main content - target for skip link #}
+    <main id="main" tabindex="-1">
+        {{ content | safe }}
+    </main>
+
+    {# Site footer #}
+    {% include "partials/footer.njk" %}
+
+    {# Skip link JavaScript workaround for Safari #}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var skipLink = document.querySelector('.skip-link');
+      if (skipLink) {
+        skipLink.addEventListener('click', function(e) {
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.focus();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+    });
+    </script>
 </body>
 </html>

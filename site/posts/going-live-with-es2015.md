@@ -1,6 +1,7 @@
 ---
 date: 2016-01-27T22:30:35Z
 title: Going live with es2015
+description: Lessons from introducing ES2015 to a production codebase — team buy-in, proof of concepts, and the importance of starting small.
 ---
 
 Last night, I gave a talk at [JS Monthly London](http://www.meetup.com/js-monthly-london/) on [Going live with ES2015](http://craveytrain.com/slides/live_with_es2015/). It was my first talk since moving to London in August. It was nice to dust the cobwebs off my public speaking, but I'm glad it wasn't recorded.

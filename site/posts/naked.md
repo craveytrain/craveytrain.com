@@ -1,6 +1,7 @@
 ---
 title: Naked
 date: 2010-07-15
+description: Launching the blog without design — moving to Tumblr, using Gist for code samples, and focusing on content before style.
 tags:
   - psa
 ---

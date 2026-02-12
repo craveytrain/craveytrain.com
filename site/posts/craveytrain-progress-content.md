@@ -1,6 +1,7 @@
 ---
 title: Craveytrain progress content
 date: 2010-07-27
+description: Site update — HTML5 markup, ditching the contact form for social profiles, and removing a portfolio that wasn't worth the space.
 tags:
   - psa
 ---

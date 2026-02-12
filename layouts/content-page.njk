@@ -1,0 +1,28 @@
+---
+layout: base
+css: content-pages.css
+---
+<div class="page-header section-grid">
+  <div class="section-label"></div>
+  <div>
+    <h1 class="page-title">{{ title }}</h1>
+    {% if subtitle %}
+    <p class="subtitle">{{ subtitle | safe }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% include "partials/divider.njk" %}
+
+{% set sections = content | splitBySections %}
+{% for section in sections %}
+<div class="section-grid">
+  <div class="section-label">{{ section.label | safe }}</div>
+  <div class="section-content">
+    {{ section.content | safe }}
+  </div>
+</div>
+{% if not loop.last %}
+{% include "partials/divider.njk" %}
+{% endif %}
+{% endfor %}

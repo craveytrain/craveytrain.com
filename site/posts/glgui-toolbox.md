@@ -1,6 +1,7 @@
 ---
 title: Glgui toolbox
 date: 2010-12-02
+description: Announcing the GLGUI Toolbox — an open source repo from the UI engineers at Gerson Lehrman Group.
 tags:
   - github
   - glgui

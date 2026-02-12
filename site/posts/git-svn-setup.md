@@ -1,6 +1,7 @@
 ---
 title: Git SVN setup
 date: 2010-11-11
+description: Setting up git-svn with non-standard layouts — handling nested branch directories and surviving a 140,000 revision fetch.
 tags:
   - git-svn
   - tutorial

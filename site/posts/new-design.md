@@ -1,6 +1,7 @@
 ---
 title: New design
 date: 2010-12-13
+description: A new design focused on legibility — large fonts, liquid layout, the golden ratio, and a font stack I'm actually proud of.
 tags:
   - design
   - font stack

@@ -11,12 +11,16 @@ pagination:
     - tagList
   addAllPagesToCollections: true
 layout: page
+css: posts.css
 eleventyComputed:
-  title: Tagged “{{ tag }}”
+  title: Tagged "{{ tag }}"
 permalink: /tags/{{ tag | slugify }}/
 ---
 
-{% set posts = collections[tag] %}
-{% include "post-list.njk" %}
+{% set posts = collections[tag] | reverse %}
+{% include "post-list-grouped.njk" %}
 
-<p>See <a href="{{ '/tags/' }}">all tags</a>.</p>
+<div class="section-grid">
+  <div class="section-label"></div>
+  <a href="/tags/" class="view-all">View all tags &rarr;</a>
+</div>

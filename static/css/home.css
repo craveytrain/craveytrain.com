@@ -1,0 +1,231 @@
+/* ============================================
+   HOMEPAGE CSS - Warm Editorial Design System
+   ============================================ */
+
+/* ─── 1. Hero Section ─── */
+.hero {
+	display: grid;
+	grid-template-columns: 1fr 320px;
+	gap: 4rem;
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 6rem 2rem 5rem;
+	align-items: center;
+}
+
+/* ─── 2. Hero Text ─── */
+.hero-text h1 {
+	font-family: var(--font-display);
+	font-size: clamp(2.5rem, 5vw, 4rem);
+	font-weight: 800;
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+}
+
+.hero-text h1 .accent {
+	color: var(--accent);
+}
+
+.hero-text p {
+	font-size: 1.15rem;
+	color: var(--ink-light);
+	max-width: 520px;
+	line-height: 1.7;
+	margin-bottom: 2rem;
+}
+
+.hero-links {
+	display: flex;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- hero links override base link styles */
+.hero-links a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--accent);
+	text-decoration: none;
+	border-bottom: 1.5px solid var(--accent-soft);
+	padding-bottom: 2px;
+	transition: border-color 0.2s;
+}
+
+.hero-links a:hover {
+	border-color: var(--accent);
+}
+
+/* ─── 3. Hero Portrait (HOME-02: arch frame, grayscale hover) ─── */
+.hero-portrait {
+	width: 280px;
+	height: 340px;
+	border-radius: 200px 200px 24px 24px;
+	overflow: hidden;
+	border: 3px solid var(--border);
+	margin-left: auto;
+}
+
+.hero-portrait img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center top;
+	filter: grayscale(30%) contrast(1.05);
+	transition: filter 0.4s;
+}
+
+.hero-portrait:hover img {
+	filter: grayscale(0%) contrast(1);
+}
+
+/* ─── 4. Mobile Hero - Option C (avatar inline) ─── */
+.hero-top {
+	display: none;
+}
+
+.hero-avatar {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- avatar img is separate component from portrait img */
+.hero-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center top;
+	filter: grayscale(30%) contrast(1.05);
+}
+
+.hero-name {
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	font-weight: 800;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- mobile hero accent separate from desktop h1 accent */
+.hero-name .accent {
+	color: var(--accent);
+}
+
+.hero-tagline {
+	font-size: 0.85rem;
+	color: var(--ink-light);
+	margin-top: 0.25rem;
+}
+
+/* ─── 5. About Section ─── */
+.about {
+	padding-block: 4rem;
+}
+
+.about-content p {
+	font-size: 1.05rem;
+	line-height: 1.75;
+	margin-bottom: 1rem;
+	max-width: var(--prose-max-width);
+}
+
+/* ─── 6. Posts Section ─── */
+.posts {
+	padding-block: 4rem;
+}
+
+.post-list {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+}
+
+.post-item {
+	display: grid;
+	grid-template-columns: 120px 1fr;
+	gap: 1.5rem;
+	align-items: start;
+}
+
+.post-date {
+	font-size: 0.85rem;
+	color: var(--ink-light);
+	padding-top: 0.35rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.post-item h3 {
+	font-family: var(--font-display);
+	font-size: 1.3rem;
+	font-weight: 600;
+	line-height: 1.3;
+	margin-bottom: 0.4rem;
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- post title links override base link styles */
+.post-item h3 a {
+	color: var(--ink);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.post-item h3 a:hover {
+	color: var(--accent);
+}
+
+.post-excerpt {
+	font-size: 0.95rem;
+	color: var(--ink-light);
+	line-height: 1.6;
+}
+
+.post-tags {
+	display: flex;
+	gap: 0.5rem;
+	margin-top: 0.6rem;
+	flex-wrap: wrap;
+}
+
+/* HOME-05: Tag chip with hover fill transition - styles in main.css */
+
+/* ─── 7. Mobile Responsive (width < 768px) - Option C ─── */
+@media (width < 768px) {
+	.hero {
+		grid-template-columns: 1fr;
+		padding: 4rem 1.5rem 3rem;
+		gap: 0;
+	}
+
+	/* Hide desktop portrait, show mobile avatar */
+	.hero-portrait {
+		display: none;
+	}
+
+	.hero-top {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+		order: -1;
+	}
+
+	/* Hide desktop h1, show mobile name/tagline */
+	.hero-text h1 {
+		display: none;
+	}
+
+	/* Post items stack on mobile */
+	.post-item {
+		grid-template-columns: 1fr;
+		gap: 0.3rem;
+	}
+
+	.post-date {
+		padding-top: 0;
+	}
+}
