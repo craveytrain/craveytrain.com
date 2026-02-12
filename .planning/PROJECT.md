@@ -44,13 +44,14 @@ These principles apply to CSS, markup, and configuration. When in doubt, remove.
 - ✓ Content pages (Now, Colophon, Uses) with section-grid — v9.2
 - ✓ Mobile responsive at 768px breakpoint — v9.2
 - ✓ Skip link and visible focus states — v9.2
+- ✓ CSS normalization — tag-level base styles for blockquote, lists, headings — v9.3
+- ✓ CSS componentization — .section-label consolidated, inline code unified — v9.3
+- ✓ Dead code removal — themes/, includes/css/, redesign/ deleted, TypeScript removed — v9.3
+- ✓ Code quality — templates use partials, OKLCH colors — v9.3
 
 ### Active
 
-- [ ] CSS normalization — push styles to tag selectors as site defaults
-- [ ] CSS componentization — create reusable class patterns
-- [ ] Dead code removal — themes, unused static files, old markup
-- [ ] Code quality — lean and readable
+(None — planning next milestone)
 
 ### Out of Scope
 
@@ -61,32 +62,33 @@ These principles apply to CSS, markup, and configuration. When in doubt, remove.
 
 ## Context
 
-**Current State (v9.2 shipped 2026-02-10):**
+**Current State (v9.3 shipped 2026-02-11):**
 
 - Eleventy 3.0 static site generator
-- Warm Editorial design system with CSS custom properties
+- Warm Editorial design system with OKLCH color variables
 - Self-hosted fonts (Fraunces + Inter, WOFF2)
 - 200px/1fr editorial grid layout
+- Tag-level CSS defaults (blockquote, lists, headings in main.css)
 - Mobile-first responsive (768px breakpoint)
 - Now page system at `/now/` with archive
 - Colophon at `/colophon/` with version sections
 - Uses page at `/uses/`
 - Static tag pages at `/tags/{tag}/`
-- Warm syntax highlighting for code blocks
 
 **Tech stack:**
 
 - Eleventy 3.0
 - Nunjucks templating
-- CSS custom properties (no preprocessor)
+- CSS custom properties with OKLCH colors (no preprocessor)
 - Prism.js syntax highlighting
 - Self-hosted WOFF2 fonts
+- No TypeScript (removed in v9.3)
 
 **Files:**
 
 - CSS: `static/css/main.css`, `home.css`, `posts.css`, `prose.css`, `content-pages.css`
-- Layouts: `layouts/base.njk`, `post.njk`, `content-page.njk`
-- Partials: `partials/header.njk`, `footer.njk`, `accent-bar.njk`, `skip-link.njk`
+- Layouts: `layouts/base.njk`, `post.njk`, `content-page.njk`, `now.njk`
+- Partials: `partials/header.njk`, `footer.njk`, `accent-bar.njk`, `skip-link.njk`, `divider.njk`, `feedback.njk`
 
 ## Constraints
 
@@ -110,12 +112,18 @@ These principles apply to CSS, markup, and configuration. When in doubt, remove.
 | Variable font files               | Modern approach, fewer HTTP requests                          | ✓ Good  |
 | Page-specific CSS via frontmatter | Clean separation, only load CSS needed per page               | ✓ Good  |
 | splitBySections filter            | Parse rendered HTML by H2 tags for section-grid layout        | ✓ Good  |
+| Tag selectors first               | Base styles at tag level, scoped selectors for overrides only | ✓ Good  |
+| Single .section-label class       | Consolidated 3 redundant label classes into one               | ✓ Good  |
+| Keep semantic container names     | No .container utility; pattern simple enough to repeat        | ✓ Good  |
+| OKLCH color format                | Modern perceptually-uniform color space for all CSS variables | ✓ Good  |
+| Divider/feedback partials         | Extracted repeated template patterns to reusable includes     | ✓ Good  |
 
 ## Shipped Milestones
 
+- **v9.3 Cleanup & Polish** (2026-02-11) — CSS normalization, dead code removal, OKLCH colors, 4 phases, 6 plans
 - **v9.2 Visual Refresh** (2026-02-10) — Warm Editorial design system, 5 phases, 13 plans
 - **v9.1 Content Restructure** (2026-02-09) — Now pages, colophon, uses, 3 phases, 5 plans
 
 ---
 
-_Last updated: 2026-02-11 after v9.3 principles established_
+_Last updated: 2026-02-11 after v9.3 milestone complete_
