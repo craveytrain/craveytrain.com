@@ -1,0 +1,9 @@
+<div class="facepile">
+  {% for item in items %}
+  <a class="facepile-item" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+    {% if item.author.photo %}
+    <img class="facepile-avatar" src="{{ item.author.photo }}" alt="{{ item.author.name }}" width="40" height="40" loading="lazy">
+    {% endif %}
+  </a>
+  {% endfor %}
+</div>

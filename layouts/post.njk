@@ -29,6 +29,14 @@ css: prose.css
         </div>
       </div>
       {% endif %}
+
+      {% set mentions = webmentions | getWebmentionsForUrl(page.url) %}
+      {% if mentions.length > 0 %}
+      <div class="sidebar-section">
+        <div class="section-label">Feedback</div>
+        {% include "partials/feedback.njk" %}
+      </div>
+      {% endif %}
     </aside>
 
     <div class="post-content e-content">
@@ -36,17 +44,3 @@ css: prose.css
     </div>
   </div>
 </article>
-
-{# Webmentions feedback section (preserve existing functionality) #}
-{% set webmentionUrl = page.url | url %}
-{% set mentions = webmentions | getWebmentionsForUrl(webmentionUrl) %}
-{% set mentionCount = mentions.length %}
-
-{% if mentionCount > 0 %}
-<section class="feedback section-grid">
-  <div class="section-label">Feedback</div>
-  <div class="feedback-content">
-    {% include "partials/feedback.njk" %}
-  </div>
-</section>
-{% endif %}
