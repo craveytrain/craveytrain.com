@@ -8,3 +8,6 @@ _themes
 
 # Legacy files
 slides
+
+# Symlinks (prettier errors on these)
+CLAUDE.md
