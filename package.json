@@ -31,7 +31,7 @@
 	"lint-staged": {
 		"*.js": "eslint --cache --fix",
 		"*.css": "stylelint --allow-empty-input",
-		"*.{css,html,js,json,md,yaml}": "prettier --write"
+		"!(CLAUDE).{css,html,js,json,md,yaml}": "prettier --write"
 	},
 	"type": "module",
 	"repository": {
