@@ -4,12 +4,19 @@ Personal website for Mike Cravey. Blog posts, now page system with archives, col
 
 ## Tech Stack
 
-- Eleventy 3.0
-- Nunjucks templating
-- CSS custom properties with OKLCH colors (no preprocessor)
-- Prism.js syntax highlighting
-- Self-hosted WOFF2 fonts (Fraunces + Inter)
+- Eleventy 3.0 (ESM config; `type: "module"` in package.json)
+- No CSS preprocessor. Plain CSS with custom properties.
 - No TypeScript
+- No build step beyond Eleventy
+
+## Commands
+
+- `npm run dev`, Eleventy dev server with live reload
+- `npm run build`, production build to `_site/`
+- `npm run lint`, ESLint + Stylelint autofix
+- `npm run format`, Prettier write
+
+Pre-commit hook (husky + lint-staged) runs ESLint, Stylelint, and Prettier on staged files.
 
 ## Design System
 
@@ -17,12 +24,27 @@ Warm Editorial design: terracotta accent, cream backgrounds, Fraunces/Inter typo
 
 ## Principles
 
-1. **Small as possible** — Minimize code footprint. Every line should earn its place.
-2. **No unnecessary code** — If it's not used, delete it. No "just in case" retention.
-3. **Style the defaults** — Tag selectors first. HTML elements should look right without classes.
-4. **Components on top** — Classes exist for variations and compositions, not base styling.
+1. **Small as possible**. Minimize code footprint. Every line should earn its place.
+2. **No unnecessary code**. If it's not used, delete it. No "just in case" retention.
+3. **Style the defaults**. Tag selectors first. HTML elements should look right without classes.
+4. **Components on top**. Classes exist for variations and compositions, not base styling.
 
 These principles apply to CSS, markup, and configuration. When in doubt, remove.
+
+```css
+/* Good: tag selector first, class for variation */
+blockquote {
+	/* base styles */
+}
+blockquote.pull {
+	/* pull-quote variant */
+}
+
+/* Avoid: class doing work the tag should do */
+.quote {
+	/* redundant with blockquote */
+}
+```
 
 ## Key Files
 
@@ -42,7 +64,17 @@ These principles apply to CSS, markup, and configuration. When in doubt, remove.
 - Single `.section-label` class (consolidated from 3 redundant classes)
 - Semantic container names, no `.container` utility
 
-## Constraints
+## Testing
 
-- No breaking changes to existing blog post URLs
-- No framework changes (stay on Eleventy)
+Manual browser review. No automated tests. Lint runs in the pre-commit hook and in CI (`npm run lint:ci`).
+
+## Boundaries
+
+**Never:**
+
+- Break existing `/posts/<slug>/` URLs. The permalink structure is load-bearing for external links.
+- Add a build step beyond Eleventy (no bundler, no preprocessor)
+- Add TypeScript or a CSS preprocessor
+- Push directly to `main`. Use a feature branch and PR.
+
+**Stay within:** Eleventy. No framework migration.
