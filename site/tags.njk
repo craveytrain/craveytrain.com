@@ -1,12 +1,24 @@
 ---
 title: Tags
 layout: page
+css: posts.css
 ---
-<ul>
-{% for tag in collections.tagList %}
-	<li>
-  	<a href="/tags/{{ tag | slugify }}">{{ tag }}</a>
-		({{ collections[tag].length }})
-	</li>
-{% endfor %}
-</ul>
+
+<section class="page-header section-grid">
+  <div class="section-label">Browse</div>
+  <h1 class="page-title">Tags</h1>
+</section>
+
+<section class="section-grid">
+  <div class="section-label">{{ collections.tagList.length }} topics</div>
+  <div class="posts-for-year">
+    {% for tag in collections.tagList %}
+      <article class="post-item">
+        <h2 class="post-title">
+          <a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>
+        </h2>
+        <div class="post-date">{{ collections[tag].length }} post{% if collections[tag].length != 1 %}s{% endif %}</div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
