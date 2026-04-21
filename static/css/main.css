@@ -425,6 +425,7 @@ footer {
    vs. section-closing links. */
 .section-link {
 	display: inline-block;
+	place-self: start;
 	margin-top: 1.5rem;
 	font-size: 0.95rem;
 	font-weight: 500;
