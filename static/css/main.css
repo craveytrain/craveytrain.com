@@ -119,11 +119,18 @@ html {
 }
 
 body {
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
 	font-family: var(--font-body);
 	background: var(--warm-bg);
 	color: var(--ink);
 	line-height: 1.65;
 	-webkit-font-smoothing: antialiased;
+}
+
+main {
+	flex-grow: 1;
 }
 
 /* ─── Tag-level Typography ─── */
