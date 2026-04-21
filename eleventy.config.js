@@ -15,7 +15,7 @@ const metadata = await fs
 
 const feedDetails = {
 	collection: {
-		name: 'post', // iterate over `collections.posts`
+		name: 'feed',
 		limit: 0, // 0 means no limit
 	},
 	metadata: {
@@ -100,6 +100,14 @@ export default async function (eleventyConfig) {
 
 	// generate tags
 	eleventyConfig.addCollection('tagList', tagList)
+
+	// combined feed: posts + dated now pages, sorted by date
+	eleventyConfig.addCollection('feed', collectionApi =>
+		[
+			...collectionApi.getFilteredByTag('post'),
+			...collectionApi.getFilteredByTag('now'),
+		].sort((a, b) => a.date - b.date)
+	)
 
 	eleventyConfig.addFilter('contentTags', contentTags)
 
