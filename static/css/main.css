@@ -194,6 +194,7 @@ h4 {
 	display: grid;
 	grid-template-columns: var(--gutter-width) 1fr;
 	gap: var(--content-gap);
+	align-items: baseline;
 	max-width: var(--max-width);
 	margin: 0 auto;
 	padding: 0 var(--page-padding);
@@ -206,7 +207,6 @@ h4 {
 	color: var(--accent);
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-	padding-top: 0.3rem;
 }
 
 /* ─── 6. Divider Component ─── */
@@ -413,21 +413,31 @@ footer {
 	color: var(--white);
 }
 
-/* View All Links - used on homepage, tag pages */
-.view-all {
+/* Section link — the standardized "continue / view more / previous" affordance.
+   Used on: homepage "View all posts", tag pages "View all tags",
+   now-page "Previously", post prev/next pagers. Lives inside a
+   .section-grid content column. No preceding <hr> divider.
+
+   Uses a border-bottom (not text-decoration underline) so there's real
+   space between the text and the line — matches the hero links and
+   gives a standalone block-level link the weight it needs to close a
+   section. Larger padding than hero to further differentiate inline
+   vs. section-closing links. */
+.section-link {
 	display: inline-block;
-	margin-top: 2rem;
-	font-size: 0.9rem;
+	margin-top: 1.5rem;
+	font-size: 0.95rem;
 	font-weight: 500;
+	color: var(--accent);
 	text-decoration: none;
 	border-bottom: 1.5px solid var(--accent-soft);
-	padding-bottom: 2px;
+	padding-bottom: 4px;
 	transition: border-color 0.2s;
 }
 
-.view-all:hover {
-	text-decoration: none;
+.section-link:hover {
 	border-color: var(--accent);
+	text-decoration: none;
 }
 
 /* ─── 15. Mobile-first Responsive (DSYS-09) ─── */
@@ -438,6 +448,7 @@ footer {
 		grid-template-columns: 1fr;
 		gap: 1rem;
 		padding: 0 1.5rem;
+		align-items: baseline;
 	}
 
 	header {
