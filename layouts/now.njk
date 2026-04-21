@@ -15,23 +15,55 @@ css: content-pages.css
   </div>
 </div>
 
-{% include "partials/divider.njk" %}
-
-{% set sections = latestNow.content | splitBySections %}
-{% for section in sections %}
-<div class="section-grid">
-  <div class="section-label">{{ section.label }}</div>
-  <div class="section-content">
-    {{ section.content | safe }}
-  </div>
-</div>
-{% if not loop.last %}
-{% include "partials/divider.njk" %}
-{% endif %}
-{% endfor %}
-
-{% include "partials/divider.njk" %}
-
-<div class="archive-link">
-  <a href="/now/archive/">Previously &rarr;</a>
-</div>
+{%- if latestNow.data.sections -%}
+  {% for section in latestNow.data.sections %}
+    {% include "partials/divider.njk" %}
+    <section class="section-grid">
+      <div class="section-label">{{ section.label }}</div>
+      <div class="posts-for-year">
+        {% for item in section.items %}
+          <article class="post-item">
+            <div class="post-meta-left">
+              <h2 class="post-title">
+                {%- if item.url -%}
+                  <a href="{{ item.url }}">{{ item.title }}</a>
+                {%- else -%}
+                  {{ item.title }}
+                {%- endif -%}
+              </h2>
+              {%- if item.tags and item.tags.length -%}
+              <span class="post-tags-inline">
+                {%- for tag in item.tags -%}
+                  {{- tag -}}{%- if not loop.last %}, {% endif -%}
+                {%- endfor -%}
+              </span>
+              {%- endif -%}
+            </div>
+            {%- if item.meta -%}
+            <span class="post-date">{{ item.meta }}</span>
+            {%- endif -%}
+          </article>
+        {% endfor %}
+        {%- if loop.last -%}
+          <a class="section-link" href="/now/archive/">Previously &rarr;</a>
+        {%- endif -%}
+      </div>
+    </section>
+  {% endfor %}
+{%- else -%}
+  {# Fallback: legacy splitBySections rendering for entries without structured data #}
+  {% include "partials/divider.njk" %}
+  {% set sections = latestNow.content | splitBySections %}
+  {% for section in sections %}
+    <div class="section-grid">
+      <div class="section-label">{{ section.label }}</div>
+      <div class="section-content">
+        {{ section.content | safe }}
+        {%- if loop.last -%}
+          <a class="section-link" href="/now/archive/">Previously &rarr;</a>
+        {%- endif -%}
+      </div>
+    </div>
+    {% if not loop.last %}{% include "partials/divider.njk" %}{% endif %}
+  {% endfor %}
+{%- endif -%}
