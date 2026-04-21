@@ -1,14 +1,10 @@
 ---
 title: "Now Page Archive"
 layout: page
+css: posts.css
 permalink: /now/archive/
 override:tags: []
 ---
 
-<p>Previous updates to my now page:</p>
-
-<ul>
-{% for entry in collections.now | reverse %}
-    <li><a href="{{ entry.url }}">{{ entry.date | prettyDate }}</a></li>
-{% endfor %}
-</ul>
+{% set nowEntries = collections.now | reverse %}
+{% include "now-list-grouped.njk" %}
