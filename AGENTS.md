@@ -64,6 +64,16 @@ blockquote.pull {
 - Single `.section-label` class (consolidated from 3 redundant classes)
 - Semantic container names, no `.container` utility
 
+## Preview Server
+
+After completing work in a worktree, start the dev server so Mike can review before merging:
+
+```
+cd <worktree-path> && npm install && npm run dev &
+```
+
+Eleventy auto-increments the port if 8080 is taken, so this is safe to run alongside the main checkout's dev server. The actual port is printed in the output — capture it and include it in your Discord message and Dock PR comment.
+
 ## Testing
 
 Manual browser review. No automated tests. Lint runs in the pre-commit hook and in CI (`npm run lint:ci`).
