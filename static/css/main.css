@@ -441,6 +441,11 @@ footer {
 	text-decoration: none;
 }
 
+/* Section link footer spacing */
+.section-grid:has(.section-link) {
+	padding-bottom: 4rem;
+}
+
 /* ─── 15. Mobile-first Responsive (DSYS-09) ─── */
 
 /* Mobile base styles (default) */
