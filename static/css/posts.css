@@ -76,10 +76,6 @@
 	flex-shrink: 0;
 }
 
-/* ─── 8. Section link footer spacing ─── */
-.section-grid:has(.section-link) {
-	padding-bottom: 4rem;
-}
 
 /* ─── 9. Tag filter band ─── */
 .tag-bar {
