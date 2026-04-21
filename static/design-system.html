@@ -1,0 +1,1600 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Craveytrain — Design System</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Real site CSS. Tokens + every component styled below come from these files. -->
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/home.css" />
+		<link rel="stylesheet" href="/css/posts.css" />
+		<link rel="stylesheet" href="/css/prose.css" />
+		<link rel="stylesheet" href="/css/content-pages.css" />
+
+		<style>
+			/* ─── Storybook chrome (not site CSS) ─── */
+			.sb-wrap {
+				display: grid;
+				grid-template-columns: 240px 1fr;
+				min-height: 100vh;
+			}
+			.sb-nav {
+				position: sticky;
+				top: 0;
+				align-self: start;
+				height: 100vh;
+				overflow: auto;
+				border-right: 1px solid var(--border);
+				padding: 2rem 1.5rem;
+				background: var(--warm-bg-deep);
+			}
+			.sb-nav h1 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: 1.25rem;
+				letter-spacing: -0.02em;
+				margin: 0 0 1.5rem;
+			}
+			.sb-nav h2 {
+				font-family: var(--font-display);
+				font-size: 0.72rem;
+				font-weight: 600;
+				color: var(--accent);
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				margin: 1.25rem 0 0.4rem;
+			}
+			.sb-nav a {
+				display: block;
+				font-size: 0.88rem;
+				color: var(--ink-light);
+				text-decoration: none;
+				padding: 0.25rem 0;
+			}
+			.sb-nav a:hover {
+				color: var(--accent);
+			}
+			.sb-main {
+				padding: 2rem 2.5rem 6rem;
+				max-width: 1180px;
+			}
+			.sb-intro {
+				margin-bottom: 2rem;
+			}
+			.sb-intro h1 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: 2.25rem;
+				letter-spacing: -0.02em;
+				margin: 0 0 0.5rem;
+			}
+			.sb-intro p {
+				color: var(--ink-light);
+				max-width: 640px;
+				line-height: 1.65;
+			}
+			section.sb-group {
+				border-top: 1px solid var(--border);
+				padding-top: 2.5rem;
+				margin-top: 3rem;
+			}
+			section.sb-group > h2 {
+				font-family: var(--font-display);
+				font-weight: 600;
+				font-size: 0.85rem;
+				color: var(--accent);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin: 0 0 0.25rem;
+			}
+			section.sb-group > .sb-group-desc {
+				color: var(--ink-light);
+				font-size: 0.95rem;
+				margin: 0 0 1.75rem;
+				max-width: 640px;
+				line-height: 1.6;
+			}
+			.sb-story {
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				background: var(--warm-bg);
+				overflow: hidden;
+				margin-bottom: 2rem;
+			}
+			.sb-story-head {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				padding: 0.9rem 1.2rem;
+				border-bottom: 1px solid var(--border);
+				background: var(--warm-bg-deep);
+			}
+			.sb-story-head h3 {
+				font-family: var(--font-display);
+				font-size: 1rem;
+				font-weight: 600;
+				margin: 0;
+			}
+			.sb-story-head .sb-meta {
+				font-size: 0.75rem;
+				color: var(--ink-light);
+				font-family: var(--font-code);
+			}
+			.sb-story-desc {
+				padding: 0.75rem 1.2rem 0;
+				color: var(--ink-light);
+				font-size: 0.9rem;
+				line-height: 1.55;
+				max-width: 640px;
+			}
+			.sb-canvas {
+				padding: 2rem 1.2rem;
+				background:
+					repeating-linear-gradient(
+						45deg,
+						transparent 0 8px,
+						rgba(107, 93, 82, 0.04) 8px 9px
+					),
+					var(--warm-bg);
+			}
+			.sb-canvas.plain {
+				background: var(--warm-bg);
+			}
+			.sb-canvas.dark {
+				background: var(--ink);
+			}
+			.sb-code {
+				border-top: 1px solid var(--border);
+				background: var(--warm-bg-deep);
+			}
+			.sb-code summary {
+				cursor: pointer;
+				padding: 0.6rem 1.2rem;
+				font-family: var(--font-code);
+				font-size: 0.78rem;
+				color: var(--ink-light);
+			}
+			.sb-code summary:hover {
+				color: var(--accent);
+			}
+			.sb-code pre {
+				margin: 0;
+				padding: 0.75rem 1.2rem 1rem;
+				font-family: var(--font-code);
+				font-size: 0.78rem;
+				line-height: 1.55;
+				color: var(--ink);
+				overflow-x: auto;
+			}
+
+			/* Token swatches */
+			.sw-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+				gap: 0.75rem;
+			}
+			.sw {
+				border: 1px solid var(--border);
+				border-radius: 6px;
+				overflow: hidden;
+				background: var(--warm-bg);
+			}
+			.sw-chip {
+				height: 72px;
+			}
+			.sw-body {
+				padding: 0.5rem 0.65rem;
+				font-size: 0.78rem;
+				line-height: 1.4;
+			}
+			.sw-body strong {
+				display: block;
+				font-family: var(--font-code);
+				font-size: 0.78rem;
+				margin-bottom: 0.1rem;
+				color: var(--ink);
+			}
+			.sw-body span {
+				color: var(--ink-light);
+				font-family: var(--font-code);
+				font-size: 0.72rem;
+			}
+
+			/* ─── Demo scaffolding: force "what the rendered state looks like" for
+         components whose real CSS hides them or expects content we don't have. ─── */
+
+			/* Real .accent-bar is position: fixed; show it in-flow inside the canvas. */
+			.sb-canvas .accent-bar {
+				position: static;
+			}
+
+			/* Real .skip-link is visually hidden until focused; show its focused look. */
+			.sb-canvas .skip-link {
+				position: static;
+				width: auto;
+				height: auto;
+				padding: 0.75rem 1.25rem;
+				background: var(--accent);
+				color: var(--white);
+				border-radius: 4px;
+				text-decoration: none;
+			}
+
+			/* Real .hero-portrait wraps an <img>; demo has no img, so fill the arch. */
+			.sb-canvas .hero-portrait {
+				background: linear-gradient(135deg, var(--warm-bg-deep), var(--border));
+				display: grid;
+				place-items: center;
+				color: var(--ink-light);
+				font-family: var(--font-display);
+				font-style: italic;
+				font-size: 0.85rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sb-wrap">
+			<aside class="sb-nav">
+				<h1>
+					Craveytrain <br /><span
+						style="
+							color: var(--ink-light);
+							font-weight: 400;
+							font-size: 0.85rem;
+						"
+						>Design System</span
+					>
+				</h1>
+				<h2>Foundations</h2>
+				<a href="#tokens-color">Color</a>
+				<a href="#tokens-type">Typography</a>
+				<a href="#tokens-space">Spacing &amp; radii</a>
+				<a href="#tokens-motion">Motion</a>
+				<h2>Chrome</h2>
+				<a href="#c-accent-bar">Accent bar</a>
+				<a href="#c-skip-link">Skip link</a>
+				<a href="#c-header">Header</a>
+				<a href="#c-footer">Footer</a>
+				<h2>Layout</h2>
+				<a href="#l-section-grid">Section grid</a>
+				<a href="#l-page-header">Page header</a>
+				<a href="#l-divider">Divider</a>
+				<a href="#l-hero">Hero</a>
+				<h2>Primitives</h2>
+				<a href="#p-tag-chip">Tag chip</a>
+				<a href="#p-tag-more">"+N more" pill</a>
+				<a href="#p-post-date">Post date</a>
+				<a href="#p-section-label">Section label</a>
+				<a href="#p-subtitle">Subtitle + updated</a>
+				<a href="#p-section-link">Section link</a>
+				<a href="#p-accent-comma">Accent comma</a>
+				<h2>Components</h2>
+				<a href="#cmp-post-item">Post item row</a>
+				<a href="#cmp-tag-filter">Tag filter band</a>
+				<a href="#cmp-facepile">Facepile</a>
+				<a href="#cmp-blockquote">Blockquote</a>
+				<a href="#cmp-code-inline">Inline code</a>
+				<a href="#cmp-code-block">Code block</a>
+				<a href="#cmp-hero-portrait">Hero portrait</a>
+				<h2>Recipes</h2>
+				<a href="#r-posts-listing">Posts listing</a>
+				<a href="#r-now">Now page</a>
+				<a href="#r-sectioned-prose">Sectioned prose</a>
+			</aside>
+
+			<main class="sb-main">
+				<div class="sb-intro">
+					<h1>Design System</h1>
+					<p>
+						A static catalog of every component and pattern in
+						<code>craveytrain.com</code>. Each story shows the rendered element,
+						its markup, and where it's used. Paired with
+						<code>DESIGN.md</code> (the rules) and
+						<code>COMPONENTS.md</code> (the parts index).
+					</p>
+				</div>
+
+				<!-- ─────────── FOUNDATIONS ─────────── -->
+
+				<section class="sb-group" id="tokens-color">
+					<h2>Foundations · Color</h2>
+					<p class="sb-group-desc">
+						OKLCH source with hex approximations. One accent color, used
+						sparingly.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Neutrals</h3>
+							<span class="sb-meta">6 tokens</span>
+						</div>
+						<div class="sb-canvas plain">
+							<div class="sw-grid">
+								<div class="sw">
+									<div class="sw-chip" style="background: var(--warm-bg)"></div>
+									<div class="sw-body">
+										<strong>--warm-bg</strong><span>#FAF6F1</span>
+									</div>
+								</div>
+								<div class="sw">
+									<div
+										class="sw-chip"
+										style="background: var(--warm-bg-deep)"
+									></div>
+									<div class="sw-body">
+										<strong>--warm-bg-deep</strong><span>#F0E8DD</span>
+									</div>
+								</div>
+								<div class="sw">
+									<div class="sw-chip" style="background: var(--border)"></div>
+									<div class="sw-body">
+										<strong>--border</strong><span>#DDD2C5</span>
+									</div>
+								</div>
+								<div class="sw">
+									<div
+										class="sw-chip"
+										style="background: var(--ink-light)"
+									></div>
+									<div class="sw-body">
+										<strong>--ink-light</strong><span>#6B5D52</span>
+									</div>
+								</div>
+								<div class="sw">
+									<div class="sw-chip" style="background: var(--ink)"></div>
+									<div class="sw-body">
+										<strong>--ink</strong><span>#2C2420</span>
+									</div>
+								</div>
+								<div class="sw">
+									<div
+										class="sw-chip"
+										style="
+											background: var(--white);
+											border-bottom: 1px solid var(--border);
+										"
+									></div>
+									<div class="sw-body">
+										<strong>--white</strong><span>#FFFFFF</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Accent</h3>
+							<span class="sb-meta">one color, three values</span>
+						</div>
+						<div class="sb-canvas plain">
+							<div class="sw-grid">
+								<div class="sw">
+									<div class="sw-chip" style="background: var(--accent)"></div>
+									<div class="sw-body">
+										<strong>--accent</strong><span>#B44D2D</span>
+									</div>
+								</div>
+								<div class="sw">
+									<div
+										class="sw-chip"
+										style="background: var(--accent-hover)"
+									></div>
+									<div class="sw-body">
+										<strong>--accent-hover</strong><span>#943D22</span>
+									</div>
+								</div>
+								<div class="sw">
+									<div
+										class="sw-chip"
+										style="background: var(--accent-soft)"
+									></div>
+									<div class="sw-body">
+										<strong>--accent-soft</strong><span>#E8C4B0</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="sb-group" id="tokens-type">
+					<h2>Foundations · Typography</h2>
+					<p class="sb-group-desc">
+						Fraunces for display, Inter for body/UI, Inconsolata for code.
+						Self-hosted, variable.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Type scale</h3>
+							<span class="sb-meta">display / body / code</span>
+						</div>
+						<div class="sb-canvas plain">
+							<p
+								style="
+									font-family: var(--font-display);
+									font-weight: 800;
+									font-size: clamp(2.5rem, 5vw, 4rem);
+									letter-spacing: -0.03em;
+									line-height: 1.1;
+									margin: 0 0 0.75rem;
+								"
+							>
+								Hey y'all<span style="color: var(--accent)">,</span>
+							</p>
+							<p
+								style="
+									font-family: var(--font-display);
+									font-weight: 800;
+									font-size: clamp(2rem, 4vw + 1rem, 2.75rem);
+									letter-spacing: -0.02em;
+									margin: 0 0 0.5rem;
+								"
+							>
+								Page title · Fraunces 800
+							</p>
+							<p
+								style="
+									font-family: var(--font-display);
+									font-weight: 600;
+									font-size: 1.5rem;
+									margin: 0 0 0.5rem;
+								"
+							>
+								H2 · Fraunces 600
+							</p>
+							<p
+								style="
+									font-family: var(--font-display);
+									font-weight: 600;
+									font-size: 1.25rem;
+									margin: 0 0 0.75rem;
+								"
+							>
+								H3 · Fraunces 600
+							</p>
+							<p
+								style="
+									font-size: 1.1rem;
+									line-height: 1.8;
+									max-width: 640px;
+									margin: 0 0 0.5rem;
+								"
+							>
+								Prose body — Inter 400, 1.1rem / 1.8. The web should be fast,
+								accessible, and built with care.
+							</p>
+							<p
+								style="
+									font-size: 0.85rem;
+									color: var(--ink-light);
+									margin: 0 0 0.25rem;
+								"
+							>
+								Meta · Inter 0.85rem ·
+								<span style="font-variant-numeric: tabular-nums"
+									>Mar 14 2024</span
+								>
+							</p>
+							<p class="section-label" style="margin: 0 0 0.5rem">
+								Section label
+							</p>
+							<p
+								style="
+									font-family: var(--font-code);
+									font-size: 0.9rem;
+									margin: 0;
+									color: var(--ink-light);
+								"
+							>
+								const code = "Inconsolata 400";
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<section class="sb-group" id="tokens-space">
+					<h2>Foundations · Spacing &amp; radii</h2>
+					<p class="sb-group-desc">
+						Layout tokens and corner radii. No shadows, ever.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head"><h3>Layout tokens</h3></div>
+						<div class="sb-canvas plain">
+							<div
+								style="
+									font-family: var(--font-code);
+									font-size: 0.82rem;
+									line-height: 1.9;
+									color: var(--ink);
+								"
+							>
+								<div>--max-width: <b>1100px</b></div>
+								<div>--gutter-width: <b>200px</b></div>
+								<div>--content-gap: <b>3rem</b></div>
+								<div>--prose-max-width: <b>640px</b></div>
+								<div>
+									--page-padding: <b>2rem</b>
+									<span style="color: var(--ink-light)"
+										>(1.5rem &lt;768px)</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="sb-story">
+						<div class="sb-story-head"><h3>Radii</h3></div>
+						<div class="sb-canvas plain">
+							<div
+								style="
+									display: flex;
+									gap: 1rem;
+									flex-wrap: wrap;
+									align-items: flex-end;
+								"
+							>
+								<div
+									style="
+										text-align: center;
+										font-family: var(--font-code);
+										font-size: 0.75rem;
+									"
+								>
+									<div
+										style="
+											width: 60px;
+											height: 60px;
+											border-radius: 3px;
+											background: var(--warm-bg-deep);
+											border: 1px solid var(--border);
+											margin-bottom: 0.4rem;
+										"
+									></div>
+									3px · xs
+								</div>
+								<div
+									style="
+										text-align: center;
+										font-family: var(--font-code);
+										font-size: 0.75rem;
+									"
+								>
+									<div
+										style="
+											width: 60px;
+											height: 60px;
+											border-radius: 4px;
+											background: var(--warm-bg-deep);
+											border: 1px solid var(--border);
+											margin-bottom: 0.4rem;
+										"
+									></div>
+									4px · sm
+								</div>
+								<div
+									style="
+										text-align: center;
+										font-family: var(--font-code);
+										font-size: 0.75rem;
+									"
+								>
+									<div
+										style="
+											width: 60px;
+											height: 60px;
+											border-radius: 6px;
+											background: var(--warm-bg-deep);
+											border: 1px solid var(--border);
+											margin-bottom: 0.4rem;
+										"
+									></div>
+									6px · md
+								</div>
+								<div
+									style="
+										text-align: center;
+										font-family: var(--font-code);
+										font-size: 0.75rem;
+									"
+								>
+									<div
+										style="
+											width: 60px;
+											height: 60px;
+											border-radius: 8px;
+											background: var(--warm-bg-deep);
+											border: 1px solid var(--border);
+											margin-bottom: 0.4rem;
+										"
+									></div>
+									8px · lg
+								</div>
+								<div
+									style="
+										text-align: center;
+										font-family: var(--font-code);
+										font-size: 0.75rem;
+									"
+								>
+									<div
+										style="
+											width: 80px;
+											height: 28px;
+											border-radius: 20px;
+											background: var(--warm-bg-deep);
+											border: 1px solid var(--border);
+											margin-bottom: 0.4rem;
+										"
+									></div>
+									20px · pill
+								</div>
+								<div
+									style="
+										text-align: center;
+										font-family: var(--font-code);
+										font-size: 0.75rem;
+									"
+								>
+									<div
+										style="
+											width: 72px;
+											height: 86px;
+											border-radius: 200px 200px 24px 24px;
+											background: var(--warm-bg-deep);
+											border: 2px solid var(--border);
+											margin-bottom: 0.4rem;
+										"
+									></div>
+									arch (hero only)
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="sb-group" id="tokens-motion">
+					<h2>Foundations · Motion</h2>
+					<p class="sb-group-desc">
+						Three durations. Browser-default easing. No custom cubic-beziers, no
+						bounces, no scroll effects.
+					</p>
+					<div class="sb-story">
+						<div class="sb-canvas plain">
+							<div
+								style="
+									font-family: var(--font-code);
+									font-size: 0.85rem;
+									line-height: 2;
+								"
+							>
+								<div><b>0.2s</b> — color, opacity, border-color on hover</div>
+								<div><b>0.3s</b> — tag-cloud max-height expansion</div>
+								<div><b>0.4s</b> — hero portrait grayscale → color</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- ─────────── CHROME ─────────── -->
+
+				<section class="sb-group" id="c-accent-bar">
+					<h2>Chrome</h2>
+					<p class="sb-group-desc">
+						Fixed, always-present elements rendered by <code>base.njk</code>.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Accent bar</h3>
+							<span class="sb-meta">partials/accent-bar.njk</span>
+						</div>
+						<div class="sb-story-desc">
+							Fixed 0.5rem terracotta stripe at the top of the viewport. Must be
+							real DOM for Safari chrome tinting to pick it up.
+						</div>
+						<div class="sb-canvas plain">
+							<div
+								style="
+									border: 1px solid var(--border);
+									border-radius: 6px;
+									overflow: hidden;
+								"
+							>
+								<div class="accent-bar" aria-hidden="true"></div>
+								<div
+									style="
+										padding: 1rem;
+										color: var(--ink-light);
+										font-size: 0.85rem;
+									"
+								>
+									(viewport below)
+								</div>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="accent-bar" aria-hidden="true"&gt;&lt;/div&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="c-skip-link">
+						<div class="sb-story-head">
+							<h3>Skip link</h3>
+							<span class="sb-meta">partials/skip-link.njk</span>
+						</div>
+						<div class="sb-story-desc">
+							First <code>&lt;body&gt;</code> child. Visually hidden until
+							focused, then becomes a terracotta pill top-left.
+						</div>
+						<div class="sb-canvas plain">
+							<a class="skip-link" href="#main">Skip to main content</a>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;a href="#main" class="skip-link"&gt;Skip to main content&lt;/a&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="c-header">
+						<div class="sb-story-head">
+							<h3>Header</h3>
+							<span class="sb-meta">partials/header.njk</span>
+						</div>
+						<div class="sb-story-desc">
+							Wordmark left, flat nav right.
+							<code>[aria-current="page"]</code> styles the active link
+							terracotta + 600.
+						</div>
+						<div class="sb-canvas plain">
+							<header>
+								<a href="#" class="logo">craveytrain</a>
+								<nav>
+									<a href="#">Now</a><a href="#" aria-current="page">Posts</a
+									><a href="#">Uses</a>
+								</nav>
+							</header>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;header&gt;
+  &lt;a href="/" class="logo"&gt;craveytrain&lt;/a&gt;
+  &lt;nav&gt;
+    &lt;a href="/now/"&gt;Now&lt;/a&gt;
+    &lt;a href="/posts/" aria-current="page"&gt;Posts&lt;/a&gt;
+    &lt;a href="/uses/"&gt;Uses&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="c-footer">
+						<div class="sb-story-head">
+							<h3>Footer</h3>
+							<span class="sb-meta">partials/footer.njk</span>
+						</div>
+						<div class="sb-story-desc">
+							Full-bleed <code>--ink</code> band. Copyright left, utility links
+							right at 0.6 opacity (1.0 on hover).
+						</div>
+						<div class="sb-canvas plain">
+							<footer>
+								<div class="footer-inner">
+									<span class="copyright">© 1999–2026 Mike Cravey</span>
+									<div class="footer-nav">
+										<a href="#">Colophon</a><a href="#">RSS</a>
+									</div>
+								</div>
+							</footer>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;footer&gt;
+  &lt;div class="footer-inner"&gt;
+    &lt;span class="copyright"&gt;&amp;copy; 1999-2026 Mike Cravey&lt;/span&gt;
+    &lt;div class="footer-nav"&gt;
+      &lt;a href="/colophon/"&gt;Colophon&lt;/a&gt;
+      &lt;a href="/feed.xml"&gt;RSS&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</pre
+							>
+						</details>
+					</div>
+				</section>
+
+				<!-- ─────────── LAYOUT ─────────── -->
+
+				<section class="sb-group" id="l-section-grid">
+					<h2>Layout</h2>
+					<p class="sb-group-desc">
+						The signature 200px / 1fr editorial grid, its entry bands, and the
+						divider.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Section grid</h3>
+							<span class="sb-meta">.section-grid</span>
+						</div>
+						<div class="sb-story-desc">
+							Every content band uses this. Gutter label baseline-aligns with
+							the first line of the content column.
+						</div>
+						<div class="sb-canvas">
+							<section class="section-grid">
+								<div class="section-label">Building</div>
+								<div class="section-content">
+									<h2>This site, always</h2>
+									<p>
+										Shipping a new design here shortly. Experimenting with
+										baseline alignment in the gutter.
+									</p>
+								</div>
+							</section>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;section class="section-grid"&gt;
+  &lt;div class="section-label"&gt;Building&lt;/div&gt;
+  &lt;div class="section-content"&gt;
+    &lt;h2&gt;This site, always&lt;/h2&gt;
+    &lt;p&gt;…&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="l-page-header">
+						<div class="sb-story-head">
+							<h3>Page header</h3>
+							<span class="sb-meta">.page-header.section-grid</span>
+						</div>
+						<div class="sb-story-desc">
+							Empty left label cell; title + optional subtitle + optional
+							"updated" line.
+						</div>
+						<div class="sb-canvas">
+							<div class="section-grid">
+								<div class="section-label"></div>
+								<div>
+									<h1 class="page-title">What I'm Doing Now</h1>
+									<p class="subtitle">
+										This is a <a href="#">now page</a>. If you have your own
+										site, you should make one too.
+									</p>
+									<p class="updated">Last updated February 9, 2026</p>
+								</div>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="page-header section-grid"&gt;
+  &lt;div class="section-label"&gt;&lt;/div&gt;
+  &lt;div&gt;
+    &lt;h1 class="page-title"&gt;What I'm Doing Now&lt;/h1&gt;
+    &lt;p class="subtitle"&gt;This is a &lt;a href="…"&gt;now page&lt;/a&gt;.&lt;/p&gt;
+    &lt;p class="updated"&gt;Last updated February 9, 2026&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="l-divider">
+						<div class="sb-story-head">
+							<h3>Divider</h3>
+							<span class="sb-meta">partials/divider.njk</span>
+						</div>
+						<div class="sb-story-desc">
+							Hairline at max-width 1100, used <em>between</em> content bands.
+							Do not stack directly under a page-header that's followed by a
+							section-grid.
+						</div>
+						<div class="sb-canvas plain">
+							<div style="padding: 1rem 0">
+								<div
+									style="
+										font-size: 0.85rem;
+										color: var(--ink-light);
+										padding: 0 1rem 1rem;
+									"
+								>
+									…end of section…
+								</div>
+								<div class="divider"><hr /></div>
+								<div
+									style="
+										font-size: 0.85rem;
+										color: var(--ink-light);
+										padding: 1rem 1rem 0;
+									"
+								>
+									…next section…
+								</div>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>&lt;div class="divider"&gt;&lt;hr&gt;&lt;/div&gt;</pre>
+						</details>
+					</div>
+
+					<div class="sb-story" id="l-hero">
+						<div class="sb-story-head">
+							<h3>Hero (home only)</h3>
+							<span class="sb-meta">.hero / .hero-text / .hero-portrait</span>
+						</div>
+						<div class="sb-story-desc">
+							Two-column, not section-grid. Decorative terracotta comma after
+							the greeting.
+						</div>
+						<div class="sb-canvas plain">
+							<div
+								style="
+									display: grid;
+									grid-template-columns: 1fr 220px;
+									gap: 2rem;
+									max-width: 1100px;
+									margin: 0 auto;
+									padding: 1rem;
+									align-items: center;
+								"
+							>
+								<div>
+									<h1
+										style="
+											font-family: var(--font-display);
+											font-weight: 800;
+											font-size: clamp(2.25rem, 4vw, 3.5rem);
+											letter-spacing: -0.03em;
+											line-height: 1.1;
+											margin: 0 0 1rem;
+										"
+									>
+										Hey y'all<span style="color: var(--accent)">,</span> I'm
+										Mike Cravey.
+									</h1>
+									<p
+										style="
+											font-size: 1.1rem;
+											line-height: 1.7;
+											max-width: 520px;
+											color: var(--ink);
+											margin: 0 0 1rem;
+										"
+									>
+										Father, husband, teacher, and geek. A UX Engineer who
+										believes the web should be fast, accessible, and built with
+										care.
+									</p>
+									<p style="font-size: 0.95rem">
+										<a href="#">Read the blog →</a> &nbsp;
+										<a href="#">What I'm doing now →</a>
+									</p>
+								</div>
+								<div
+									class="hero-portrait"
+									style="width: 220px; height: 264px; margin: 0"
+								>
+									portrait 280×340
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- ─────────── PRIMITIVES ─────────── -->
+
+				<section class="sb-group" id="p-tag-chip">
+					<h2>Primitives</h2>
+					<p class="sb-group-desc">
+						Single-purpose atomic elements reused across bands.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Tag chip</h3>
+							<span class="sb-meta">.tag-chip</span>
+						</div>
+						<div class="sb-story-desc">
+							Pill — 0.75rem Inter 500. Default state warm-bg-deep, hover fills
+							accent, active matches hover.
+						</div>
+						<div class="sb-canvas">
+							<div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+								<a class="tag-chip" href="#">CSS</a>
+								<a class="tag-chip" href="#">Accessibility</a>
+								<a
+									class="tag-chip"
+									href="#"
+									style="
+										background: var(--accent);
+										border-color: var(--accent);
+										color: var(--white);
+									"
+									>Web Platform</a
+								>
+								<a class="tag-chip" href="#">Design</a>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;a href="/tags/css/" class="tag-chip"&gt;CSS&lt;/a&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="p-tag-more">
+						<div class="sb-story-head">
+							<h3>"+N more" pill</h3>
+							<span class="sb-meta">.tag-more (posts.css)</span>
+						</div>
+						<div class="sb-story-desc">
+							Dashed terracotta outline. Toggles the expanded tag cloud. Posts
+							page only.
+						</div>
+						<div class="sb-canvas">
+							<div style="display: flex; gap: 0.5rem">
+								<button class="tag-more">+11 more</button>
+								<button class="tag-more">Show less</button>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>&lt;button class="tag-more"&gt;+11 more&lt;/button&gt;</pre>
+						</details>
+					</div>
+
+					<div class="sb-story" id="p-post-date">
+						<div class="sb-story-head">
+							<h3>Post date</h3>
+							<span class="sb-meta">.post-date</span>
+						</div>
+						<div class="sb-story-desc">
+							Inter 0.85rem, <code>--ink-light</code>, tabular-nums so columns
+							of dates align.
+						</div>
+						<div class="sb-canvas">
+							<div style="font-family: var(--font-code)">
+								<div class="post-date">Mar 14</div>
+								<div class="post-date">Jan 09</div>
+								<div class="post-date">Dec 2006</div>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;time class="post-date" datetime="2024-03-14"&gt;Mar 14&lt;/time&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="p-section-label">
+						<div class="sb-story-head">
+							<h3>Section label</h3>
+							<span class="sb-meta">.section-label</span>
+						</div>
+						<div class="sb-story-desc">
+							Fraunces 600 0.85rem uppercase, letter-spacing 0.1em, terracotta.
+							Populates the left cell of every section-grid.
+						</div>
+						<div class="sb-canvas">
+							<div style="display: flex; gap: 2rem">
+								<div class="section-label">Work</div>
+								<div class="section-label">2024</div>
+								<div class="section-label">Tagged</div>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>&lt;div class="section-label"&gt;Work&lt;/div&gt;</pre>
+						</details>
+					</div>
+
+					<div class="sb-story" id="p-subtitle">
+						<div class="sb-story-head">
+							<h3>Subtitle + updated</h3>
+							<span class="sb-meta">.subtitle / .updated</span>
+						</div>
+						<div class="sb-story-desc">
+							Subtitle is Inter 1.05rem ink-light. Updated is Fraunces italic
+							0.9rem ink-light.
+						</div>
+						<div class="sb-canvas">
+							<p class="subtitle">
+								This is a <a href="#">now page</a>. If you have your own site,
+								you should make one too.
+							</p>
+							<p class="updated">Last updated February 9, 2026</p>
+						</div>
+					</div>
+
+					<div class="sb-story" id="p-section-link">
+						<div class="sb-story-head">
+							<h3>Section link</h3>
+							<span class="sb-meta">.section-link (main.css)</span>
+						</div>
+						<div class="sb-story-desc">
+							The one blessed "continue / view more / previous" affordance.
+							Block-level, lives <em>inside</em> a
+							<code>.section-grid</code> content column as its closer. Uses
+							<code>border-bottom</code> (not <code>text-decoration</code>) for
+							real space between text and line — same treatment as
+							<code>.hero-links a</code>. Never preceded by a
+							<code>&lt;hr&gt;</code>. Replaces the retired
+							<code>.view-all</code> and <code>.archive-link</code> patterns.
+						</div>
+						<div class="sb-canvas">
+							<section class="section-grid">
+								<div class="section-label">2024</div>
+								<div>
+									<article class="post-item">
+										<div class="post-meta-left">
+											<h2 class="post-title">
+												<a href="#">Container queries changed everything</a>
+											</h2>
+										</div>
+										<time class="post-date">Mar 14</time>
+									</article>
+									<article class="post-item">
+										<div class="post-meta-left">
+											<h2 class="post-title">
+												<a href="#">Going live with ES2015</a>
+											</h2>
+										</div>
+										<time class="post-date">Feb 02</time>
+									</article>
+									<a class="section-link" href="#">Previously &rarr;</a>
+								</div>
+							</section>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;section class="section-grid"&gt;
+  &lt;div class="section-label"&gt;2024&lt;/div&gt;
+  &lt;div&gt;
+    &lt;!-- …post-items… --&gt;
+    &lt;a class="section-link" href="/now/archive/"&gt;Previously &amp;rarr;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="p-accent-comma">
+						<div class="sb-story-head">
+							<h3>Accent comma</h3>
+							<span class="sb-meta">.hero-text h1 .accent</span>
+						</div>
+						<div class="sb-story-desc">
+							One place only — the hero greeting. Do not generalize. One per
+							page, max.
+						</div>
+						<div class="sb-canvas">
+							<div class="hero-text">
+								<h1>Hey y'all<span class="accent">,</span></h1>
+							</div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;h1&gt;Hey y'all&lt;span class="accent"&gt;,&lt;/span&gt;&lt;/h1&gt;</pre
+							>
+						</details>
+					</div>
+				</section>
+
+				<!-- ─────────── COMPONENTS ─────────── -->
+
+				<section class="sb-group" id="cmp-post-item">
+					<h2>Components</h2>
+					<p class="sb-group-desc">
+						Compound primitives that show up across multiple page types.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Post item row</h3>
+							<span class="sb-meta">.post-item (posts.css)</span>
+						</div>
+						<div class="sb-story-desc">
+							Title + inline tags (italic Fraunces) vs. right-aligned date.
+							Row-border upgrades to terracotta when the title link is hovered
+							(<code>:has()</code>). <code>:last-child</code> drops its bottom
+							border.
+							<em
+								>Note: home.css defines a different <code>.post-item</code> grid
+								variant; posts.css wins here because it's loaded last.</em
+							>
+						</div>
+						<div class="sb-canvas">
+							<article class="post-item">
+								<div class="post-meta-left">
+									<h2 class="post-title">
+										<a href="#">Container queries changed everything</a>
+									</h2>
+									<span class="post-tags-inline">CSS, Web Platform</span>
+								</div>
+								<time class="post-date">Mar 14</time>
+							</article>
+							<article class="post-item">
+								<div class="post-meta-left">
+									<h2 class="post-title">
+										<a href="#">Going live with ES2015</a>
+									</h2>
+									<span class="post-tags-inline">Javascript, Psa</span>
+								</div>
+								<time class="post-date">Feb 02</time>
+							</article>
+							<article class="post-item">
+								<div class="post-meta-left">
+									<h2 class="post-title">
+										<a href="#">Relaunching with Node</a>
+									</h2>
+									<span class="post-tags-inline">Node, Psa</span>
+								</div>
+								<time class="post-date">Jan 09</time>
+							</article>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;article class="post-item"&gt;
+  &lt;div class="post-meta-left"&gt;
+    &lt;h2 class="post-title"&gt;&lt;a href="…"&gt;Title&lt;/a&gt;&lt;/h2&gt;
+    &lt;span class="post-tags-inline"&gt;CSS, Web Platform&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;time class="post-date" datetime="…"&gt;Mar 14&lt;/time&gt;
+&lt;/article&gt;</pre
+							>
+						</details>
+					</div>
+
+					<div class="sb-story" id="cmp-tag-filter">
+						<div class="sb-story-head">
+							<h3>Tag filter band</h3>
+							<span class="sb-meta">.tag-bar + .tag-more (posts.css)</span>
+						</div>
+						<div class="sb-story-desc">
+							Top-popular chips inline; "+N more" reveals the full cloud (0.3s
+							max-height transition).
+						</div>
+						<div class="sb-canvas">
+							<div class="tag-bar">
+								<a
+									class="tag-chip"
+									href="#"
+									style="
+										background: var(--accent);
+										border-color: var(--accent);
+										color: var(--white);
+									"
+									>All</a
+								>
+								<a class="tag-chip" href="#">Psa</a>
+								<a class="tag-chip" href="#">Colophon</a>
+								<a class="tag-chip" href="#">Javascript</a>
+								<a class="tag-chip" href="#">Html</a>
+								<a class="tag-chip" href="#">Jquery</a>
+								<a class="tag-chip" href="#">Glgui</a>
+								<button class="tag-more">+11 more</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="sb-story" id="cmp-facepile">
+						<div class="sb-story-head">
+							<h3>Facepile</h3>
+							<span class="sb-meta">.facepile + .feedback-row</span>
+						</div>
+						<div class="sb-story-desc">
+							Overlapping 36px webmention avatars in the post sidebar feedback
+							row.
+						</div>
+						<div class="sb-canvas plain">
+							<div
+								class="feedback-row"
+								style="display: flex; align-items: center; gap: 0.75rem"
+							>
+								<div class="facepile">
+									<div
+										class="facepile-item"
+										style="
+											display: grid;
+											place-items: center;
+											background: var(--warm-bg-deep);
+											font-family: var(--font-display);
+											font-size: 0.72rem;
+											color: var(--ink-light);
+										"
+									>
+										AB
+									</div>
+									<div
+										class="facepile-item"
+										style="
+											display: grid;
+											place-items: center;
+											background: var(--warm-bg-deep);
+											font-family: var(--font-display);
+											font-size: 0.72rem;
+											color: var(--ink-light);
+										"
+									>
+										CD
+									</div>
+									<div
+										class="facepile-item"
+										style="
+											display: grid;
+											place-items: center;
+											background: var(--warm-bg-deep);
+											font-family: var(--font-display);
+											font-size: 0.72rem;
+											color: var(--ink-light);
+										"
+									>
+										EF
+									</div>
+									<div
+										class="facepile-item"
+										style="
+											display: grid;
+											place-items: center;
+											background: var(--warm-bg-deep);
+											font-family: var(--font-display);
+											font-size: 0.72rem;
+											color: var(--ink-light);
+										"
+									>
+										GH
+									</div>
+									<div
+										class="facepile-item"
+										style="
+											display: grid;
+											place-items: center;
+											background: var(--warm-bg-deep);
+											font-family: var(--font-display);
+											font-size: 0.72rem;
+											color: var(--ink-light);
+										"
+									>
+										+3
+									</div>
+								</div>
+								<span class="feedback-label">liked this</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="sb-story" id="cmp-blockquote">
+						<div class="sb-story-head">
+							<h3>Blockquote</h3>
+							<span class="sb-meta">blockquote</span>
+						</div>
+						<div class="sb-story-desc">
+							Terracotta left rule, italic, <code>--ink-light</code>. Tag-level
+							styling.
+						</div>
+						<div class="sb-canvas">
+							<blockquote>
+								The web should be fast, accessible, and built with care.
+							</blockquote>
+						</div>
+					</div>
+
+					<div class="sb-story" id="cmp-code-inline">
+						<div class="sb-story-head">
+							<h3>Inline code</h3>
+							<span class="sb-meta">:not(pre) &gt; code</span>
+						</div>
+						<div class="sb-story-desc">
+							Chip-shaped. Warm fill, border, <code>--accent-hover</code> text.
+						</div>
+						<div class="sb-canvas">
+							<p>
+								Wrap it in <code>&lt;figure&gt;</code> and call
+								<code>querySelector()</code> directly.
+							</p>
+						</div>
+					</div>
+
+					<div class="sb-story" id="cmp-code-block">
+						<div class="sb-story-head">
+							<h3>Code block</h3>
+							<span class="sb-meta">.post-content pre (prose.css)</span>
+						</div>
+						<div class="sb-story-desc">
+							Warm-bg-deep surface, 6px radius, Inconsolata. Prism tokens mapped
+							to the warm palette.
+						</div>
+						<div class="sb-canvas">
+							<div class="post-content">
+								<pre><span class="token comment">/* Section Grid */</span>
+<span class="token selector">.section-grid</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> <span class="token value">grid</span><span class="token punctuation">;</span>
+  <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token value">200px 1fr</span><span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> <span class="token value">baseline</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+							</div>
+						</div>
+					</div>
+
+					<div class="sb-story" id="cmp-hero-portrait">
+						<div class="sb-story-head">
+							<h3>Hero portrait</h3>
+							<span class="sb-meta">.hero-portrait (home.css)</span>
+						</div>
+						<div class="sb-story-desc">
+							The signature arch. 200/200/24/24 radius, 3px border, grayscale on
+							rest → color on hover over 0.4s.
+						</div>
+						<div class="sb-canvas plain">
+							<div class="hero-portrait"></div>
+						</div>
+						<details class="sb-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="hero-portrait"&gt;
+  &lt;img src="/img/portrait.jpg" alt="Mike Cravey"&gt;
+&lt;/div&gt;</pre
+							>
+						</details>
+					</div>
+				</section>
+
+				<!-- ─────────── RECIPES ─────────── -->
+
+				<section class="sb-group" id="r-posts-listing">
+					<h2>Recipes</h2>
+					<p class="sb-group-desc">
+						Full compositional assemblies. Pick one, fill it with primitives.
+					</p>
+
+					<div class="sb-story">
+						<div class="sb-story-head">
+							<h3>Posts listing</h3>
+							<span class="sb-meta">page-header + year-group×N</span>
+						</div>
+						<div class="sb-story-desc">
+							Year-grouped archive. Tag filter band is planned (see its
+							primitive story) but not yet part of this page.
+						</div>
+						<div class="sb-canvas">
+							<div class="section-grid">
+								<div class="section-label"></div>
+								<div>
+									<h1 class="page-title">Posts</h1>
+									<p class="subtitle">30 posts</p>
+								</div>
+							</div>
+							<div class="divider"><hr /></div>
+							<section class="section-grid">
+								<div class="section-label">2024</div>
+								<div>
+									<article class="post-item">
+										<div class="post-meta-left">
+											<h2 class="post-title">
+												<a href="#">Container queries changed everything</a>
+											</h2>
+											<span class="post-tags-inline">CSS, Web Platform</span>
+										</div>
+										<time class="post-date">Mar 14</time>
+									</article>
+									<article class="post-item">
+										<div class="post-meta-left">
+											<h2 class="post-title">
+												<a href="#">Relaunching with Node</a>
+											</h2>
+											<span class="post-tags-inline">Node, Psa</span>
+										</div>
+										<time class="post-date">Jan 09</time>
+									</article>
+								</div>
+							</section>
+						</div>
+					</div>
+
+					<div class="sb-story" id="r-now">
+						<div class="sb-story-head">
+							<h3>Now page (listing template)</h3>
+							<span class="sb-meta"
+								>page-header + N × section-grid post-items</span
+							>
+						</div>
+						<div class="sb-canvas">
+							<div class="section-grid">
+								<div class="section-label"></div>
+								<div>
+									<h1 class="page-title">What I'm Doing Now</h1>
+									<p class="updated">Last updated February 9, 2026</p>
+								</div>
+							</div>
+							<div class="divider"><hr /></div>
+							<section class="section-grid">
+								<div class="section-label">Work</div>
+								<div>
+									<article class="post-item">
+										<div class="post-meta-left">
+											<h2 class="post-title">
+												<a href="#">Looking for my next UX Engineering role</a>
+											</h2>
+											<span class="post-tags-inline">Hiring, Design + Eng</span>
+										</div>
+										<time class="post-date">Open</time>
+									</article>
+								</div>
+							</section>
+							<div class="divider"><hr /></div>
+							<section class="section-grid">
+								<div class="section-label">Building</div>
+								<div>
+									<article class="post-item">
+										<div class="post-meta-left">
+											<h2 class="post-title">
+												<a href="#">Shipping a new design for this site</a>
+											</h2>
+											<span class="post-tags-inline">Craveytrain, CSS</span>
+										</div>
+										<time class="post-date">In progress</time>
+									</article>
+								</div>
+							</section>
+						</div>
+					</div>
+
+					<div class="sb-story" id="r-sectioned-prose">
+						<div class="sb-story-head">
+							<h3>Sectioned prose (Uses / Colophon)</h3>
+							<span class="sb-meta">page-header + splitBySections</span>
+						</div>
+						<div class="sb-canvas">
+							<div class="section-grid">
+								<div class="section-label"></div>
+								<div>
+									<h1 class="page-title">Uses</h1>
+									<p class="subtitle">A current snapshot of what I'm using.</p>
+								</div>
+							</div>
+							<div class="divider"><hr /></div>
+							<section class="section-grid">
+								<div class="section-label">Terminal</div>
+								<div class="section-content">
+									<p>
+										Ghostty as my terminal, zsh as my shell.
+										<a href="#">Dotfiles here.</a>
+									</p>
+								</div>
+							</section>
+							<div class="divider"><hr /></div>
+							<section class="section-grid">
+								<div class="section-label">Editor</div>
+								<div class="section-content">
+									<p>VS Code with the Insiders channel. Font: Inconsolata.</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>

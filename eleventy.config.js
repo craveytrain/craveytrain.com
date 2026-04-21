@@ -50,6 +50,12 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/fonts': 'fonts' })
 	eleventyConfig.addPassthroughCopy({ 'static/css': 'css' })
 
+	if (process.env.ELEVENTY_ENV !== 'production') {
+		eleventyConfig.addPassthroughCopy({
+			'static/design-system.html': 'design-system.html',
+		})
+	}
+
 	// merge it deep
 	eleventyConfig.setDataDeepMerge(true)
 
