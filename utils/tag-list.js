@@ -1,5 +1,7 @@
 import contentTags from './content-tags.js'
 
+const PUBLIC_LIST_EXCLUSIONS = new Set(['colophon'])
+
 export default function (collection) {
 	const tagSet = new Set()
 	collection.getAll().forEach(function (item) {
@@ -7,7 +9,9 @@ export default function (collection) {
 			const tags = contentTags(item.data.tags)
 
 			for (const tag of tags) {
-				tagSet.add(tag)
+				if (!PUBLIC_LIST_EXCLUSIONS.has(tag)) {
+					tagSet.add(tag)
+				}
 			}
 		}
 	})
