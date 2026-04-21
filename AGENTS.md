@@ -66,7 +66,10 @@ blockquote.pull {
 
 ## Preview Server
 
-After completing work in a worktree, start the dev server so Mike can review before merging:
+After completing work in a worktree, start the dev server so Mike can review before merging.
+
+1. **Install dependencies first.** Worktrees don't share `node_modules` with the main checkout, so each worktree needs its own install.
+2. **Then start the server.**
 
 ```
 cd <worktree-path> && npm install && npm run dev &
