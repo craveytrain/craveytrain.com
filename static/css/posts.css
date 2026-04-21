@@ -81,14 +81,6 @@
 	padding-bottom: 4rem;
 }
 
-/* ─── 9. Tag filter band ─── */
-.tag-bar {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	align-items: center;
-}
-
 .tag-more {
 	font-size: 0.75rem;
 	font-weight: 500;

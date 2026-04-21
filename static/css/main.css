@@ -413,6 +413,14 @@ footer {
 	color: var(--white);
 }
 
+/* Tag Bar - flexbox container for tag chips */
+.tag-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: center;
+}
+
 /* Section link — the standardized "continue / view more / previous" affordance.
    Used on: homepage "View all posts", tag pages "View all tags",
    now-page "Previously", post prev/next pagers. Lives inside a

@@ -1,12 +1,22 @@
 ---
 title: Tags
-layout: page
+layout: base
 ---
-<ul>
-{% for tag in collections.tagList %}
-	<li>
-  	<a href="/tags/{{ tag | slugify }}">{{ tag }}</a>
-		({{ collections[tag].length }})
-	</li>
-{% endfor %}
-</ul>
+<div class="page-header section-grid">
+  <div class="section-label"></div>
+  <div>
+    <h1 class="page-title">Tags</h1>
+    <p class="subtitle">{{ collections.tagList | length }} tags across the archive.</p>
+  </div>
+</div>
+
+{% include "partials/divider.njk" %}
+
+<section class="section-grid">
+  <div class="section-label"></div>
+  <div class="tag-bar">
+    {% for tag in collections.tagList %}
+      <a href="/tags/{{ tag | slugify }}/" class="tag-chip">{{ tag }} {{ collections[tag].length }}</a>
+    {% endfor %}
+  </div>
+</section>
