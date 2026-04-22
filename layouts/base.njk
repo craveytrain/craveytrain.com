@@ -59,12 +59,7 @@
     {{ head }}
 </head>
 
-{% set pageSlug = page.fileSlug | slugify %}
-{% if pageSlug == "" %}
-    {% set pageSlug = "home" %}
-{% endif %}
-
-<body class="page-{{ pageSlug }}">
+<body class="page-{{ page.fileSlug | slugify | default("home", true) }}">
     {# Skip link must be first for accessibility #}
     {% include "partials/skip-link.njk" %}
 
