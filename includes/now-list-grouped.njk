@@ -1,5 +1,5 @@
 {%- if nowEntries.length -%}
-{% for year, yearEntries in nowEntries | groupby("data.year") | dictsort | reverse %}
+{% for year, yearEntries in nowEntries | groupby("date", "getFullYear") | dictsort | reverse %}
   <section class="section-grid year-group">
     <div class="section-label">{{ year }}</div>
     <div class="posts-for-year">
