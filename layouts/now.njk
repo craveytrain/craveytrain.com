@@ -33,9 +33,7 @@ css: content-pages.css
               </h2>
               {%- if item.tags and item.tags.length -%}
               <span class="post-tags-inline">
-                {%- for tag in item.tags -%}
-                  {{- tag -}}{%- if not loop.last %}, {% endif -%}
-                {%- endfor -%}
+                {{ item.tags | join(", ") }}
               </span>
               {%- endif -%}
             </div>
