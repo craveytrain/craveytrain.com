@@ -99,7 +99,6 @@ h6 {
 	--syntax-comment: oklch(64% 0.03 60deg);
 	--syntax-punctuation: oklch(64% 0.03 60deg);
 
-	/* Typography - font names lowercase per stylelint */
 	--font-display: fraunces, georgia, serif;
 	--font-body: inter, -apple-system, sans-serif;
 	--font-code: inconsolata, 'SFMono-Regular', consolas, monospace;
@@ -329,7 +328,6 @@ nav {
 	gap: 2rem;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- nav links override base link styles */
 nav a {
 	font-size: 0.9rem;
 	font-weight: 500;
@@ -375,7 +373,6 @@ footer {
 	gap: 1.5rem;
 }
 
-/* stylelint-disable-next-line no-descending-specificity -- footer links override base link styles */
 .footer-nav a {
 	font-size: 0.85rem;
 	color: var(--warm-bg-deep);

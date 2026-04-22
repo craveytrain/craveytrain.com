@@ -14,10 +14,8 @@
 		"format:webmention": "prettier --write ./data/webmentions.json",
 		"lint": "run-p lint:fix:*",
 		"lint:fix:js": "eslint --fix '**/*.js'",
-		"lint:fix:css": "stylelint --fix '**/*.css'",
 		"lint:ci": "run-p lint:ci:*",
 		"lint:ci:js": "eslint '**/*.js'",
-		"lint:ci:css": "stylelint '**/*.css'",
 		"webmention": "node ./scripts/update-webmention.js",
 		"upgrade-deps": "ncu -u",
 		"postinstall": "husky install",
@@ -30,7 +28,6 @@
 	},
 	"lint-staged": {
 		"*.js": "eslint --cache --fix",
-		"*.css": "stylelint --allow-empty-input",
 		"!(CLAUDE).{css,html,js,json,md,yaml}": "prettier --write"
 	},
 	"type": "module",
@@ -70,9 +67,7 @@
 		"prettier": "^3.8.3",
 		"purgecss": "^8.0.0",
 		"rimraf": "^6.1.3",
-		"sanitize-html": "^2.17.3",
-		"stylelint": "^17.8.0",
-		"stylelint-config-standard": "^40.0.0"
+		"sanitize-html": "^2.17.3"
 	},
 	"dependencies": {
 		"markdown-it": "^14.1.1",

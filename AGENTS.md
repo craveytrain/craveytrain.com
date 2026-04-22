@@ -13,10 +13,10 @@ Personal website for Mike Cravey. Blog posts, now page system with archives, col
 
 - `npm run dev`, Eleventy dev server with live reload
 - `npm run build`, production build to `_site/`
-- `npm run lint`, ESLint + Stylelint autofix
+- `npm run lint`, ESLint autofix
 - `npm run format`, Prettier write
 
-Pre-commit hook (husky + lint-staged) runs ESLint, Stylelint, and Prettier on staged files.
+Pre-commit hook (husky + lint-staged) runs ESLint and Prettier on staged files.
 
 ## Design System
 
