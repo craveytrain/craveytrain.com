@@ -4,6 +4,7 @@ import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
 import { feedPlugin } from '@11ty/eleventy-plugin-rss'
 import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
 import contentTags from './utils/content-tags.js'
+import groupByYearDesc from './utils/group-by-year.js'
 import optimizeCSS from './utils/optimize-css.js'
 import tagList from './utils/tag-list.js'
 import { getWebmentionsForUrl, webmentionsByType } from './utils/webmentions.js'
@@ -117,6 +118,7 @@ export default async function (eleventyConfig) {
 	)
 
 	eleventyConfig.addFilter('contentTags', contentTags)
+	eleventyConfig.addFilter('groupByYearDesc', groupByYearDesc)
 
 	// head filter - get first N items from array
 	eleventyConfig.addFilter('head', (array, n) => {
