@@ -1,0 +1,13 @@
+{
+	"name": "protect-main",
+	"target": "branch",
+	"enforcement": "active",
+	"conditions": {
+		"ref_name": {
+			"include": ["refs/heads/main"],
+			"exclude": []
+		}
+	},
+	"rules": [{ "type": "non_fast_forward" }, { "type": "deletion" }],
+	"bypass_actors": []
+}
