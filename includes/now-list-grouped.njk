@@ -1,20 +1,28 @@
 {%- if nowEntries.length -%}
-{% for year, yearEntries in nowEntries | groupby("date.getFullYear") | dictsort | reverse %}
-  <section class="section-grid year-group">
-    <div class="section-label">{{ year }}</div>
-    <div class="posts-for-year">
-      {% for entry in yearEntries | reverse %}
-        <article class="post-item">
-          <h2 class="post-title">
-            <a href="{{ entry.url }}">{{ entry.date | prettyDate }}</a>
-          </h2>
-        </article>
-      {% endfor %}
+{%- set currentYear = null -%}
+{%- set isFirstYear = true -%}
+{% for entry in nowEntries | reverse %}
+  {%- set entryYear = entry.date | dateToFormat('yyyy') -%}
+  {%- if currentYear != entryYear -%}
+    {%- if not isFirstYear -%}
     </div>
   </section>
-
-  {% if not loop.last %}
-    {% include "partials/divider.njk" %}
-  {% endif %}
+    {%- endif -%}
+    {%- if not isFirstYear -%}
+      {% include "partials/divider.njk" %}
+    {%- endif -%}
+  <section class="section-grid year-group">
+    <div class="section-label">{{ entryYear }}</div>
+    <div class="posts-for-year">
+    {%- set currentYear = entryYear -%}
+    {%- set isFirstYear = false -%}
+  {%- endif -%}
+      <article class="post-item">
+        <h2 class="post-title">
+          <a href="{{ entry.url }}">{{ entry.date | prettyDate }}</a>
+        </h2>
+      </article>
 {% endfor %}
+    </div>
+  </section>
 {%- endif -%}
