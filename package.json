@@ -3,7 +3,7 @@
 	"version": "9.0.0",
 	"description": "The personal site of Mike Cravey (@craveytrain).",
 	"homepage": "https://craveytrain.com",
-	"main": "index.js",
+	"private": true,
 	"scripts": {
 		"clean": "rimraf _site",
 		"dev": "NODE_ENV=dev ELEVENTY_ENV=development eleventy --serve --quiet",
@@ -16,13 +16,7 @@
 		"lint:ci": "eslint '**/*.js'",
 		"webmention": "node ./scripts/update-webmention.js",
 		"upgrade-deps": "ncu -u",
-		"postinstall": "husky install",
 		"prepare": "husky"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
 	},
 	"lint-staged": {
 		"*.js": "eslint --cache --fix",
