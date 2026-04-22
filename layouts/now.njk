@@ -3,7 +3,7 @@ layout: base
 css: content-pages.css
 ---
 {%- set nowEntries = collections.now -%}
-{%- set latestNow = nowEntries[nowEntries.length - 1] -%}
+{%- set latestNow = collections.now | last -%}
 <div class="page-header section-grid now-header">
   <div class="section-label"></div>
   <div>
