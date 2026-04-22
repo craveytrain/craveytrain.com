@@ -2,7 +2,9 @@
   <a href="/" class="logo">craveytrain</a>
   <nav>
     {%- for item in collections.nav %}
-      {% include "nav-item.njk", url: item.url, contents: item.data.eleventyNavigation.key %}
+      {% set url = item.url %}
+      {% set contents = item.data.eleventyNavigation.key %}
+      {% include "nav-item.njk" %}
     {%- endfor %}
   </nav>
 </header>
