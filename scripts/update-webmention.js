@@ -1,7 +1,6 @@
 // https://sia.codes/posts/webmentions-eleventy-in-depth/
 
 import { env } from 'process'
-import unionBy from 'lodash/unionBy.js'
 import sanitizeHTML from 'sanitize-html'
 import { writeToCache, readFromCache } from '../utils/cache.js'
 import packageJson from '../package.json' with { type: 'json' }
@@ -9,6 +8,12 @@ const domain = new URL(packageJson.homepage).hostname
 
 // Load .env variables with dotenv
 import 'dotenv/config.js'
+
+function unionBy(a, b, key) {
+	const map = new Map(a.map(x => [x[key], x]))
+	for (const item of b) if (!map.has(item[key])) map.set(item[key], item)
+	return [...map.values()]
+}
 
 // Define Cache Location and API Endpoint
 const WEBMENTION_URL = 'https://webmention.io/api'
