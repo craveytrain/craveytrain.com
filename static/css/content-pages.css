@@ -41,7 +41,6 @@
 	font-size: 1.05rem;
 	color: var(--ink);
 	line-height: 1.75;
-	margin-left: 1.5rem;
 	margin-bottom: 1rem;
 	max-width: var(--prose-max-width);
 }

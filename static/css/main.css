@@ -146,7 +146,12 @@ blockquote {
 ul,
 ol {
 	margin-block: 1.25rem;
-	padding-left: 1.5rem;
+	padding-left: 0;
+
+	& ul,
+	& ol {
+		margin-left: 1.5em;
+	}
 }
 
 li {
