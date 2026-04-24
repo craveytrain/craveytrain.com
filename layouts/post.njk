@@ -18,7 +18,6 @@ css: prose.css
         </time>
       </div>
 
-      {% set contentTags = tags | contentTags %}
       {% if contentTags.length > 0 %}
       <div class="sidebar-section">
         <div class="section-label">Tagged</div>
@@ -30,7 +29,6 @@ css: prose.css
       </div>
       {% endif %}
 
-      {% set mentions = webmentions | getWebmentionsForUrl(page.url) %}
       {% if mentions.length > 0 %}
       <div class="sidebar-section">
         <div class="section-label">Feedback</div>
