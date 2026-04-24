@@ -1,10 +1,10 @@
 ---
 title: Uses
 layout: content-page
-tags: foot
+tags: nav
 eleventyNavigation:
   key: Uses
-  order: 1
+  order: 2
 subtitle: "Here's a current snapshot of the tools I use."
 ---
 
