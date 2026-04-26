@@ -113,7 +113,9 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addCollection('feed', collectionApi =>
 		[
 			...collectionApi.getFilteredByTag('post'),
-			...collectionApi.getFilteredByTag('now'),
+			...collectionApi
+				.getFilteredByTag('now')
+				.filter(item => item.page.url !== '/now/'),
 		].sort((a, b) => a.date - b.date)
 	)
 
