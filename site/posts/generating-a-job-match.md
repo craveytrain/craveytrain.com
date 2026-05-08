@@ -1,0 +1,56 @@
+---
+title: Generating a job match
+date: 2026-05-08
+description: I built an elaborate AI machine to tailor my CV to every job description. It produced AI slop and got me zero responses. When I started using my own voice, the results changed significantly.
+tags:
+  - anecdotal
+  - prompt
+  - ai
+  - job-hunt
+---
+
+They say that necessity is the mother of invention and that has never rung more true to me than recently. I was laid off earlier this year and that has forced me to do things like update my CV (resume). When faced with this task, that I was _not_ looking forward to, I thought this would be a good time to really dig into agentic tools to see how they could help me. While it was useful, it did not manifest the way I initially expected.
+
+My first instinct was to go whole hog (so to speak). So, I had an agent look at my resume (that hadn’t been updated in 9 years), all of my self-evaluations from my most recent employment to discern some highlights and achievements. This generated a laundry list of content for the CV. Great, achievement unlocked. I then used the AI to categorize the achievements by some basic disciplines: design, engineering, and management. Now I had metadata-rich content to assemble my CV with.
+
+I assumed, perhaps naively, that companies would be looking for a CV that closely matched the job description. Similar language, keywords, responsibilities. So I did what any reasonable engineer would do, I constructed an overly complicated Rube Goldberg machine to achieve that goal.
+
+## The machine
+
+First, I created an agent skill to analyze the job description, extract keywords, and weight matches to the disciplines categories I had created. So, a role may be weighted .4 design and .8 engineering. From there, the agent could assemble a CV from my available achievements, preferring ones that matched the higher weighted disciplines. Then, the agent would take a pass on the language of the CV, adjusting terms to better match the job description (e.g., swap UX Engineer with Frontend Engineer), in hopes of hitting some threshold of keyword matching. This resulted in an, often, lengthy CV, full of terminology that very closely matched the job description.
+
+Now, I’m an old, and some things have stuck with me. One of those is that a CV should be succinct and scannable. Ideally, a single page. In practice, this felt a bit too constraining, but I did want to apply some amount of curation to the content so that it could at least fit nicely on 2 pages. So I created another skill that an agent would use to trim content. Through several iterations, I tried numerous approaches, giving direction on how to present older roles where the achievements were not as relevant or timely. I also tried to give it ratios of how many achievements per experience entry relative to how recent the experience was, so it created an effective inverted triangle: the more recent experiences had more achievements, the older experiences had fewer. I also gave it rules around pagination and what could be broken up, ideally, do not span an experience across a page break, preferring to keep it consolidated on a single page. Sometimes it would leave too much space at the end of a page, effectively cutting content unnecessarily. At the end of the day, I still had to hand trim the content. This was my first smell, and I missed it.
+
+## 🤦
+
+I ran this tool against every job description I could find that was vaguely related to my experience. I applied for hundreds of jobs. And, for a long time I got no responses. I mean nothing. No takers, no interest, no rejections, not even phishing attempts. And I knew I was a good match for many of these roles. I had been doing this a long time. This caused me to do a deeper dive on the content that was being submitted, rather than the cursory look I was giving it thus far. Suffice to say, I was appalled and embarrassed. The content I was submitting was devoid of personality. It read like what it was: AI slop. All the catchphrases, all the em-dashes, all signals that it was machine generated. I had trusted the system too much and given it too much leeway. Worst of all, it didn’t sound like me.
+
+I like to think of myself as an effective communicator, with a distinct personality, and a good sense of humor. None of that was coming through. I had to change my approach because the content was bad and the results (or lack thereof) spoke for themselves.
+
+## Finding my voice
+
+When I sat down and looked at what was being produced, I realized, I had effectively 3 types of roles I was applying for:
+
+- frontend engineer
+- engineering manager
+- technical product manager
+
+And each of these roles had a different lens through which the CV needed to be viewed. A given highlight could be worded to accentuate a relevant aspect towards the target role. I decided I needed to take back the voice of my CV and spent an evening rewriting it into 3 variants. I based them on what had been generated by AI to match those archetypes, but the descriptions, the highlights, everything was rewritten in my voice, following a few guidelines on structure and content:
+
+- Why was this important and relevant to the reader?
+- Why was this notable?
+- What impact did this have to the team/project/business?
+
+And where was the humor? People who know me know I can’t be serious for 5 minutes straight. Why isn’t that reflected in my CV? I added some highlights that are more my style:
+
+- Survived 20x traffic growth by rearchitecting the frontend. The frontend survived too.
+- Coaches basketball, which is basically stakeholder management with more fast breaks
+- 25+ years building for the web, since tables were for layout
+
+After writing the 3 archetypal variants, I attempted to use the page trimming agent skill to make sure it stayed to 2 pages, but continually struggled with formatting. Finally, I realized, the answer was to curate the whole CV. I would custom build the content to fit perfectly in the space. The task of the agent was then to research the role and determine which of my 3 CVs would be the best fit. This was a task it was much better suited to.
+
+## Proof is in the pudding
+
+After adjusting my CVs and submitting them, the results were immediately apparent. I started getting a lot more responses back. A lot more “hey, we’d like to talk to you about this opportunity”. My system was significantly scaled down from its initial build out, but was dramatically more effective.
+
+Was all that time, effort, and tokens wasted? No, as it turns out, I had other uses for the machinery around applying for jobs that would parlay into something more interesting.
