@@ -109,6 +109,14 @@ export default async function (eleventyConfig) {
 	// generate tags
 	eleventyConfig.addCollection('tagList', tagList)
 
+	const datedNowEntry = /^\d{4}-\d{2}-\d{2}$/
+	eleventyConfig.addCollection('nowEntries', collectionApi =>
+		collectionApi
+			.getFilteredByTag('now')
+			.filter(item => datedNowEntry.test(item.page.fileSlug))
+			.sort((a, b) => a.date - b.date)
+	)
+
 	// combined feed: posts + dated now pages, sorted by date
 	eleventyConfig.addCollection('feed', collectionApi =>
 		[

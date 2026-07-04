@@ -1,5 +1,5 @@
-{% set previousNow = collections.now | getPreviousCollectionItem(page) %}
-{% set nextNow = collections.now | getNextCollectionItem(page) %}
+{% set previousNow = collections.nowEntries | getPreviousCollectionItem(page) %}
+{% set nextNow = collections.nowEntries | getNextCollectionItem(page) %}
 
 {% if previousNow or nextNow %}
 <nav class="now-nav" aria-label="Now page navigation">
