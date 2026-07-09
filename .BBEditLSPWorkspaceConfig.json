@@ -1,0 +1,14 @@
+{
+	"typescript": {
+		"preferences": {
+			"quoteStyle": "auto",
+			"importModuleSpecifierPreference": "shortest"
+		}
+	},
+	"javascript": {
+		"preferences": {
+			"quoteStyle": "auto",
+			"importModuleSpecifierPreference": "shortest"
+		}
+	}
+}
