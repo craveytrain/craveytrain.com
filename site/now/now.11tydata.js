@@ -16,6 +16,6 @@ export default {
 			datedEntry.test(data.page.fileSlug)
 				? `Now, ${prettyDate(data.date)}`
 				: data.title,
-		year: data => new Date(data.date || data.page.date).getFullYear(),
+		year: data => new Date(data.date || data.page.date).getUTCFullYear(),
 	},
 }

@@ -9,7 +9,7 @@ export const writeToCache = (data, file) => {
 	const fileContent = JSON.stringify(data, null, 2)
 	// create cache folder if it doesn't exist already
 	if (!fs.existsSync(dir)) {
-		fs.mkdirSync(dir)
+		fs.mkdirSync(dir, { recursive: true })
 	}
 	// write data to cache json file
 	fs.writeFile(file, fileContent, err => {

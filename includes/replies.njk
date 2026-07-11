@@ -1,9 +1,9 @@
 {% set replyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"] %}
 {% for reply in replies %}
-<article id="webmention-{{ reply['wm-id'] }}" class="reply">
+<article id="webmention-{{ reply['wm-id'] }}" class="reply h-cite">
   <div class="reply-header">
     {% if reply.author and reply.author.photo %}
-    <img class="reply-avatar" src="{{ reply.author.photo }}" alt="" width="40" height="40" loading="lazy">
+    <img class="reply-avatar u-photo" src="{{ reply.author.photo }}" alt="" width="40" height="40" loading="lazy">
     {% else %}
     {% set replyName = reply.author.name if reply.author and reply.author.name else 'Anonymous' %}
     {% set replyWords = replyName.split(' ') %}
@@ -11,14 +11,18 @@
     <span class="reply-avatar reply-avatar--initials{{ ' reply-avatar--alt' if loop.index0 % 2 else '' }}">{{ replyInitials }}</span>
     {% endif %}
     {% if reply.author %}
-    <a class="h-card u-url reply-author" {% if reply.url %}href="{{ reply.url }}" {% endif %}target="_blank" rel="noopener noreferrer"><strong class="p-name">{{ reply.author.name }}</strong></a>
+    <a class="p-author h-card reply-author" {% if reply.author.url %}href="{{ reply.author.url }}" {% elif reply.url %}href="{{ reply.url }}" {% endif %}target="_blank" rel="noopener noreferrer"><strong class="p-name">{{ reply.author.name }}</strong></a>
     {% else %}
     <strong class="reply-author">Anonymous</strong>
     {% endif %}
     {% if reply.published %}
-    <time class="reply-date" datetime="{{ reply.published }}">{{ replyMonths[(reply.published.slice(5,7) | int) - 1] }} {{ reply.published.slice(8,10) | int }}</time>
+    {% if reply.url %}
+    <a class="reply-date u-url" href="{{ reply.url }}" target="_blank" rel="noopener noreferrer"><time class="dt-published" datetime="{{ reply.published }}">{{ replyMonths[(reply.published.slice(5,7) | int) - 1] }} {{ reply.published.slice(8,10) | int }}</time></a>
+    {% else %}
+    <time class="reply-date dt-published" datetime="{{ reply.published }}">{{ replyMonths[(reply.published.slice(5,7) | int) - 1] }} {{ reply.published.slice(8,10) | int }}</time>
+    {% endif %}
     {% endif %}
   </div>
-  <div class="reply-body">{{ reply.content.text }}</div>
+  <div class="reply-body p-content">{{ reply.content.text }}</div>
 </article>
 {% endfor %}

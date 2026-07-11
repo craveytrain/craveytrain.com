@@ -11,3 +11,7 @@ To run the website locally in dev mode, run this:
 ```sh
 npm run dev
 ```
+
+## License
+
+The code is MIT licensed (see `LICENSE`), so take what you like and build your own thing with it. The content is different: the writing, the blog posts, the words in `site/`, that's all mine, all rights reserved. Reuse the machinery, not the prose.

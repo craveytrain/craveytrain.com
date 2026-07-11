@@ -1,11 +1,9 @@
 import fs from 'fs/promises'
-import svgContents from 'eleventy-plugin-svg-contents'
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
 import { feedPlugin } from '@11ty/eleventy-plugin-rss'
 import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
 import contentTags from './utils/content-tags.js'
 import groupByYearDesc from './utils/group-by-year.js'
-import optimizeCSS from './utils/optimize-css.js'
 import tagList from './utils/tag-list.js'
 import { getWebmentionsForUrl, webmentionsByType } from './utils/webmentions.js'
 import pluralize from './utils/pluralize.js'
@@ -51,6 +49,7 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/fonts': 'fonts' })
 	eleventyConfig.addPassthroughCopy({ 'static/css': 'css' })
 	eleventyConfig.addPassthroughCopy({ 'static/js': 'js' })
+	eleventyConfig.addPassthroughCopy({ 'static/robots.txt': 'robots.txt' })
 
 	if (process.env.ELEVENTY_ENV !== 'production') {
 		eleventyConfig.addPassthroughCopy({
@@ -61,19 +60,10 @@ export default async function (eleventyConfig) {
 	// merge it deep
 	eleventyConfig.setDataDeepMerge(true)
 
-	// handle SVG contents
-	eleventyConfig.addPlugin(svgContents)
 	// filter and sort nav items
 	eleventyConfig.addPlugin(eleventyNavigationPlugin)
 	// syntax highlighting
-	eleventyConfig.addPlugin(syntaxHighlight, {
-		preAttributes: {
-			class: 'line-numbers',
-			'data-language': function ({ language }) {
-				return language || 'text'
-			},
-		},
-	})
+	eleventyConfig.addPlugin(syntaxHighlight)
 
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj =>
@@ -98,6 +88,7 @@ export default async function (eleventyConfig) {
 			? dateObj.toLocaleDateString('en-US', {
 					month: 'short',
 					year: 'numeric',
+					timeZone: 'UTC',
 				})
 			: dateObj
 	)
@@ -159,8 +150,6 @@ export default async function (eleventyConfig) {
 		return sections
 	})
 
-	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
-
 	eleventyConfig.addPlugin(feedPlugin, {
 		...feedDetails,
 		type: 'rss', // or "rss", "json"
@@ -172,4 +161,12 @@ export default async function (eleventyConfig) {
 		type: 'json', // or "rss", "json"
 		outputPath: '/feed.json',
 	})
+
+	// Registered via a deferred plugin so it runs AFTER feedPlugin: the RSS
+	// plugin registers a deprecated 2-arg absoluteUrl(url, base) during its own
+	// (deferred) plugin phase, and a plain addFilter here would be overwritten by
+	// it. Wrapping our 1-arg override in a plugin added last makes ours win.
+	eleventyConfig.addPlugin(ec =>
+		ec.addFilter('absoluteUrl', url => new URL(url, metadata.url).href)
+	)
 }

@@ -1,12 +1,12 @@
 
-{% set canonicalUrl = page.url %}
+{% set canonicalUrl = page.url | absoluteUrl %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="{{ metadata.description }}">
+    <meta name="description" content="{{ description or metadata.description }}">
     <meta name="author" content="{{ metadata.author.name }}">
 
     <title>{{ pageTitle }}</title>
@@ -55,16 +55,16 @@
 
     {# Social #}
     <meta property="og:title" content="{{ pageTitle }}">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="{{ metadata.author.name }}">
-    <meta property="og:description" content="{{ metadata.description }}">
-    <meta property="og:image" content="{{ metadata.url }}img/og-card.png">
+    <meta property="og:type" content="{{ ogType or 'website' }}">
+    <meta property="og:site_name" content="{{ metadata.title }}">
+    <meta property="og:description" content="{{ description or metadata.description }}">
+    <meta property="og:image" content="{{ '/img/og-card.png' | absoluteUrl }}">
     <meta property="og:url" content="{{ canonicalUrl }}">
 
     {# SEO/Feeds #}
     <link rel="canonical" href="{{ canonicalUrl }}">
-    <link rel="alternate" type="application/atom+xml" title="RSS feed for Craveytrain" href="/feed.xml">
-    <link rel="alternate" type="application/json" title="JSON feed for Craveytrain" href="/feed.json">
+    <link rel="alternate" type="application/rss+xml" title="RSS feed for Craveytrain" href="/feed.xml">
+    <link rel="alternate" type="application/feed+json" title="JSON feed for Craveytrain" href="/feed.json">
 
     {# IndieAuth #}
     <link href="https://github.com/craveytrain" rel="me">
@@ -73,8 +73,6 @@
     <link rel="pingback" href="https://webmention.io/craveytrain.com/xmlrpc">
 
     <script type="module" src="/js/theme-toggle.js"></script>
-
-    {{ head }}
 </head>
 
 <body class="page-{{ page.fileSlug | slugify | default("home", true) }}">
@@ -91,22 +89,5 @@
 
     {# Site footer #}
     {% include "partials/footer.njk" %}
-
-    {# Skip link JavaScript workaround for Safari #}
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var skipLink = document.querySelector('.skip-link');
-      if (skipLink) {
-        skipLink.addEventListener('click', function(e) {
-          var target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            e.preventDefault();
-            target.focus();
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      }
-    });
-    </script>
 </body>
 </html>

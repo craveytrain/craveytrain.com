@@ -24,10 +24,10 @@ export async function handler(event) {
 		).then(response => response.text())
 
 		if (response) {
-			return { statusCode: 500, body: response }
+			return { statusCode: 500, body: 'Upstream error' }
 		}
 		return { statusCode: 200, body: 'ok' }
-	} catch (error) {
-		return { statusCode: 500, body: error.message }
+	} catch {
+		return { statusCode: 500, body: 'Internal error' }
 	}
 }
