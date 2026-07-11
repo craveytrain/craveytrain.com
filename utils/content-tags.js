@@ -1,10 +1,11 @@
 export default function contentTags(tags) {
 	return tags.filter(tag => {
 		switch (tag) {
-			// this list should match the `filter` list in tags
+			// structural tags, never content topics
 			case 'all':
 			case 'nav':
 			case 'foot':
+			case 'now':
 			case 'post':
 				return false
 		}
