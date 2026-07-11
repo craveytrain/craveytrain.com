@@ -172,4 +172,12 @@ export default async function (eleventyConfig) {
 		type: 'json', // or "rss", "json"
 		outputPath: '/feed.json',
 	})
+
+	// Registered via a deferred plugin so it runs AFTER feedPlugin: the RSS
+	// plugin registers a deprecated 2-arg absoluteUrl(url, base) during its own
+	// (deferred) plugin phase, and a plain addFilter here would be overwritten by
+	// it. Wrapping our 1-arg override in a plugin added last makes ours win.
+	eleventyConfig.addPlugin(ec =>
+		ec.addFilter('absoluteUrl', url => new URL(url, metadata.url).href)
+	)
 }
