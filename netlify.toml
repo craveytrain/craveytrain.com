@@ -9,3 +9,87 @@
   [headers.values]
     Content-Type = "application/jrd+json; charset=utf-8"
     Access-Control-Allow-Origin = "*"
+
+# Global security headers. CSP notes:
+# - The sha256 hash allows the ONE inline script (pre-paint theme, layouts/base.njk).
+#   Recompute after ANY edit to that script (command below).
+# - img-src allows webmention.io: facepile/reply avatars are proxied through it.
+#   A future non-proxied avatar URL would render broken until allowlisted.
+# - style-src 'self' is only safe because `static/design-system.html` (dozens
+#   of inline style= swatches) is passthrough-copied ONLY when
+#   ELEVENTY_ENV !== 'production' (eleventy.config.js). package.json's "build"
+#   script hardcodes ELEVENTY_ENV=production, so this holds as long as the
+#   Netlify build runs `npm run build` (no override found in this netlify.toml
+#   — no [build.command] is set, so Netlify falls back to its own detected
+#   default, conventionally `npm run build` for a Node site with that script).
+#   Not verified against the Netlify dashboard/UI build-command setting,
+#   which this repo cannot see. If a deploy preview 404s on
+#   `/design-system.html` this holds; if it 200s, the build isn't running
+#   `npm run build` as expected — stop and re-check the Netlify build command
+#   before trusting this CSP.
+# Hash recompute: npm run build, then
+#   python3 -c "import re,hashlib,base64; h=open('_site/index.html').read(); m=re.search(r'<script>(.*?)</script>', h, re.S); print('sha256-'+base64.b64encode(hashlib.sha256(m.group(1).encode()).digest()).decode())"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-aX/sbobcXEi9xyBljMDElq4H9GPhZhAmYZ18ACVld94='; style-src 'self'; img-src 'self' https://webmention.io; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"
+
+# Legacy reveal.js slide decks are full of inline scripts/styles; relax CSP for
+# them only. Netlify: the later matching rule is asserted to replace the
+# duplicate header for the same path — UNVERIFIED, see deploy-preview check
+# and fallback below. `https:` is included (not just 'self'/data:) because at
+# least two decks (js_css_bootcamp.html, js-basics/index.html) load
+# `<link rel="stylesheet" href="https://fonts.googleapis.com/...">` — a real
+# external resource load, verified by grepping the built HTML, not just the
+# many plain-text `<a href="http://...">` links in deck content (those are
+# navigations, which CSP's default-src does not govern, so they don't matter
+# here). This relaxed policy is default-src only: unlike the strict policy
+# above, it sets no frame-ancestors (any origin may iframe these decks), no
+# base-uri, and no form-action. Accepted for archived, static, low-value
+# legacy content, but a deliberate trade, not an incidental one. Also: the
+# reveal.js notes-server plugin (plugin/notes-server/notes.html) loads
+# `/socket.io/socket.io.js` and opens a wss: socket — `wss:` is not covered
+# by `https:`, so that plugin stays blocked here too. Doesn't matter in
+# practice (it needs a running Node notes server this static deploy doesn't
+# have, and /socket.io/ 404s anyway), but the policy is not a blanket "decks
+# fully work" guarantee — only "the resources actually verified above work."
+[[headers]]
+  for = "/slides/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Not immutable: og-card.png gets regenerated in place when the design changes
+# and image filenames are not fingerprinted.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/feed.xml"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=utf-8"
+
+[[headers]]
+  for = "/feed.json"
+  [headers.values]
+    Content-Type = "application/feed+json; charset=utf-8"
