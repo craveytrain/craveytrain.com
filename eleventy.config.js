@@ -98,6 +98,7 @@ export default async function (eleventyConfig) {
 			? dateObj.toLocaleDateString('en-US', {
 					month: 'short',
 					year: 'numeric',
+					timeZone: 'UTC',
 				})
 			: dateObj
 	)

@@ -9,7 +9,7 @@ export default {
 		mentions: data => getWebmentionsForUrl(data.webmentions, data.page.url),
 		year: data => {
 			const date = data.date || data.page.date
-			return new Date(date).getFullYear()
+			return new Date(date).getUTCFullYear()
 		},
 	},
 }
