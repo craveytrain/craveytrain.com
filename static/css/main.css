@@ -1,6 +1,6 @@
 /* ============================================
    CRAVEYTRAIN.COM - FOUNDATION CSS
-   Warm Editorial Design System
+   Affiche Design System
    ============================================ */
 
 /* ─── 1. Modern CSS Reset (Josh Comeau style) ─── */
@@ -42,31 +42,31 @@ h6 {
 
 /* ─── 2. @font-face Declarations ─── */
 
-/* Inter - Variable font (weights 400, 500, 600) */
+/* Bebas Neue - Regular (weight 400) */
 @font-face {
-	font-family: Inter;
+	font-family: 'Bebas Neue';
 	font-style: normal;
-	font-weight: 400 600;
-	font-display: swap;
-	src: url('/fonts/inter-variable.woff2') format('woff2');
-}
-
-/* Fraunces - Variable font (weights 300, 600, 800) */
-@font-face {
-	font-family: Fraunces;
-	font-style: normal;
-	font-weight: 300 800;
-	font-display: swap;
-	src: url('/fonts/fraunces-variable.woff2') format('woff2');
-}
-
-/* Fraunces - Italic (weight 400) */
-@font-face {
-	font-family: Fraunces;
-	font-style: italic;
 	font-weight: 400;
 	font-display: swap;
-	src: url('/fonts/fraunces-italic.woff2') format('woff2');
+	src: url('/fonts/bebas-neue-400.woff2') format('woff2');
+}
+
+/* Jost - Variable font (weights 400-700) */
+@font-face {
+	font-family: Jost;
+	font-style: normal;
+	font-weight: 400 700;
+	font-display: swap;
+	src: url('/fonts/jost-variable.woff2') format('woff2');
+}
+
+/* Yellowtail - Regular (weight 400) */
+@font-face {
+	font-family: Yellowtail;
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/yellowtail-400.woff2') format('woff2');
 }
 
 /* Inconsolata - Regular (weight 400) */
@@ -80,18 +80,48 @@ h6 {
 
 /* ─── 3. :root Design Tokens ─── */
 :root {
-	/* Colors - Core Palette (OKLCH) */
-	--warm-bg: oklch(97% 0.01 80deg);
-	--warm-bg-deep: oklch(93% 0.02 70deg);
-	--ink: oklch(25% 0.02 55deg);
-	--ink-light: oklch(48% 0.03 55deg);
-	--accent: oklch(55% 0.18 40deg);
-	--accent-hover: oklch(48% 0.17 40deg);
-	--accent-soft: oklch(84% 0.05 55deg);
-	--border: oklch(87% 0.02 70deg);
-	--white: oklch(100% 0 0deg);
+	color-scheme: light dark;
 
-	/* Colors - Syntax Highlighting (OKLCH) */
+	/* ── Layer 1: palette, fixed pigments, never referenced by components ── */
+	--cream: oklch(93% 0.025 85deg);
+	--cream-bright: oklch(92% 0.03 85deg);
+	--cream-deep: oklch(89% 0.035 85deg);
+	--cream-dim: oklch(79% 0.04 85deg);
+	--midnight: oklch(30% 0.075 265deg);
+	--midnight-light: oklch(44% 0.06 265deg);
+	--midnight-lifted: oklch(31% 0.065 265deg);
+	--midnight-deep: oklch(26% 0.06 265deg);
+	--red: oklch(48.5% 0.185 30deg);
+	--red-bright: oklch(66% 0.17 30deg);
+	--gold: oklch(78% 0.12 85deg);
+	--gold-bright: oklch(82% 0.11 85deg);
+	--teal: oklch(58% 0.08 200deg);
+	--teal-bright: oklch(63% 0.07 200deg);
+
+	/* ── Layer 2: semantic roles, jour / nuit is only this remap ── */
+	--surface: light-dark(var(--cream), var(--midnight-deep));
+	--surface-deep: light-dark(var(--cream-deep), var(--midnight-lifted));
+	--text: light-dark(var(--midnight), var(--cream-bright));
+	--text-muted: light-dark(var(--midnight-light), var(--cream-dim));
+	--frame: light-dark(var(--midnight), var(--cream-bright));
+	--fill: light-dark(var(--midnight), var(--cream-bright));
+	--on-fill: light-dark(var(--cream), var(--midnight-deep));
+	--accent: light-dark(var(--red), var(--red-bright));
+	--on-accent: light-dark(var(--cream), var(--midnight-deep));
+	--ornament: light-dark(var(--gold), var(--gold-bright));
+	--on-ornament: var(--midnight); /* never flips */
+	--horizon: light-dark(var(--teal), var(--teal-bright));
+	--selection-bg: light-dark(var(--red), var(--red-bright));
+	--selection-fg: light-dark(var(--cream), var(--midnight-deep));
+	--footer-link: light-dark(var(--gold), var(--red));
+
+	/* Typography */
+	--font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+	--font-body: jost, futura, sans-serif;
+	--font-script: yellowtail, cursive;
+	--font-code: inconsolata, 'SFMono-Regular', consolas, monospace;
+
+	/* TODO(affiche): code-block/syntax palette pass, see DESIGN.md §9 */
 	--syntax-property: oklch(55% 0.18 40deg);
 	--syntax-value: oklch(45% 0.12 305deg);
 	--syntax-at-rule: oklch(52% 0.12 130deg);
@@ -99,22 +129,41 @@ h6 {
 	--syntax-comment: oklch(64% 0.03 60deg);
 	--syntax-punctuation: oklch(64% 0.03 60deg);
 
-	--font-display: fraunces, georgia, serif;
-	--font-body: inter, -apple-system, sans-serif;
-	--font-code: inconsolata, 'SFMono-Regular', consolas, monospace;
-
 	/* Layout */
-	--max-width: 1100px;
-	--gutter-width: 200px;
-	--content-gap: 3rem;
-	--prose-max-width: 640px;
-	--page-padding: 2rem;
+	--max-width: 1280px;
+	--column-posts: 900px;
+	--column-prose: 680px;
+	--column-now: 720px;
 }
 
-/* ─── 4. Base Element Styles ─── */
+/* Theme toggle override: <html data-theme> forces color-scheme so every
+   light-dark() role resolves to the pinned mode, no matter the OS setting.
+   Absent (auto) = OS preference via the :root color-scheme above. */
+:root[data-theme='jour'] {
+	color-scheme: light;
+}
+
+:root[data-theme='nuit'] {
+	color-scheme: dark;
+}
+
+/* ─── 4. Selection ─── */
+::selection {
+	background: var(--selection-bg);
+	color: var(--selection-fg);
+}
+
+/* ─── 5. Base Element Styles ─── */
 html {
 	font-size: 16px;
 	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 body {
@@ -122,24 +171,27 @@ body {
 	display: flex;
 	flex-direction: column;
 	font-family: var(--font-body);
-	background: var(--warm-bg);
-	color: var(--ink);
-	line-height: 1.65;
+	line-height: 1.6;
+	background: var(--surface);
+	color: var(--text);
 	-webkit-font-smoothing: antialiased;
+	border: 14px solid var(--frame);
+	box-shadow:
+		inset 0 0 0 2px var(--surface),
+		inset 0 0 0 3px var(--frame);
 }
 
 main {
-	flex-grow: 1;
+	flex: 1;
 }
 
-/* ─── Tag-level Typography ─── */
-blockquote {
-	border-left: 4px solid var(--accent);
-	margin-block: 1.5rem;
-	margin-left: 0;
-	padding-left: 1.5rem;
-	font-style: italic;
-	color: var(--ink-light);
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-display);
+	font-weight: normal;
+	color: var(--text);
 }
 
 ul,
@@ -166,91 +218,30 @@ li > ol {
 	margin-block: 0.5rem;
 }
 
-h2,
-h3,
-h4 {
-	font-family: var(--font-display);
-	font-weight: 600;
-	color: var(--ink);
-}
-
-h2 {
-	font-size: clamp(1.5rem, 3vw + 0.5rem, 2rem);
-	line-height: 1.25;
-}
-
-h3 {
-	font-size: clamp(1.25rem, 2vw + 0.5rem, 1.5rem);
-	line-height: 1.3;
-}
-
-h4 {
-	font-size: 1.15rem;
-	line-height: 1.4;
-}
-
 /* Inline code (not in pre blocks) */
 :not(pre) > code {
 	font-family: var(--font-code);
 	font-size: 0.9em;
-	background: var(--warm-bg-deep);
-	border: 1px solid var(--border);
-	border-radius: 4px;
+	background: var(--surface-deep);
+	border: 1px solid var(--frame);
 	padding: 0.15em 0.4em;
-	color: var(--accent-hover);
-}
-
-/* ─── 5. Section Grid Pattern (200px / 1fr) ─── */
-.section-grid {
-	display: grid;
-	grid-template-columns: var(--gutter-width) 1fr;
-	gap: var(--content-gap);
-	align-items: baseline;
-	max-width: var(--max-width);
-	margin: 0 auto;
-	padding: 0 var(--page-padding);
-	padding-block: 2rem;
-}
-
-.section-label {
-	font-family: var(--font-display);
-	font-size: 0.85rem;
-	font-weight: 600;
 	color: var(--accent);
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
 }
 
-/* ─── 6. Divider Component ─── */
-.divider {
-	max-width: var(--max-width);
-	margin: 0 auto;
-	padding: 0 var(--page-padding);
-}
-
-.divider hr {
-	border: none;
-	border-top: 1px solid var(--border);
-}
-
-/* ─── 7. Body Link Treatment (DSYS-08) ─── */
+/* ─── 6. Body Link Treatment ─── */
 a {
 	color: var(--accent);
 	text-decoration: underline;
-	text-decoration-color: var(--accent-soft);
 	text-decoration-thickness: 1.5px;
-	text-underline-offset: 2px;
-	transition:
-		text-decoration-color 0.2s,
-		color 0.2s;
+	text-underline-offset: 3px;
+	transition: color 0.2s;
 }
 
 a:hover {
-	color: var(--accent-hover);
-	text-decoration-color: var(--accent);
+	text-decoration-thickness: 2.5px;
 }
 
-/* ─── 8. Accessibility - Focus States (DSYS-10) ─── */
+/* ─── 7. Accessibility - Focus States ─── */
 :focus {
 	outline: none;
 }
@@ -260,7 +251,7 @@ a:hover {
 	outline-offset: 2px;
 }
 
-/* ─── 9. Accessibility - Skip Link (DSYS-11) ─── */
+/* ─── 8. Accessibility - Skip Link ─── */
 .skip-link {
 	position: absolute;
 	left: -9999px;
@@ -278,221 +269,376 @@ a:hover {
 	width: auto;
 	height: auto;
 	padding: 1rem 1.5rem;
-	background: var(--accent);
-	color: var(--white);
+	background: var(--fill);
+	color: var(--on-fill);
 	text-decoration: none;
 	font-weight: 600;
-	border-radius: 4px;
 }
 
-/* ─── 10. Accent Bar (DSYS-04) ─── */
-.accent-bar {
-	height: 0.5rem;
+/* ─── 10. Page Header ─── */
+.page-header {
+	text-align: center;
+	padding: 3.5rem 1.5rem 1rem;
+}
+
+/* ─── 11. Shared Primitives ─── */
+
+/* Band heading: rule, BEBAS CAPS, rule */
+.band-heading {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	font-size: clamp(1.2rem, 1.07rem + 0.54vw, 1.5rem);
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	padding-top: 3px;
+}
+
+.band-heading::before,
+.band-heading::after {
+	content: '';
+	flex: 1;
+	height: 2px;
+	background: var(--fill);
+}
+
+/* Plate button: rectangular solid plate, no radius */
+.plate-button {
+	display: inline-block;
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--on-fill);
+	background: var(--fill);
+	padding: 0.7rem 1.6rem;
+	text-decoration: none;
+	transition: background 0.2s;
+}
+
+.plate-button:hover {
 	background: var(--accent);
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
+	color: var(--on-accent);
 }
 
-/* ─── 11. Header (DSYS-05) ─── */
-header {
-	margin-top: 0.5rem;
-	padding: 2rem var(--page-padding) 0;
+/* Date stamp: every date on the site */
+.date-stamp {
+	font-family: var(--font-display);
+	font-size: 1rem;
+	letter-spacing: 0.12em;
+	color: var(--accent);
+}
+
+/* Tag links: accent caps + gold diamond separators (markup: <span>◆</span>) */
+.tag-links {
+	display: flex;
+	align-items: baseline;
+	gap: 0.75rem;
+	flex-wrap: nowrap;
+}
+
+.tag-links a {
+	font-family: var(--font-body);
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--accent);
+	text-decoration: none;
+}
+
+.tag-links a:hover {
+	text-decoration: underline;
+}
+
+.tag-links span {
+	color: var(--ornament);
+	font-size: 0.7rem;
+}
+
+/* Archive link: right-aligned section closer */
+.archive-link {
+	display: inline-block;
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--accent);
+	text-decoration: none;
+	border-bottom: 2px solid var(--accent);
+	padding-bottom: 3px;
+}
+
+.archive-link::after {
+	content: ' →' / '';
+}
+
+/* Page title: Bebas with offset shadow, centered */
+.page-title {
+	--shadow-offset: clamp(3px, 2.56px + 0.11vw, 4px);
+	font-size: clamp(3.2rem, 2.41rem + 3.24vw, 5rem);
+	letter-spacing: 0.06em;
+	line-height: 0.95;
+	color: var(--text);
+	text-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--surface-deep);
+	text-align: center;
+}
+
+/* Script flourish: hand-painted accent, never body or nav */
+.flourish {
+	display: inline-block;
+	font-family: var(--font-script);
+	color: var(--accent);
+	transform: rotate(-2deg);
+}
+
+/* ─── 12. Header (Masthead) ─── */
+body > header {
 	width: 100%;
 	max-width: var(--max-width);
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
+	padding: 1.75rem 3rem 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
 .logo {
-	font-family: var(--font-display);
-	font-size: 1.25rem;
-	font-weight: 800;
-	color: var(--ink);
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
 	text-decoration: none;
-	letter-spacing: -0.02em;
+	color: var(--text);
 }
 
-.logo:hover {
-	text-decoration: underline;
-	color: var(--accent);
+.logo svg {
+	width: 38px;
+	height: 38px;
+	flex: none;
+}
+
+.logo .wordmark {
+	font-family: var(--font-display);
+	font-size: 1.4rem;
+	letter-spacing: 0.18em;
+	line-height: 1;
+	color: var(--text);
+	/* Bebas Neue's descent reserves more dead space below the baseline than
+	   its ascent leaves above cap-height, so the caps sit visually high
+	   against the train mark's true center; nudge down to compensate. */
+	transform: translateY(0.7px);
+}
+
+.header-nav {
+	display: flex;
+	align-items: baseline;
+	gap: 2.5rem;
 }
 
 nav {
 	display: flex;
-	gap: 2rem;
+	gap: 2.5rem;
 }
 
 nav a {
-	font-size: 0.9rem;
-	font-weight: 500;
-	color: var(--ink-light);
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--text-muted);
 	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	padding-bottom: 2px;
 	transition: color 0.2s;
 }
 
 nav a:hover {
 	color: var(--accent);
-	text-decoration: underline;
 }
 
 nav a[aria-current='page'] {
+	color: var(--accent);
+	border-bottom-color: var(--accent);
+}
+
+/* Theme toggle: cycles jour / nuit / auto, styled in the nav-link voice.
+   Fixed inline-size holds the widest label ("Auto") so cycling states, and
+   the pre-upgrade -> post-upgrade swap, never reflow the nav beside it.
+   Content is left-aligned so the label always starts at the same x,
+   keeping the gap after USES equal to the nav's own internal gap; slack
+   from shorter labels (Jour, Nuit) falls on the right, at the frame edge. */
+theme-toggle {
+	display: inline-flex;
+	justify-content: flex-start;
+	inline-size: 5.2rem;
+	min-block-size: 1.36rem;
+}
+
+theme-toggle button {
+	font-family: var(--font-body);
+	font-size: 0.85rem;
 	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	background: none;
+	border: none;
+	border-bottom: 2px solid transparent;
+	padding: 0 0 2px;
+	cursor: pointer;
+	transition: color 0.2s;
+}
+
+theme-toggle button:hover {
 	color: var(--accent);
 }
 
-/* ─── 12. Footer (DSYS-06) ─── */
+/* Glyph rendered in a fallback symbol font with taller metrics than Jost;
+   isolate it in its own inline-block box so it can't drag the button's
+   text baseline off the nav links' baseline. */
+.toggle-glyph {
+	display: inline-block;
+	line-height: 1;
+}
+
+/* ─── 13. Footer (Caption Band) ─── */
 footer {
-	background: var(--ink);
-	color: var(--warm-bg-deep);
-	padding: 3rem var(--page-padding);
+	background: var(--fill);
+	padding: 1.4rem 3rem;
+	margin: 0 3px 3px;
 }
 
 .footer-inner {
-	max-width: var(--max-width);
+	max-width: calc(
+		var(--max-width) - 6rem
+	); /* header cap minus its 3rem side padding */
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
 	flex-wrap: wrap;
 	gap: 1rem;
 }
 
-.footer-inner .copyright {
-	font-size: 0.85rem;
-	opacity: 0.6;
+.footer-caption {
+	font-family: var(--font-body);
+	font-size: 0.8rem;
+	font-weight: 500;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+	color: var(--on-fill);
 }
 
 .footer-nav {
 	display: flex;
-	gap: 1.5rem;
+	gap: 2rem;
 }
 
 .footer-nav a {
-	font-size: 0.85rem;
-	color: var(--warm-bg-deep);
+	font-family: var(--font-body);
+	font-size: 0.8rem;
+	font-weight: 500;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--footer-link);
 	text-decoration: none;
-	opacity: 0.6;
-	transition: opacity 0.2s;
+	transition: color 0.2s;
 }
 
 .footer-nav a:hover {
-	opacity: 1;
+	color: var(--on-fill);
 }
 
-/* ─── 13. Page Header ─── */
-.page-header {
-	padding-top: 4rem;
-	padding-bottom: 2rem;
-}
-
-.page-title {
-	font-family: var(--font-display);
-	font-size: clamp(2rem, 4vw + 1rem, 2.75rem);
-	font-weight: 800;
-	line-height: 1.15;
-	letter-spacing: -0.02em;
-	color: var(--ink);
-}
-
-/* ─── 14. Shared Components ─── */
-
-/* Tag Chips - used on homepage, posts listing, single posts, tag pages */
-.tag-chip {
-	font-size: 0.75rem;
-	font-weight: 500;
-	padding: 3px 10px;
-	background: var(--warm-bg-deep);
-	color: var(--ink-light);
-	border-radius: 20px;
-	border: 1px solid var(--border);
-	text-decoration: none;
-	transition:
-		background 0.2s,
-		border-color 0.2s,
-		color 0.2s;
-}
-
-.tag-chip:hover {
-	background: var(--accent);
-	border-color: var(--accent);
-	color: var(--white);
-}
-
-/* Section link — the standardized "continue / view more / previous" affordance.
-   Used on: homepage "View all posts", tag pages "View all tags",
-   now-page "Previously", post prev/next pagers. Lives inside a
-   .section-grid content column. No preceding <hr> divider.
-
-   Uses a border-bottom (not text-decoration underline) so there's real
-   space between the text and the line — matches the hero links and
-   gives a standalone block-level link the weight it needs to close a
-   section. Larger padding than hero to further differentiate inline
-   vs. section-closing links. */
-.section-link {
-	display: inline-block;
-	place-self: start;
-	margin-top: 1.5rem;
-	font-size: 0.95rem;
-	font-weight: 500;
-	color: var(--accent);
-	text-decoration: none;
-	border-bottom: 1.5px solid var(--accent-soft);
-	padding-bottom: 4px;
-	transition: border-color 0.2s;
-}
-
-.section-link:hover {
-	border-color: var(--accent);
-	text-decoration: none;
-}
-
-/* Section link footer spacing */
-.section-grid:has(.section-link) {
-	padding-bottom: 4rem;
-}
-
-/* ─── 15. Mobile-first Responsive (DSYS-09) ─── */
+/* ─── 14. Mobile-first Responsive ─── */
 
 /* Mobile base styles (default) */
 @media (width < 768px) {
-	.section-grid {
-		grid-template-columns: 1fr;
-		gap: 1rem;
-		padding: 0 1.5rem;
-		align-items: baseline;
+	body {
+		border-width: 8px;
 	}
 
-	header {
-		padding: 2rem 1.5rem 0;
+	body > header {
+		padding: 1.25rem 1.25rem 0;
+	}
+
+	.logo svg {
+		width: 30px;
+		height: 30px;
+	}
+
+	.logo .wordmark {
+		display: none;
+	}
+
+	.header-nav {
+		gap: 1.25rem;
 	}
 
 	nav {
-		gap: 1rem;
+		gap: 1.25rem;
 	}
 
-	.divider {
-		padding: 0 1.5rem;
+	nav a {
+		font-size: 0.78rem;
+		letter-spacing: 0.18em;
+	}
+
+	theme-toggle {
+		inline-size: 4.4rem;
+		min-block-size: 1.25rem;
+	}
+
+	theme-toggle button {
+		font-size: 0.78rem;
+		letter-spacing: 0.18em;
+	}
+
+	.band-heading {
+		letter-spacing: 0.28em;
+		gap: 0.75rem;
+	}
+
+	.plate-button {
+		font-size: 0.75rem;
+		letter-spacing: 0.16em;
+		padding: 0.6rem 1rem;
+	}
+
+	.date-stamp {
+		font-size: 0.92rem;
 	}
 
 	footer {
-		padding: 3rem 1.5rem;
+		padding: 1.1rem 1.25rem;
 	}
 
 	.footer-inner {
 		flex-direction: column;
 		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.footer-caption {
+		font-size: 0.7rem;
+		letter-spacing: 0.22em;
+	}
+
+	.footer-nav {
+		gap: 1.5rem;
 	}
 }
 
-/* Desktop styles (768px and up) */
-@media (width >= 768px) {
-	.section-grid {
-		grid-template-columns: var(--gutter-width) 1fr;
+/* Below 375px the toggle goes icon-only so NOW · POSTS · USES · toggle
+   fit one line at 320px. Nothing else in the header moves. */
+@media (width < 375px) {
+	.toggle-label {
+		display: none;
+	}
+
+	theme-toggle {
+		inline-size: 1.5rem;
 	}
 }

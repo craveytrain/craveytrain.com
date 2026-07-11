@@ -5,8 +5,6 @@ tags:
   - colophon
 ---
 
-## Version 5
-
 ### 2012 - 2016
 
 I have tried several different static site generators, starting off with [Octopress](http://octopress.org/), tried out [Github Pages](https://pages.github.com/), a bunch of aborted attempts of rolling my own, and eventually have settled on [Hugo](https://gohugo.io/). Here's my current set of tools:

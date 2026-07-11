@@ -14,14 +14,15 @@ pagination:
 layout: page
 css: posts.css
 eleventyComputed:
-  title: Tagged "{{ tag }}"
+  title: '{{ tag }}'
 permalink: /tags/{{ tag | slugify }}/
 ---
 
+<div class="posts-column">
 {% set posts = collections[tag] | reverse %}
 {% include "post-list-grouped.njk" %}
 
-<div class="section-grid">
-  <div class="section-label"></div>
-  <a href="/tags/" class="section-link">View all tags &rarr;</a>
+<div class="archive-closer">
+  <a href="/tags/" class="archive-link">All Tags</a>
+</div>
 </div>

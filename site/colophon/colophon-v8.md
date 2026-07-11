@@ -5,8 +5,6 @@ tags:
   - colophon
 ---
 
-## Version 8
-
 ### 2019 - 2022
 
 This release was about trying a new platform. I've heard lots of good things about Svelte, so I am giving it a try. Some of the tooling that isn't specific to this site has been moved over to the [uses](/uses) page.

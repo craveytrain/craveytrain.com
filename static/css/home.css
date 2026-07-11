@@ -1,227 +1,362 @@
 /* ============================================
-   HOMEPAGE CSS - Warm Editorial Design System
+   HOMEPAGE CSS - Affiche Design System
+   Sunburst hero + plate cards
    ============================================ */
 
-/* ─── 1. Hero Section ─── */
-.hero {
-	display: grid;
-	grid-template-columns: 1fr 320px;
-	gap: 4rem;
-	max-width: var(--max-width);
-	margin: 0 auto;
-	padding: 6rem 2rem 5rem;
-	align-items: center;
-}
-
-/* ─── 2. Hero Text ─── */
-.hero-text h1 {
-	font-family: var(--font-display);
-	font-size: clamp(2.5rem, 5vw, 4rem);
-	font-weight: 800;
-	line-height: 1.1;
-	letter-spacing: -0.03em;
-}
-
-.hero-text h1 .accent {
-	color: var(--accent);
-}
-
-.hero-text p {
-	font-size: 1.15rem;
-	color: var(--ink-light);
-	max-width: 520px;
-	line-height: 1.7;
-	margin-bottom: 2rem;
-}
-
-.hero-links {
-	display: flex;
-	gap: 1.5rem;
-	flex-wrap: wrap;
-}
-
-.hero-links a {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.4rem;
-	font-size: 0.9rem;
-	font-weight: 500;
-	color: var(--accent);
-	text-decoration: none;
-	border-bottom: 1.5px solid var(--accent-soft);
-	padding-bottom: 2px;
-	transition: border-color 0.2s;
-}
-
-.hero-links a:hover {
-	border-color: var(--accent);
-}
-
-/* ─── 3. Hero Portrait (HOME-02: arch frame, grayscale hover) ─── */
-.hero-portrait {
-	width: 280px;
-	height: 340px;
-	border-radius: 200px 200px 24px 24px;
+/* ─── 1. Sunburst hero ─── */
+.sunburst {
+	position: relative;
 	overflow: hidden;
-	border: 3px solid var(--border);
-	margin-left: auto;
+	margin: 1.5rem 3px 0;
 }
 
-.hero-portrait img {
+.sunburst-rays {
+	position: absolute;
+	inset: 0;
+	background: repeating-conic-gradient(
+		from -90deg at 50% 118%,
+		var(--surface) 0deg 5deg,
+		var(--surface-deep) 5deg 10deg
+	);
+}
+
+.sunburst-sun {
+	position: absolute;
+	left: 50%;
+	bottom: 96px;
+	width: 340px;
+	height: 340px;
+	border-radius: 50%;
+	background: var(--ornament);
+	opacity: 0.9;
+	transform: translateX(-50%);
+}
+
+.sunburst-moon {
+	display: none;
+	position: absolute;
+	left: 83%;
+	bottom: 140px;
+	width: 240px;
+	height: 240px;
+	border-radius: 50%;
+	transform: translateX(-50%);
+	background: var(--ornament);
+	mask-image: radial-gradient(circle at 74% 20%, transparent 55%, black 56%);
+	-webkit-mask-image: radial-gradient(
+		circle at 74% 20%,
+		transparent 55%,
+		black 56%
+	);
+}
+
+.sunburst-stars {
+	display: none;
+	position: absolute;
+	inset: 0;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
-	object-position: center top;
-	filter: grayscale(30%) contrast(1.05);
-	transition: filter 0.4s;
 }
 
-.hero-portrait:hover img {
-	filter: grayscale(0%) contrast(1);
+.sunburst-star {
+	fill: var(--ornament);
 }
 
-/* ─── 4. Mobile Hero - Option C (avatar inline) ─── */
-.hero-top {
+.sunburst-dot {
+	fill: var(--text);
+	opacity: 0.6;
+}
+
+.sunburst-horizon-teal,
+.sunburst-horizon-frame,
+.sunburst-horizon-accent {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.sunburst-horizon-teal {
+	bottom: 76px;
+	height: 26px;
+	background: var(--horizon);
+}
+
+.sunburst-horizon-frame {
+	bottom: 62px;
+	height: 8px;
+	background: var(--fill);
+}
+
+.sunburst-horizon-accent {
+	bottom: 0;
+	height: 62px;
+	background: var(--accent);
+}
+
+.sunburst-content {
+	position: relative;
+	text-align: center;
+	padding: 4rem 3rem 10rem;
+}
+
+.sunburst-flourish {
+	font-size: clamp(1.7rem, 1.31rem + 1.62vw, 2.6rem);
+	transform: rotate(-3deg);
+	margin-bottom: 0.5rem;
+}
+
+.sunburst-name {
+	--shadow-offset: clamp(3px, 2.12px + 0.22vw, 5px);
+	font-size: clamp(3.3rem, 1.46rem + 7.55vw, 7.5rem);
+	letter-spacing: 0.03em;
+	line-height: 0.92;
+	margin: 0;
+	text-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--surface-deep);
+}
+
+.sunburst-tagline {
+	font-family: var(--font-body);
+	font-size: 1.1rem;
+	font-weight: 500;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	margin: 1.75rem auto 0;
+}
+
+.sunburst-links {
+	display: flex;
+	gap: 1.25rem;
+	justify-content: center;
+	margin-top: 2.25rem;
+}
+
+/* Nuit: rays become radial rings, sun becomes crescent moon + stars.
+   Guarded so a forced jour (data-theme="jour") restores the sun even when
+   the OS is dark. Paired with the :root[data-theme='nuit'] block below,
+   which repeats the same declarations for a forced nuit on a light OS,
+   keep both in sync. */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='jour']) .sunburst-rays {
+		background: repeating-radial-gradient(
+			circle at 50% 62%,
+			var(--surface) 0% 12.5%,
+			var(--surface-deep) 12.5% 25%
+		);
+		opacity: 0.55;
+	}
+
+	:root:not([data-theme='jour']) .sunburst-sun {
+		display: none;
+	}
+
+	:root:not([data-theme='jour']) .sunburst-moon,
+	:root:not([data-theme='jour']) .sunburst-stars {
+		display: block;
+	}
+}
+
+/* Forced nuit (data-theme="nuit") on a light OS: same declarations as the
+   @media (prefers-color-scheme: dark) block above, applied unconditionally. */
+:root[data-theme='nuit'] .sunburst-rays {
+	background: repeating-radial-gradient(
+		circle at 50% 62%,
+		var(--surface) 0% 12.5%,
+		var(--surface-deep) 12.5% 25%
+	);
+	opacity: 0.55;
+}
+
+:root[data-theme='nuit'] .sunburst-sun {
 	display: none;
 }
 
-.hero-avatar {
-	width: 72px;
-	height: 72px;
-	border-radius: 50%;
-	overflow: hidden;
-	flex-shrink: 0;
+:root[data-theme='nuit'] .sunburst-moon,
+:root[data-theme='nuit'] .sunburst-stars {
+	display: block;
 }
 
-.hero-avatar img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center top;
-	filter: grayscale(30%) contrast(1.05);
+/* ─── 2. Bands ─── */
+.band {
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
-.hero-name {
-	font-family: var(--font-display);
-	font-size: 1.5rem;
-	font-weight: 800;
-	line-height: 1.15;
-	letter-spacing: -0.02em;
+.band-about {
+	padding: 4rem 3rem 0;
+	text-align: center;
 }
 
-.hero-name .accent {
-	color: var(--accent);
-}
-
-.hero-tagline {
-	font-size: 0.85rem;
-	color: var(--ink-light);
-	margin-top: 0.25rem;
-}
-
-/* ─── 5. About Section ─── */
-.about {
-	padding-block: 4rem;
+.band-posts {
+	padding: 4rem 3rem 3.5rem;
 }
 
 .about-content p {
-	font-size: 1.05rem;
+	font-family: var(--font-body);
+	font-size: 1.15rem;
 	line-height: 1.75;
-	margin-bottom: 1rem;
-	max-width: var(--prose-max-width);
+	max-width: var(
+		--column-now
+	); /* same 720px reading measure as the now column */
+	margin: 1rem auto 0;
 }
 
-/* ─── 6. Posts Section ─── */
-.posts {
-	padding-block: 4rem;
+.about-content p:first-child {
+	margin-top: 1.5rem;
 }
 
-.post-list {
+/* ─── 3. Latest posts cards ─── */
+.post-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	margin-top: 2rem;
+}
+
+.post-card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	gap: 2.5rem;
+	gap: 0.6rem;
+	border: 2px solid var(--frame);
+	padding: 1.5rem 1.25rem 1.25rem;
+	background: var(--surface);
+	transition: background 0.2s;
 }
 
-.post-item {
-	display: grid;
-	grid-template-columns: 120px 1fr;
-	gap: 1.5rem;
-	align-items: start;
+.post-card:hover {
+	background: var(--surface-deep);
 }
 
-.post-date {
-	font-size: 0.85rem;
-	color: var(--ink-light);
-	padding-top: 0.35rem;
-	font-variant-numeric: tabular-nums;
-}
-
-.post-item h3 {
+.post-card-title {
 	font-family: var(--font-display);
-	font-size: 1.3rem;
-	font-weight: 600;
-	line-height: 1.3;
-	margin-bottom: 0.4rem;
-}
-
-.post-item h3 a {
-	color: var(--ink);
-	text-decoration: none;
+	font-size: 1.7rem;
+	line-height: 1.05;
+	color: var(--text);
 	transition: color 0.2s;
 }
 
-.post-item h3 a:hover {
+.post-card-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.post-card-title a::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+}
+
+.post-card:hover .post-card-title {
 	color: var(--accent);
 }
 
-.post-excerpt {
+.post-card-excerpt {
+	font-family: var(--font-body);
 	font-size: 0.95rem;
-	color: var(--ink-light);
-	line-height: 1.6;
+	line-height: 1.55;
+	color: var(--text-muted);
 }
 
-.post-tags {
-	display: flex;
-	gap: 0.5rem;
-	margin-top: 0.6rem;
-	flex-wrap: wrap;
+.view-all-row {
+	text-align: center;
+	margin-top: 2rem;
 }
 
-/* HOME-05: Tag chip with hover fill transition - styles in main.css */
-
-/* ─── 7. Mobile Responsive (width < 768px) - Option C ─── */
+/* ─── 4. Mobile (< 768px) ─── */
 @media (width < 768px) {
-	.hero {
+	.sunburst {
+		margin: 1rem 3px 0;
+	}
+
+	.sunburst-rays {
+		background: repeating-conic-gradient(
+			from -90deg at 50% 115%,
+			var(--surface) 0deg 6deg,
+			var(--surface-deep) 6deg 12deg
+		);
+	}
+
+	.sunburst-sun {
+		width: 190px;
+		height: 190px;
+		bottom: 62px;
+	}
+
+	.sunburst-moon {
+		left: auto;
+		bottom: auto;
+		transform: none;
+		top: 12px;
+		right: 14px;
+		width: 82px;
+		height: 82px;
+	}
+
+	.sunburst-horizon-teal {
+		bottom: 48px;
+		height: 16px;
+	}
+
+	.sunburst-horizon-frame {
+		bottom: 42px;
+		height: 6px;
+	}
+
+	.sunburst-horizon-accent {
+		height: 42px;
+	}
+
+	.sunburst-content {
+		padding: 2.5rem 1.25rem 7rem;
+	}
+
+	.sunburst-tagline {
+		font-size: 0.85rem;
+		letter-spacing: 0.12em;
+		margin-top: 1rem;
+	}
+
+	.sunburst-links {
+		gap: 0.6rem;
+		flex-wrap: wrap;
+		margin-top: 1.5rem;
+	}
+
+	.band-about {
+		padding: 2.5rem 1.25rem 0;
+	}
+
+	.band-posts {
+		padding: 2.5rem 1.25rem 2rem;
+	}
+
+	.about-content p {
+		max-width: none;
+		font-size: 1rem;
+		line-height: 1.7;
+	}
+
+	.post-grid {
 		grid-template-columns: 1fr;
-		padding: 4rem 1.5rem 3rem;
-		gap: 0;
-	}
-
-	/* Hide desktop portrait, show mobile avatar */
-	.hero-portrait {
-		display: none;
-	}
-
-	.hero-top {
-		display: flex;
-		align-items: center;
 		gap: 1rem;
-		margin-bottom: 1.25rem;
-		order: -1;
+		margin-top: 1.25rem;
 	}
 
-	/* Hide desktop h1, show mobile name/tagline */
-	.hero-text h1 {
-		display: none;
+	.post-card {
+		gap: 0.4rem;
+		padding: 1.1rem 1rem;
 	}
 
-	/* Post items stack on mobile */
-	.post-item {
-		grid-template-columns: 1fr;
-		gap: 0.3rem;
+	.post-card-title {
+		font-size: 1.45rem;
 	}
 
-	.post-date {
-		padding-top: 0;
+	.post-card-excerpt {
+		font-size: 0.92rem;
+	}
+
+	.view-all-row {
+		margin-top: 1.5rem;
 	}
 }

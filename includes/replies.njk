@@ -1,26 +1,24 @@
+{% set replyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"] %}
 {% for reply in replies %}
-	<article id="webmention-{{ reply['wm-id'] }}">
-		<div class="webmention__meta">
-			{% if reply.author %}
-				{% if reply.author.photo %}
-				<img src="{{ reply.author.photo }}" alt="{{ reply.author.name }}" width="56" height="56" loading="lazy" />
-				{% endif %}
-				<span>
-					<a class="h-card u-url" {% if reply.url %}href="{{ reply.url }}" {% endif %} target="_blank" rel="noopener noreferrer"><strong class="p-name">{{ reply.author.name }}</strong></a>
-				</span>
-			{% else %}
-				<span>
-					<strong>Anonymous</strong>
-				</span>
-			{% endif %}
-			{% if reply.published %}
-					<time class="postlist-date" datetime="{{ reply.published }}">
-							{{ reply.published | prettyDate }}
-					</time>
-			{% endif %}
-		</div>
-		<div>
-				{{ reply.content.text }}
-		</div>
-	</article>
+<article id="webmention-{{ reply['wm-id'] }}" class="reply">
+  <div class="reply-header">
+    {% if reply.author and reply.author.photo %}
+    <img class="reply-avatar" src="{{ reply.author.photo }}" alt="" width="40" height="40" loading="lazy">
+    {% else %}
+    {% set replyName = reply.author.name if reply.author and reply.author.name else 'Anonymous' %}
+    {% set replyWords = replyName.split(' ') %}
+    {% set replyInitials = replyWords[0].charAt(0) + (replyWords[1].charAt(0) if replyWords.length > 1 else '') %}
+    <span class="reply-avatar reply-avatar--initials{{ ' reply-avatar--alt' if loop.index0 % 2 else '' }}">{{ replyInitials }}</span>
+    {% endif %}
+    {% if reply.author %}
+    <a class="h-card u-url reply-author" {% if reply.url %}href="{{ reply.url }}" {% endif %}target="_blank" rel="noopener noreferrer"><strong class="p-name">{{ reply.author.name }}</strong></a>
+    {% else %}
+    <strong class="reply-author">Anonymous</strong>
+    {% endif %}
+    {% if reply.published %}
+    <time class="reply-date" datetime="{{ reply.published }}">{{ replyMonths[(reply.published.slice(5,7) | int) - 1] }} {{ reply.published.slice(8,10) | int }}</time>
+    {% endif %}
+  </div>
+  <div class="reply-body">{{ reply.content.text }}</div>
+</article>
 {% endfor %}

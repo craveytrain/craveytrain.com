@@ -4,25 +4,19 @@ layout: base
 css: content-pages.css
 tags: foot
 ---
-<div class="page-header section-grid">
-  <div class="section-label"></div>
-  <div>
-    <h1 class="page-title">{{ title }}</h1>
-    <p class="subtitle">While this site has cycled its tech stack a few times, it's always been built on the hard work of the open source community. Here's how it's evolved.</p>
-  </div>
+<div class="page-header">
+	<h1 class="page-title">{{ title }}</h1>
+	<p class="subtitle">While this site has cycled its tech stack a few times, it's always been built on the hard work of the open source community. Here's how it's evolved.</p>
 </div>
 
-{% include "partials/divider.njk" %}
-
-{% set posts = collections['colophon'] | reverse %}
-{%- for post in posts -%}
-<div class="section-grid" id="{{ post.data.title | slugify }}">
-  <div class="section-label">{{ post.data.title | replace("Colophon ", "") }}</div>
-  <div class="section-content">
-    {{ post.content | safe }}
-  </div>
+<div class="content-body">
+	{%- set posts = collections['colophon'] | reverse -%}
+	{%- for post in posts -%}
+	<section id="{{ post.data.title | slugify }}">
+		<h2 class="band-heading">{{ post.data.title | replace("Colophon ", "") }}</h2>
+		<div class="content-section-body">
+			{{ post.content | safe }}
+		</div>
+	</section>
+	{%- endfor -%}
 </div>
-{% if not loop.last %}
-{% include "partials/divider.njk" %}
-{% endif %}
-{%- endfor -%}

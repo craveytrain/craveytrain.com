@@ -1,129 +1,243 @@
 /* ============================================
-   POSTS LISTING CSS - Year-grouped layout
+   POSTS LISTING CSS - Affiche Design System
+   Year-grouped timetable rows: posts index, tag
+   archives, tag index, now archive.
    ============================================ */
 
-/* ─── 1. Year Group (section-grid pattern) ─── */
+/* ─── 1. Content column ─── */
+.posts-column {
+	max-width: var(--column-posts);
+	margin: 0 auto;
+	padding: 3rem 3rem 3.5rem;
+}
+
+.now-column {
+	max-width: var(--column-now);
+}
+
+/* ─── 2. Year rule: 3px frame rule, gold numeral hangs on it ─── */
 .year-group {
-	padding-block: 4rem;
+	margin-top: 2rem;
 }
 
-/* .year-label removed - use .section-label from main.css */
-
-/* ─── 2. Posts List Container ─── */
-.posts-for-year {
-	display: flex;
-	flex-direction: column;
+.year-group:first-child {
+	margin-top: 0;
 }
 
-/* ─── 3. Post Item ─── */
-.post-item {
-	display: flex;
-	justify-content: space-between;
-	align-items: baseline;
-	padding-block: 1.5rem;
-	border-bottom: 1px solid var(--border);
-	transition: border-color 0.2s;
+.year-rule {
+	border-bottom: 3px solid var(--frame);
+	padding-bottom: 0.4rem;
 }
 
-/* Drop trailing hairline on the last item of each year group */
-.post-item:last-child {
-	border-bottom: none;
-}
-
-/* ─── 4. Post Item Hover (:has() selector) ─── */
-.post-item:has(.post-title a:hover) {
-	border-color: var(--accent);
-}
-
-/* ─── 5. Post Title ─── */
-.post-title {
+.year-numeral {
 	font-family: var(--font-display);
-	font-size: 1.25rem;
-	font-weight: 600;
-	line-height: 1.3;
+	font-size: clamp(2rem, 1.74rem + 1.08vw, 2.6rem);
+	line-height: 1;
+	color: var(--ornament);
+	text-shadow: 2px 2px 0 var(--on-ornament);
+}
+
+/* ─── 3. Rows ─── */
+.row {
+	padding: 0.6rem 0;
+}
+
+.posts-for-year > .row:first-child {
+	padding: 1.2rem 0 0.6rem;
+}
+
+.post-row {
+	display: grid;
+	grid-template-columns: 86px minmax(0, 1fr) auto;
+	gap: 1.25rem;
+	align-items: baseline;
+}
+
+.row-title {
+	font-family: var(--font-display);
+	font-size: clamp(1.4rem, 1.33rem + 0.27vw, 1.55rem);
+	line-height: 1.1;
 	margin: 0;
 }
 
-.post-title a {
-	color: var(--ink);
+.row-title a {
+	color: var(--text);
 	text-decoration: none;
 	transition: color 0.2s;
 }
 
-.post-title a:hover {
+.row-title a:hover {
 	color: var(--accent);
 }
 
-/* ─── 6. Post Meta Left (title + tags container) ─── */
-.post-meta-left {
+/* ─── 3a. Now-archive rows: entry link doubles as a date stamp ─── */
+.now-row .row-title a {
+	color: var(--accent);
+	letter-spacing: 0.12em;
+}
+
+.now-row .row-title a:hover {
+	color: var(--text);
+}
+
+/* ─── 4. Row tags: muted middot list, never wraps, 3-max + N ─── */
+.row-tags {
 	display: flex;
+	justify-content: flex-end;
+	align-items: baseline;
+	gap: 0.6rem;
+	white-space: nowrap;
+}
+
+.row-tags a,
+.row-tags .tag-more {
+	font-family: var(--font-body);
+	font-size: 0.82rem;
+	font-weight: 500;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	text-decoration: none;
+}
+
+.row-tags a {
+	transition: color 0.2s;
+}
+
+.row-tags a:hover {
+	color: var(--accent);
+}
+
+.row-tags .sep {
+	font-size: 0.82rem;
+	color: var(--text-muted);
+}
+
+/* ─── 5. Tags index: vertical list, name left / count trailing right ─── */
+.tags-count {
+	text-align: center;
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	margin-bottom: 2rem;
+}
+
+.tag-index-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.tag-index-row {
+	display: flex;
+	justify-content: space-between;
 	align-items: baseline;
 	gap: 1rem;
-	flex-wrap: wrap;
+	padding: 1rem 0;
+	margin: 0;
+	border-bottom: 1px solid var(--text-muted);
 }
 
-.post-tags-inline {
-	font-size: 0.85rem;
-	color: var(--ink-light);
-	font-style: italic;
+.tag-index-row:first-child {
+	padding-top: 0;
 }
 
-/* ─── 7. Post Date ─── */
-.post-date {
-	font-size: 0.85rem;
-	color: var(--ink-light);
-	font-variant-numeric: tabular-nums;
-	flex-shrink: 0;
+.tag-index-row:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
 }
 
-/* ─── 9. Tag filter band ─── */
-.tag-bar {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	align-items: center;
-}
-
-.tag-more {
-	font-size: 0.75rem;
-	font-weight: 500;
-	padding: 3px 10px;
-	background: transparent;
-	border: 1px dashed var(--accent-soft);
-	border-radius: 20px;
+.tag-index-name {
+	font-family: var(--font-body);
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
 	color: var(--accent);
-	cursor: pointer;
-	transition:
-		background 0.2s,
-		border-color 0.2s,
-		color 0.2s;
+	text-decoration: none;
 }
 
-.tag-more:hover {
-	background: var(--accent);
-	border-color: var(--accent);
-	border-style: solid;
-	color: var(--white);
+.tag-index-name:hover {
+	text-decoration: underline;
 }
 
-/* ─── 10. Mobile Responsive (width < 768px) ─── */
+.tag-index-count {
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	color: var(--text-muted);
+	white-space: nowrap;
+}
+
+/* ─── 6. Archive closer (tag page → all tags) ─── */
+.archive-closer {
+	margin-top: 2rem;
+	text-align: right;
+}
+
+/* ─── 7. Mobile Responsive (width < 768px) ─── */
 @media (width < 768px) {
+	.posts-column {
+		padding: 2rem 1.25rem 2.5rem;
+	}
+
 	.year-group {
-		padding-block: 2rem;
+		margin-top: 1.5rem;
 	}
 
-	.post-item {
+	.row {
+		padding: 0.5rem 0;
+	}
+
+	.posts-for-year > .row:first-child {
+		padding: 1rem 0 0.5rem;
+	}
+
+	.post-row {
+		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		gap: 0.5rem;
+		gap: 0.3rem;
 	}
 
-	.post-meta-left {
-		flex-direction: column;
-		gap: 0.25rem;
+	.row-tags {
+		justify-content: flex-start;
 	}
 
-	.post-date {
-		order: -1;
+	.row-tags a,
+	.row-tags .tag-more,
+	.row-tags .sep {
+		font-size: 0.78rem;
+	}
+
+	.tag-index-row {
+		padding: 0.85rem 0;
+	}
+
+	.tag-index-name {
+		font-size: 0.9rem;
+	}
+
+	.tag-index-count {
+		font-size: 0.78rem;
+	}
+}
+
+/* Narrow phones: tag rows still hold one line, clip, never wrap */
+@media (width < 375px) {
+	.row-tags {
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.row-tags a,
+	.row-tags .tag-more,
+	.row-tags .sep {
+		font-size: 0.72rem;
+		letter-spacing: 0.08em;
 	}
 }

@@ -5,8 +5,6 @@ tags:
   - colophon
 ---
 
-## Version 7
-
 ### 2018 - 2020
 
 I decided home grown static site generators are a pain, so I switched gears and went with Gatsby. This is also the first version in a while where I got out of the business of operations work for the site. I'm now using Netlify (after an aborted attempt to get it working in serverless fashion with AWS Lambdas and S3).

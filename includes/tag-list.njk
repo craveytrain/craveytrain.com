@@ -1,9 +1,0 @@
-{%- if tags.length -%}
-	<ul class="tag-list">
-		{%- for tag in tags -%}
-  		<li>
-				#<a class="p-category" href="/tags/{{ tag | slugify }}">{{ tag }}</a>
-			</li>
-		{%- endfor -%}
-	</ul>
-{%- endif -%}

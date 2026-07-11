@@ -1,9 +1,10 @@
 ---
 layout: base
 ---
-<div class="page-header section-grid">
-  <div class="section-label"></div>
-  <h1 class="page-title">{{ title }}</h1>
+{% if not hideHeader %}
+<div class="page-header">
+	<h1 class="page-title">{{ title }}</h1>
 </div>
+{% endif %}
 
 {{ content | safe }}

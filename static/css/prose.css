@@ -1,126 +1,144 @@
 /* ============================================
    PROSE.CSS - Single Post Styling
-   Warm Editorial Design System
+   Affiche Design System
    ============================================ */
 
-/* ─── 1. Post Header (title above divider) ─── */
+/* ─── 1. Post Header ─── */
 .post-header {
-	max-width: var(--max-width);
-	margin: 0 auto;
-	padding: 3rem var(--page-padding) 2rem;
+	text-align: center;
+	margin: 0 3rem;
+	padding: 3.5rem 3rem 2.5rem;
+	border-bottom: 3px solid var(--frame);
+}
+
+.post-header .post-date {
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	color: var(--accent);
 }
 
 .post-header .post-title {
+	--shadow-offset: clamp(3px, 2.56px + 0.11vw, 4px);
 	font-family: var(--font-display);
-	font-size: clamp(2rem, 5vw, 2.8rem);
-	font-weight: 800;
-	letter-spacing: -0.03em;
-	line-height: 1.15;
-	color: var(--ink);
-	margin: 0;
+	font-size: clamp(2.8rem, 2.1rem + 2.88vw, 4.4rem);
+	font-weight: normal;
+	letter-spacing: 0.03em;
+	line-height: 0.98;
+	color: var(--text);
+	text-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--surface-deep);
+	margin: 0.75rem 0 0;
 }
 
-/* ─── 2. Post Layout (sidebar + content) ─── */
-.post-layout {
-	display: grid;
-	grid-template-columns: var(--gutter-width) 1fr;
-	gap: var(--content-gap);
-	max-width: var(--max-width);
-	margin: 0 auto;
-	padding: 2.5rem var(--page-padding) 2rem;
+.post-header .tag-links {
+	justify-content: center;
+	margin-top: 1.5rem;
 }
 
-.post-sidebar {
-	padding-top: 0.25rem;
-}
-
-/* Align first content element with sidebar */
-.post-content > :first-child {
-	margin-top: 0;
-}
-
-.sidebar-section {
-	margin-bottom: 2rem;
-}
-
-/* .sidebar-label removed - use .section-label from main.css */
-
-.post-sidebar .post-date {
-	font-size: 0.85rem;
-	color: var(--ink-light);
-	font-variant-numeric: tabular-nums;
-}
-
-.post-sidebar .sidebar-tags {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-}
-
-/* Reuse tag-chip from home.css, ensure available */
-.post-sidebar .tag-chip {
-	align-self: flex-start;
-}
-
-/* ─── 3. Post Content ─── */
+/* ─── 2. Post Content ─── */
 .post-content {
-	max-width: var(--prose-max-width);
+	max-width: var(--column-prose);
+	margin: 0 auto;
+	padding: 3rem 3rem 1rem;
 	font-family: var(--font-body);
-	font-size: 1.1rem;
+	font-size: 1.15rem;
 	line-height: 1.8;
-	color: var(--ink);
-	-webkit-font-smoothing: auto;
-	-moz-osx-font-smoothing: auto;
-}
-
-/* ─── 4. Prose Typography - Margin Overrides ─── */
-
-.post-content h2 {
-	margin-block: 2.5rem 1rem;
-}
-
-.post-content h3 {
-	margin-block: 2rem 0.75rem;
-}
-
-.post-content h4 {
-	margin-block: 1.5rem 0.5rem;
+	color: var(--text);
 }
 
 .post-content p {
 	margin-block: 1.25rem;
 }
 
-/* ─── 4. Blockquotes - Prose Spacing Override ─── */
+/* Drop cap: first paragraph opens with a Bebas float cap */
+.post-content > p:first-of-type::first-letter {
+	font-family: var(--font-display);
+	font-size: clamp(3.2rem, 2.76rem + 1.8vw, 4.2rem);
+	line-height: 0.8;
+	color: var(--accent);
+	float: left;
+	margin: 0.35rem 0.75rem 0 0;
+}
+
+.post-content h2 {
+	font-size: clamp(1.7rem, 1.52rem + 0.72vw, 2.1rem);
+	letter-spacing: 0.05em;
+	color: var(--text);
+	border-bottom: 2px solid var(--ornament);
+	padding-bottom: 0.3rem;
+	margin: 2.5rem 0 1rem;
+}
+
+.post-content h3 {
+	font-size: clamp(1.2rem, 1.13rem + 0.27vw, 1.35rem);
+	letter-spacing: 0.08em;
+	color: var(--accent);
+	margin: 2rem 0 0.75rem;
+}
+
+.post-content a {
+	font-weight: 600;
+}
+
+/* ─── 3. Blockquote ─── */
+.post-content blockquote {
+	border-left: 4px solid var(--accent);
+	margin: 1.75rem 0;
+	padding: 0.25rem 0 0.25rem 1.5rem;
+}
+
 .post-content blockquote p {
-	margin-block: 0.75rem;
+	font-family: var(--font-script);
+	font-size: 1.5rem;
+	line-height: 1.5;
+	color: var(--text);
+	margin: 0;
 }
 
-/* Inline code now uses tag-level styles from main.css */
-
-/* Lists now use tag-level styles from main.css */
-
-/* ─── 7. Images (SNGL-09) ─── */
+/* ─── 4. Images ─── */
 .post-content img {
+	border: 2px solid var(--frame);
+	background: var(--surface-deep);
 	margin-block: 2rem;
-	border-radius: 8px;
-	border: 1px solid var(--border);
 }
 
-/* ─── 8. Horizontal Rules ─── */
+.post-content figcaption {
+	font-family: var(--font-script);
+	font-size: 1.15rem;
+	color: var(--text-muted);
+	text-align: center;
+	margin-top: 0.5rem;
+}
+
+/* ─── 5. In-post rule: rule, gold ◆, rule ─── */
 .post-content hr {
 	border: none;
-	border-top: 1px solid var(--border);
-	margin-block: 2.5rem;
+	height: 2px;
+	max-width: 640px;
+	background: var(--fill);
+	margin: 2.5rem auto;
+	position: relative;
 }
 
-/* ─── 9. Code Blocks with Syntax Highlighting (SNGL-03) ─── */
+.post-content hr::after {
+	content: '◆';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--surface);
+	color: var(--ornament);
+	font-size: 0.8rem;
+	line-height: 1;
+	padding: 0 0.75rem;
+}
 
-/* Code block container - target pre in post-content */
+/* ─── 6. Code Blocks ─── */
 .post-content pre {
-	background: var(--warm-bg-deep);
-	border: 1px solid var(--border);
-	border-radius: 6px;
+	background: var(--surface-deep);
+	border: 1px solid var(--frame);
 	padding: 1.25rem;
 	overflow-x: auto;
 	font-family: var(--font-code);
@@ -128,25 +146,23 @@
 	font-weight: 600;
 	line-height: 1.5;
 	margin-block: 2rem;
-	color: var(--ink);
+	color: var(--text);
 }
 
 .post-content pre code {
 	font-family: var(--font-code);
 	font-weight: inherit;
-	color: var(--ink);
+	color: var(--text);
 	background: transparent;
 	padding: 0;
 	border: none;
-	border-radius: 0;
 }
 
-/* Ensure all tokens inherit weight unless specified */
 .post-content pre .token {
 	font-weight: 400;
 }
 
-/* ─── 10. Syntax Highlighting Tokens - Warm Editorial Palette ─── */
+/* TODO(affiche): code-block/syntax palette pass, see DESIGN.md §9 */
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -200,7 +216,7 @@
 .token.regex,
 .token.important,
 .token.variable {
-	color: var(--accent-hover);
+	color: var(--accent);
 }
 
 .token.important,
@@ -216,69 +232,45 @@
 	cursor: help;
 }
 
-/* ─── 11. Mobile Responsive (RESP-05) ─── */
-@media (width < 768px) {
-	.post-header {
-		padding: 2rem 1.5rem;
-	}
-
-	.post-header .post-title {
-		font-size: clamp(1.75rem, 4vw, 2.3rem);
-	}
-
-	.post-layout {
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-		padding: 1.5rem;
-	}
-
-	.post-sidebar {
-		display: flex;
-		gap: 2rem;
-		padding-top: 0;
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border);
-		margin-bottom: 1rem;
-	}
-
-	.sidebar-section {
-		margin-bottom: 0;
-	}
-
-	.post-sidebar .sidebar-tags {
-		flex-flow: row wrap;
-	}
-
-	.post-content pre {
-		font-size: 0.95rem;
-		padding: 1rem;
-		border-radius: 4px;
-	}
+/* ─── 7. Facepile ─── */
+.facepile-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem 0 3rem;
 }
 
-/* ─── 12. Facepile - Overlapping Avatar Row ─── */
+.facepile-rule {
+	width: 44px;
+	height: 2px;
+	background: var(--fill);
+	flex: none;
+}
+
 .facepile {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
+}
+
+.facepile > * + * {
+	margin-left: -10px;
+}
+
+.facepile-item,
+.reply-avatar {
+	flex: none;
+	border-radius: 50%;
+	border: 2px solid var(--frame);
+	overflow: hidden;
+	display: grid;
+	place-items: center;
 }
 
 .facepile-item {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	border: 2px solid var(--warm-bg);
-	margin-left: -12px;
-	overflow: hidden;
-	transition: transform 0.15s;
-}
-
-.facepile-item:first-child {
-	margin-left: 0;
-}
-
-.facepile-item:hover {
-	transform: scale(1.1);
-	z-index: 1;
+	width: 38px;
+	height: 38px;
+	text-decoration: none;
 }
 
 .facepile-avatar {
@@ -287,18 +279,209 @@
 	object-fit: cover;
 }
 
-/* ─── 13. Feedback in Sidebar ─── */
-.feedback-row {
-	margin-bottom: 1rem;
+.facepile-item--initials,
+.reply-avatar--initials {
+	font-family: var(--font-display);
+	font-size: 0.85rem;
+	padding-top: 2px;
+	color: var(--text);
+	background: var(--surface-deep);
 }
 
-.feedback-row:last-child {
-	margin-bottom: 0;
+.facepile-item--initials.facepile-item--alt,
+.reply-avatar--initials.reply-avatar--alt {
+	color: var(--on-ornament);
+	background: var(--ornament);
 }
 
-.feedback-label {
-	display: block;
-	font-size: 0.8rem;
-	color: var(--ink-light);
-	margin-bottom: 0.5rem;
+.facepile-more {
+	font-family: var(--font-display);
+	font-size: 0.85rem;
+	padding-top: 2px;
+	color: var(--on-fill);
+	background: var(--fill);
+}
+
+.facepile-caption {
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: 0.82rem;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	white-space: nowrap;
+}
+
+/* ─── 8. Replies ─── */
+.replies-section {
+	max-width: var(--column-prose);
+	margin: 0 auto;
+	padding: 0 3rem 3rem;
+}
+
+.reply {
+	padding: 1.25rem 0;
+	border-bottom: 1px solid var(--text-muted);
+}
+
+.reply:first-child {
+	padding-top: 1.5rem;
+}
+
+.reply:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
+}
+
+.reply-header {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.reply-avatar {
+	width: 40px;
+	height: 40px;
+}
+
+.reply-author {
+	font-family: var(--font-display);
+	font-size: 1.15rem;
+	letter-spacing: 0.05em;
+	color: var(--text);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+a.reply-author:hover {
+	color: var(--accent);
+}
+
+.reply-date {
+	font-family: var(--font-display);
+	font-size: 0.9rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin-left: auto;
+}
+
+.reply-body {
+	font-family: var(--font-body);
+	font-size: 1.05rem;
+	line-height: 1.7;
+	color: var(--text);
+	margin: 0.5rem 0 0 3.25rem;
+}
+
+/* ─── 9. Mobile Responsive ─── */
+@media (width < 768px) {
+	.post-header {
+		margin: 0 1.25rem;
+		padding: 2.5rem 1.25rem 1.75rem;
+	}
+
+	.post-header .post-date {
+		font-size: 0.78rem;
+		letter-spacing: 0.25em;
+	}
+
+	.post-header .tag-links {
+		flex-wrap: wrap;
+		gap: 0.4rem 0.6rem;
+		margin-top: 1.1rem;
+	}
+
+	.post-content {
+		padding: 2rem 1.25rem 0.5rem;
+		font-size: 1.05rem;
+		line-height: 1.75;
+	}
+
+	.post-content > p:first-of-type::first-letter {
+		margin: 0.3rem 0.6rem 0 0;
+	}
+
+	.post-content h2 {
+		margin: 2rem 0 0.85rem;
+	}
+
+	.post-content h3 {
+		margin: 1.6rem 0 0.6rem;
+	}
+
+	.post-content blockquote {
+		margin: 1.5rem 0;
+		padding: 0.2rem 0 0.2rem 1.1rem;
+	}
+
+	.post-content blockquote p {
+		font-size: 1.3rem;
+	}
+
+	.post-content pre {
+		font-size: 0.95rem;
+		padding: 1rem;
+	}
+
+	.facepile-row {
+		gap: 0.75rem;
+		padding: 0.75rem 0 2.25rem;
+	}
+
+	.facepile-rule {
+		width: 28px;
+	}
+
+	.facepile-item {
+		width: 32px;
+		height: 32px;
+	}
+
+	.facepile-item--initials,
+	.facepile-more {
+		font-size: 0.75rem;
+	}
+
+	.facepile-caption {
+		font-size: 0.72rem;
+		letter-spacing: 0.16em;
+	}
+
+	.replies-section {
+		padding: 0 1.25rem 2.25rem;
+	}
+
+	.reply {
+		padding: 1rem 0;
+	}
+
+	.reply:first-child {
+		padding-top: 1.25rem;
+	}
+
+	.reply-header {
+		gap: 0.6rem;
+	}
+
+	.reply-avatar {
+		width: 34px;
+		height: 34px;
+	}
+
+	.reply-avatar--initials {
+		font-size: 0.75rem;
+	}
+
+	.reply-author {
+		font-size: 1.05rem;
+	}
+
+	.reply-date {
+		font-size: 0.85rem;
+	}
+
+	.reply-body {
+		margin-left: 2.7rem;
+	}
 }

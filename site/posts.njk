@@ -7,5 +7,7 @@ eleventyNavigation:
   key: Posts
   order: 1
 ---
+<div class="posts-column">
 {% set posts = collections.post | reverse %}
 {% include "post-list-grouped.njk" %}
+</div>

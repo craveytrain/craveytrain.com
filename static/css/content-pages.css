@@ -1,57 +1,280 @@
-/* Content Pages - Now, Colophon, Uses */
+/* ============================================
+   CONTENT-PAGES.CSS
+   Now, Content Pages (Uses, Colophon), Contact, 404
+   Affiche Design System
+   ============================================ */
 
-/* Page header subtitle */
+/* ─── 1. Page Header Extras ─── */
+
+/* Subtitle: muted line under the page title (now/uses/colophon) */
 .subtitle {
+	font-family: var(--font-body);
 	font-size: 1.05rem;
-	color: var(--ink-light);
-	margin-bottom: 0.75rem;
+	color: var(--text-muted);
+	max-width: var(--column-prose);
+	margin: 0.75rem auto 0;
 	line-height: 1.6;
 }
 
-/* Updated date in Fraunces italic */
+.subtitle a {
+	color: var(--accent);
+}
+
+/* Updated line: Jost caps, muted */
 .updated {
-	font-family: var(--font-display);
-	font-size: 0.9rem;
-	color: var(--ink-light);
-	font-style: italic;
-}
-
-/* Section content typography */
-.section-content h2 {
-	font-family: var(--font-display);
-	font-size: 1.2rem;
+	font-family: var(--font-body);
+	font-size: 0.85rem;
 	font-weight: 600;
-	color: var(--ink);
-	margin-bottom: 1rem;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	margin-top: 1.25rem;
 }
 
-.section-content p {
-	font-size: 1.05rem;
-	color: var(--ink);
+/* Flourish sits tight above the title; title gets a touch of breathing room */
+.page-header .flourish + .page-title {
+	margin-top: 0.25rem;
+}
+
+.now-header .flourish {
+	font-size: clamp(1.4rem, 1.18rem + 0.9vw, 1.9rem);
+}
+
+/* ─── 2. Now Page ─── */
+.now-body {
+	max-width: var(--column-now);
+	margin: 0 auto;
+	padding: 2.5rem 3rem 3.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2.75rem;
+}
+
+.now-content {
+	font-size: 1.15rem;
 	line-height: 1.75;
-	margin-bottom: 1rem;
-	max-width: var(--prose-max-width);
 }
 
-.section-content p:last-child {
-	margin-bottom: 0;
+.now-content h3,
+.now-entry h3,
+.content-section-body h3 {
+	font-family: var(--font-display);
+	font-size: clamp(1.2rem, 1.13rem + 0.27vw, 1.35rem);
+	font-weight: normal;
+	letter-spacing: 0.08em;
+	color: var(--accent);
+	margin: 1.25rem 0 0.35rem;
 }
 
-.section-content ul {
-	font-size: 1.05rem;
-	color: var(--ink);
+.now-content > :first-child,
+.now-content h3:first-child {
+	margin-top: 0;
+}
+
+.now-content p {
+	margin: 0;
+}
+
+.now-content p + p {
+	margin-top: 1.25rem;
+}
+
+.now-entry-meta,
+.now-entry-tags {
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	color: var(--text-muted);
+	margin: 0.35rem 0 0;
+}
+
+.now-closer {
+	text-align: right;
+	margin-top: 1.25rem;
+}
+
+/* ─── 3. Content Pages (Uses, Colophon) ─── */
+.content-body {
+	max-width: var(--column-prose);
+	margin: 0 auto;
+	padding: 2.5rem 1.5rem 3.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2.75rem;
+}
+
+.content-section-body {
+	font-size: 1.15rem;
 	line-height: 1.75;
-	margin-bottom: 1rem;
-	max-width: var(--prose-max-width);
 }
 
-.section-content li {
-	margin-bottom: 0.5rem;
+.content-section-body > :first-child {
+	margin-top: 0;
 }
 
-/* Inline code now uses tag-level styles from main.css */
+.content-section-body p {
+	margin: 1.25rem 0 0;
+}
 
-/* Now page header spacing */
-.now-header {
-	margin-bottom: 2rem;
+.content-section-body ul,
+.content-section-body ol {
+	font-size: 1.15rem;
+	line-height: 1.75;
+}
+
+/* Nested H2s inside raw entry content (colophon) get the prose treatment */
+.content-section-body h2 {
+	font-size: clamp(1.7rem, 1.52rem + 0.72vw, 2.1rem);
+	font-weight: normal;
+	letter-spacing: 0.05em;
+	border-bottom: 2px solid var(--ornament);
+	padding-bottom: 0.35rem;
+	margin: 2rem 0 1rem;
+}
+
+.content-section-body h2:first-child {
+	margin-top: 0;
+}
+
+/* ─── 4. Contact ─── */
+.contact-body {
+	max-width: var(--column-prose);
+	margin: 0 auto;
+	padding: 0 1.5rem 3.5rem;
+	text-align: center;
+}
+
+.contact-body > p {
+	font-size: 1.05rem;
+	line-height: 1.75;
+	margin-bottom: 1.75rem;
+}
+
+.contact-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: baseline;
+	gap: 0.5rem 0.9rem;
+}
+
+.contact-links li {
+	margin: 0;
+	display: flex;
+	align-items: baseline;
+	gap: 0.75rem;
+}
+
+.contact-links li:last-child span {
+	display: none;
+}
+
+.contact-links a {
+	font-family: var(--font-body);
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--accent);
+	text-decoration: none;
+}
+
+.contact-links a:hover {
+	text-decoration: underline;
+}
+
+.contact-links span {
+	color: var(--ornament);
+	font-size: 0.7rem;
+}
+
+/* ─── 5. 404 ─── */
+.error-page {
+	text-align: center;
+	padding: 4rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.error-page .flourish {
+	font-size: clamp(1.3rem, 1.17rem + 0.54vw, 1.6rem);
+}
+
+.error-code {
+	--shadow-offset: clamp(3px, 2.56px + 0.11vw, 4px);
+	font-family: var(--font-display);
+	font-size: clamp(3rem, 2.34rem + 2.7vw, 4.5rem);
+	letter-spacing: 0.06em;
+	line-height: 0.95;
+	color: var(--text);
+	text-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--surface-deep);
+	margin-top: 0.25rem;
+}
+
+.error-message {
+	font-family: var(--font-body);
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--text-muted);
+	margin-top: 0.75rem;
+}
+
+.error-page .plate-button {
+	margin-top: 1.25rem;
+	padding: 0.65rem 1.4rem;
+}
+
+/* ─── 6. Mobile-first Responsive ─── */
+@media (width < 768px) {
+	.subtitle {
+		font-size: 1rem;
+	}
+
+	.updated {
+		font-size: 0.75rem;
+		letter-spacing: 0.2em;
+		margin-top: 1rem;
+	}
+
+	.now-body {
+		padding: 1.75rem 1.25rem 2.5rem;
+		gap: 2rem;
+	}
+
+	.now-content,
+	.content-section-body {
+		font-size: 1rem;
+		line-height: 1.7;
+	}
+
+	.now-content h3,
+	.now-entry h3,
+	.content-section-body h3 {
+		margin: 1rem 0 0.3rem;
+	}
+
+	.now-content p + p {
+		margin-top: 1rem;
+	}
+
+	.content-section-body p {
+		margin-top: 1rem;
+	}
+
+	.now-closer {
+		margin-top: 1rem;
+	}
+
+	.content-body {
+		padding: 1.75rem 1.25rem 2.5rem;
+		gap: 2rem;
+	}
+
+	.error-page {
+		padding: 2.5rem 1.25rem;
+	}
 }
