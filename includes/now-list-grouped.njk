@@ -1,17 +1,14 @@
 {%- if nowEntries.length -%}
 {% for year, yearEntries in nowEntries | groupby("data.year") | dictsort | reverse %}
-  <section class="section-grid year-group">
-    <div class="section-label">{{ year }}</div>
-    <div class="posts-for-year">
-      {% for entry in yearEntries | reverse %}
-        <article class="post-item">
-          <h2 class="post-title">
-            <a href="{{ entry.url }}">{{ entry.date | prettyDate }}</a>
-          </h2>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-  {% if not loop.last %}{% include "partials/divider.njk" %}{% endif %}
+	<section class="year-group">
+		<div class="year-rule"><span class="year-numeral">{{ year }}</span></div>
+		<div class="posts-for-year">
+			{% for entry in yearEntries | reverse %}
+				<article class="row now-row">
+					<h2 class="row-title"><a href="{{ entry.url }}"><time datetime="{{ entry.date | htmlDateString }}">{{ entry.date | prettyDate }}</time></a></h2>
+				</article>
+			{% endfor %}
+		</div>
+	</section>
 {% endfor %}
 {%- endif -%}

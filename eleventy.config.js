@@ -50,6 +50,7 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/slides': 'slides' })
 	eleventyConfig.addPassthroughCopy({ 'static/fonts': 'fonts' })
 	eleventyConfig.addPassthroughCopy({ 'static/css': 'css' })
+	eleventyConfig.addPassthroughCopy({ 'static/js': 'js' })
 
 	if (process.env.ELEVENTY_ENV !== 'production') {
 		eleventyConfig.addPassthroughCopy({

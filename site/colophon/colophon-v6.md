@@ -5,8 +5,6 @@ tags:
   - colophon
 ---
 
-## Version 6
-
 ### 2016 - 2018
 
 This was a home grown version of a static site generator, because, why not? I stripped down the visual style on this version (or, more accurately, I didn't bother building it back in).

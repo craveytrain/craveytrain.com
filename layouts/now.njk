@@ -2,66 +2,58 @@
 layout: base
 css: content-pages.css
 ---
-{%- set nowEntries = collections.nowEntries -%}
+{%- set isIndex = page.url == '/now/' -%}
 {%- set latestNow = collections.nowEntries | last -%}
-<div class="page-header section-grid now-header">
-  <div class="section-label"></div>
-  <div>
-    <h1 class="page-title">{{ title }}</h1>
-    <p class="subtitle">
-      This is a <a href="https://nownownow.com/about">now page</a>. If you have your own site, you should make one too.
-    </p>
-    <p class="updated">Last updated {{ latestNow.date | prettyDate }}</p>
-  </div>
+{%- set entrySections = latestNow.data.sections if isIndex else sections -%}
+{%- set entryContent = latestNow.content if isIndex else content -%}
+<div class="page-header now-header">
+	<span class="flourish">what I'm doing</span>
+	<h1 class="page-title">{{ title }}</h1>
+	<p class="subtitle">
+		This is a <a href="https://nownownow.com/about">now page</a>. If you have your own site, you should make one too.
+	</p>
+	{% if isIndex %}<p class="updated">Last updated {{ latestNow.date | prettyDate }}</p>{% endif %}
 </div>
 
-{%- if latestNow.data.sections -%}
-  {% for section in latestNow.data.sections %}
-    {% include "partials/divider.njk" %}
-    <section class="section-grid">
-      <div class="section-label">{{ section.label }}</div>
-      <div class="posts-for-year">
-        {% for item in section.items %}
-          <article class="post-item">
-            <div class="post-meta-left">
-              <h2 class="post-title">
-                {%- if item.url -%}
-                  <a href="{{ item.url }}">{{ item.title }}</a>
-                {%- else -%}
-                  {{ item.title }}
-                {%- endif -%}
-              </h2>
-              {%- if item.tags and item.tags.length -%}
-              <span class="post-tags-inline">
-                {{ item.tags | join(", ") }}
-              </span>
-              {%- endif -%}
-            </div>
-            {%- if item.meta -%}
-            <span class="post-date">{{ item.meta }}</span>
-            {%- endif -%}
-          </article>
-        {% endfor %}
-        {%- if loop.last -%}
-          <a class="section-link" href="/now/archive/">Previously &rarr;</a>
-        {%- endif -%}
-      </div>
-    </section>
-  {% endfor %}
-{%- else -%}
-  {# Fallback: legacy splitBySections rendering for entries without structured data #}
-  {% include "partials/divider.njk" %}
-  {% set sections = latestNow.content | splitBySections %}
-  {% for section in sections %}
-    <div class="section-grid">
-      <div class="section-label">{{ section.label }}</div>
-      <div class="section-content">
-        {{ section.content | safe }}
-        {%- if loop.last -%}
-          <a class="section-link" href="/now/archive/">Previously &rarr;</a>
-        {%- endif -%}
-      </div>
-    </div>
-    {% if not loop.last %}{% include "partials/divider.njk" %}{% endif %}
-  {% endfor %}
-{%- endif -%}
+<div class="now-body">
+	{%- if entrySections -%}
+		{%- for section in entrySections -%}
+		<section>
+			<h2 class="band-heading">{{ section.label }}</h2>
+			<div class="now-content">
+				{%- for item in section.items -%}
+				<div class="now-entry">
+					<h3>
+						{%- if item.url -%}
+							<a href="{{ item.url }}">{{ item.title }}</a>
+						{%- else -%}
+							{{ item.title }}
+						{%- endif -%}
+					</h3>
+					{%- if item.meta -%}<p class="now-entry-meta">{{ item.meta }}</p>{%- endif -%}
+					{%- if item.tags and item.tags.length -%}
+					<p class="now-entry-tags">{{ item.tags | join(", ") }}</p>
+					{%- endif -%}
+				</div>
+				{%- endfor -%}
+			</div>
+			{%- if loop.last -%}
+			<p class="now-closer"><a class="archive-link" href="/now/archive/">Archive</a></p>
+			{%- endif -%}
+		</section>
+		{%- endfor -%}
+	{%- else -%}
+		{%- set sections = entryContent | splitBySections -%}
+		{%- for section in sections -%}
+		<section>
+			<h2 class="band-heading">{{ section.label | safe }}</h2>
+			<div class="now-content">
+				{{ section.content | safe }}
+			</div>
+			{%- if loop.last -%}
+			<p class="now-closer"><a class="archive-link" href="/now/archive/">Archive</a></p>
+			{%- endif -%}
+		</section>
+		{%- endfor -%}
+	{%- endif -%}
+</div>

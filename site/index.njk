@@ -2,61 +2,50 @@
 layout: base
 css: home.css
 ---
-<section class="hero">
-  <div class="hero-text">
-    <h1>Hey y'all<span class="accent">,</span><br>I'm Mike Cravey.</h1>
-    <p>Father, husband, teacher, and geek</p>
-    <div class="hero-links">
+<section class="sunburst">
+  <div class="sunburst-rays" aria-hidden="true"></div>
+  <svg class="sunburst-stars" viewBox="0 0 1280 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="sunburst-star">
+      <path d="M140 78 L143 87 L152 90 L143 93 L140 102 L137 93 L128 90 L137 87 Z"></path>
+      <path d="M320 172 L322 178 L328 180 L322 182 L320 188 L318 182 L312 180 L318 178 Z"></path>
+      <path d="M520 60 L522.5 67.5 L530 70 L522.5 72.5 L520 80 L517.5 72.5 L510 70 L517.5 67.5 Z"></path>
+      <path d="M960 106 L963.5 116.5 L974 120 L963.5 123.5 L960 134 L956.5 123.5 L946 120 L956.5 116.5 Z"></path>
+      <path d="M1130 211 L1132 218 L1139 220 L1132 222 L1130 229 L1128 222 L1121 220 L1128 218 Z"></path>
+      <path d="M820 253 L822 258 L827 260 L822 262 L820 267 L818 262 L813 260 L818 258 Z"></path>
+      <path d="M240 290 L242.5 297.5 L250 300 L242.5 302.5 L240 310 L237.5 302.5 L230 300 L237.5 297.5 Z"></path>
+      <path d="M1040 32 L1042 38 L1048 40 L1042 42 L1040 48 L1038 42 L1032 40 L1038 38 Z"></path>
+    </g>
+    <g class="sunburst-dot">
+      <circle cx="80" cy="200" r="3"></circle>
+      <circle cx="400" cy="140" r="2.5"></circle>
+      <circle cx="700" cy="60" r="2.5"></circle>
+      <circle cx="880" cy="190" r="3"></circle>
+      <circle cx="1200" cy="100" r="3.5"></circle>
+      <circle cx="1230" cy="330" r="2.5"></circle>
+      <circle cx="60" cy="340" r="2.5"></circle>
+      <circle cx="180" cy="40" r="2.5"></circle>
+      <circle cx="990" cy="300" r="2.5"></circle>
+    </g>
+  </svg>
+  <div class="sunburst-sun" aria-hidden="true"></div>
+  <div class="sunburst-moon" aria-hidden="true"></div>
+  <div class="sunburst-horizon-teal" aria-hidden="true"></div>
+  <div class="sunburst-horizon-frame" aria-hidden="true"></div>
+  <div class="sunburst-horizon-accent" aria-hidden="true"></div>
+  <div class="sunburst-content">
+    <p class="flourish sunburst-flourish">Hey y'all, I'm</p>
+    <h1 class="sunburst-name">Mike Cravey</h1>
+    <p class="sunburst-tagline">Father <span aria-hidden="true">&middot;</span> Husband <span aria-hidden="true">&middot;</span> Teacher <span aria-hidden="true">&middot;</span> Geek</p>
+    <div class="sunburst-links">
       {%- for contact in metadata.author.contacts %}
-      <a href="{{ contact.url }}">{{ contact.name }} &rarr;</a>
+      <a class="plate-button" href="{{ contact.url }}">{{ contact.name }}</a>
       {%- endfor %}
-    </div>
-  </div>
-  <div class="hero-portrait">
-    <picture>
-      <source
-        type="image/avif"
-        srcset="/img/hero/portrait-1x.avif 1x, /img/hero/portrait-2x.avif 2x">
-      <source
-        type="image/webp"
-        srcset="/img/hero/portrait-1x.webp 1x, /img/hero/portrait-2x.webp 2x">
-      <img
-        src="/img/hero/portrait-1x.jpg"
-        srcset="/img/hero/portrait-1x.jpg 1x, /img/hero/portrait-2x.jpg 2x"
-        alt="Mike Cravey"
-        width="280"
-        height="340">
-    </picture>
-  </div>
-  {# Mobile Option C layout (shown via CSS) #}
-  <div class="hero-top">
-    <div class="hero-avatar">
-      <picture>
-        <source
-          type="image/avif"
-          srcset="/img/hero/avatar-1x.avif 1x, /img/hero/avatar-2x.avif 2x">
-        <source
-          type="image/webp"
-          srcset="/img/hero/avatar-1x.webp 1x, /img/hero/avatar-2x.webp 2x">
-        <img
-          src="/img/hero/avatar-1x.jpg"
-          srcset="/img/hero/avatar-1x.jpg 1x, /img/hero/avatar-2x.jpg 2x"
-          alt="Mike Cravey"
-          width="72"
-          height="72">
-      </picture>
-    </div>
-    <div>
-      <div class="hero-name">Hey y'all<span class="accent">,</span><br>I'm Mike Cravey.</div>
-      <div class="hero-tagline">UX Engineer</div>
     </div>
   </div>
 </section>
 
-{% include "partials/divider.njk" %}
-
-<section class="section-grid about">
-  <div class="section-label">About</div>
+<section class="band band-about">
+  <h2 class="band-heading">About</h2>
   <div class="about-content">
     <p>I'm a UX Engineer who likes to tinker with my <a href="https://github.com/craveytrain/dotfiles">dotfiles</a>, try out new tools and sometimes I even build things.</p>
     <p>After spending years in Austin and a year abroad (ask me about my time in London), my family and I now live back in small town Texas where my wife and I grew up. You can usually find me scouting out decent coffee or food.</p>
@@ -64,30 +53,21 @@ css: home.css
   </div>
 </section>
 
-{% include "partials/divider.njk" %}
-
-<section class="section-grid posts">
-  <div class="section-label">Latest Posts</div>
-  <div class="post-list">
+<section class="band band-posts">
+  <h2 class="band-heading">Latest posts</h2>
+  <div class="post-grid">
     {%- set recentPosts = collections.post | reverse | head(3) %}
     {%- for post in recentPosts %}
-    <div class="post-item">
-      <div class="post-date">{{ post.date | monthYear }}</div>
-      <div>
-        <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-        {%- if post.data.description %}
-        <p class="post-excerpt">{{ post.data.description }}</p>
-        {%- endif %}
-        {%- if post.data.tags %}
-        <div class="post-tags">
-          {%- for tag in post.data.tags | contentTags %}
-          <a href="/tags/{{ tag | slugify }}/" class="tag-chip">{{ tag }}</a>
-          {%- endfor %}
-        </div>
-        {%- endif %}
-      </div>
-    </div>
+    <article class="post-card">
+      <time class="date-stamp" datetime="{{ post.date | htmlDateString }}">{{ post.date | monthYear }}</time>
+      <h3 class="post-card-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+      {%- if post.data.description %}
+      <p class="post-card-excerpt">{{ post.data.description }}</p>
+      {%- endif %}
+    </article>
     {%- endfor %}
-    <a href="/posts/" class="section-link">View all posts &rarr;</a>
+  </div>
+  <div class="view-all-row">
+    <a href="/posts/" class="archive-link">View all posts</a>
   </div>
 </section>

@@ -2,1584 +2,1914 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Craveytrain — Design System</title>
+		<title>Craveytrain Design System (Affiche)</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<!-- Real site CSS. Tokens + every component styled below come from these files. -->
+		<!-- Pre-paint theme: set data-theme from localStorage before first paint -->
+		<script>
+			;(function () {
+				try {
+					var t = localStorage.getItem('theme')
+					if (t === 'jour' || t === 'nuit')
+						document.documentElement.setAttribute('data-theme', t)
+				} catch (e) {}
+			})()
+		</script>
+
+		<!--
+			Truthful-by-construction: this catalog loads the real production
+			stylesheets and uses the real shipped class names. Nothing here is
+			reimplemented, if a component looks wrong here, it's wrong on the
+			live site too.
+		-->
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/home.css" />
 		<link rel="stylesheet" href="/css/posts.css" />
 		<link rel="stylesheet" href="/css/prose.css" />
 		<link rel="stylesheet" href="/css/content-pages.css" />
+		<script type="module" src="/js/theme-toggle.js"></script>
 
 		<style>
-			/* ─── Storybook chrome (not site CSS) ─── */
-			.sb-wrap {
+			/* ───────────────────────────────────────────────────────────
+			   Catalog-only chrome. Everything below is layout for THIS
+			   page (sidebar, story cards, swatches, code labels), never
+			   the components being demonstrated. References semantic
+			   role vars only (--surface, --text, --accent etc. from
+			   main.css :root). No pigment vars (cream, midnight, red,
+			   gold, teal families) appear here, see the Color story
+			   for the one documented exception.
+			   ─────────────────────────────────────────────────────────── */
+
+			.ds-shell {
 				display: grid;
-				grid-template-columns: 240px 1fr;
-				min-height: 100vh;
+				grid-template-columns: 260px minmax(0, 1fr);
+				align-items: start;
 			}
-			.sb-nav {
+
+			.ds-nav {
 				position: sticky;
 				top: 0;
-				align-self: start;
-				height: 100vh;
-				overflow: auto;
-				border-right: 1px solid var(--border);
-				padding: 2rem 1.5rem;
-				background: var(--warm-bg-deep);
+				height: 100dvh;
+				overflow-y: auto;
+				background: var(--surface-deep);
+				border-right: 2px solid var(--frame);
+				padding: 2rem 1.5rem 3rem;
 			}
-			.sb-nav h1 {
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: 1.25rem;
-				letter-spacing: -0.02em;
-				margin: 0 0 1.5rem;
+
+			.ds-nav-brand {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
 			}
-			.sb-nav h2 {
+
+			.ds-nav-brand svg {
+				width: 28px;
+				height: 28px;
+				flex: none;
+				color: var(--text);
+			}
+
+			.ds-nav-brand span {
 				font-family: var(--font-display);
-				font-size: 0.72rem;
-				font-weight: 600;
+				font-size: 1.05rem;
+				letter-spacing: 0.16em;
+				color: var(--text);
+				line-height: 1;
+			}
+
+			.ds-nav-flourish {
+				font-family: var(--font-script);
+				font-size: 1.2rem;
 				color: var(--accent);
-				text-transform: uppercase;
-				letter-spacing: 0.12em;
-				margin: 1.25rem 0 0.4rem;
+				transform: rotate(-2deg);
+				margin: 0.6rem 0 0;
 			}
-			.sb-nav a {
+
+			.ds-nav-group {
+				font-family: var(--font-display);
+				font-size: 0.95rem;
+				letter-spacing: 0.24em;
+				color: var(--accent);
+				margin: 1.5rem 0 0.4rem;
+			}
+
+			.ds-nav a {
 				display: block;
-				font-size: 0.88rem;
-				color: var(--ink-light);
+				font-family: var(--font-body);
+				font-size: 0.78rem;
+				font-weight: 500;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--text-muted);
 				text-decoration: none;
-				padding: 0.25rem 0;
+				padding: 0.2rem 0;
+				transition: color 0.2s;
 			}
-			.sb-nav a:hover {
+
+			.ds-nav a:hover {
 				color: var(--accent);
 			}
-			.sb-main {
-				padding: 2rem 2.5rem 6rem;
+
+			.ds-main {
+				padding: 2.5rem 3rem 6rem;
 				max-width: 1180px;
 			}
-			.sb-intro {
-				margin-bottom: 2rem;
-			}
-			.sb-intro h1 {
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: 2.25rem;
-				letter-spacing: -0.02em;
-				margin: 0 0 0.5rem;
-			}
-			.sb-intro p {
-				color: var(--ink-light);
-				max-width: 640px;
-				line-height: 1.65;
-			}
-			section.sb-group {
-				border-top: 1px solid var(--border);
-				padding-top: 2.5rem;
-				margin-top: 3rem;
-			}
-			section.sb-group > h2 {
-				font-family: var(--font-display);
-				font-weight: 600;
-				font-size: 0.85rem;
+
+			.ds-intro-flourish {
+				font-family: var(--font-script);
+				font-size: 1.8rem;
 				color: var(--accent);
-				text-transform: uppercase;
-				letter-spacing: 0.1em;
-				margin: 0 0 0.25rem;
-			}
-			section.sb-group > .sb-group-desc {
-				color: var(--ink-light);
-				font-size: 0.95rem;
-				margin: 0 0 1.75rem;
-				max-width: 640px;
-				line-height: 1.6;
-			}
-			.sb-story {
-				border: 1px solid var(--border);
-				border-radius: 8px;
-				background: var(--warm-bg);
-				overflow: hidden;
-				margin-bottom: 2rem;
-			}
-			.sb-story-head {
-				display: flex;
-				align-items: baseline;
-				justify-content: space-between;
-				padding: 0.9rem 1.2rem;
-				border-bottom: 1px solid var(--border);
-				background: var(--warm-bg-deep);
-			}
-			.sb-story-head h3 {
-				font-family: var(--font-display);
-				font-size: 1rem;
-				font-weight: 600;
+				transform: rotate(-2deg);
+				display: inline-block;
 				margin: 0;
 			}
-			.sb-story-head .sb-meta {
-				font-size: 0.75rem;
-				color: var(--ink-light);
-				font-family: var(--font-code);
+
+			.ds-intro h1 {
+				font-family: var(--font-display);
+				font-weight: normal;
+				font-size: 3.4rem;
+				letter-spacing: 0.04em;
+				line-height: 0.95;
+				color: var(--text);
+				text-shadow: 3px 3px 0 var(--surface-deep);
+				margin: 0.25rem 0 0;
 			}
-			.sb-story-desc {
-				padding: 0.75rem 1.2rem 0;
-				color: var(--ink-light);
-				font-size: 0.9rem;
-				line-height: 1.55;
+
+			.ds-intro p {
+				font-family: var(--font-body);
+				font-size: 1.05rem;
+				line-height: 1.7;
+				color: var(--text-muted);
 				max-width: 640px;
+				margin: 1.1rem 0 0;
 			}
-			.sb-canvas {
-				padding: 2rem 1.2rem;
+
+			/* Group divider reuses the shipped .band-heading look at the
+			   catalog level too, same rule, same caps, same weight. */
+			.ds-group {
+				margin-top: 3.5rem;
+			}
+
+			.ds-group > .band-heading {
+				margin-bottom: 1.5rem;
+			}
+
+			.ds-story {
+				border: 2px solid var(--frame);
+				background: var(--surface);
+				margin-top: 1.5rem;
+			}
+
+			.ds-story-head {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1rem;
+				flex-wrap: wrap;
+				padding: 0.7rem 1.25rem;
+				border-bottom: 2px solid var(--frame);
+				background: var(--surface-deep);
+			}
+
+			.ds-story-head h3 {
+				font-family: var(--font-display);
+				font-weight: normal;
+				font-size: 1.25rem;
+				letter-spacing: 0.05em;
+				color: var(--text);
+				margin: 0;
+			}
+
+			.ds-story-meta {
+				font-family: var(--font-body);
+				font-size: 0.7rem;
+				font-weight: 500;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--text-muted);
+			}
+
+			.ds-story-note {
+				font-family: var(--font-body);
+				font-size: 0.92rem;
+				line-height: 1.6;
+				color: var(--text-muted);
+				max-width: 720px;
+				margin: 0;
+				padding: 0.9rem 1.25rem 0;
+			}
+
+			.ds-story-note code {
+				font-family: var(--font-code);
+				font-size: 0.85em;
+			}
+
+			.ds-canvas {
+				padding: 2rem 1.25rem;
 				background:
 					repeating-linear-gradient(
 						45deg,
-						transparent 0 8px,
-						rgba(107, 93, 82, 0.04) 8px 9px
+						transparent 0 10px,
+						color-mix(in oklch, var(--frame) 6%, transparent) 10px 11px
 					),
-					var(--warm-bg);
+					var(--surface);
 			}
-			.sb-canvas.plain {
-				background: var(--warm-bg);
+
+			.ds-canvas.plain {
+				background: var(--surface);
 			}
-			.sb-canvas.dark {
-				background: var(--ink);
+
+			.ds-code {
+				border-top: 2px solid var(--frame);
+				background: var(--surface-deep);
 			}
-			.sb-code {
-				border-top: 1px solid var(--border);
-				background: var(--warm-bg-deep);
-			}
-			.sb-code summary {
+
+			.ds-code summary {
 				cursor: pointer;
-				padding: 0.6rem 1.2rem;
+				padding: 0.55rem 1.25rem;
 				font-family: var(--font-code);
 				font-size: 0.78rem;
-				color: var(--ink-light);
+				color: var(--text-muted);
 			}
-			.sb-code summary:hover {
+
+			.ds-code summary:hover {
 				color: var(--accent);
 			}
-			.sb-code pre {
+
+			.ds-code pre {
 				margin: 0;
-				padding: 0.75rem 1.2rem 1rem;
+				padding: 0.75rem 1.25rem 1.1rem;
 				font-family: var(--font-code);
 				font-size: 0.78rem;
 				line-height: 1.55;
-				color: var(--ink);
+				color: var(--text);
 				overflow-x: auto;
 			}
 
-			/* Token swatches */
-			.sw-grid {
+			/* Swatch grids (palette + roles) */
+			.ds-swatch-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 				gap: 0.75rem;
 			}
-			.sw {
-				border: 1px solid var(--border);
-				border-radius: 6px;
+
+			.ds-swatch {
+				border: 1px solid var(--frame);
 				overflow: hidden;
-				background: var(--warm-bg);
 			}
-			.sw-chip {
-				height: 72px;
+
+			.ds-swatch-chip {
+				height: 60px;
 			}
-			.sw-body {
-				padding: 0.5rem 0.65rem;
-				font-size: 0.78rem;
-				line-height: 1.4;
-			}
-			.sw-body strong {
-				display: block;
-				font-family: var(--font-code);
-				font-size: 0.78rem;
-				margin-bottom: 0.1rem;
-				color: var(--ink);
-			}
-			.sw-body span {
-				color: var(--ink-light);
+
+			.ds-swatch-body {
+				padding: 0.45rem 0.6rem;
 				font-family: var(--font-code);
 				font-size: 0.72rem;
+				line-height: 1.4;
 			}
 
-			/* ─── Demo scaffolding: force "what the rendered state looks like" for
-         components whose real CSS hides them or expects content we don't have. ─── */
-
-			/* Real .accent-bar is position: fixed; show it in-flow inside the canvas. */
-			.sb-canvas .accent-bar {
-				position: static;
+			.ds-swatch-body strong {
+				display: block;
+				color: var(--text);
 			}
 
-			/* Real .skip-link is visually hidden until focused; show its focused look. */
-			.sb-canvas .skip-link {
-				position: static;
-				width: auto;
-				height: auto;
-				padding: 0.75rem 1.25rem;
-				background: var(--accent);
-				color: var(--white);
-				border-radius: 4px;
-				text-decoration: none;
+			.ds-swatch-body span {
+				color: var(--text-muted);
 			}
 
-			/* Real .hero-portrait wraps an <img>; demo has no img, so fill the arch. */
-			.sb-canvas .hero-portrait {
-				background: linear-gradient(135deg, var(--warm-bg-deep), var(--border));
+			/* Jour/nuit side-by-side comparison: color-scheme forced per
+			   panel so light-dark() resolves both ways on one page at once.
+			   A documentation device only, distinct from the production
+			   <theme-toggle> (§ch-theme-toggle), which flips one page, not
+			   two panels side by side. */
+			.ds-scheme-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1.25rem;
+			}
+
+			.ds-scheme-panel {
+				border: 1px solid var(--frame);
+				background: var(--surface);
+				padding: 1rem;
+			}
+
+			.ds-scheme-label {
+				font-family: var(--font-display);
+				font-size: 1rem;
+				letter-spacing: 0.2em;
+				color: var(--text);
+				margin: 0 0 0.75rem;
+			}
+
+			.ds-scheme-panel .ds-swatch-grid {
+				grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+				gap: 0.5rem;
+			}
+
+			.ds-scheme-panel .ds-swatch-chip {
+				height: 42px;
+			}
+
+			/* Data tables */
+			.ds-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-family: var(--font-body);
+				font-size: 0.88rem;
+				line-height: 1.5;
+			}
+
+			.ds-table caption {
+				text-align: left;
+				font-family: var(--font-display);
+				font-size: 0.95rem;
+				letter-spacing: 0.1em;
+				color: var(--text);
+				margin-bottom: 0.6rem;
+			}
+
+			.ds-table th,
+			.ds-table td {
+				text-align: left;
+				padding: 0.5rem 0.75rem;
+				border-bottom: 1px solid var(--frame);
+				vertical-align: top;
+			}
+
+			.ds-table th {
+				font-family: var(--font-display);
+				font-weight: normal;
+				letter-spacing: 0.08em;
+				color: var(--text-muted);
+				font-size: 0.8rem;
+			}
+
+			.ds-table code {
+				font-family: var(--font-code);
+				font-size: 0.85em;
+			}
+
+			/* Type specimens */
+			.ds-specimen + .ds-specimen {
+				margin-top: 1.5rem;
+			}
+
+			.ds-specimen-label {
+				font-family: var(--font-body);
+				font-size: 0.75rem;
+				font-weight: 600;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--text-muted);
+				margin: 0 0 0.4rem;
+			}
+
+			/* Poster frame diagram: illustrative only, mirrors the real
+			   `body` rule's values on a small box for scale reference. */
+			.ds-frame-diagram {
+				width: 220px;
+				height: 140px;
+				border: 14px solid var(--frame);
+				box-shadow:
+					inset 0 0 0 2px var(--surface),
+					inset 0 0 0 3px var(--frame);
 				display: grid;
 				place-items: center;
-				color: var(--ink-light);
+				background: var(--surface-deep);
+				font-family: var(--font-body);
+				font-size: 0.7rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: var(--text-muted);
+				text-align: center;
+			}
+
+			/* Mini sunburst hero, a scaled-down demo composition, not a
+			   reuse of .sunburst (which is sized for the full homepage).
+			   Same role vars, same three horizon strips, smaller box. */
+			.ds-hero-mini {
+				position: relative;
+				overflow: hidden;
+				width: 480px;
+				max-width: 100%;
+				border: 2px solid var(--frame);
+			}
+
+			.ds-hero-mini-rays {
+				position: absolute;
+				inset: 0;
+				background: repeating-conic-gradient(
+					from -90deg at 50% 115%,
+					var(--surface) 0deg 6deg,
+					var(--surface-deep) 6deg 12deg
+				);
+			}
+
+			.ds-hero-mini-sun {
+				position: absolute;
+				left: 50%;
+				bottom: 52px;
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				background: var(--ornament);
+				opacity: 0.9;
+				transform: translateX(-50%);
+			}
+
+			.ds-hero-mini-horizon-teal,
+			.ds-hero-mini-horizon-frame,
+			.ds-hero-mini-horizon-accent {
+				position: absolute;
+				left: 0;
+				right: 0;
+			}
+
+			.ds-hero-mini-horizon-teal {
+				bottom: 40px;
+				height: 12px;
+				background: var(--horizon);
+			}
+
+			.ds-hero-mini-horizon-frame {
+				bottom: 34px;
+				height: 6px;
+				background: var(--fill);
+			}
+
+			.ds-hero-mini-horizon-accent {
+				bottom: 0;
+				height: 34px;
+				background: var(--accent);
+			}
+
+			.ds-hero-mini-content {
+				position: relative;
+				text-align: center;
+				padding: 1.75rem 1rem 5rem;
+			}
+
+			.ds-hero-mini-content .flourish {
+				font-size: 1.3rem;
+			}
+
+			.ds-hero-mini-content h3 {
 				font-family: var(--font-display);
-				font-style: italic;
-				font-size: 0.85rem;
+				font-weight: normal;
+				font-size: 2.6rem;
+				letter-spacing: 0.03em;
+				line-height: 0.92;
+				color: var(--text);
+				text-shadow: 3px 3px 0 var(--surface-deep);
+				margin: 0;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="sb-wrap">
-			<aside class="sb-nav">
-				<h1>
-					Craveytrain <br /><span
-						style="
-							color: var(--ink-light);
-							font-weight: 400;
-							font-size: 0.85rem;
-						"
-						>Design System</span
-					>
-				</h1>
-				<h2>Foundations</h2>
-				<a href="#tokens-color">Color</a>
-				<a href="#tokens-type">Typography</a>
-				<a href="#tokens-space">Spacing &amp; radii</a>
-				<a href="#tokens-motion">Motion</a>
-				<h2>Chrome</h2>
-				<a href="#c-accent-bar">Accent bar</a>
-				<a href="#c-skip-link">Skip link</a>
-				<a href="#c-header">Header</a>
-				<a href="#c-footer">Footer</a>
-				<h2>Layout</h2>
-				<a href="#l-section-grid">Section grid</a>
-				<a href="#l-page-header">Page header</a>
-				<a href="#l-divider">Divider</a>
-				<a href="#l-hero">Hero</a>
-				<h2>Primitives</h2>
-				<a href="#p-tag-chip">Tag chip</a>
-				<a href="#p-tag-more">"+N more" pill</a>
-				<a href="#p-post-date">Post date</a>
-				<a href="#p-section-label">Section label</a>
-				<a href="#p-subtitle">Subtitle + updated</a>
-				<a href="#p-section-link">Section link</a>
-				<a href="#p-accent-comma">Accent comma</a>
-				<h2>Components</h2>
-				<a href="#cmp-post-item">Post item row</a>
-				<a href="#cmp-tag-filter">Tag filter band</a>
+		<div class="ds-shell">
+			<aside class="ds-nav">
+				<div class="ds-nav-brand">
+					<svg viewBox="0 0 12.7 12.612231" aria-hidden="true">
+						<g transform="translate(-98.689583,-142.08125)">
+							<path
+								fill="currentColor"
+								fill-rule="evenodd"
+								clip-rule="evenodd"
+								d="m 105.03958,142.08125 c 0.20016,0 0.39815,0.009 0.59357,0.0274 -0.86794,0.38856 -1.49318,1.12945 -1.62573,2.00531 -1.10265,0.35776 -1.87825,1.20832 -1.87825,2.20064 0,0.60989 0.29297,1.16621 0.77478,1.5875 h -1.03937 l -0.66146,1.32292 2.77813,4.49792 v 0.97054 c -3.00325,-0.50384 -5.291667,-3.11579 -5.291667,-6.26221 0,-3.507 2.842997,-6.35 6.349997,-6.35 z m 2.40022,5.82083 h 0.77478 l 0.66146,1.32292 -2.77812,4.49792 v 0.97054 c 3.00326,-0.50384 5.29166,-3.11579 5.29166,-6.26221 0,-1.46209 -0.49413,-2.80876 -1.3245,-3.88213 -0.0404,1.09091 -0.84016,2.01499 -1.95469,2.38557 -0.12525,0.36441 -0.35822,0.69429 -0.67059,0.96739 z"
+							/>
+						</g>
+					</svg>
+					<span>CRAVEYTRAIN</span>
+				</div>
+				<p class="ds-nav-flourish">the design system</p>
+
+				<p class="ds-nav-group">Foundations</p>
+				<a href="#c-color">Color</a>
+				<a href="#c-type">Typography</a>
+
+				<p class="ds-nav-group">Chrome</p>
+				<a href="#ch-frame">Poster frame</a>
+				<a href="#ch-masthead">Masthead</a>
+				<a href="#ch-footer">Footer caption band</a>
+				<a href="#ch-theme-toggle">Theme toggle</a>
+
+				<p class="ds-nav-group">Primitives</p>
+				<a href="#p-band">Band heading</a>
+				<a href="#p-pagehead">Page header</a>
+				<a href="#p-date">Date stamp</a>
+				<a href="#p-tags">Tag links</a>
+				<a href="#p-plate">Plate button</a>
+				<a href="#p-archive">Archive link</a>
+				<a href="#p-year">Year rule</a>
+
+				<p class="ds-nav-group">Components</p>
+				<a href="#cmp-row">Timetable row</a>
+				<a href="#cmp-card">Plate card</a>
+				<a href="#cmp-dropcap">Drop cap</a>
+				<a href="#cmp-quote">Blockquote</a>
+				<a href="#cmp-image">Post image + in-post rule</a>
 				<a href="#cmp-facepile">Facepile</a>
-				<a href="#cmp-blockquote">Blockquote</a>
-				<a href="#cmp-code-inline">Inline code</a>
-				<a href="#cmp-code-block">Code block</a>
-				<a href="#cmp-hero-portrait">Hero portrait</a>
-				<h2>Recipes</h2>
-				<a href="#r-posts-listing">Posts listing</a>
-				<a href="#r-now">Now page</a>
-				<a href="#r-sectioned-prose">Sectioned prose</a>
+				<a href="#cmp-replies">Replies</a>
+				<a href="#cmp-hero">Sunburst hero</a>
+				<a href="#cmp-404">404</a>
 			</aside>
 
-			<main class="sb-main">
-				<div class="sb-intro">
+			<main class="ds-main">
+				<div class="ds-intro">
+					<p class="ds-intro-flourish">every part of</p>
 					<h1>Design System</h1>
 					<p>
-						A static catalog of every component and pattern in
-						<code>craveytrain.com</code>. Each story shows the rendered element,
-						its markup, and where it's used. Paired with
-						<code>DESIGN.md</code> (the rules) and
-						<code>COMPONENTS.md</code> (the parts index).
+						Every shipped Affiche component, cataloged against the real
+						production stylesheets (<code>main.css</code>,
+						<code>home.css</code>, <code>posts.css</code>,
+						<code>prose.css</code>, <code>content-pages.css</code>) and the real
+						class names Eleventy renders. This page is dev-only, Eleventy skips
+						it on production builds. Two patterns from the original handoff mock
+						are deliberately not shown because they were never shipped: the tag
+						filter band and the now-page pager.
 					</p>
 				</div>
 
-				<!-- ─────────── FOUNDATIONS ─────────── -->
+				<!-- ═══════════════════ FOUNDATIONS ═══════════════════ -->
+				<section class="ds-group">
+					<h2 class="band-heading">Foundations</h2>
 
-				<section class="sb-group" id="tokens-color">
-					<h2>Foundations · Color</h2>
-					<p class="sb-group-desc">
-						OKLCH source with hex approximations. One accent color, used
-						sparingly.
-					</p>
+					<div class="ds-story" id="c-color">
+						<div class="ds-story-head">
+							<h3>Color</h3>
+							<span class="ds-story-meta">main.css :root</span>
+						</div>
+						<p class="ds-story-note">
+							Two layers. The palette (Layer 1) is fourteen fixed pigments,
+							identical in jour and nuit, and never referenced by a component
+							rule. Semantic roles (Layer 2) are what components actually use;
+							flipping jour ↔ nuit is only ever a re-point of a role at a
+							different pigment. There is no third, component-level token tier.
+							Every text/ground pair is validated numerically by
+							<code>scripts/wcag.py</code>, not by eye.
+						</p>
 
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Neutrals</h3>
-							<span class="sb-meta">6 tokens</span>
-						</div>
-						<div class="sb-canvas plain">
-							<div class="sw-grid">
-								<div class="sw">
-									<div class="sw-chip" style="background: var(--warm-bg)"></div>
-									<div class="sw-body">
-										<strong>--warm-bg</strong><span>#FAF6F1</span>
-									</div>
-								</div>
-								<div class="sw">
-									<div
-										class="sw-chip"
-										style="background: var(--warm-bg-deep)"
-									></div>
-									<div class="sw-body">
-										<strong>--warm-bg-deep</strong><span>#F0E8DD</span>
-									</div>
-								</div>
-								<div class="sw">
-									<div class="sw-chip" style="background: var(--border)"></div>
-									<div class="sw-body">
-										<strong>--border</strong><span>#DDD2C5</span>
-									</div>
-								</div>
-								<div class="sw">
-									<div
-										class="sw-chip"
-										style="background: var(--ink-light)"
-									></div>
-									<div class="sw-body">
-										<strong>--ink-light</strong><span>#6B5D52</span>
-									</div>
-								</div>
-								<div class="sw">
-									<div class="sw-chip" style="background: var(--ink)"></div>
-									<div class="sw-body">
-										<strong>--ink</strong><span>#2C2420</span>
-									</div>
-								</div>
-								<div class="sw">
-									<div
-										class="sw-chip"
-										style="
-											background: var(--white);
-											border-bottom: 1px solid var(--border);
-										"
-									></div>
-									<div class="sw-body">
-										<strong>--white</strong><span>#FFFFFF</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Accent</h3>
-							<span class="sb-meta">one color, three values</span>
-						</div>
-						<div class="sb-canvas plain">
-							<div class="sw-grid">
-								<div class="sw">
-									<div class="sw-chip" style="background: var(--accent)"></div>
-									<div class="sw-body">
-										<strong>--accent</strong><span>#B44D2D</span>
-									</div>
-								</div>
-								<div class="sw">
-									<div
-										class="sw-chip"
-										style="background: var(--accent-hover)"
-									></div>
-									<div class="sw-body">
-										<strong>--accent-hover</strong><span>#943D22</span>
-									</div>
-								</div>
-								<div class="sw">
-									<div
-										class="sw-chip"
-										style="background: var(--accent-soft)"
-									></div>
-									<div class="sw-body">
-										<strong>--accent-soft</strong><span>#E8C4B0</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section class="sb-group" id="tokens-type">
-					<h2>Foundations · Typography</h2>
-					<p class="sb-group-desc">
-						Fraunces for display, Inter for body/UI, Inconsolata for code.
-						Self-hosted, variable.
-					</p>
-
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Type scale</h3>
-							<span class="sb-meta">display / body / code</span>
-						</div>
-						<div class="sb-canvas plain">
-							<p
+						<div class="ds-canvas plain">
+							<h4
 								style="
 									font-family: var(--font-display);
-									font-weight: 800;
-									font-size: clamp(2.5rem, 5vw, 4rem);
-									letter-spacing: -0.03em;
-									line-height: 1.1;
+									font-size: 0.95rem;
+									letter-spacing: 0.15em;
+									color: var(--text-muted);
 									margin: 0 0 0.75rem;
 								"
 							>
-								Hey y'all<span style="color: var(--accent)">,</span>
-							</p>
-							<p
+								LAYER 1: PALETTE (PIGMENTS, FIXED)
+							</h4>
+							<!-- documentation swatches: literal oklch() values, keep in sync
+							     with main.css :root. Intentionally NOT var(--cream…) etc.,
+							     components never reference the palette directly, and this
+							     table exists to document the palette itself, not to consume
+							     it. -->
+							<div class="ds-swatch-grid">
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(93% 0.025 85deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--cream</strong><span>oklch(93% 0.025 85deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(92% 0.03 85deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--cream-bright</strong
+										><span>oklch(92% 0.03 85deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(89% 0.035 85deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--cream-deep</strong
+										><span>oklch(89% 0.035 85deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(79% 0.04 85deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--cream-dim</strong
+										><span>oklch(79% 0.04 85deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(30% 0.075 265deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--midnight</strong
+										><span>oklch(30% 0.075 265deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(44% 0.06 265deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--midnight-light</strong
+										><span>oklch(44% 0.06 265deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(31% 0.065 265deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--midnight-lifted</strong
+										><span>oklch(31% 0.065 265deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(26% 0.06 265deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--midnight-deep</strong
+										><span>oklch(26% 0.06 265deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(48.5% 0.185 30deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--red</strong><span>oklch(48.5% 0.185 30deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(66% 0.17 30deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--red-bright</strong
+										><span>oklch(66% 0.17 30deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(78% 0.12 85deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--gold</strong><span>oklch(78% 0.12 85deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(82% 0.11 85deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--gold-bright</strong
+										><span>oklch(82% 0.11 85deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(58% 0.08 200deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--teal</strong><span>oklch(58% 0.08 200deg)</span>
+									</div>
+								</div>
+								<div class="ds-swatch">
+									<div
+										class="ds-swatch-chip"
+										style="background: oklch(63% 0.07 200deg)"
+									></div>
+									<div class="ds-swatch-body">
+										<strong>--teal-bright</strong
+										><span>oklch(63% 0.07 200deg)</span>
+									</div>
+								</div>
+							</div>
+
+							<h4
 								style="
 									font-family: var(--font-display);
-									font-weight: 800;
-									font-size: clamp(2rem, 4vw + 1rem, 2.75rem);
-									letter-spacing: -0.02em;
-									margin: 0 0 0.5rem;
+									font-size: 0.95rem;
+									letter-spacing: 0.15em;
+									color: var(--text-muted);
+									margin: 2rem 0 0.75rem;
 								"
 							>
-								Page title · Fraunces 800
-							</p>
+								LAYER 2: SEMANTIC ROLES (WHAT COMPONENTS REFERENCE)
+							</h4>
 							<p
 								style="
-									font-family: var(--font-display);
-									font-weight: 600;
-									font-size: 1.5rem;
-									margin: 0 0 0.5rem;
-								"
-							>
-								H2 · Fraunces 600
-							</p>
-							<p
-								style="
-									font-family: var(--font-display);
-									font-weight: 600;
-									font-size: 1.25rem;
-									margin: 0 0 0.75rem;
-								"
-							>
-								H3 · Fraunces 600
-							</p>
-							<p
-								style="
-									font-size: 1.1rem;
-									line-height: 1.8;
+									font-family: var(--font-body);
+									font-size: 0.85rem;
+									color: var(--text-muted);
 									max-width: 640px;
-									margin: 0 0 0.5rem;
+									margin: 0 0 1rem;
 								"
 							>
-								Prose body — Inter 400, 1.1rem / 1.8. The web should be fast,
-								accessible, and built with care.
+								Six roles forced side-by-side via a scoped
+								<code>color-scheme</code>
+								property, a documentation device for comparing both modes at
+								once, distinct from the production
+								<a href="#ch-theme-toggle">&lt;theme-toggle&gt;</a>
+								(auto by default, jour/nuit pinnable):
 							</p>
+							<div class="ds-scheme-grid">
+								<div class="ds-scheme-panel" style="color-scheme: light">
+									<p class="ds-scheme-label">Jour</p>
+									<div class="ds-swatch-grid">
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--surface)"
+											></div>
+											<div class="ds-swatch-body"><strong>surface</strong></div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--text)"
+											></div>
+											<div class="ds-swatch-body"><strong>text</strong></div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--accent)"
+											></div>
+											<div class="ds-swatch-body"><strong>accent</strong></div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--ornament)"
+											></div>
+											<div class="ds-swatch-body">
+												<strong>ornament</strong>
+											</div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--on-ornament)"
+											></div>
+											<div class="ds-swatch-body">
+												<strong>on-ornament</strong>
+											</div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--footer-link)"
+											></div>
+											<div class="ds-swatch-body">
+												<strong>footer-link</strong>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="ds-scheme-panel" style="color-scheme: dark">
+									<p class="ds-scheme-label">Nuit</p>
+									<div class="ds-swatch-grid">
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--surface)"
+											></div>
+											<div class="ds-swatch-body"><strong>surface</strong></div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--text)"
+											></div>
+											<div class="ds-swatch-body"><strong>text</strong></div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--accent)"
+											></div>
+											<div class="ds-swatch-body"><strong>accent</strong></div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--ornament)"
+											></div>
+											<div class="ds-swatch-body">
+												<strong>ornament</strong>
+											</div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--on-ornament)"
+											></div>
+											<div class="ds-swatch-body">
+												<strong>on-ornament</strong>
+											</div>
+										</div>
+										<div class="ds-swatch">
+											<div
+												class="ds-swatch-chip"
+												style="background: var(--footer-link)"
+											></div>
+											<div class="ds-swatch-body">
+												<strong>footer-link</strong>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<p
 								style="
+									font-family: var(--font-body);
 									font-size: 0.85rem;
-									color: var(--ink-light);
-									margin: 0 0 0.25rem;
+									color: var(--text-muted);
+									margin: 0.75rem 0 0;
 								"
 							>
-								Meta · Inter 0.85rem ·
-								<span style="font-variant-numeric: tabular-nums"
-									>Mar 14 2024</span
-								>
+								Notice <code>on-ornament</code> holds midnight in both panels,
+								it never flips, because gold stays light in both modes.
+								<code>footer-link</code> is the one role that swaps
+								<em>pigment family</em>, not just lightness: gold in jour, red
+								in nuit.
 							</p>
-							<p class="section-label" style="margin: 0 0 0.5rem">
-								Section label
-							</p>
-							<p
-								style="
-									font-family: var(--font-code);
-									font-size: 0.9rem;
-									margin: 0;
-									color: var(--ink-light);
-								"
-							>
-								const code = "Inconsolata 400";
-							</p>
+
+							<table class="ds-table" style="margin-top: 1.5rem">
+								<caption>
+									All fifteen roles
+								</caption>
+								<thead>
+									<tr>
+										<th>Role</th>
+										<th>Jour →</th>
+										<th>Nuit →</th>
+										<th>Used for</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><code>--surface</code></td>
+										<td>cream</td>
+										<td>midnight-deep</td>
+										<td>Page field</td>
+									</tr>
+									<tr>
+										<td><code>--surface-deep</code></td>
+										<td>cream-deep</td>
+										<td>midnight-lifted</td>
+										<td>
+											Sunburst rays, offset shadows, hover fills, code surfaces
+										</td>
+									</tr>
+									<tr>
+										<td><code>--text</code></td>
+										<td>midnight</td>
+										<td>cream-bright</td>
+										<td>Primary text, prose, headings</td>
+									</tr>
+									<tr>
+										<td><code>--text-muted</code></td>
+										<td>midnight-light</td>
+										<td>cream-dim</td>
+										<td>Secondary text, meta, nav at rest</td>
+									</tr>
+									<tr>
+										<td><code>--frame</code></td>
+										<td>midnight</td>
+										<td>cream-bright</td>
+										<td>The poster frame, 2px rules and borders</td>
+									</tr>
+									<tr>
+										<td><code>--fill</code></td>
+										<td>midnight</td>
+										<td>cream-bright</td>
+										<td>Solid plates: buttons, footer band, +N chips</td>
+									</tr>
+									<tr>
+										<td><code>--on-fill</code></td>
+										<td>cream</td>
+										<td>midnight-deep</td>
+										<td>Type sitting on <code>--fill</code></td>
+									</tr>
+									<tr>
+										<td><code>--accent</code></td>
+										<td>red</td>
+										<td>red-bright</td>
+										<td>Links, active nav, dates, drop caps, flourish</td>
+									</tr>
+									<tr>
+										<td><code>--on-accent</code></td>
+										<td>cream</td>
+										<td>midnight-deep</td>
+										<td>Type sitting on <code>--accent</code></td>
+									</tr>
+									<tr>
+										<td><code>--ornament</code></td>
+										<td>gold</td>
+										<td>gold-bright</td>
+										<td>
+											Diamonds, year numerals, sun/moon, H2 underline, gold
+											avatar fills
+										</td>
+									</tr>
+									<tr>
+										<td><code>--on-ornament</code></td>
+										<td>midnight</td>
+										<td><strong>midnight</strong></td>
+										<td>Type on gold, never flips</td>
+									</tr>
+									<tr>
+										<td><code>--horizon</code></td>
+										<td>teal</td>
+										<td>teal-bright</td>
+										<td>Hero horizon strip. Nowhere else</td>
+									</tr>
+									<tr>
+										<td><code>--selection-bg</code></td>
+										<td>red</td>
+										<td>red-bright</td>
+										<td><code>::selection</code> ground</td>
+									</tr>
+									<tr>
+										<td><code>--selection-fg</code></td>
+										<td>cream</td>
+										<td>midnight-deep</td>
+										<td><code>::selection</code> type</td>
+									</tr>
+									<tr>
+										<td><code>--footer-link</code></td>
+										<td>gold</td>
+										<td>red</td>
+										<td>Footer nav links on the ink band</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
-				</section>
 
-				<section class="sb-group" id="tokens-space">
-					<h2>Foundations · Spacing &amp; radii</h2>
-					<p class="sb-group-desc">
-						Layout tokens and corner radii. No shadows, ever.
-					</p>
-
-					<div class="sb-story">
-						<div class="sb-story-head"><h3>Layout tokens</h3></div>
-						<div class="sb-canvas plain">
-							<div
-								style="
-									font-family: var(--font-code);
-									font-size: 0.82rem;
-									line-height: 1.9;
-									color: var(--ink);
-								"
-							>
-								<div>--max-width: <b>1100px</b></div>
-								<div>--gutter-width: <b>200px</b></div>
-								<div>--content-gap: <b>3rem</b></div>
-								<div>--prose-max-width: <b>640px</b></div>
-								<div>
-									--page-padding: <b>2rem</b>
-									<span style="color: var(--ink-light)"
-										>(1.5rem &lt;768px)</span
-									>
-								</div>
+					<div class="ds-story" id="c-type">
+						<div class="ds-story-head">
+							<h3>Typography</h3>
+							<span class="ds-story-meta">Bebas Neue · Jost · Yellowtail</span>
+						</div>
+						<p class="ds-story-note">
+							Uppercase is wayfinding, not decoration. Bebas display caps mark
+							titles, band headings, year numerals, and date stamps. Jost caps
+							with wide letter-spacing carry structural voice, nav, tag links,
+							buttons, footer. Jost normal case is running prose; prose never
+							shouts. Yellowtail is a flourish only, never body copy, never
+							navigation, always rotated −2° to −3°, never more than one per
+							view section.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">Bebas Neue, display, caps-only</p>
+								<p
+									style="
+										font-family: var(--font-display);
+										font-size: 3.2rem;
+										letter-spacing: 0.03em;
+										line-height: 0.95;
+										color: var(--text);
+										text-shadow: 3px 3px 0 var(--surface-deep);
+										margin: 0;
+									"
+								>
+									MIKE CRAVEY
+								</p>
 							</div>
-						</div>
-					</div>
 
-					<div class="sb-story">
-						<div class="sb-story-head"><h3>Radii</h3></div>
-						<div class="sb-canvas plain">
-							<div
-								style="
-									display: flex;
-									gap: 1rem;
-									flex-wrap: wrap;
-									align-items: flex-end;
-								"
-							>
-								<div
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">
+									Jost caps + letter-spacing, structural voice
+								</p>
+								<p
 									style="
-										text-align: center;
-										font-family: var(--font-code);
-										font-size: 0.75rem;
-									"
-								>
-									<div
-										style="
-											width: 60px;
-											height: 60px;
-											border-radius: 3px;
-											background: var(--warm-bg-deep);
-											border: 1px solid var(--border);
-											margin-bottom: 0.4rem;
-										"
-									></div>
-									3px · xs
-								</div>
-								<div
-									style="
-										text-align: center;
-										font-family: var(--font-code);
-										font-size: 0.75rem;
-									"
-								>
-									<div
-										style="
-											width: 60px;
-											height: 60px;
-											border-radius: 4px;
-											background: var(--warm-bg-deep);
-											border: 1px solid var(--border);
-											margin-bottom: 0.4rem;
-										"
-									></div>
-									4px · sm
-								</div>
-								<div
-									style="
-										text-align: center;
-										font-family: var(--font-code);
-										font-size: 0.75rem;
-									"
-								>
-									<div
-										style="
-											width: 60px;
-											height: 60px;
-											border-radius: 6px;
-											background: var(--warm-bg-deep);
-											border: 1px solid var(--border);
-											margin-bottom: 0.4rem;
-										"
-									></div>
-									6px · md
-								</div>
-								<div
-									style="
-										text-align: center;
-										font-family: var(--font-code);
-										font-size: 0.75rem;
-									"
-								>
-									<div
-										style="
-											width: 60px;
-											height: 60px;
-											border-radius: 8px;
-											background: var(--warm-bg-deep);
-											border: 1px solid var(--border);
-											margin-bottom: 0.4rem;
-										"
-									></div>
-									8px · lg
-								</div>
-								<div
-									style="
-										text-align: center;
-										font-family: var(--font-code);
-										font-size: 0.75rem;
-									"
-								>
-									<div
-										style="
-											width: 80px;
-											height: 28px;
-											border-radius: 20px;
-											background: var(--warm-bg-deep);
-											border: 1px solid var(--border);
-											margin-bottom: 0.4rem;
-										"
-									></div>
-									20px · pill
-								</div>
-								<div
-									style="
-										text-align: center;
-										font-family: var(--font-code);
-										font-size: 0.75rem;
-									"
-								>
-									<div
-										style="
-											width: 72px;
-											height: 86px;
-											border-radius: 200px 200px 24px 24px;
-											background: var(--warm-bg-deep);
-											border: 2px solid var(--border);
-											margin-bottom: 0.4rem;
-										"
-									></div>
-									arch (hero only)
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section class="sb-group" id="tokens-motion">
-					<h2>Foundations · Motion</h2>
-					<p class="sb-group-desc">
-						Three durations. Browser-default easing. No custom cubic-beziers, no
-						bounces, no scroll effects.
-					</p>
-					<div class="sb-story">
-						<div class="sb-canvas plain">
-							<div
-								style="
-									font-family: var(--font-code);
-									font-size: 0.85rem;
-									line-height: 2;
-								"
-							>
-								<div><b>0.2s</b> — color, opacity, border-color on hover</div>
-								<div><b>0.3s</b> — tag-cloud max-height expansion</div>
-								<div><b>0.4s</b> — hero portrait grayscale → color</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<!-- ─────────── CHROME ─────────── -->
-
-				<section class="sb-group" id="c-accent-bar">
-					<h2>Chrome</h2>
-					<p class="sb-group-desc">
-						Fixed, always-present elements rendered by <code>base.njk</code>.
-					</p>
-
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Accent bar</h3>
-							<span class="sb-meta">partials/accent-bar.njk</span>
-						</div>
-						<div class="sb-story-desc">
-							Fixed 0.5rem terracotta stripe at the top of the viewport. Must be
-							real DOM for Safari chrome tinting to pick it up.
-						</div>
-						<div class="sb-canvas plain">
-							<div
-								style="
-									border: 1px solid var(--border);
-									border-radius: 6px;
-									overflow: hidden;
-								"
-							>
-								<div class="accent-bar" aria-hidden="true"></div>
-								<div
-									style="
-										padding: 1rem;
-										color: var(--ink-light);
+										font-family: var(--font-body);
 										font-size: 0.85rem;
+										font-weight: 600;
+										letter-spacing: 0.22em;
+										text-transform: uppercase;
+										color: var(--text-muted);
+										margin: 0;
 									"
 								>
-									(viewport below)
-								</div>
+									Now · Posts · Uses
+								</p>
 							</div>
+
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">Jost normal case, running prose</p>
+								<p
+									style="
+										font-family: var(--font-body);
+										font-size: 1.15rem;
+										line-height: 1.8;
+										max-width: 584px;
+										color: var(--text);
+										margin: 0;
+									"
+								>
+									Prose never shouts. Body copy stays sentence case at 1.15rem
+									with generous line-height, the same measure used across posts
+									and the now page.
+								</p>
+							</div>
+
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">
+									Yellowtail, flourish, always rotated, never body
+								</p>
+								<p
+									class="flourish"
+									style="font-size: 1.8rem; margin: 0 0 0.4rem"
+								>
+									Hey y'all, I'm
+								</p>
+								<p
+									style="
+										font-family: var(--font-script);
+										font-size: 1.15rem;
+										color: var(--text-muted);
+										margin: 0;
+									"
+								>
+									A muted Yellowtail caption, the treatment
+									<code>figcaption</code> gets under a post image.
+								</p>
+							</div>
+
+							<table class="ds-table" style="margin-top: 2rem">
+								<caption>
+									Type scale essentials (desktop → mobile)
+								</caption>
+								<thead>
+									<tr>
+										<th>Element</th>
+										<th>Font</th>
+										<th>Size</th>
+										<th>Extra</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Hero name (home)</td>
+										<td>Bebas</td>
+										<td>7.5rem → 3.3rem</td>
+										<td>ls 0.03em, offset shadow 5px/3px</td>
+									</tr>
+									<tr>
+										<td>Page title</td>
+										<td>Bebas</td>
+										<td>5rem → 3.2rem</td>
+										<td>ls 0.06em, shadow 4px/3px</td>
+									</tr>
+									<tr>
+										<td>Post title (single)</td>
+										<td>Bebas</td>
+										<td>4.4rem → 2.8rem</td>
+										<td>ls 0.03em, shadow 4px/3px</td>
+									</tr>
+									<tr>
+										<td>Band heading</td>
+										<td>Bebas</td>
+										<td>1.5rem → 1.2rem</td>
+										<td>ls 0.3em, between 2px frame rules</td>
+									</tr>
+									<tr>
+										<td>Timetable row title</td>
+										<td>Bebas</td>
+										<td>1.55rem → 1.4rem</td>
+										<td>text → accent on hover</td>
+									</tr>
+									<tr>
+										<td>Year numeral</td>
+										<td>Bebas</td>
+										<td>2.6rem → 2rem</td>
+										<td>ornament, 2px text shadow, on 3px frame rule</td>
+									</tr>
+									<tr>
+										<td>Date stamp</td>
+										<td>Bebas</td>
+										<td>1rem → 0.92rem</td>
+										<td>ls 0.12em, accent, every date on the site</td>
+									</tr>
+									<tr>
+										<td>Body prose</td>
+										<td>Jost</td>
+										<td>1.15rem → 1rem–1.05rem</td>
+										<td>400, lh 1.75–1.8, measure ~584px</td>
+									</tr>
+									<tr>
+										<td>Nav links</td>
+										<td>Jost</td>
+										<td>0.85rem → 0.78rem</td>
+										<td>600, ls 0.18–0.22em caps, active = accent underline</td>
+									</tr>
+									<tr>
+										<td>Tag links</td>
+										<td>Jost</td>
+										<td>0.8rem</td>
+										<td>600, ls 0.16em caps, accent, gold ◆ separators</td>
+									</tr>
+									<tr>
+										<td>Inline row tags</td>
+										<td>Jost</td>
+										<td>0.82rem → 0.78rem</td>
+										<td>500, ls 0.12em caps, muted, middot separators</td>
+									</tr>
+									<tr>
+										<td>Footer</td>
+										<td>Jost</td>
+										<td>0.8rem → 0.7rem</td>
+										<td>500, ls 0.22–0.28em caps</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<details class="sb-code">
-							<summary>Markup</summary>
-							<pre>
-&lt;div class="accent-bar" aria-hidden="true"&gt;&lt;/div&gt;</pre>
-						</details>
+					</div>
+				</section>
+
+				<!-- ═══════════════════ CHROME ═══════════════════ -->
+				<section class="ds-group">
+					<h2 class="band-heading">Chrome</h2>
+
+					<div class="ds-story" id="ch-frame">
+						<div class="ds-story-head">
+							<h3>Poster frame</h3>
+							<span class="ds-story-meta">body (main.css)</span>
+						</div>
+						<p class="ds-story-note">
+							The page <em>is</em> the poster: a 14px <code>--frame</code>
+							border (8px below 768px) with a 2px keyline inset, applied to
+							<code>body</code>, page-level only, never nested on an inner
+							element. It's not a demo prop on this page: it's the actual rule
+							wrapping this very document right now, because
+							<code>main.css</code> sets it on the bare <code>body</code>
+							selector with no page-class scoping. Look at the edge of your
+							browser window.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="ds-frame-diagram">
+								same rule<br />14px / 8px mobile<br />inset 2px + 3px keyline
+							</div>
+							<details class="ds-code">
+								<summary>Rule (main.css)</summary>
+								<pre>
+body {
+  border: 14px solid var(--frame);
+  box-shadow:
+    inset 0 0 0 2px var(--surface),
+    inset 0 0 0 3px var(--frame);
+}
+@media (width &lt; 768px) {
+  body { border-width: 8px; }
+}</pre>
+							</details>
+						</div>
 					</div>
 
-					<div class="sb-story" id="c-skip-link">
-						<div class="sb-story-head">
-							<h3>Skip link</h3>
-							<span class="sb-meta">partials/skip-link.njk</span>
+					<div class="ds-story" id="ch-masthead">
+						<div class="ds-story-head">
+							<h3>Masthead</h3>
+							<span class="ds-story-meta"
+								>partials/header.njk · header, .logo, nav</span
+							>
 						</div>
-						<div class="sb-story-desc">
-							First <code>&lt;body&gt;</code> child. Visually hidden until
-							focused, then becomes a terracotta pill top-left.
-						</div>
-						<div class="sb-canvas plain">
-							<a class="skip-link" href="#main">Skip to main content</a>
-						</div>
-						<details class="sb-code">
-							<summary>Markup</summary>
-							<pre>
-&lt;a href="#main" class="skip-link"&gt;Skip to main content&lt;/a&gt;</pre>
-						</details>
-					</div>
-
-					<div class="sb-story" id="c-header">
-						<div class="sb-story-head">
-							<h3>Header</h3>
-							<span class="sb-meta">partials/header.njk</span>
-						</div>
-						<div class="sb-story-desc">
-							Wordmark left, flat nav right.
-							<code>[aria-current="page"]</code> styles the active link
-							terracotta + 600.
-						</div>
-						<div class="sb-canvas plain">
-							<header>
-								<a href="#" class="logo">craveytrain</a>
+						<p class="ds-story-note">
+							Logo lockup (train mark + Bebas wordmark) left, flat Jost caps nav
+							right.
+							<code>nav a[aria-current="page"]</code> gets accent color and a
+							2px accent underline; the wordmark hides under 768px, leaving the
+							train mark alone.
+						</p>
+						<div class="ds-canvas plain">
+							<header style="padding-top: 0">
+								<a href="#" class="logo" aria-label="craveytrain home">
+									<svg viewBox="0 0 12.7 12.612231" aria-hidden="true">
+										<g transform="translate(-98.689583,-142.08125)">
+											<path
+												fill="currentColor"
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="m 105.03958,142.08125 c 0.20016,0 0.39815,0.009 0.59357,0.0274 -0.86794,0.38856 -1.49318,1.12945 -1.62573,2.00531 -1.10265,0.35776 -1.87825,1.20832 -1.87825,2.20064 0,0.60989 0.29297,1.16621 0.77478,1.5875 h -1.03937 l -0.66146,1.32292 2.77813,4.49792 v 0.97054 c -3.00325,-0.50384 -5.291667,-3.11579 -5.291667,-6.26221 0,-3.507 2.842997,-6.35 6.349997,-6.35 z m 2.40022,5.82083 h 0.77478 l 0.66146,1.32292 -2.77812,4.49792 v 0.97054 c 3.00326,-0.50384 5.29166,-3.11579 5.29166,-6.26221 0,-1.46209 -0.49413,-2.80876 -1.3245,-3.88213 -0.0404,1.09091 -0.84016,2.01499 -1.95469,2.38557 -0.12525,0.36441 -0.35822,0.69429 -0.67059,0.96739 z"
+											/>
+										</g>
+									</svg>
+									<span class="wordmark">CRAVEYTRAIN</span>
+								</a>
 								<nav>
-									<a href="#">Now</a><a href="#" aria-current="page">Posts</a
-									><a href="#">Uses</a>
+									<a href="#">Now</a>
+									<a href="#" aria-current="page">Posts</a>
+									<a href="#">Uses</a>
 								</nav>
 							</header>
-						</div>
-						<details class="sb-code">
-							<summary>Markup</summary>
-							<pre>
+							<details class="ds-code">
+								<summary>Markup</summary>
+								<pre>
 &lt;header&gt;
-  &lt;a href="/" class="logo"&gt;craveytrain&lt;/a&gt;
+  &lt;a href="/" class="logo" aria-label="craveytrain home"&gt;
+    &lt;svg viewBox="0 0 12.7 12.612231" aria-hidden="true"&gt;…&lt;/svg&gt;
+    &lt;span class="wordmark"&gt;CRAVEYTRAIN&lt;/span&gt;
+  &lt;/a&gt;
   &lt;nav&gt;
     &lt;a href="/now/"&gt;Now&lt;/a&gt;
     &lt;a href="/posts/" aria-current="page"&gt;Posts&lt;/a&gt;
     &lt;a href="/uses/"&gt;Uses&lt;/a&gt;
   &lt;/nav&gt;
 &lt;/header&gt;</pre>
-						</details>
+							</details>
+						</div>
 					</div>
 
-					<div class="sb-story" id="c-footer">
-						<div class="sb-story-head">
-							<h3>Footer</h3>
-							<span class="sb-meta">partials/footer.njk</span>
+					<div class="ds-story" id="ch-footer">
+						<div class="ds-story-head">
+							<h3>Footer caption band</h3>
+							<span class="ds-story-meta"
+								>partials/footer.njk · footer, .footer-inner</span
+							>
 						</div>
-						<div class="sb-story-desc">
-							Full-bleed <code>--ink</code> band. Copyright left, utility links
-							right at 0.6 opacity (1.0 on hover).
-						</div>
-						<div class="sb-canvas plain">
-							<footer>
+						<p class="ds-story-note">
+							Full-bleed <code>--fill</code> ink band. The French caption
+							carries <code>lang="fr"</code>. Footer links use
+							<code>--footer-link</code> (gold in jour, red in nuit) and hover
+							to <code>--on-fill</code>.
+						</p>
+						<div class="ds-canvas plain">
+							<footer style="margin: 0">
 								<div class="footer-inner">
-									<span class="copyright">© 1999–2026 Mike Cravey</span>
+									<span class="footer-caption" lang="fr"
+										>Le site personnel de Mike Cravey · Depuis 1999</span
+									>
 									<div class="footer-nav">
-										<a href="#">Colophon</a><a href="#">RSS</a>
+										<a href="#">Colophon</a>
+										<a href="#">RSS</a>
 									</div>
 								</div>
 							</footer>
-						</div>
-						<details class="sb-code">
-							<summary>Markup</summary>
-							<pre>
+							<details class="ds-code">
+								<summary>Markup</summary>
+								<pre>
 &lt;footer&gt;
   &lt;div class="footer-inner"&gt;
-    &lt;span class="copyright"&gt;&amp;copy; 1999-2026 Mike Cravey&lt;/span&gt;
+    &lt;span class="footer-caption" lang="fr"&gt;Le site personnel de Mike Cravey · Depuis 1999&lt;/span&gt;
     &lt;div class="footer-nav"&gt;
       &lt;a href="/colophon/"&gt;Colophon&lt;/a&gt;
       &lt;a href="/feed.xml"&gt;RSS&lt;/a&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/footer&gt;</pre>
+							</details>
+						</div>
+					</div>
+
+					<div class="ds-story" id="ch-theme-toggle">
+						<div class="ds-story-head">
+							<h3>Theme toggle</h3>
+							<span class="ds-story-meta"
+								>static/js/theme-toggle.js · &lt;theme-toggle&gt;</span
+							>
+						</div>
+						<p class="ds-story-note">
+							Three states, cycled by clicking: jour (forced light), nuit
+							(forced dark), auto (follows the OS, the default). A vanilla
+							custom element, no shadow DOM, so it inherits the site's global
+							styles, styled in <code>main.css</code> exactly in the nav-link
+							voice. The choice persists to <code>localStorage</code> under the
+							key <code>theme</code> (absent means auto) and sets
+							<code>data-theme</code> on <code>&lt;html&gt;</code>, which forces
+							<code>color-scheme</code> so every <code>light-dark()</code> role
+							resolves to the pinned mode. Each change also syncs both
+							<code>meta[name=theme-color]</code> tags for Safari chrome
+							tinting. With JavaScript disabled the element never upgrades and
+							renders nothing, the site falls back to pure OS preference (auto).
+						</p>
+						<div class="ds-canvas plain">
+							<theme-toggle></theme-toggle>
+						</div>
+						<details class="ds-code">
+							<summary>Markup</summary>
+							<pre>&lt;theme-toggle&gt;&lt;/theme-toggle&gt;</pre>
 						</details>
 					</div>
 				</section>
 
-				<!-- ─────────── LAYOUT ─────────── -->
+				<!-- ═══════════════════ PRIMITIVES ═══════════════════ -->
+				<section class="ds-group">
+					<h2 class="band-heading">Primitives</h2>
 
-				<section class="sb-group" id="l-section-grid">
-					<h2>Layout</h2>
-					<p class="sb-group-desc">
-						The signature 200px / 1fr editorial grid, its entry bands, and the
-						divider.
-					</p>
-
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Section grid</h3>
-							<span class="sb-meta">.section-grid</span>
+					<div class="ds-story" id="p-band">
+						<div class="ds-story-head">
+							<h3>Band heading</h3>
+							<span class="ds-story-meta">.band-heading (main.css)</span>
 						</div>
-						<div class="sb-story-desc">
-							Every content band uses this. Gutter label baseline-aligns with
-							the first line of the content column.
+						<p class="ds-story-note">
+							The canonical section starter, home, now, replies. A single
+							heading element; the rules on either side are
+							<code>::before</code>/<code>::after</code> pseudo-elements, not
+							extra markup.
+						</p>
+						<div class="ds-canvas">
+							<h2 class="band-heading">Replies</h2>
 						</div>
-						<div class="sb-canvas">
-							<section class="section-grid">
-								<div class="section-label">Building</div>
-								<div class="section-content">
-									<h2>This site, always</h2>
-									<p>
-										Shipping a new design here shortly. Experimenting with
-										baseline alignment in the gutter.
-									</p>
-								</div>
-							</section>
-						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
-							<pre>
-&lt;section class="section-grid"&gt;
-  &lt;div class="section-label"&gt;Building&lt;/div&gt;
-  &lt;div class="section-content"&gt;
-    &lt;h2&gt;This site, always&lt;/h2&gt;
-    &lt;p&gt;…&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</pre>
+							<pre>&lt;h2 class="band-heading"&gt;Replies&lt;/h2&gt;</pre>
 						</details>
 					</div>
 
-					<div class="sb-story" id="l-page-header">
-						<div class="sb-story-head">
+					<div class="ds-story" id="p-pagehead">
+						<div class="ds-story-head">
 							<h3>Page header</h3>
-							<span class="sb-meta">.page-header.section-grid</span>
+							<span class="ds-story-meta"
+								>.page-header, .page-title, .flourish</span
+							>
 						</div>
-						<div class="sb-story-desc">
-							Empty left label cell; title + optional subtitle + optional
-							"updated" line.
-						</div>
-						<div class="sb-canvas">
-							<div class="section-grid">
-								<div class="section-label"></div>
-								<div>
-									<h1 class="page-title">What I'm Doing Now</h1>
-									<p class="subtitle">
-										This is a <a href="#">now page</a>. If you have your own
-										site, you should make one too.
-									</p>
-									<p class="updated">Last updated February 9, 2026</p>
+						<p class="ds-story-note">
+							Page titles match their nav label ("Posts", not a display
+							flourish), the script flourish is dropped when the title stands
+							alone, and kept only where a template already pairs one above the
+							title (now).
+						</p>
+						<div class="ds-canvas plain">
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">
+									Without flourish, site/posts.njk
+								</p>
+								<div class="page-header">
+									<h1 class="page-title" style="font-size: 3rem">Posts</h1>
+								</div>
+							</div>
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">
+									With flourish, site/now/index.njk
+								</p>
+								<div class="page-header now-header">
+									<span class="flourish">what I'm doing</span>
+									<h1 class="page-title" style="font-size: 3rem">
+										What I'm Doing Now
+									</h1>
 								</div>
 							</div>
 						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
 							<pre>
-&lt;div class="page-header section-grid"&gt;
-  &lt;div class="section-label"&gt;&lt;/div&gt;
-  &lt;div&gt;
-    &lt;h1 class="page-title"&gt;What I'm Doing Now&lt;/h1&gt;
-    &lt;p class="subtitle"&gt;This is a &lt;a href="…"&gt;now page&lt;/a&gt;.&lt;/p&gt;
-    &lt;p class="updated"&gt;Last updated February 9, 2026&lt;/p&gt;
-  &lt;/div&gt;
+&lt;div class="page-header"&gt;
+  &lt;h1 class="page-title"&gt;Posts&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div class="page-header now-header"&gt;
+  &lt;span class="flourish"&gt;what I'm doing&lt;/span&gt;
+  &lt;h1 class="page-title"&gt;What I'm Doing Now&lt;/h1&gt;
 &lt;/div&gt;</pre>
 						</details>
 					</div>
 
-					<div class="sb-story" id="l-divider">
-						<div class="sb-story-head">
-							<h3>Divider</h3>
-							<span class="sb-meta">partials/divider.njk</span>
+					<div class="ds-story" id="p-date">
+						<div class="ds-story-head">
+							<h3>Date stamp</h3>
+							<span class="ds-story-meta">.date-stamp (main.css)</span>
 						</div>
-						<div class="sb-story-desc">
-							Hairline at max-width 1100, used <em>between</em> content bands.
-							Do not stack directly under a page-header that's followed by a
-							section-grid.
+						<p class="ds-story-note">
+							Bebas caps, accent color, wide tracking. Every date on the site
+							uses this, post rows, post header, home plate cards.
+						</p>
+						<div class="ds-canvas plain">
+							<time class="date-stamp">MAR 14</time>
 						</div>
-						<div class="sb-canvas plain">
-							<div style="padding: 1rem 0">
-								<div
-									style="
-										font-size: 0.85rem;
-										color: var(--ink-light);
-										padding: 0 1rem 1rem;
-									"
-								>
-									…end of section…
-								</div>
-								<div class="divider"><hr /></div>
-								<div
-									style="
-										font-size: 0.85rem;
-										color: var(--ink-light);
-										padding: 1rem 1rem 0;
-									"
-								>
-									…next section…
-								</div>
-							</div>
-						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
-							<pre>&lt;div class="divider"&gt;&lt;hr&gt;&lt;/div&gt;</pre>
+							<pre>
+&lt;time class="date-stamp" datetime="2024-03-14"&gt;MAR 14&lt;/time&gt;</pre>
 						</details>
 					</div>
 
-					<div class="sb-story" id="l-hero">
-						<div class="sb-story-head">
-							<h3>Hero (home only)</h3>
-							<span class="sb-meta">.hero / .hero-text / .hero-portrait</span>
-						</div>
-						<div class="sb-story-desc">
-							Two-column, not section-grid. Decorative terracotta comma after
-							the greeting.
-						</div>
-						<div class="sb-canvas plain">
-							<div
-								style="
-									display: grid;
-									grid-template-columns: 1fr 220px;
-									gap: 2rem;
-									max-width: 1100px;
-									margin: 0 auto;
-									padding: 1rem;
-									align-items: center;
-								"
+					<div class="ds-story" id="p-tags">
+						<div class="ds-story-head">
+							<h3>Tag links</h3>
+							<span class="ds-story-meta"
+								>.tag-links (main.css) vs .row-tags (posts.css)</span
 							>
-								<div>
-									<h1
-										style="
-											font-family: var(--font-display);
-											font-weight: 800;
-											font-size: clamp(2.25rem, 4vw, 3.5rem);
-											letter-spacing: -0.03em;
-											line-height: 1.1;
-											margin: 0 0 1rem;
-										"
-									>
-										Hey y'all<span style="color: var(--accent)">,</span> I'm
-										Mike Cravey.
-									</h1>
-									<p
-										style="
-											font-size: 1.1rem;
-											line-height: 1.7;
-											max-width: 520px;
-											color: var(--ink);
-											margin: 0 0 1rem;
-										"
-									>
-										Father, husband, teacher, and geek. A UX Engineer who
-										believes the web should be fast, accessible, and built with
-										care.
-									</p>
-									<p style="font-size: 0.95rem">
-										<a href="#">Read the blog →</a> &nbsp;
-										<a href="#">What I'm doing now →</a>
-									</p>
+						</div>
+						<p class="ds-story-note">
+							Two separators, two voices, never mixed in one list. Emphatic
+							accent caps use a gold ◆ (a literal
+							<code>&lt;span&gt;◆&lt;/span&gt;</code>, not a border or
+							pseudo-element); quiet inline tag rows use a muted middot. Tags
+							never wrap: four or more truncate to three plus a muted, non-link
+							<code>+N</code>.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">
+									.tag-links, post header, gold diamonds
+								</p>
+								<div class="tag-links">
+									<a href="#">CSS</a><span>◆</span><a href="#">Web Platform</a
+									><span>◆</span><a href="#">Design</a>
 								</div>
-								<div
-									class="hero-portrait"
-									style="width: 220px; height: 264px; margin: 0"
-								>
-									portrait 280×340
+							</div>
+							<div class="ds-specimen">
+								<p class="ds-specimen-label">
+									.row-tags, timetable row, muted middots, ≥4 truncates
+								</p>
+								<div class="row-tags">
+									<a href="#">Css</a><span class="sep">·</span
+									><a href="#">Web Platform</a><span class="sep">·</span
+									><a href="#">Design</a><span class="sep">·</span
+									><span class="tag-more">+2</span>
 								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-
-				<!-- ─────────── PRIMITIVES ─────────── -->
-
-				<section class="sb-group" id="p-tag-chip">
-					<h2>Primitives</h2>
-					<p class="sb-group-desc">
-						Single-purpose atomic elements reused across bands.
-					</p>
-
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Tag chip</h3>
-							<span class="sb-meta">.tag-chip</span>
-						</div>
-						<div class="sb-story-desc">
-							Pill — 0.75rem Inter 500. Default state warm-bg-deep, hover fills
-							accent, active matches hover.
-						</div>
-						<div class="sb-canvas">
-							<div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
-								<a class="tag-chip" href="#">CSS</a>
-								<a class="tag-chip" href="#">Accessibility</a>
-								<a
-									class="tag-chip"
-									href="#"
-									style="
-										background: var(--accent);
-										border-color: var(--accent);
-										color: var(--white);
-									"
-									>Web Platform</a
-								>
-								<a class="tag-chip" href="#">Design</a>
-							</div>
-						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
 							<pre>
-&lt;a href="/tags/css/" class="tag-chip"&gt;CSS&lt;/a&gt;</pre>
+&lt;div class="tag-links"&gt;
+  &lt;a href="/tags/css/"&gt;CSS&lt;/a&gt;&lt;span&gt;◆&lt;/span&gt;
+  &lt;a href="/tags/web-platform/"&gt;Web Platform&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="row-tags"&gt;
+  &lt;a href="/tags/css/"&gt;Css&lt;/a&gt;&lt;span class="sep"&gt;·&lt;/span&gt;
+  &lt;a href="/tags/web-platform/"&gt;Web Platform&lt;/a&gt;&lt;span class="sep"&gt;·&lt;/span&gt;
+  &lt;a href="/tags/design/"&gt;Design&lt;/a&gt;&lt;span class="sep"&gt;·&lt;/span&gt;
+  &lt;span class="tag-more"&gt;+2&lt;/span&gt;
+&lt;/div&gt;</pre>
 						</details>
 					</div>
 
-					<div class="sb-story" id="p-tag-more">
-						<div class="sb-story-head">
-							<h3>"+N more" pill</h3>
-							<span class="sb-meta">.tag-more (posts.css)</span>
+					<div class="ds-story" id="p-plate">
+						<div class="ds-story-head">
+							<h3>Plate button</h3>
+							<span class="ds-story-meta">.plate-button (main.css)</span>
 						</div>
-						<div class="sb-story-desc">
-							Dashed terracotta outline. Toggles the expanded tag cloud. Posts
-							page only.
+						<p class="ds-story-note">
+							Rectangular <code>--fill</code> plate, no radius anywhere in this
+							direction. Hover swaps the ground to <code>--accent</code> (<code
+								>--on-accent</code
+							>
+							text), a color transition only, 0.2s.
+						</p>
+						<div class="ds-canvas plain">
+							<a class="plate-button" href="#">View the archive</a>
 						</div>
-						<div class="sb-canvas">
-							<div style="display: flex; gap: 0.5rem">
-								<button class="tag-more">+11 more</button>
-								<button class="tag-more">Show less</button>
-							</div>
-						</div>
-						<details class="sb-code">
-							<summary>Markup</summary>
-							<pre>&lt;button class="tag-more"&gt;+11 more&lt;/button&gt;</pre>
-						</details>
-					</div>
-
-					<div class="sb-story" id="p-post-date">
-						<div class="sb-story-head">
-							<h3>Post date</h3>
-							<span class="sb-meta">.post-date</span>
-						</div>
-						<div class="sb-story-desc">
-							Inter 0.85rem, <code>--ink-light</code>, tabular-nums so columns
-							of dates align.
-						</div>
-						<div class="sb-canvas">
-							<div style="font-family: var(--font-code)">
-								<div class="post-date">Mar 14</div>
-								<div class="post-date">Jan 09</div>
-								<div class="post-date">Dec 2006</div>
-							</div>
-						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
 							<pre>
-&lt;time class="post-date" datetime="2024-03-14"&gt;Mar 14&lt;/time&gt;</pre>
+&lt;a class="plate-button" href="/posts/"&gt;View the archive&lt;/a&gt;</pre>
 						</details>
 					</div>
 
-					<div class="sb-story" id="p-section-label">
-						<div class="sb-story-head">
-							<h3>Section label</h3>
-							<span class="sb-meta">.section-label</span>
+					<div class="ds-story" id="p-archive">
+						<div class="ds-story-head">
+							<h3>Archive link</h3>
+							<span class="ds-story-meta">.archive-link (main.css)</span>
 						</div>
-						<div class="sb-story-desc">
-							Fraunces 600 0.85rem uppercase, letter-spacing 0.1em, terracotta.
-							Populates the left cell of every section-grid.
-						</div>
-						<div class="sb-canvas">
-							<div style="display: flex; gap: 2rem">
-								<div class="section-label">Work</div>
-								<div class="section-label">2024</div>
-								<div class="section-label">Tagged</div>
-							</div>
-						</div>
-						<details class="sb-code">
-							<summary>Markup</summary>
-							<pre>&lt;div class="section-label"&gt;Work&lt;/div&gt;</pre>
-						</details>
-					</div>
-
-					<div class="sb-story" id="p-subtitle">
-						<div class="sb-story-head">
-							<h3>Subtitle + updated</h3>
-							<span class="sb-meta">.subtitle / .updated</span>
-						</div>
-						<div class="sb-story-desc">
-							Subtitle is Inter 1.05rem ink-light. Updated is Fraunces italic
-							0.9rem ink-light.
-						</div>
-						<div class="sb-canvas">
-							<p class="subtitle">
-								This is a <a href="#">now page</a>. If you have your own site,
-								you should make one too.
+						<p class="ds-story-note">
+							Accent Jost caps with a 2px accent bottom rule, the section
+							closer, right-aligned, as used at the end of each now-page topic
+							band pointing at the full archive.
+						</p>
+						<div class="ds-canvas plain">
+							<p class="now-closer">
+								<a class="archive-link" href="#">Archive &rarr;</a>
 							</p>
-							<p class="updated">Last updated February 9, 2026</p>
 						</div>
-					</div>
-
-					<div class="sb-story" id="p-section-link">
-						<div class="sb-story-head">
-							<h3>Section link</h3>
-							<span class="sb-meta">.section-link (main.css)</span>
-						</div>
-						<div class="sb-story-desc">
-							The one blessed "continue / view more / previous" affordance.
-							Block-level, lives <em>inside</em> a
-							<code>.section-grid</code> content column as its closer. Uses
-							<code>border-bottom</code> (not <code>text-decoration</code>) for
-							real space between text and line — same treatment as
-							<code>.hero-links a</code>. Never preceded by a
-							<code>&lt;hr&gt;</code>. Replaces the retired
-							<code>.view-all</code> and <code>.archive-link</code> patterns.
-						</div>
-						<div class="sb-canvas">
-							<section class="section-grid">
-								<div class="section-label">2024</div>
-								<div>
-									<article class="post-item">
-										<div class="post-meta-left">
-											<h2 class="post-title">
-												<a href="#">Container queries changed everything</a>
-											</h2>
-										</div>
-										<time class="post-date">Mar 14</time>
-									</article>
-									<article class="post-item">
-										<div class="post-meta-left">
-											<h2 class="post-title">
-												<a href="#">Going live with ES2015</a>
-											</h2>
-										</div>
-										<time class="post-date">Feb 02</time>
-									</article>
-									<a class="section-link" href="#">Previously &rarr;</a>
-								</div>
-							</section>
-						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
 							<pre>
-&lt;section class="section-grid"&gt;
-  &lt;div class="section-label"&gt;2024&lt;/div&gt;
-  &lt;div&gt;
-    &lt;!-- …post-items… --&gt;
-    &lt;a class="section-link" href="/now/archive/"&gt;Previously &amp;rarr;&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</pre>
+&lt;p class="now-closer"&gt;
+  &lt;a class="archive-link" href="/now/archive/"&gt;Archive &amp;rarr;&lt;/a&gt;
+&lt;/p&gt;</pre>
 						</details>
 					</div>
 
-					<div class="sb-story" id="p-accent-comma">
-						<div class="sb-story-head">
-							<h3>Accent comma</h3>
-							<span class="sb-meta">.hero-text h1 .accent</span>
+					<div class="ds-story" id="p-year">
+						<div class="ds-story-head">
+							<h3>Year rule</h3>
+							<span class="ds-story-meta"
+								>.year-rule, .year-numeral (posts.css)</span
+							>
 						</div>
-						<div class="sb-story-desc">
-							One place only — the hero greeting. Do not generalize. One per
-							page, max.
-						</div>
-						<div class="sb-canvas">
-							<div class="hero-text">
-								<h1>Hey y'all<span class="accent">,</span></h1>
+						<p class="ds-story-note">
+							3px <code>--frame</code> bottom rule with the gold Bebas numeral
+							hanging on it, its own <code>--text</code> offset shadow.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="year-rule">
+								<span class="year-numeral">2024</span>
 							</div>
 						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
 							<pre>
-&lt;h1&gt;Hey y'all&lt;span class="accent"&gt;,&lt;/span&gt;&lt;/h1&gt;</pre>
+&lt;div class="year-rule"&gt;&lt;span class="year-numeral"&gt;2024&lt;/span&gt;&lt;/div&gt;</pre>
 						</details>
 					</div>
 				</section>
 
-				<!-- ─────────── COMPONENTS ─────────── -->
+				<!-- ═══════════════════ COMPONENTS ═══════════════════ -->
+				<section class="ds-group">
+					<h2 class="band-heading">Components</h2>
 
-				<section class="sb-group" id="cmp-post-item">
-					<h2>Components</h2>
-					<p class="sb-group-desc">
-						Compound primitives that show up across multiple page types.
-					</p>
-
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Post item row</h3>
-							<span class="sb-meta">.post-item (posts.css)</span>
+					<div class="ds-story" id="cmp-row">
+						<div class="ds-story-head">
+							<h3>Timetable row</h3>
+							<span class="ds-story-meta">.row.post-row (posts.css)</span>
 						</div>
-						<div class="sb-story-desc">
-							Title + inline tags (italic Fraunces) vs. right-aligned date.
-							Row-border upgrades to terracotta when the title link is hovered
-							(<code>:has()</code>). <code>:last-child</code> drops its bottom
-							border.
-							<em
-								>Note: home.css defines a different <code>.post-item</code> grid
-								variant; posts.css wins here because it's loaded last.</em
-							>
-						</div>
-						<div class="sb-canvas">
-							<article class="post-item">
-								<div class="post-meta-left">
-									<h2 class="post-title">
+						<p class="ds-story-note">
+							<code>86px date | title | tags</code> grid, tags right-aligned and
+							truncated. Stacks vertically under 768px, tags staying one line.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="posts-for-year">
+								<article class="row post-row">
+									<time class="date-stamp" datetime="2024-03-14">MAR 14</time>
+									<h2 class="row-title">
 										<a href="#">Container queries changed everything</a>
 									</h2>
-									<span class="post-tags-inline">CSS, Web Platform</span>
-								</div>
-								<time class="post-date">Mar 14</time>
-							</article>
-							<article class="post-item">
-								<div class="post-meta-left">
-									<h2 class="post-title">
-										<a href="#">Going live with ES2015</a>
-									</h2>
-									<span class="post-tags-inline">Javascript, Psa</span>
-								</div>
-								<time class="post-date">Feb 02</time>
-							</article>
-							<article class="post-item">
-								<div class="post-meta-left">
-									<h2 class="post-title">
+									<div class="row-tags">
+										<a href="#">Css</a><span class="sep">·</span
+										><a href="#">Web Platform</a>
+									</div>
+								</article>
+								<article class="row post-row">
+									<time class="date-stamp" datetime="2024-01-09">JAN 09</time>
+									<h2 class="row-title">
 										<a href="#">Relaunching with Node</a>
 									</h2>
-									<span class="post-tags-inline">Node, Psa</span>
-								</div>
-								<time class="post-date">Jan 09</time>
-							</article>
+									<div class="row-tags">
+										<a href="#">Node</a><span class="sep">·</span
+										><a href="#">Psa</a><span class="sep">·</span
+										><a href="#">Craveytrain</a><span class="sep">·</span
+										><span class="tag-more">+1</span>
+									</div>
+								</article>
+							</div>
 						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
 							<pre>
-&lt;article class="post-item"&gt;
-  &lt;div class="post-meta-left"&gt;
-    &lt;h2 class="post-title"&gt;&lt;a href="…"&gt;Title&lt;/a&gt;&lt;/h2&gt;
-    &lt;span class="post-tags-inline"&gt;CSS, Web Platform&lt;/span&gt;
+&lt;article class="row post-row"&gt;
+  &lt;time class="date-stamp" datetime="2024-03-14"&gt;MAR 14&lt;/time&gt;
+  &lt;h2 class="row-title"&gt;&lt;a href="…"&gt;Title&lt;/a&gt;&lt;/h2&gt;
+  &lt;div class="row-tags"&gt;
+    &lt;a href="…"&gt;Css&lt;/a&gt;&lt;span class="sep"&gt;·&lt;/span&gt;
+    &lt;a href="…"&gt;Web Platform&lt;/a&gt;
   &lt;/div&gt;
-  &lt;time class="post-date" datetime="…"&gt;Mar 14&lt;/time&gt;
 &lt;/article&gt;</pre>
 						</details>
 					</div>
 
-					<div class="sb-story" id="cmp-tag-filter">
-						<div class="sb-story-head">
-							<h3>Tag filter band</h3>
-							<span class="sb-meta">.tag-bar + .tag-more (posts.css)</span>
+					<div class="ds-story" id="cmp-card">
+						<div class="ds-story-head">
+							<h3>Plate card</h3>
+							<span class="ds-story-meta">.post-card (home.css)</span>
 						</div>
-						<div class="sb-story-desc">
-							Top-popular chips inline; "+N more" reveals the full cloud (0.3s
-							max-height transition).
-						</div>
-						<div class="sb-canvas">
-							<div class="tag-bar">
-								<a
-									class="tag-chip"
-									href="#"
-									style="
-										background: var(--accent);
-										border-color: var(--accent);
-										color: var(--white);
-									"
-									>All</a
-								>
-								<a class="tag-chip" href="#">Psa</a>
-								<a class="tag-chip" href="#">Colophon</a>
-								<a class="tag-chip" href="#">Javascript</a>
-								<a class="tag-chip" href="#">Html</a>
-								<a class="tag-chip" href="#">Jquery</a>
-								<a class="tag-chip" href="#">Glgui</a>
-								<button class="tag-more">+11 more</button>
-							</div>
-						</div>
-					</div>
-
-					<div class="sb-story" id="cmp-facepile">
-						<div class="sb-story-head">
-							<h3>Facepile</h3>
-							<span class="sb-meta">.facepile + .feedback-row</span>
-						</div>
-						<div class="sb-story-desc">
-							Overlapping 36px webmention avatars in the post sidebar feedback
-							row.
-						</div>
-						<div class="sb-canvas plain">
+						<p class="ds-story-note">
+							An <code>&lt;article&gt;</code> with a stretched link on the
+							title: the whole card stays clickable but the accessible name is
+							the title alone. Hover deepens the surface (<code>--surface</code>
+							→ <code>--surface-deep</code>) and the title flips to
+							<code>--accent</code>.
+						</p>
+						<div class="ds-canvas plain">
 							<div
-								class="feedback-row"
-								style="display: flex; align-items: center; gap: 0.75rem"
+								class="post-grid"
+								style="grid-template-columns: repeat(2, 1fr)"
 							>
-								<div class="facepile">
-									<div
-										class="facepile-item"
-										style="
-											display: grid;
-											place-items: center;
-											background: var(--warm-bg-deep);
-											font-family: var(--font-display);
-											font-size: 0.72rem;
-											color: var(--ink-light);
-										"
-									>
-										AB
-									</div>
-									<div
-										class="facepile-item"
-										style="
-											display: grid;
-											place-items: center;
-											background: var(--warm-bg-deep);
-											font-family: var(--font-display);
-											font-size: 0.72rem;
-											color: var(--ink-light);
-										"
-									>
-										CD
-									</div>
-									<div
-										class="facepile-item"
-										style="
-											display: grid;
-											place-items: center;
-											background: var(--warm-bg-deep);
-											font-family: var(--font-display);
-											font-size: 0.72rem;
-											color: var(--ink-light);
-										"
-									>
-										EF
-									</div>
-									<div
-										class="facepile-item"
-										style="
-											display: grid;
-											place-items: center;
-											background: var(--warm-bg-deep);
-											font-family: var(--font-display);
-											font-size: 0.72rem;
-											color: var(--ink-light);
-										"
-									>
-										GH
-									</div>
-									<div
-										class="facepile-item"
-										style="
-											display: grid;
-											place-items: center;
-											background: var(--warm-bg-deep);
-											font-family: var(--font-display);
-											font-size: 0.72rem;
-											color: var(--ink-light);
-										"
-									>
-										+3
-									</div>
-								</div>
-								<span class="feedback-label">liked this</span>
+								<article class="post-card">
+									<time class="date-stamp" datetime="2024-03-01">Mar 2024</time>
+									<h3 class="post-card-title">
+										<a href="#">Container queries changed everything</a>
+									</h3>
+									<p class="post-card-excerpt">
+										A look at how container queries reshape component-driven
+										CSS.
+									</p>
+								</article>
+								<article class="post-card">
+									<time class="date-stamp" datetime="2024-01-01">Jan 2024</time>
+									<h3 class="post-card-title">
+										<a href="#">Relaunching with Node</a>
+									</h3>
+									<p class="post-card-excerpt">
+										Notes from moving the build over to Node.
+									</p>
+								</article>
 							</div>
 						</div>
-					</div>
-
-					<div class="sb-story" id="cmp-blockquote">
-						<div class="sb-story-head">
-							<h3>Blockquote</h3>
-							<span class="sb-meta">blockquote</span>
-						</div>
-						<div class="sb-story-desc">
-							Terracotta left rule, italic, <code>--ink-light</code>. Tag-level
-							styling.
-						</div>
-						<div class="sb-canvas">
-							<blockquote>
-								The web should be fast, accessible, and built with care.
-							</blockquote>
-						</div>
-					</div>
-
-					<div class="sb-story" id="cmp-code-inline">
-						<div class="sb-story-head">
-							<h3>Inline code</h3>
-							<span class="sb-meta">:not(pre) &gt; code</span>
-						</div>
-						<div class="sb-story-desc">
-							Chip-shaped. Warm fill, border, <code>--accent-hover</code> text.
-						</div>
-						<div class="sb-canvas">
-							<p>
-								Wrap it in <code>&lt;figure&gt;</code> and call
-								<code>querySelector()</code> directly.
-							</p>
-						</div>
-					</div>
-
-					<div class="sb-story" id="cmp-code-block">
-						<div class="sb-story-head">
-							<h3>Code block</h3>
-							<span class="sb-meta">.post-content pre (prose.css)</span>
-						</div>
-						<div class="sb-story-desc">
-							Warm-bg-deep surface, 6px radius, Inconsolata. Prism tokens mapped
-							to the warm palette.
-						</div>
-						<div class="sb-canvas">
-							<div class="post-content">
-								<pre><span class="token comment">/* Section Grid */</span>
-<span class="token selector">.section-grid</span> <span class="token punctuation">{</span>
-  <span class="token property">display</span><span class="token punctuation">:</span> <span class="token value">grid</span><span class="token punctuation">;</span>
-  <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token value">200px 1fr</span><span class="token punctuation">;</span>
-  <span class="token property">align-items</span><span class="token punctuation">:</span> <span class="token value">baseline</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></pre>
-							</div>
-						</div>
-					</div>
-
-					<div class="sb-story" id="cmp-hero-portrait">
-						<div class="sb-story-head">
-							<h3>Hero portrait</h3>
-							<span class="sb-meta">.hero-portrait (home.css)</span>
-						</div>
-						<div class="sb-story-desc">
-							The signature arch. 200/200/24/24 radius, 3px border, grayscale on
-							rest → color on hover over 0.4s.
-						</div>
-						<div class="sb-canvas plain">
-							<div class="hero-portrait"></div>
-						</div>
-						<details class="sb-code">
+						<details class="ds-code">
 							<summary>Markup</summary>
 							<pre>
-&lt;div class="hero-portrait"&gt;
-  &lt;img src="/img/portrait.jpg" alt="Mike Cravey"&gt;
+&lt;article class="post-card"&gt;
+  &lt;time class="date-stamp" datetime="2024-03-01"&gt;Mar 2024&lt;/time&gt;
+  &lt;h3 class="post-card-title"&gt;&lt;a href="/posts/…/"&gt;Title&lt;/a&gt;&lt;/h3&gt;
+  &lt;p class="post-card-excerpt"&gt;Description…&lt;/p&gt;
+&lt;/article&gt;</pre>
+						</details>
+					</div>
+
+					<div class="ds-story" id="cmp-dropcap">
+						<div class="ds-story-head">
+							<h3>Drop cap</h3>
+							<span class="ds-story-meta"
+								>.post-content &gt; p:first-of-type::first-letter
+								(prose.css)</span
+							>
+						</div>
+						<p class="ds-story-note">
+							First paragraph only, and only a direct child of
+							<code>.post-content</code>, demoed here inside the real wrapper so
+							it doesn't leak onto anything else on this page.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="post-content" style="padding: 0; max-width: 560px">
+								<p>
+									Container queries changed everything about how I write
+									component CSS. No more guessing at viewport breakpoints. No
+									more global media query soup. Just a component that knows its
+									own available space.
+								</p>
+							</div>
+						</div>
+						<details class="ds-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="post-content"&gt;
+  &lt;p&gt;Container queries changed everything…&lt;/p&gt;
 &lt;/div&gt;</pre>
 						</details>
 					</div>
-				</section>
 
-				<!-- ─────────── RECIPES ─────────── -->
-
-				<section class="sb-group" id="r-posts-listing">
-					<h2>Recipes</h2>
-					<p class="sb-group-desc">
-						Full compositional assemblies. Pick one, fill it with primitives.
-					</p>
-
-					<div class="sb-story">
-						<div class="sb-story-head">
-							<h3>Posts listing</h3>
-							<span class="sb-meta">page-header + year-group×N</span>
-						</div>
-						<div class="sb-story-desc">
-							Year-grouped archive. Tag filter band is planned (see its
-							primitive story) but not yet part of this page.
-						</div>
-						<div class="sb-canvas">
-							<div class="section-grid">
-								<div class="section-label"></div>
-								<div>
-									<h1 class="page-title">Posts</h1>
-									<p class="subtitle">30 posts</p>
-								</div>
-							</div>
-							<div class="divider"><hr /></div>
-							<section class="section-grid">
-								<div class="section-label">2024</div>
-								<div>
-									<article class="post-item">
-										<div class="post-meta-left">
-											<h2 class="post-title">
-												<a href="#">Container queries changed everything</a>
-											</h2>
-											<span class="post-tags-inline">CSS, Web Platform</span>
-										</div>
-										<time class="post-date">Mar 14</time>
-									</article>
-									<article class="post-item">
-										<div class="post-meta-left">
-											<h2 class="post-title">
-												<a href="#">Relaunching with Node</a>
-											</h2>
-											<span class="post-tags-inline">Node, Psa</span>
-										</div>
-										<time class="post-date">Jan 09</time>
-									</article>
-								</div>
-							</section>
-						</div>
-					</div>
-
-					<div class="sb-story" id="r-now">
-						<div class="sb-story-head">
-							<h3>Now page (listing template)</h3>
-							<span class="sb-meta"
-								>page-header + N × section-grid post-items</span
+					<div class="ds-story" id="cmp-quote">
+						<div class="ds-story-head">
+							<h3>Blockquote</h3>
+							<span class="ds-story-meta"
+								>.post-content blockquote (prose.css)</span
 							>
 						</div>
-						<div class="sb-canvas">
-							<div class="section-grid">
-								<div class="section-label"></div>
-								<div>
-									<h1 class="page-title">What I'm Doing Now</h1>
-									<p class="updated">Last updated February 9, 2026</p>
+						<p class="ds-story-note">
+							4px accent left rule; quote text sets in Yellowtail at 1.3–1.5rem,
+							not the usual Jost body.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="post-content" style="padding: 0; max-width: 560px">
+								<blockquote>
+									<p>
+										The web should be fast, accessible, and built with care.
+									</p>
+								</blockquote>
+							</div>
+						</div>
+						<details class="ds-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="post-content"&gt;
+  &lt;blockquote&gt;&lt;p&gt;Quote text.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/div&gt;</pre>
+						</details>
+					</div>
+
+					<div class="ds-story" id="cmp-image">
+						<div class="ds-story-head">
+							<h3>Post image frame + in-post rule</h3>
+							<span class="ds-story-meta"
+								>.post-content img/figcaption/hr (prose.css)</span
+							>
+						</div>
+						<p class="ds-story-note">
+							Images get a 2px frame border on a
+							<code>--surface-deep</code> ground; captions set in muted
+							Yellowtail. An in-post <code>&lt;hr&gt;</code> is a 2px
+							<code>--fill</code> rule with a gold ◆ riding on it via
+							<code>::after</code>.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="post-content" style="padding: 0; max-width: 400px">
+								<figure>
+									<img
+										src="/img/og-card.png"
+										alt="The site's social share card"
+										width="400"
+										height="210"
+									/>
+									<figcaption>
+										The social card, framed like every post image
+									</figcaption>
+								</figure>
+								<hr />
+								<p style="margin-top: 0">…and the story continues below.</p>
+							</div>
+						</div>
+						<details class="ds-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="post-content"&gt;
+  &lt;figure&gt;
+    &lt;img src="/img/og-card.png" alt="…" width="400" height="210"&gt;
+    &lt;figcaption&gt;Caption text&lt;/figcaption&gt;
+  &lt;/figure&gt;
+  &lt;hr&gt;
+  &lt;p&gt;…&lt;/p&gt;
+&lt;/div&gt;</pre>
+						</details>
+					</div>
+
+					<div class="ds-story" id="cmp-facepile">
+						<div class="ds-story-head">
+							<h3>Facepile</h3>
+							<span class="ds-story-meta"
+								>partials/feedback.njk + facepile.njk (prose.css)</span
+							>
+						</div>
+						<p class="ds-story-note">
+							One pile covers likes <em>and</em> reposts combined; the caption
+							carries both counts. 38px circles, 2px frame border, −10px
+							overlap; fallback initials chips alternate
+							<code>--surface-deep</code> / <code>--ornament</code> grounds
+							(gold chips use <code>--on-ornament</code> text). Max four faces,
+							then a <code>+N</code> chip on <code>--fill</code>. Truncates,
+							never wraps.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="facepile-row">
+								<span class="facepile-rule"></span>
+								<div class="facepile">
+									<a class="facepile-item facepile-item--initials" href="#"
+										>AB</a
+									>
+									<a
+										class="facepile-item facepile-item--initials facepile-item--alt"
+										href="#"
+										>CD</a
+									>
+									<a class="facepile-item facepile-item--initials" href="#"
+										>EF</a
+									>
+									<a
+										class="facepile-item facepile-item--initials facepile-item--alt"
+										href="#"
+										>GH</a
+									>
+									<span class="facepile-item facepile-more">+3</span>
+								</div>
+								<span class="facepile-caption">11 likes · 3 reposts</span>
+								<span class="facepile-rule"></span>
+							</div>
+						</div>
+						<details class="ds-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="facepile-row"&gt;
+  &lt;span class="facepile-rule"&gt;&lt;/span&gt;
+  &lt;div class="facepile"&gt;
+    &lt;a class="facepile-item facepile-item--initials" href="…"&gt;AB&lt;/a&gt;
+    &lt;a class="facepile-item facepile-item--initials facepile-item--alt" href="…"&gt;CD&lt;/a&gt;
+    &lt;span class="facepile-item facepile-more"&gt;+3&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class="facepile-caption"&gt;11 likes · 3 reposts&lt;/span&gt;
+  &lt;span class="facepile-rule"&gt;&lt;/span&gt;
+&lt;/div&gt;</pre>
+						</details>
+					</div>
+
+					<div class="ds-story" id="cmp-replies">
+						<div class="ds-story-head">
+							<h3>Replies</h3>
+							<span class="ds-story-meta"
+								>includes/replies.njk (prose.css)</span
+							>
+						</div>
+						<p class="ds-story-note">
+							Webmention replies below a REPLIES band heading. 40px avatar chip
+							(facepile treatment), Bebas name link, accent date stamp flush
+							right, Jost body indented to the text column, hairline between
+							replies.
+						</p>
+						<div class="ds-canvas plain">
+							<h2 class="band-heading" style="margin-bottom: 1rem">Replies</h2>
+							<article class="reply">
+								<div class="reply-header">
+									<span class="reply-avatar reply-avatar--initials">JS</span>
+									<a class="reply-author" href="#"
+										><strong>Jane Smith</strong></a
+									>
+									<time class="reply-date">Mar 14</time>
+								</div>
+								<div class="reply-body">
+									Great write-up, this is the post that finally made container
+									queries click for me.
+								</div>
+							</article>
+						</div>
+						<details class="ds-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;article class="reply"&gt;
+  &lt;div class="reply-header"&gt;
+    &lt;span class="reply-avatar reply-avatar--initials"&gt;JS&lt;/span&gt;
+    &lt;a class="reply-author" href="…"&gt;&lt;strong&gt;Jane Smith&lt;/strong&gt;&lt;/a&gt;
+    &lt;time class="reply-date"&gt;Mar 14&lt;/time&gt;
+  &lt;/div&gt;
+  &lt;div class="reply-body"&gt;Reply text…&lt;/div&gt;
+&lt;/article&gt;</pre>
+						</details>
+					</div>
+
+					<div class="ds-story" id="cmp-hero">
+						<div class="ds-story-head">
+							<h3>Sunburst hero</h3>
+							<span class="ds-story-meta"
+								>.sunburst (home.css) · home only</span
+							>
+						</div>
+						<p class="ds-story-note">
+							Small-scale demo composition, a scaled-down rebuild of the same
+							role vars and horizon strips, not a reuse of
+							<code>.sunburst</code>
+							itself (which is sized for the full-width homepage). The full
+							version lives on the homepage: repeating-conic rays, a gold sun
+							low on the horizon, three strips (teal / frame / accent). In nuit
+							the rays become radial rings and the sun becomes a crescent moon
+							with scattered gold stars.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="ds-hero-mini">
+								<div class="ds-hero-mini-rays" aria-hidden="true"></div>
+								<div class="ds-hero-mini-sun" aria-hidden="true"></div>
+								<div class="ds-hero-mini-horizon-teal" aria-hidden="true"></div>
+								<div
+									class="ds-hero-mini-horizon-frame"
+									aria-hidden="true"
+								></div>
+								<div
+									class="ds-hero-mini-horizon-accent"
+									aria-hidden="true"
+								></div>
+								<div class="ds-hero-mini-content">
+									<p class="flourish">Hey y'all, I'm</p>
+									<h3>Mike Cravey</h3>
 								</div>
 							</div>
-							<div class="divider"><hr /></div>
-							<section class="section-grid">
-								<div class="section-label">Work</div>
-								<div>
-									<article class="post-item">
-										<div class="post-meta-left">
-											<h2 class="post-title">
-												<a href="#">Looking for my next UX Engineering role</a>
-											</h2>
-											<span class="post-tags-inline">Hiring, Design + Eng</span>
-										</div>
-										<time class="post-date">Open</time>
-									</article>
-								</div>
-							</section>
-							<div class="divider"><hr /></div>
-							<section class="section-grid">
-								<div class="section-label">Building</div>
-								<div>
-									<article class="post-item">
-										<div class="post-meta-left">
-											<h2 class="post-title">
-												<a href="#">Shipping a new design for this site</a>
-											</h2>
-											<span class="post-tags-inline">Craveytrain, CSS</span>
-										</div>
-										<time class="post-date">In progress</time>
-									</article>
-								</div>
-							</section>
 						</div>
 					</div>
 
-					<div class="sb-story" id="r-sectioned-prose">
-						<div class="sb-story-head">
-							<h3>Sectioned prose (Uses / Colophon)</h3>
-							<span class="sb-meta">page-header + splitBySections</span>
+					<div class="ds-story" id="cmp-404">
+						<div class="ds-story-head">
+							<h3>404</h3>
+							<span class="ds-story-meta"
+								>site/404.md · .error-page (content-pages.css)</span
+							>
 						</div>
-						<div class="sb-canvas">
-							<div class="section-grid">
-								<div class="section-label"></div>
-								<div>
-									<h1 class="page-title">Uses</h1>
-									<p class="subtitle">A current snapshot of what I'm using.</p>
-								</div>
+						<p class="ds-story-note">
+							Script "end of the line" over a giant offset-shadow Bebas 404, one
+							Jost line, and a plate button back to the station.
+						</p>
+						<div class="ds-canvas plain">
+							<div class="error-page">
+								<span class="flourish">end of the line</span>
+								<p class="error-code">404</p>
+								<p class="error-message">
+									This stop doesn't exist. Check the timetable and try again.
+								</p>
+								<a class="plate-button" href="#">Back to the station</a>
 							</div>
-							<div class="divider"><hr /></div>
-							<section class="section-grid">
-								<div class="section-label">Terminal</div>
-								<div class="section-content">
-									<p>
-										Ghostty as my terminal, zsh as my shell.
-										<a href="#">Dotfiles here.</a>
-									</p>
-								</div>
-							</section>
-							<div class="divider"><hr /></div>
-							<section class="section-grid">
-								<div class="section-label">Editor</div>
-								<div class="section-content">
-									<p>VS Code with the Insiders channel. Font: Inconsolata.</p>
-								</div>
-							</section>
 						</div>
+						<details class="ds-code">
+							<summary>Markup</summary>
+							<pre>
+&lt;div class="error-page"&gt;
+  &lt;span class="flourish"&gt;end of the line&lt;/span&gt;
+  &lt;p class="error-code"&gt;404&lt;/p&gt;
+  &lt;p class="error-message"&gt;This stop doesn't exist. Check the timetable and try again.&lt;/p&gt;
+  &lt;a class="plate-button" href="/"&gt;Back to the station&lt;/a&gt;
+&lt;/div&gt;</pre>
+						</details>
 					</div>
 				</section>
 			</main>

@@ -1,15 +1,20 @@
 {% set likes = mentions | webmentionsByType('like-of') %}
-{% if likes.length > 0 %}
-<div class="feedback-row">
-  <span class="feedback-label">{{ likes.length }} {{ "Like" | pluralize(likes.length) }}</span>
-  {% set items = likes %}{% include "facepile.njk" %}
-</div>
-{% endif %}
-
 {% set reposts = mentions | webmentionsByType('repost-of') %}
-{% if reposts.length > 0 %}
-<div class="feedback-row">
-  <span class="feedback-label">{{ reposts.length }} {{ "Repost" | pluralize(reposts.length) }}</span>
-  {% set items = reposts %}{% include "facepile.njk" %}
+{% if likes.length > 0 or reposts.length > 0 %}
+{% set combined = likes.concat(reposts) %}
+{% set seenKeys = [] %}
+{% set items = [] %}
+{% for item in combined %}
+  {% set key = item.author.url if item.author and item.author.url else item.url %}
+  {% if seenKeys.indexOf(key) == -1 %}
+    {% set pushKey = seenKeys.push(key) %}
+    {% set pushItem = items.push(item) %}
+  {% endif %}
+{% endfor %}
+<div class="facepile-row">
+  <span class="facepile-rule"></span>
+  {% include "facepile.njk" %}
+  <span class="facepile-caption">{{ likes.length }} {{ "like" | pluralize(likes.length) }} · {{ reposts.length }} {{ "repost" | pluralize(reposts.length) }}</span>
+  <span class="facepile-rule"></span>
 </div>
 {% endif %}

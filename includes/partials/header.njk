@@ -1,10 +1,25 @@
 <header>
-  <a href="/" class="logo">craveytrain</a>
-  <nav>
-    {%- for item in collections.nav %}
-      {% set url = item.url %}
-      {% set contents = item.data.eleventyNavigation.key %}
-      {% include "nav-item.njk" %}
-    {%- endfor %}
-  </nav>
+  <a href="/" class="logo" aria-label="craveytrain home">
+    <svg viewBox="0 0 12.7 12.612231" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(-98.689583,-142.08125)">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="m 105.03958,142.08125 c 0.20016,0 0.39815,0.009 0.59357,0.0274 -0.86794,0.38856 -1.49318,1.12945 -1.62573,2.00531 -1.10265,0.35776 -1.87825,1.20832 -1.87825,2.20064 0,0.60989 0.29297,1.16621 0.77478,1.5875 h -1.03937 l -0.66146,1.32292 2.77813,4.49792 v 0.97054 c -3.00325,-0.50384 -5.291667,-3.11579 -5.291667,-6.26221 0,-3.507 2.842997,-6.35 6.349997,-6.35 z m 2.40022,5.82083 h 0.77478 l 0.66146,1.32292 -2.77812,4.49792 v 0.97054 c 3.00326,-0.50384 5.29166,-3.11579 5.29166,-6.26221 0,-1.46209 -0.49413,-2.80876 -1.3245,-3.88213 -0.0404,1.09091 -0.84016,2.01499 -1.95469,2.38557 -0.12525,0.36441 -0.35822,0.69429 -0.67059,0.96739 z"
+        />
+      </g>
+    </svg>
+    <span class="wordmark">CRAVEYTRAIN</span>
+  </a>
+  <div class="header-nav">
+    <nav>
+      {%- for item in collections.nav | sort(attribute='data.eleventyNavigation.order') %}
+        {% set url = item.url %}
+        {% set contents = item.data.eleventyNavigation.key %}
+        {% include "nav-item.njk" %}
+      {%- endfor %}
+    </nav>
+    <theme-toggle></theme-toggle>
+  </div>
 </header>

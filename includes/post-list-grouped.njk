@@ -1,30 +1,25 @@
 {%- if posts.length -%}
 {% for group in posts | groupByYearDesc %}
-  <section class="section-grid year-group">
-    <div class="section-label">{{ group.year }}</div>
-    <div class="posts-for-year">
-      {% for post in group.posts %}
-        <article class="post-item">
-          <div class="post-meta-left">
-            <h2 class="post-title">
-              <a href="{{ post.url }}">{{ post.data.title }}</a>
-            </h2>
-            {%- if post.data.contentTags.length > 0 -%}
-            <span class="post-tags-inline">
-              {{ post.data.contentTags | join(", ") }}
-            </span>
-            {%- endif -%}
-          </div>
-          <time class="post-date" datetime="{{ post.date | htmlDateString }}">
-            {{ post.date | monthYear }}
-          </time>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-
-  {% if not loop.last %}
-    {% include "partials/divider.njk" %}
-  {% endif %}
+	<section class="year-group">
+		<div class="year-rule"><span class="year-numeral">{{ group.year }}</span></div>
+		<div class="posts-for-year">
+			{% for post in group.posts %}
+				{% set tags = post.data.contentTags %}
+				<article class="row post-row">
+					<time class="date-stamp" datetime="{{ post.date | htmlDateString }}">{{ post.date.toLocaleDateString("en-US", {month: "short", day: "numeric", timeZone: "UTC"}) | upper }}</time>
+					<h2 class="row-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+					{%- if tags.length -%}
+					<div class="row-tags">
+						{%- set shown = tags | head(3) if tags.length >= 4 else tags -%}
+						{% for tag in shown %}<a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% if not loop.last %}<span class="sep" aria-hidden="true">·</span>{% endif %}{% endfor %}
+						{%- if tags.length >= 4 -%}
+							<span class="sep" aria-hidden="true">·</span><span class="tag-more">+{{ tags.length - 3 }}</span>
+						{%- endif -%}
+					</div>
+					{%- endif -%}
+				</article>
+			{% endfor %}
+		</div>
+	</section>
 {% endfor %}
 {%- endif -%}

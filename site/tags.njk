@@ -4,17 +4,14 @@ layout: page
 css: posts.css
 ---
 
-
-<section class="section-grid">
-  <div class="section-label">{{ collections.tagList.length }} topics</div>
-  <div class="posts-for-year">
-    {% for tag in collections.tagList %}
-      <article class="post-item">
-        <h2 class="post-title">
-          <a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>
-        </h2>
-        <div class="post-date">{{ collections[tag].length }} {{ "post" | pluralize(collections[tag].length) }}</div>
-      </article>
-    {% endfor %}
-  </div>
-</section>
+<div class="posts-column">
+	<p class="tags-count">{{ collections.tagList.length }} {{ "topic" | pluralize(collections.tagList.length) }}</p>
+	<ul class="tag-index-list">
+		{% for tag in collections.tagList %}
+			<li class="tag-index-row">
+				<a href="/tags/{{ tag | slugify }}/" class="tag-index-name">{{ tag }}</a>
+				<span class="tag-index-count">{{ collections[tag].length }} {{ "post" | pluralize(collections[tag].length) }}</span>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

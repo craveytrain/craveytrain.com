@@ -1,9 +1,19 @@
+{% set shown = items.slice(0, 4) %}
+{% set extra = items.length - shown.length %}
 <div class="facepile">
-  {% for item in items %}
+  {% for item in shown %}
+  {% if item.author and item.author.photo %}
   <a class="facepile-item" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
-    {% if item.author.photo %}
-    <img class="facepile-avatar" src="{{ item.author.photo }}" alt="{{ item.author.name }}" width="40" height="40" loading="lazy">
-    {% endif %}
+    <img class="facepile-avatar" src="{{ item.author.photo }}" alt="{{ item.author.name }}" width="38" height="38" loading="lazy">
   </a>
+  {% else %}
+  {% set authorName = item.author.name if item.author and item.author.name else '?' %}
+  {% set words = authorName.split(' ') %}
+  {% set initials = words[0].charAt(0) + (words[1].charAt(0) if words.length > 1 else '') %}
+  <a class="facepile-item facepile-item--initials{{ ' facepile-item--alt' if loop.index0 % 2 else '' }}" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ authorName }}">{{ initials }}</a>
+  {% endif %}
   {% endfor %}
+  {% if extra > 0 %}
+  <span class="facepile-item facepile-more">+{{ extra }}</span>
+  {% endif %}
 </div>

@@ -11,12 +11,27 @@
 
     <title>{{ pageTitle }}</title>
 
-    {# Safari chrome tinting #}
-    <meta name="theme-color" content="#B44D2D">
+    {# Safari chrome tinting, keep hexes in sync with META_COLORS in static/js/theme-toggle.js #}
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f0e9d6">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b2445">
+
+    {# Pre-paint theme: set data-theme from localStorage before first paint #}
+    <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'jour' || t === 'nuit') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+    </script>
 
     {# Preload critical fonts #}
-    <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/fraunces-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/jost-variable.woff2" as="font" type="font/woff2" crossorigin>
+    {# Yellowtail only renders on flourish/blockquote/figcaption pages; posts.css pages have neither #}
+    {% if css != 'posts.css' %}
+    <link rel="preload" href="/fonts/yellowtail-400.woff2" as="font" type="font/woff2" crossorigin>
+    {% endif %}
 
     {# Main stylesheet #}
     <link rel="stylesheet" href="/css/main.css">
@@ -28,13 +43,14 @@
     <link rel="home" href="/" title="Home">
 
     {# Icons #}
+    <!-- TODO(affiche): favicon/safari-pinned-tab still Timetable-era, see DESIGN.md §9 -->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
     <link rel="manifest" href="/favicons/site.webmanifest">
     <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#B44D2D">
     <link rel="shortcut icon" href="/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#B44D2D">
+    <meta name="msapplication-TileColor" content="#1b2445">
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 
     {# Social #}
@@ -42,7 +58,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ metadata.author.name }}">
     <meta property="og:description" content="{{ metadata.description }}">
-    <meta property="og:image" content="{{ metadata.url }}img/illustration.png">
+    <meta property="og:image" content="{{ metadata.url }}img/og-card.png">
     <meta property="og:url" content="{{ canonicalUrl }}">
 
     {# SEO/Feeds #}
@@ -56,15 +72,14 @@
     <link rel="webmention" href="https://webmention.io/craveytrain.com/webmention">
     <link rel="pingback" href="https://webmention.io/craveytrain.com/xmlrpc">
 
+    <script type="module" src="/js/theme-toggle.js"></script>
+
     {{ head }}
 </head>
 
 <body class="page-{{ page.fileSlug | slugify | default("home", true) }}">
     {# Skip link must be first for accessibility #}
     {% include "partials/skip-link.njk" %}
-
-    {# Accent bar for Safari chrome tinting #}
-    {% include "partials/accent-bar.njk" %}
 
     {# Site header #}
     {% include "partials/header.njk" %}
