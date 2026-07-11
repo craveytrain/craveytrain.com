@@ -56,7 +56,7 @@ blockquote.pull {
 ## Key Decisions
 
 - Page-specific CSS loaded via frontmatter, not globally
-- Footer nav uses `foot` tag for collection isolation
+- Footer nav links are hardcoded in `includes/partials/footer.njk`
 - `override:tags` prevents data cascade tag merging
 - Static tag pages over client-side JS filtering
 - Self-hosted fonts: Bebas Neue, Jost (variable), Yellowtail (OFL), plus Inconsolata for code

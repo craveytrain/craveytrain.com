@@ -1,11 +1,9 @@
 import fs from 'fs/promises'
-import svgContents from 'eleventy-plugin-svg-contents'
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
 import { feedPlugin } from '@11ty/eleventy-plugin-rss'
 import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
 import contentTags from './utils/content-tags.js'
 import groupByYearDesc from './utils/group-by-year.js'
-import optimizeCSS from './utils/optimize-css.js'
 import tagList from './utils/tag-list.js'
 import { getWebmentionsForUrl, webmentionsByType } from './utils/webmentions.js'
 import pluralize from './utils/pluralize.js'
@@ -61,19 +59,10 @@ export default async function (eleventyConfig) {
 	// merge it deep
 	eleventyConfig.setDataDeepMerge(true)
 
-	// handle SVG contents
-	eleventyConfig.addPlugin(svgContents)
 	// filter and sort nav items
 	eleventyConfig.addPlugin(eleventyNavigationPlugin)
 	// syntax highlighting
-	eleventyConfig.addPlugin(syntaxHighlight, {
-		preAttributes: {
-			class: 'line-numbers',
-			'data-language': function ({ language }) {
-				return language || 'text'
-			},
-		},
-	})
+	eleventyConfig.addPlugin(syntaxHighlight)
 
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj =>
@@ -159,8 +148,6 @@ export default async function (eleventyConfig) {
 
 		return sections
 	})
-
-	eleventyConfig.addTransform('optimizeCSS', optimizeCSS)
 
 	eleventyConfig.addPlugin(feedPlugin, {
 		...feedDetails,

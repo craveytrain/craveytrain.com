@@ -89,22 +89,5 @@
 
     {# Site footer #}
     {% include "partials/footer.njk" %}
-
-    {# Skip link JavaScript workaround for Safari #}
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var skipLink = document.querySelector('.skip-link');
-      if (skipLink) {
-        skipLink.addEventListener('click', function(e) {
-          var target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            e.preventDefault();
-            target.focus();
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      }
-    });
-    </script>
 </body>
 </html>
