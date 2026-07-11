@@ -20,6 +20,10 @@
 	color: var(--accent);
 }
 
+.post-header > a {
+	text-decoration: none;
+}
+
 .post-header .post-title {
 	--shadow-offset: clamp(3px, 2.56px + 0.11vw, 4px);
 	font-family: var(--font-display);
@@ -364,6 +368,7 @@ a.reply-author:hover {
 	text-transform: uppercase;
 	color: var(--accent);
 	margin-left: auto;
+	text-decoration: none;
 }
 
 .reply-body {

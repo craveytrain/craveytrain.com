@@ -32,13 +32,14 @@ css: home.css
   <div class="sunburst-horizon-teal" aria-hidden="true"></div>
   <div class="sunburst-horizon-frame" aria-hidden="true"></div>
   <div class="sunburst-horizon-accent" aria-hidden="true"></div>
-  <div class="sunburst-content">
+  <div class="sunburst-content h-card">
     <p class="flourish sunburst-flourish">Hey y'all, I'm</p>
-    <h1 class="sunburst-name">Mike Cravey</h1>
-    <p class="sunburst-tagline">Father <span aria-hidden="true">&middot;</span> Husband <span aria-hidden="true">&middot;</span> Teacher <span aria-hidden="true">&middot;</span> Geek</p>
+    <h1 class="sunburst-name p-name">Mike Cravey</h1>
+    <p class="sunburst-tagline p-note">Father <span aria-hidden="true">&middot;</span> Husband <span aria-hidden="true">&middot;</span> Teacher <span aria-hidden="true">&middot;</span> Geek</p>
+    <data class="u-url u-uid" value="{{ metadata.url }}"></data>
     <div class="sunburst-links">
       {%- for contact in metadata.author.contacts %}
-      <a class="plate-button" href="{{ contact.url }}">{{ contact.name }}</a>
+      <a class="plate-button u-url" rel="me" href="{{ contact.url }}">{{ contact.name }}</a>
       {%- endfor %}
     </div>
   </div>
