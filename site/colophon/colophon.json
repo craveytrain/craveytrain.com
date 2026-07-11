@@ -1,3 +1,4 @@
 {
-	"override:tags": ["colophon"]
+	"override:tags": ["colophon"],
+	"permalink": false
 }
