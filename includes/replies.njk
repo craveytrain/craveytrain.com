@@ -2,14 +2,15 @@
 {% for reply in replies %}
 <article id="webmention-{{ reply['wm-id'] }}" class="reply h-cite">
   <div class="reply-header">
-    {% if reply.author and reply.author.photo %}
-    <img class="reply-avatar u-photo" src="{{ reply.author.photo }}" alt="" width="40" height="40" loading="lazy">
-    {% else %}
     {% set replyName = reply.author.name if reply.author and reply.author.name else 'Anonymous' %}
     {% set replyWords = replyName.split(' ') %}
     {% set replyInitials = replyWords[0].charAt(0) + (replyWords[1].charAt(0) if replyWords.length > 1 else '') %}
-    <span class="reply-avatar reply-avatar--initials{{ ' reply-avatar--alt' if loop.index0 % 2 else '' }}">{{ replyInitials }}</span>
-    {% endif %}
+    <span class="reply-avatar reply-avatar--initials{{ ' reply-avatar--alt' if loop.index0 % 2 else '' }}">
+      <span aria-hidden="true">{{ replyInitials }}</span>
+      {% if reply.author and reply.author.photo %}
+      <img class="u-photo" src="{{ reply.author.photo }}" alt="" width="40" height="40" loading="lazy" onerror="this.remove()">
+      {% endif %}
+    </span>
     {% if reply.author %}
     <a class="p-author h-card reply-author" {% if reply.author.url %}href="{{ reply.author.url }}" {% elif reply.url %}href="{{ reply.url }}" {% endif %}target="_blank" rel="noopener noreferrer"><strong class="p-name">{{ reply.author.name }}</strong></a>
     {% else %}
