@@ -269,6 +269,7 @@
 	overflow: hidden;
 	display: grid;
 	place-items: center;
+	position: relative;
 }
 
 .facepile-item {
@@ -277,10 +278,13 @@
 	text-decoration: none;
 }
 
-.facepile-avatar {
+.facepile-avatar,
+.reply-avatar > img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	position: absolute;
+	inset: 0;
 }
 
 .facepile-item--initials,
