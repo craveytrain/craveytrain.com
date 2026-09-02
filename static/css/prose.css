@@ -162,78 +162,62 @@
 	border: none;
 }
 
-.post-content pre .token {
-	font-weight: 400;
-}
-
-/* TODO(affiche): code-block/syntax palette pass, see DESIGN.md §9 */
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
+.post-content ::highlight(comment),
+.post-content ::highlight(quote) {
 	color: var(--syntax-comment);
 	font-style: italic;
 }
 
-.token.punctuation {
+.post-content ::highlight(operator),
+.post-content ::highlight(punctuation) {
 	color: var(--syntax-punctuation);
 }
 
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted {
+.post-content ::highlight(numeric),
+.post-content ::highlight(boolean),
+.post-content ::highlight(constant),
+.post-content ::highlight(symbol),
+.post-content ::highlight(character-entity),
+.post-content ::highlight(anchor),
+.post-content ::highlight(entity),
+.post-content ::highlight(property),
+.post-content ::highlight(key),
+.post-content ::highlight(attribute-name),
+.post-content ::highlight(tag),
+.post-content ::highlight(inserted),
+.post-content ::highlight(deleted) {
 	color: var(--syntax-property);
 }
 
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
+.post-content ::highlight(string),
+.post-content ::highlight(regexp),
+.post-content ::highlight(attribute-value),
+.post-content ::highlight(link),
+.post-content ::highlight(raw) {
 	color: var(--syntax-at-rule);
 }
 
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
+.post-content ::highlight(selector) {
 	color: var(--syntax-selector);
 }
 
-.token.atrule,
-.token.attr-value,
-.token.keyword {
+.post-content ::highlight(keyword),
+.post-content ::highlight(storage),
+.post-content ::highlight(at-rule),
+.post-content ::highlight(doctype),
+.post-content ::highlight(important),
+.post-content ::highlight(section) {
 	color: var(--syntax-value);
 }
 
-.token.function,
-.token.class-name {
-	color: var(--accent);
-}
-
-.token.regex,
-.token.important,
-.token.variable {
-	color: var(--accent);
-}
-
-.token.important,
-.token.bold {
-	font-weight: 600;
-}
-
-.token.italic {
-	font-style: italic;
-}
-
-.token.entity {
-	cursor: help;
+.post-content ::highlight(function),
+.post-content ::highlight(decorator),
+.post-content ::highlight(animation),
+.post-content ::highlight(type),
+.post-content ::highlight(support),
+.post-content ::highlight(variable),
+.post-content ::highlight(interpolation) {
+	color: var(--syntax-property);
 }
 
 /* ─── 7. Facepile ─── */

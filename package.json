@@ -40,7 +40,6 @@
 		"@11ty/eleventy": "^3.1.6",
 		"@11ty/eleventy-navigation": "^1.0.5",
 		"@11ty/eleventy-plugin-rss": "^3.0.0",
-		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
 		"@eslint/js": "^10.0.1",
 		"dotenv": "^17.4.2",
 		"eslint": "^10.9.1",
@@ -55,6 +54,7 @@
 		"sanitize-html": "^2.17.7"
 	},
 	"dependencies": {
-		"markdown-it": "^15.0.1"
+		"markdown-it": "^15.0.1",
+		"microlighter": "^2.1.0"
 	}
 }

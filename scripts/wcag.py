@@ -12,7 +12,7 @@ of role pairs, in both the jour (light) and nuit (dark) resolutions.
 
 Usage:
     python3 scripts/wcag.py               # validate static/css/main.css
-    python3 scripts/wcag.py --self-test    # validate the handoff palette
+    python3 scripts/wcag.py --self-test    # validate the reference palette
 
 Exit status: 0 if every pair passes its minimum, 1 otherwise (including
 the case where required tokens are not found in the CSS, that's expected
@@ -26,8 +26,8 @@ from pathlib import Path
 
 CSS_PATH = Path(__file__).resolve().parent.parent / "static" / "css" / "main.css"
 
-# The exact :root block from handoff/affiche-handoff.md, lines 124-164,
-# used by --self-test to validate the math independently of main.css.
+# A reference token block used by --self-test to validate the math
+# independently of main.css.
 SELF_TEST_CSS = """
 :root {
 	color-scheme: light dark;
@@ -47,6 +47,9 @@ SELF_TEST_CSS = """
 	--gold-bright: oklch(82% 0.11 85deg);
 	--teal: oklch(58% 0.08 200deg);
 	--teal-bright: oklch(63% 0.07 200deg);
+	--red-light: oklch(70% 0.15 30deg);
+	--teal-deep: oklch(45% 0.08 200deg);
+	--teal-light: oklch(70% 0.07 200deg);
 
 	/* -- Layer 2: semantic roles -- jour / nuit is only this remap -- */
 	--surface: light-dark(var(--cream), var(--midnight-deep));
@@ -64,6 +67,12 @@ SELF_TEST_CSS = """
 	--selection-bg: light-dark(var(--red), var(--red-bright));
 	--selection-fg: light-dark(var(--cream), var(--midnight-deep));
 	--footer-link: light-dark(var(--gold), var(--red));
+	--syntax-comment: light-dark(var(--midnight-light), var(--cream-dim));
+	--syntax-punctuation: light-dark(var(--midnight-light), var(--cream-dim));
+	--syntax-property: light-dark(var(--red), var(--red-light));
+	--syntax-value: light-dark(var(--midnight), var(--gold-bright));
+	--syntax-at-rule: light-dark(var(--teal-deep), var(--teal-light));
+	--syntax-selector: light-dark(var(--midnight), var(--gold-bright));
 }
 """
 
@@ -76,6 +85,12 @@ PAIRS = [
 	("--on-fill", "--fill", 4.5),
 	("--footer-link", "--fill", 4.5),
 	("--selection-fg", "--selection-bg", 4.5),
+	("--syntax-comment", "--surface-deep", 4.5),
+	("--syntax-punctuation", "--surface-deep", 4.5),
+	("--syntax-property", "--surface-deep", 4.5),
+	("--syntax-value", "--surface-deep", 4.5),
+	("--syntax-at-rule", "--surface-deep", 4.5),
+	("--syntax-selector", "--surface-deep", 4.5),
 ]
 
 PIGMENT_RE = re.compile(
@@ -226,7 +241,7 @@ def main():
 
 	if self_test:
 		root_block = extract_root_block(SELF_TEST_CSS)
-		exit_code = run(root_block, "SELF-TEST (handoff palette)")
+		exit_code = run(root_block, "SELF-TEST (reference palette)")
 		sys.exit(exit_code)
 
 	if not CSS_PATH.exists():
