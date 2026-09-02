@@ -34,7 +34,7 @@ You can probably gather that we are telling Git where the specific SVN structure
 
 Now, you will notice there is a .git folder in this location. Go into that folder and open the config file in the text editor of your choice. It may look something like this:
 
-```git
+```
 [svn-remote "svn"]
 	url = http://svnserver.yourdomain.tld
 	fetch = path/to/specific/project/Trunk:refs/remotes/appName/trunk
@@ -44,13 +44,13 @@ Now, you will notice there is a .git folder in this location. Go into that folde
 
 Now, that's great if you use the standard layout. If you have some variables, you may have to adjust this. For example, we use a directories under Branches for types of branches (Hotfix, Feature, etc). Git won't recursively look for branches in that directory so we have to adjust the config. The line we are looking for is below:
 
-```git
+```
 branches = path/to/specific/project/Branches/*:refs/remotes/appName/*
 ```
 
 So, for our config, I made a slight adjustment:
 
-```git
+```
 branches = path/to/specific/project/Branches/*/*:refs/remotes/appName/*
 ```
 

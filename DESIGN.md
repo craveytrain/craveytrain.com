@@ -275,7 +275,6 @@ Vanilla custom element (`static/js/theme-toggle.js`), no shadow DOM, so it inher
 Known open items, not yet closed:
 
 - **Favicon / safari-pinned-tab** still carry Timetable-era artwork (`mask-icon` color `#B44D2D`). Needs an Affiche asset pass (train mark on cream). The `mask-icon` tint is coupled to the pinned-tab SVG's own shape, so it waits for that redraw; `msapplication-TileColor` was a standalone color value with no artwork of its own to redraw, so it was brought in line with the current palette directly. Marked with a `TODO(affiche)` comment in `layouts/base.njk`. The og:image half of this is done: `static/img/og-card.png` is a poster-frame social card whose editable source lives in the brand repo (`~/Projects/craveytrain/social/og-card.html`).
-- **Code-block syntax palette**: `--syntax-*` tokens in `static/css/main.css` are unchanged placeholders (marked `TODO(affiche)`), not yet re-derived from the midnight/red/gold/teal palette. `.post-content pre`/`.token.*` rules in `prose.css` still reference them as-is.
 - **Hero portrait/photo treatment** if it ever returns. No spec yet.
 - **Bebas letter-spacing tuning**: current values are eyeballed per size, worth a dedicated typography pass.
 - **Print styles** for posts. None exist; the frame should probably drop for print.

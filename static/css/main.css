@@ -97,6 +97,9 @@ h6 {
 	--gold-bright: oklch(82% 0.11 85deg);
 	--teal: oklch(58% 0.08 200deg);
 	--teal-bright: oklch(63% 0.07 200deg);
+	--red-light: oklch(70% 0.15 30deg);
+	--teal-deep: oklch(45% 0.08 200deg);
+	--teal-light: oklch(70% 0.07 200deg);
 
 	/* ── Layer 2: semantic roles, jour / nuit is only this remap ── */
 	--surface: light-dark(var(--cream), var(--midnight-deep));
@@ -121,13 +124,13 @@ h6 {
 	--font-script: yellowtail, cursive;
 	--font-code: inconsolata, 'SFMono-Regular', consolas, monospace;
 
-	/* TODO(affiche): code-block/syntax palette pass, see DESIGN.md §9 */
-	--syntax-property: oklch(55% 0.18 40deg);
-	--syntax-value: oklch(45% 0.12 305deg);
-	--syntax-at-rule: oklch(52% 0.12 130deg);
-	--syntax-selector: oklch(25% 0.02 55deg);
-	--syntax-comment: oklch(64% 0.03 60deg);
-	--syntax-punctuation: oklch(64% 0.03 60deg);
+	/* Syntax */
+	--syntax-comment: light-dark(var(--midnight-light), var(--cream-dim));
+	--syntax-punctuation: light-dark(var(--midnight-light), var(--cream-dim));
+	--syntax-property: light-dark(var(--red), var(--red-light));
+	--syntax-value: light-dark(var(--midnight), var(--gold-bright));
+	--syntax-at-rule: light-dark(var(--teal-deep), var(--teal-light));
+	--syntax-selector: light-dark(var(--midnight), var(--gold-bright));
 
 	/* Layout */
 	--max-width: 1280px;

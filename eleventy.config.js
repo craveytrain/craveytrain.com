@@ -1,7 +1,6 @@
 import fs from 'fs/promises'
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
 import { feedPlugin } from '@11ty/eleventy-plugin-rss'
-import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
 import contentTags from './utils/content-tags.js'
 import groupByYearDesc from './utils/group-by-year.js'
 import tagList from './utils/tag-list.js'
@@ -49,6 +48,26 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ 'static/fonts': 'fonts' })
 	eleventyConfig.addPassthroughCopy({ 'static/css': 'css' })
 	eleventyConfig.addPassthroughCopy({ 'static/js': 'js' })
+	eleventyConfig.addPassthroughCopy({
+	        'node_modules/microlighter/dist/microlighter.min.js':
+	                'js/microlighter/microlighter.min.js',
+	})
+	eleventyConfig.addPassthroughCopy({
+	        'node_modules/microlighter/dist/grammars/bash.js':
+	                'js/microlighter/grammars/bash.js',
+	})
+	eleventyConfig.addPassthroughCopy({
+	        'node_modules/microlighter/dist/grammars/css.js':
+	                'js/microlighter/grammars/css.js',
+	})
+	eleventyConfig.addPassthroughCopy({
+	        'node_modules/microlighter/dist/grammars/html.js':
+	                'js/microlighter/grammars/html.js',
+	})
+	eleventyConfig.addPassthroughCopy({
+	        'node_modules/microlighter/dist/grammars/javascript.js':
+	                'js/microlighter/grammars/javascript.js',
+	})
 	eleventyConfig.addPassthroughCopy({ 'static/robots.txt': 'robots.txt' })
 
 	if (process.env.ELEVENTY_ENV !== 'production') {
@@ -62,8 +81,6 @@ export default async function (eleventyConfig) {
 
 	// filter and sort nav items
 	eleventyConfig.addPlugin(eleventyNavigationPlugin)
-	// syntax highlighting
-	eleventyConfig.addPlugin(syntaxHighlight)
 
 	// pretty date
 	eleventyConfig.addFilter('prettyDate', dateObj =>
